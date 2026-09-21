@@ -1,0 +1,7 @@
+item_id	task_family	state	question	option_or_expected_answer	annotation_1	annotation_2	adjudicated_label	notes
+TR-INTENT-001	intent							
+TR-TOOL-001	tool_routing							
+TR-RELEVANCE-001	relevance							
+TR-ANSWERABILITY-001	answerability							
+TR-UNSEEN-OPTION-001	unseen_option							
+TR-CODESWITCH-001	code_switching							

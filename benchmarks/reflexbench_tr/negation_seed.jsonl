@@ -1,0 +1,20 @@
+{"id":"tr-neg-001","language":"tr","origin":"native","task":"binary","state":"Bu işlem güvenlidir.","question":"İşlem güvenli mi?","label":true,"pair_id":"tr-neg-001"}
+{"id":"tr-neg-002","language":"tr","origin":"native","task":"binary","state":"Bu işlem güvenli değildir.","question":"İşlem güvenli mi?","label":false,"pair_id":"tr-neg-001"}
+{"id":"tr-neg-003","language":"tr","origin":"native","task":"binary","state":"Sistem çalışıyor.","question":"Sistem çalışıyor mu?","label":true,"pair_id":"tr-neg-003"}
+{"id":"tr-neg-004","language":"tr","origin":"native","task":"binary","state":"Sistem çalışmıyor.","question":"Sistem çalışıyor mu?","label":false,"pair_id":"tr-neg-003"}
+{"id":"tr-neg-005","language":"tr","origin":"native","task":"binary","state":"Bu izin gereklidir.","question":"Bu izin gerekli mi?","label":true,"pair_id":"tr-neg-005"}
+{"id":"tr-neg-006","language":"tr","origin":"native","task":"binary","state":"Bu izin gerekli değildir.","question":"Bu izin gerekli mi?","label":false,"pair_id":"tr-neg-005"}
+{"id":"tr-neg-007","language":"tr","origin":"native","task":"binary","state":"Kullanıcı dosyayı okumalıdır.","question":"Kullanıcı dosyayı okumalı mı?","label":true,"pair_id":"tr-neg-007"}
+{"id":"tr-neg-008","language":"tr","origin":"native","task":"binary","state":"Kullanıcı dosyayı okumamalıdır.","question":"Kullanıcı dosyayı okumalı mı?","label":false,"pair_id":"tr-neg-007"}
+{"id":"tr-neg-009","language":"tr","origin":"native","task":"binary","state":"Bu anahtar kapıyı açar.","question":"Anahtar kapıyı açar mı?","label":true,"pair_id":"tr-neg-009"}
+{"id":"tr-neg-010","language":"tr","origin":"native","task":"binary","state":"Bu anahtar kapıyı açmaz.","question":"Anahtar kapıyı açar mı?","label":false,"pair_id":"tr-neg-009"}
+{"id":"tr-neg-011","language":"tr","origin":"native","task":"binary","state":"Bu yöntem sorunu çözer.","question":"Bu yöntem sorunu çözer mi?","label":true,"pair_id":"tr-neg-011"}
+{"id":"tr-neg-012","language":"tr","origin":"native","task":"binary","state":"Bu yöntem sorunu çözmez.","question":"Bu yöntem sorunu çözer mi?","label":false,"pair_id":"tr-neg-011"}
+{"id":"tr-neg-013","language":"tr","origin":"native","task":"binary","state":"Sunucu isteğe yanıt verir.","question":"Sunucu isteğe yanıt verir mi?","label":true,"pair_id":"tr-neg-013"}
+{"id":"tr-neg-014","language":"tr","origin":"native","task":"binary","state":"Sunucu isteğe yanıt vermez.","question":"Sunucu isteğe yanıt verir mi?","label":false,"pair_id":"tr-neg-013"}
+{"id":"tr-neg-015","language":"tr","origin":"native","task":"binary","state":"Bu belge paylaşılmalıdır.","question":"Bu belge paylaşılmalı mı?","label":true,"pair_id":"tr-neg-015"}
+{"id":"tr-neg-016","language":"tr","origin":"native","task":"binary","state":"Bu belge paylaşılmamalıdır.","question":"Bu belge paylaşılmalı mı?","label":false,"pair_id":"tr-neg-015"}
+{"id":"tr-neg-017","language":"tr","origin":"native","task":"binary","state":"Bu güncelleme kurulabilir.","question":"Bu güncelleme kurulabilir mi?","label":true,"pair_id":"tr-neg-017"}
+{"id":"tr-neg-018","language":"tr","origin":"native","task":"binary","state":"Bu güncelleme kurulamaz.","question":"Bu güncelleme kurulabilir mi?","label":false,"pair_id":"tr-neg-017"}
+{"id":"tr-neg-019","language":"tr","origin":"native","task":"binary","state":"Müşteri bu koşulları kabul eder.","question":"Müşteri bu koşulları kabul eder mi?","label":true,"pair_id":"tr-neg-019"}
+{"id":"tr-neg-020","language":"tr","origin":"native","task":"binary","state":"Müşteri bu koşulları kabul etmez.","question":"Müşteri bu koşulları kabul eder mi?","label":false,"pair_id":"tr-neg-019"}

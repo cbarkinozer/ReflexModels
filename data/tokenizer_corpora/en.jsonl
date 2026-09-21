@@ -1,0 +1,12 @@
+{"text":"The weather in Istanbul is cool today, but rain is not expected this afternoon."}
+{"text":"I want to change my account password, but the security code did not arrive on my phone."}
+{"text":"Please check the amount on the invoice and the payment due date."}
+{"text":"Meeting notes, decisions, and owners should be stored in the corporate archive."}
+{"text":"Read the config.yaml file, then report invalid keys to me."}
+{"text":"The PostgreSQL connection is timing out; verify network settings first."}
+{"text":"When the API returns 429, retry requests with exponential backoff."}
+{"text":"The new version must run with low memory use on a CPU."}
+{"text":"The user only wants to inspect local files and should not search the internet."}
+{"text":"This proposal is unsuitable because its delivery time exceeds the contractual limit."}
+{"text":"Apply temperature calibration before converting the model score into a probability with softmax."}
+{"text":"The team will merge into the main branch after completing the pull request review."}

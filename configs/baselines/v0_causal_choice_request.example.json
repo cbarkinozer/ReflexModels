@@ -1,0 +1,11 @@
+{
+  "request_id": "tr-local-tools-001",
+  "language": "tr",
+  "state": "Kullanıcı yalnızca yerel proje dosyalarını incelemek istiyor.",
+  "question": "Hangi araç kullanılmalı?",
+  "options": {
+    "filesystem": "Yerel dosyaları oku",
+    "web": "İnternette ara",
+    "shell": "Komut çalıştır"
+  }
+}

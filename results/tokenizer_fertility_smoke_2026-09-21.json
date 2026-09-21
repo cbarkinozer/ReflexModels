@@ -1,0 +1,50 @@
+{
+  "task": "tokenizer_fertility",
+  "run_id": "tokenizer-fertility-20260921T190946Z",
+  "timestamp_utc": "2026-09-21T19:09:46.609418+00:00",
+  "git_commit": "07237b3c3e4ae83feeff33d1181f19120cc8a73d",
+  "config": "configs\\tokenizer_fertility.example.json",
+  "tokenizer_backend": "tokenizers",
+  "hardware": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "AMD64 Family 25 Model 80 Stepping 0, AuthenticAMD"
+  },
+  "models": {
+    "Qwen/Qwen3-0.6B-Base": {
+      "tr": {
+        "examples": 12,
+        "tokens_per_word": 2.5892045454545456,
+        "tokens_per_character": 0.31845891533480336,
+        "tokens_per_sentence": 22.833333333333332,
+        "sequence_tokens_p50": 24.0,
+        "sequence_tokens_p95": 28.45
+      },
+      "en": {
+        "examples": 12,
+        "tokens_per_word": 1.1803014795661855,
+        "tokens_per_character": 0.19816436568094445,
+        "tokens_per_sentence": 14.041666666666666,
+        "sequence_tokens_p50": 14.5,
+        "sequence_tokens_p95": 17.349999999999998
+      }
+    },
+    "Qwen/Qwen3-1.7B-Base": {
+      "tr": {
+        "examples": 12,
+        "tokens_per_word": 2.5892045454545456,
+        "tokens_per_character": 0.31845891533480336,
+        "tokens_per_sentence": 22.833333333333332,
+        "sequence_tokens_p50": 24.0,
+        "sequence_tokens_p95": 28.45
+      },
+      "en": {
+        "examples": 12,
+        "tokens_per_word": 1.1803014795661855,
+        "tokens_per_character": 0.19816436568094445,
+        "tokens_per_sentence": 14.041666666666666,
+        "sequence_tokens_p50": 14.5,
+        "sequence_tokens_p95": 17.349999999999998
+      }
+    }
+  }
+}

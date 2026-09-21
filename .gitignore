@@ -1,0 +1,13 @@
+# Downloaded and derived datasets are not repository assets.
+data/raw/
+data/prepared/
+
+# Python environments and caches.
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Transient experiment process logs; committed result JSON remains reproducible.
+results/**/stdout*.log
+results/**/stderr*.log

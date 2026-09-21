@@ -1,0 +1,8 @@
+{
+  "models": ["Qwen/Qwen3-0.6B-Base", "Qwen/Qwen3-1.7B-Base"],
+  "corpora": {
+    "tr": "data/tokenizer_corpora/tr.jsonl",
+    "en": "data/tokenizer_corpora/en.jsonl"
+  },
+  "trust_remote_code": false
+}

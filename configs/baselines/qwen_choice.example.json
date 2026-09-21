@@ -1,0 +1,8 @@
+{
+  "model": "Qwen/Qwen3-4B-Base",
+  "languages": ["tr", "en"],
+  "methods": ["generative", "one_token", "direct_logit"],
+  "branch_mode": "duplicated",
+  "seed": 42,
+  "cpu_benchmark": {"context_tokens": [128, 512, 1024, 2048], "questions": [1, 4, 8, 16, 32]}
+}

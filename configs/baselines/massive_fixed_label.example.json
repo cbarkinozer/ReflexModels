@@ -1,0 +1,41 @@
+{
+  "dataset": {
+    "name": "MASSIVE",
+    "version": "1.0",
+    "prepared_directory": "data/prepared/massive",
+    "task": "intent_fixed_label"
+  },
+  "runs": [
+    {
+      "name": "berturk_tr",
+      "model": "dbmdz/bert-base-turkish-cased",
+      "language": "tr",
+      "train_split": "massive_tr_train.jsonl",
+      "validation_split": "massive_tr_dev.jsonl",
+      "test_split": "massive_tr_test.jsonl"
+    },
+    {
+      "name": "xlmr_tr",
+      "model": "FacebookAI/xlm-roberta-base",
+      "language": "tr",
+      "train_split": "massive_tr_train.jsonl",
+      "validation_split": "massive_tr_dev.jsonl",
+      "test_split": "massive_tr_test.jsonl"
+    },
+    {
+      "name": "xlmr_en",
+      "model": "FacebookAI/xlm-roberta-base",
+      "language": "en",
+      "train_split": "massive_en_train.jsonl",
+      "validation_split": "massive_en_dev.jsonl",
+      "test_split": "massive_en_test.jsonl"
+    }
+  ],
+  "seed": 42,
+  "split_overlap_policies": [
+    "report_only",
+    "drop_train_dev_overlapping_test"
+  ],
+  "metrics": ["accuracy", "macro_f1", "nll", "brier", "ece"],
+  "cpu_benchmark": {"warmup": 3, "repetitions": 20}
+}
