@@ -106,9 +106,10 @@ def evaluate_predictions(
             "selected_option": selected, "option_probabilities": probabilities,
             "answerability_probability": float(p_answerable), "accepted": p_answerable >= threshold,
         })
-    by_language = {}
-    for language in sorted({record["language"] for record in records}):
-        indexes = [index for index, record in enumerate(records) if record["language"] == language]
+        if "task_family" in record:
+            predictions[-1]["task_family"] = record["task_family"]
+
+    def metrics_for_indexes(indexes: list[int]) -> dict[str, Any]:
         answerable_indexes = [index for index in indexes if records[index]["answerable"]]
         labels = [int(records[index]["answerable"]) for index in indexes]
         probabilities = [float(answerable_probabilities[index]) for index in indexes]
@@ -116,7 +117,7 @@ def evaluate_predictions(
             bool(records[index]["answerable"] and predictions[index]["selected_option"] == records[index]["correct_option"])
             for index in indexes
         ]
-        by_language[language] = {
+        return {
             "record_count": len(indexes),
             "answerable_record_count": len(answerable_indexes),
             "decision": decision_validation_metrics(
@@ -127,8 +128,33 @@ def evaluate_predictions(
             "answerability": answerability_metrics(labels, probabilities),
             "coverage": selective_accuracy(correct, probabilities, threshold=threshold),
         }
-    return {"calibration_temperature": temperature, "answerability_threshold": threshold,
-            "by_language": by_language}, predictions
+
+    by_language = {
+        language: metrics_for_indexes([index for index, record in enumerate(records) if record["language"] == language])
+        for language in sorted({record["language"] for record in records})
+    }
+    # Origin is mandatory in the V1 data contract. Always report it separately
+    # so translated or synthetic evaluation examples cannot be mistaken for
+    # native-Turkish performance.
+    by_origin = {
+        origin: metrics_for_indexes([index for index, record in enumerate(records) if record["origin"] == origin])
+        for origin in sorted({record["origin"] for record in records})
+    }
+    # Task-family reporting is optional so generic V1 test files stay valid.
+    # A benchmark that supplies it must do so for every record; otherwise
+    # silently grouping a partial subset would make coverage misleading.
+    task_families = [record.get("task_family") for record in records]
+    if any(task_families) and not all(isinstance(family, str) and family.strip() for family in task_families):
+        raise ValueError("task_family must be a non-empty string on every record when present")
+    by_task_family = {
+        family: metrics_for_indexes([index for index, record in enumerate(records) if record["task_family"] == family])
+        for family in sorted(set(task_families))
+    } if all(task_families) else None
+    result = {"calibration_temperature": temperature, "answerability_threshold": threshold,
+              "by_language": by_language, "by_origin": by_origin}
+    if by_task_family is not None:
+        result["by_task_family"] = by_task_family
+    return result, predictions
 
 
 def main() -> None:

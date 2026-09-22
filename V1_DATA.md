@@ -64,6 +64,18 @@ configuration, backbone configuration, and test data. Pass
 `--latency-repetitions N` only after accuracy evaluation to additionally
 measure the real single-request CPU decision path; timing is disabled by
 default so it does not accidentally contend with training.
+When every frozen record carries a non-empty `task_family` (for example,
+`answerability`, `tool_routing`, or `unseen_option`), the evaluator also
+reports the same fixed-calibration metrics separately for each family. A
+partially labeled test file is rejected rather than silently reporting an
+incomplete subgroup.
+Origin is mandatory, and metrics are always also separated by `native`,
+`translated`, and `synthetic` provenance. A synthetic pilot score must never
+be presented as native-Turkish benchmark performance.
+Run `scripts/validate_v1_frozen_evaluation.py <evaluation-output-dir>` before
+publishing a frozen-test result. It recomputes every language, provenance, and
+task-family metric from `predictions.jsonl` and rejects tampered or incomplete
+artifacts.
 
 `--freeze-backbone` is an optional low-cost pilot mode that updates only the
 two decision heads. It is a diagnostic baseline, not the full V1 fine-tuning

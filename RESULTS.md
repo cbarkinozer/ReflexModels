@@ -11,6 +11,7 @@
 | [`qwen3_0_6b_v0_negation`](results/qwen3_0_6b_v0_negation/result.json) | completed, preliminary | Frozen 20-item Turkish negation seed, raw V0 independent option log-probability: accuracy 0.60, pair accuracy 0.20, NLL 0.6758, p50 677.5 ms on CPU. This tiny benchmark is not a claim of broad model quality. |
 | [`tokenizer_fertility_massive_local`](results/tokenizer_fertility_massive_local.json) | completed | On 11,514 MASSIVE training utterances per language: Qwen3-0.6B-Base 2.12 TR / 1.09 EN tokens per word; BERTurk 1.31 TR / 1.85 EN; XLM-R 1.51 TR / 1.19 EN. |
 | [`xlmr_tr`](results/xlmr_tr/result.json) | completed | MASSIVE Turkish 60-intent fixed-label test (report-only overlap policy): accuracy 0.8399, macro-F1 0.7429, calibrated NLL 0.6503, ECE 0.0188; single-request CPU latency p50 46.3 ms. Trails the BERTurk checkpointed run (accuracy 0.8776, macro-F1 0.8377) on this task. |
+| [`xlmr_en`](results/xlmr_en/result.json) | completed | MASSIVE English 60-intent fixed-label control test (report-only overlap policy): accuracy 0.8547, macro-F1 0.7469, calibrated NLL 0.5720, ECE 0.0171; single-request CPU latency p50 46.7 ms. This is an English control measurement, not a Turkish-model quality claim. |
 
 The first BERTurk attempt finished training but failed in post-training
 calibration before saving a checkpoint or metrics. The runner was corrected,

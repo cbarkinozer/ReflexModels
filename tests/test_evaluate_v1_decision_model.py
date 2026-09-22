@@ -32,12 +32,43 @@ class V1FrozenEvaluationTests(unittest.TestCase):
             records, scores, [0.9, 0.1, 0.8], temperature=2.0, threshold=0.5,
         )
         self.assertEqual(set(metrics["by_language"]), {"tr", "en"})
+        self.assertEqual(set(metrics["by_origin"]), {"native"})
         self.assertEqual(metrics["calibration_temperature"], 2.0)
         self.assertEqual(metrics["answerability_threshold"], 0.5)
         self.assertEqual(metrics["by_language"]["tr"]["coverage"]["coverage"], 0.5)
         self.assertEqual(metrics["by_language"]["en"]["decision"]["accuracy"], 1.0)
         self.assertFalse(predictions[1]["accepted"])
         self.assertAlmostEqual(predictions[0]["option_probabilities"]["a"], 0.73105858, places=6)
+
+    def test_reports_task_family_metrics_when_frozen_benchmark_supplies_them(self):
+        records = [
+            {**record("tr-tool", "tr", True, "a"), "task_family": "tool_routing"},
+            {**record("tr-answer", "tr", False, None), "task_family": "answerability"},
+        ]
+        metrics, _ = MODULE.evaluate_predictions(
+            records, [{"a": 2.0, "b": 1.0}, {"a": 1.0, "b": 2.0}], [0.9, 0.1], temperature=1, threshold=0.5,
+        )
+        self.assertEqual(set(metrics["by_task_family"]), {"tool_routing", "answerability"})
+        self.assertEqual(metrics["by_task_family"]["tool_routing"]["decision"]["accuracy"], 1.0)
+        self.assertIsNone(metrics["by_task_family"]["answerability"]["decision"])
+
+    def test_reports_native_and_synthetic_origins_separately(self):
+        native = record("tr-native", "tr", True, "a")
+        synthetic = {**record("tr-synthetic", "tr", False, None), "origin": "synthetic"}
+        metrics, _ = MODULE.evaluate_predictions(
+            [native, synthetic], [{"a": 3.0, "b": 1.0}, {"a": 1.0, "b": 3.0}], [0.9, 0.1],
+            temperature=1, threshold=0.5,
+        )
+        self.assertEqual(set(metrics["by_origin"]), {"native", "synthetic"})
+        self.assertEqual(metrics["by_origin"]["native"]["record_count"], 1)
+        self.assertEqual(metrics["by_origin"]["synthetic"]["record_count"], 1)
+
+    def test_rejects_partially_labeled_task_family(self):
+        records = [record("tr-1", "tr", True, "a"), {**record("tr-2", "tr", False, None), "task_family": "answerability"}]
+        with self.assertRaisesRegex(ValueError, "task_family"):
+            MODULE.evaluate_predictions(
+                records, [{"a": 1.0, "b": 0.0}, {"a": 0.0, "b": 1.0}], [0.9, 0.1], temperature=1, threshold=0.5,
+            )
 
     def test_rejects_validation_records(self):
         bad = record("r", "tr", True, "a")

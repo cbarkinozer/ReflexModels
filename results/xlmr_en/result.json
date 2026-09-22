@@ -1,0 +1,61 @@
+{
+  "timestamp_utc": "2026-09-22T11:53:52.352130+00:00",
+  "git_commit": "c8f16e3ca5821d26f4f70807672ef50bee32ffd4",
+  "run": "xlmr_en",
+  "model": "FacebookAI/xlm-roberta-base",
+  "model_source": "data\\raw\\models\\FacebookAI-xlm-roberta-base",
+  "language": "en",
+  "seed": 42,
+  "dataset": {
+    "name": "MASSIVE",
+    "version": "1.0",
+    "prepared_directory": "data/prepared/massive",
+    "task": "intent_fixed_label"
+  },
+  "overlap_policy": "report_only",
+  "removed_counts": {
+    "train": 0,
+    "dev": 0,
+    "test": 0
+  },
+  "hyperparameters": {
+    "epochs": 3,
+    "batch_size": 8,
+    "learning_rate": 2e-05,
+    "max_length": 128,
+    "num_threads": 6
+  },
+  "validation_best_nll": 0.5834164272091061,
+  "temperature": 0.9466269818386952,
+  "selected_checkpoint": "results\\xlmr_en\\checkpoints\\epoch_2.pt",
+  "selected_epoch": 2,
+  "record_counts": {
+    "test": 2974,
+    "train": 11514,
+    "dev": 2033
+  },
+  "test_metrics_raw": {
+    "accuracy": 0.8547410894418291,
+    "macro_f1": 0.7469228342053954,
+    "nll": 0.5767522701653827,
+    "brier": 0.21857284971546018,
+    "ece": 0.03159072435231784
+  },
+  "test_metrics_temperature_calibrated": {
+    "accuracy": 0.8547410894418291,
+    "macro_f1": 0.7469228342053954,
+    "nll": 0.5719682704033652,
+    "brier": 0.21835504994967495,
+    "ece": 0.017146394153426732
+  },
+  "cpu_single_request": {
+    "requests": 20,
+    "latency_ms_mean": 47.20093,
+    "latency_ms_p50": 46.7348,
+    "latency_ms_p95": 51.8887,
+    "requests_per_second": 21.186023241491217,
+    "python_peak_ram_bytes": 17776
+  },
+  "hardware": "Windows-11-10.0.26200-SP0",
+  "torch": "2.5.1+cpu"
+}
