@@ -8,6 +8,7 @@ Do not commit private or identifiable support text.
 | MASSIVE 1.0 | https://github.com/alexa/massive | CC BY 4.0 (data) | en-US, tr-TR, 49+ others | fixed-label intent baseline train/validation/test | translated/localized parallel | Prepared locally on 2026-09-21; 33,042 aligned-locale records; 278 normalized-text duplicates across official splits flagged. |
 | XNLI 1.0 | https://github.com/facebookresearch/XNLI | CC BY-NC 4.0 | en, tr, 13 others | non-commercial NLI evaluation only | translated parallel | 2,500 dev / 5,000 test per language; cannot support commercial releases. |
 | ReflexBench-TR negation seed | local | CC0-1.0 | tr | frozen evaluation seed | native | Hand-authored minimal pairs; never train on it. |
+| MASSIVE V1 Turkish pilot | derived locally from MASSIVE 1.0 | CC BY 4.0 source | tr | synthetic decision-training pilot | translated utterances plus synthetic options | 600 train and 120 validation source utterances sampled by label; positive/insufficient option pairs; no MASSIVE test input. |
 
 When registering a dataset, record a direct source URL, exact license/version,
 and any commercial-use restriction before use. Never combine the XNLI

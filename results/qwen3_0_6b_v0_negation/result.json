@@ -1,0 +1,17 @@
+{
+  "model_source": "data\\raw\\models\\Qwen-Qwen3-0.6B-Base",
+  "dataset": "C:\\Repos\\ReflexModels\\benchmarks\\reflexbench_tr\\negation_seed.jsonl",
+  "record_count": 20,
+  "method": "v0_independent_mean_option_logprob",
+  "num_threads": 6,
+  "metrics": {
+    "accuracy": 0.6,
+    "macro_f1": 0.5238095238095238,
+    "nll": 0.6757840853291411,
+    "brier": 0.4803759136753002,
+    "ece": 0.15394909042062943,
+    "pair_accuracy": 0.2,
+    "latency_ms_mean": 681.8007949990715,
+    "latency_ms_p50": 677.5489499996183
+  }
+}

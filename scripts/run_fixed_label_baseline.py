@@ -104,6 +104,42 @@ def predict(model: Any, tokenizer: Any, records: list[dict[str, Any]], *, batch_
     return output
 
 
+def calibrated_probabilities(raw_probabilities: list[list[float]], temperature: float) -> list[list[float]]:
+    """Scale the full prediction matrix, preserving one row per example."""
+    return temperature_scale(raw_probabilities, temperature)
+
+
+def preflight_postprocessing() -> None:
+    """Exercise the final calibration and metric path before costly training."""
+    labels = [0, 1]
+    validation = [[0.8, 0.2], [0.3, 0.7]]
+    temperature = fit_temperature(labels, validation)
+    calibrated = calibrated_probabilities(validation, temperature)
+    if len(calibrated) != len(labels):
+        raise RuntimeError("preflight failed: calibrated prediction count changed")
+    classification_metrics(labels, calibrated)
+
+
+def save_checkpoint(path: Path, *, model: Any, optimizer: Any, epoch: int, validation_nll: float, torch: Any) -> None:
+    """Write a complete epoch checkpoint before starting another epoch."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_suffix(".tmp")
+    torch.save({"model": model.state_dict(), "optimizer": optimizer.state_dict(), "epoch": epoch, "validation_nll": validation_nll}, temporary)
+    os.replace(temporary, path)
+    print(f"checkpoint saved: {path}", flush=True)
+
+
+def load_checkpoint(path: Path, *, model: Any, torch: Any) -> dict[str, Any]:
+    if not path.is_file():
+        raise ValueError(f"checkpoint does not exist: {path}")
+    checkpoint = torch.load(path, map_location="cpu", weights_only=False)
+    if not isinstance(checkpoint, dict) or not {"model", "epoch", "validation_nll"} <= checkpoint.keys():
+        raise ValueError("checkpoint missing required training fields")
+    model.load_state_dict(checkpoint["model"])
+    print(f"checkpoint loaded: {path} (epoch {checkpoint['epoch']})", flush=True)
+    return checkpoint
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", required=True, type=Path)
@@ -116,12 +152,18 @@ def main() -> None:
     parser.add_argument("--learning-rate", type=float, default=2e-5)
     parser.add_argument("--max-length", type=int, default=128)
     parser.add_argument("--num-threads", type=int, help="CPU threads for PyTorch; default keeps its configured value")
+    parser.add_argument("--evaluate-checkpoint", type=Path, help="Skip training and evaluate this saved epoch checkpoint")
+    parser.add_argument("--limit-train", type=int, help="Use the first N training examples for a smoke run")
+    parser.add_argument("--limit-dev", type=int, help="Use the first N validation examples for a smoke run")
+    parser.add_argument("--limit-test", type=int, help="Use the first N test examples for a smoke run")
     args = parser.parse_args()
     numerical = [args.epochs, args.batch_size, args.max_length]
     if args.num_threads is not None:
         numerical.append(args.num_threads)
+    numerical.extend(value for value in (args.limit_train, args.limit_dev, args.limit_test) if value is not None)
     if min(numerical) < 1 or args.learning_rate <= 0:
         raise ValueError("epochs, batch size, max length, and optional thread count must be positive")
+    preflight_postprocessing()
     try:
         import torch
         from transformers import AutoModelForSequenceClassification, AutoTokenizer
@@ -137,6 +179,9 @@ def main() -> None:
         raise ValueError("run language does not match every selected prepared record")
     splits, removed = apply_overlap_policy(supplied, policy=args.overlap_policy)
     classes = label_count(splits)
+    for split, limit in (("train", args.limit_train), ("dev", args.limit_dev), ("test", args.limit_test)):
+        if limit is not None:
+            splits[split] = splits[split][:limit]
     seed = int(config["seed"])
     set_seed(seed, torch)
     if args.num_threads is not None:
@@ -145,41 +190,46 @@ def main() -> None:
     model_source = str(args.model_path) if args.model_path else run["model"]
     tokenizer = AutoTokenizer.from_pretrained(model_source)
     model = AutoModelForSequenceClassification.from_pretrained(model_source, num_labels=classes, ignore_mismatched_sizes=True)
-    optimizer = torch.optim.AdamW(model.parameters(), lr=args.learning_rate)
-    best_state, best_nll = None, float("inf")
-    train = splits["train"]
-    for epoch in range(args.epochs):
-        print(f"epoch {epoch + 1}/{args.epochs}: training {len(train)} records", flush=True)
-        model.train()
-        order = list(range(len(train)))
-        random.Random(seed + epoch).shuffle(order)
-        for start in range(0, len(order), args.batch_size):
-            batch = [train[index] for index in order[start : start + args.batch_size]]
-            encoded = tokenizer([record["text"] for record in batch], padding=True, truncation=True, max_length=args.max_length, return_tensors="pt")
-            labels = torch.tensor([record["label"] for record in batch], dtype=torch.long)
-            loss = model(**encoded, labels=labels).loss
-            loss.backward()
-            optimizer.step()
-            optimizer.zero_grad(set_to_none=True)
-        dev_logits = predict(model, tokenizer, splits["dev"], batch_size=args.batch_size, max_length=args.max_length, torch=torch)
-        dev_probs = probabilities(dev_logits)
-        dev_nll = classification_metrics([r["label"] for r in splits["dev"]], dev_probs)["nll"]
-        print(f"epoch {epoch + 1}/{args.epochs}: validation_nll={dev_nll:.6f}", flush=True)
-        if dev_nll < best_nll:
-            best_nll = dev_nll
-            best_state = {key: value.detach().clone() for key, value in model.state_dict().items()}
-    if best_state is None:
-        raise RuntimeError("no model state was selected")
-    model.load_state_dict(best_state)
+    args.output_dir.mkdir(parents=True, exist_ok=True)
+    best_path = args.evaluate_checkpoint
+    if best_path is None:
+        optimizer = torch.optim.AdamW(model.parameters(), lr=args.learning_rate)
+        best_nll = float("inf")
+        train = splits["train"]
+        for epoch in range(args.epochs):
+            print(f"epoch {epoch + 1}/{args.epochs}: training {len(train)} records", flush=True)
+            model.train()
+            order = list(range(len(train)))
+            random.Random(seed + epoch).shuffle(order)
+            for start in range(0, len(order), args.batch_size):
+                batch = [train[index] for index in order[start : start + args.batch_size]]
+                encoded = tokenizer([record["text"] for record in batch], padding=True, truncation=True, max_length=args.max_length, return_tensors="pt")
+                labels = torch.tensor([record["label"] for record in batch], dtype=torch.long)
+                loss = model(**encoded, labels=labels).loss
+                loss.backward()
+                optimizer.step()
+                optimizer.zero_grad(set_to_none=True)
+            dev_logits = predict(model, tokenizer, splits["dev"], batch_size=args.batch_size, max_length=args.max_length, torch=torch)
+            dev_probs = probabilities(dev_logits)
+            dev_nll = classification_metrics([r["label"] for r in splits["dev"]], dev_probs)["nll"]
+            print(f"epoch {epoch + 1}/{args.epochs}: validation_nll={dev_nll:.6f}", flush=True)
+            epoch_path = args.output_dir / "checkpoints" / f"epoch_{epoch + 1}.pt"
+            save_checkpoint(epoch_path, model=model, optimizer=optimizer, epoch=epoch + 1, validation_nll=dev_nll, torch=torch)
+            if dev_nll < best_nll:
+                best_nll = dev_nll
+                best_path = epoch_path
+        if best_path is None:
+            raise RuntimeError("no model checkpoint was selected")
+    selected_checkpoint = load_checkpoint(best_path, model=model, torch=torch)
+    best_nll = float(selected_checkpoint["validation_nll"])
     dev_logits = predict(model, tokenizer, splits["dev"], batch_size=args.batch_size, max_length=args.max_length, torch=torch)
     temperature = fit_temperature([r["label"] for r in splits["dev"]], probabilities(dev_logits))
     test_logits = predict(model, tokenizer, splits["test"], batch_size=args.batch_size, max_length=args.max_length, torch=torch)
     raw_test = probabilities(test_logits)
-    calibrated_test = [temperature_scale(row, temperature) for row in raw_test]
+    calibrated_test = calibrated_probabilities(raw_test, temperature)
     one = splits["test"][:1]
     cpu = measure_callable(lambda: predict(model, tokenizer, one, batch_size=1, max_length=args.max_length, torch=torch), warmup=int(config["cpu_benchmark"]["warmup"]), repetitions=int(config["cpu_benchmark"]["repetitions"]))
     labels = [record["label"] for record in splits["test"]]
-    args.output_dir.mkdir(parents=True, exist_ok=True)
     predictions_path = args.output_dir / "test_predictions.jsonl"
     predictions_path.write_text("".join(json.dumps({"id": record["id"], "language": record["language"], "label": record["label"], "probabilities": row}, ensure_ascii=False) + "\n" for record, row in zip(splits["test"], calibrated_test)), encoding="utf-8")
     result = {
@@ -188,6 +238,8 @@ def main() -> None:
         "dataset": config["dataset"], "overlap_policy": args.overlap_policy, "removed_counts": removed,
         "hyperparameters": {"epochs": args.epochs, "batch_size": args.batch_size, "learning_rate": args.learning_rate, "max_length": args.max_length, "num_threads": num_threads},
         "validation_best_nll": best_nll, "temperature": temperature,
+        "selected_checkpoint": str(best_path), "selected_epoch": selected_checkpoint["epoch"],
+        "record_counts": {name: len(records) for name, records in splits.items()},
         "test_metrics_raw": classification_metrics(labels, raw_test),
         "test_metrics_temperature_calibrated": classification_metrics(labels, calibrated_test),
         "cpu_single_request": cpu, "hardware": platform.platform(), "torch": torch.__version__,

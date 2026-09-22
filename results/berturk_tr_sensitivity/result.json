@@ -1,0 +1,61 @@
+{
+  "timestamp_utc": "2026-09-22T07:13:52.965340+00:00",
+  "git_commit": "1a2d0a345a0266deaf74e8a4de7c8e22a735212e",
+  "run": "berturk_tr",
+  "model": "dbmdz/bert-base-turkish-cased",
+  "model_source": "data\\raw\\models\\dbmdz-bert-base-turkish-cased",
+  "language": "tr",
+  "seed": 42,
+  "dataset": {
+    "name": "MASSIVE",
+    "version": "1.0",
+    "prepared_directory": "data/prepared/massive",
+    "task": "intent_fixed_label"
+  },
+  "overlap_policy": "drop_train_dev_overlapping_test",
+  "removed_counts": {
+    "train": 244,
+    "dev": 41,
+    "test": 0
+  },
+  "hyperparameters": {
+    "epochs": 3,
+    "batch_size": 8,
+    "learning_rate": 2e-05,
+    "max_length": 128,
+    "num_threads": 6
+  },
+  "validation_best_nll": 0.5624887630241383,
+  "temperature": 1.069892377507498,
+  "selected_checkpoint": "results\\berturk_tr_sensitivity\\checkpoints\\epoch_3.pt",
+  "selected_epoch": 3,
+  "record_counts": {
+    "test": 2974,
+    "train": 11270,
+    "dev": 1992
+  },
+  "test_metrics_raw": {
+    "accuracy": 0.8618022864828514,
+    "macro_f1": 0.8216001660342774,
+    "nll": 0.5197273522531514,
+    "brier": 0.20258642093699425,
+    "ece": 0.03321601518353306
+  },
+  "test_metrics_temperature_calibrated": {
+    "accuracy": 0.8618022864828514,
+    "macro_f1": 0.8216001660342774,
+    "nll": 0.5197959619947273,
+    "brier": 0.20096487956050277,
+    "ece": 0.01798432541524424
+  },
+  "cpu_single_request": {
+    "requests": 20,
+    "latency_ms_mean": 48.565495,
+    "latency_ms_p50": 48.942800000000005,
+    "latency_ms_p95": 50.9766,
+    "requests_per_second": 20.590750696559358,
+    "python_peak_ram_bytes": 20152
+  },
+  "hardware": "Windows-11-10.0.26200-SP0",
+  "torch": "2.5.1+cpu"
+}

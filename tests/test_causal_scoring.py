@@ -1,6 +1,9 @@
 import sys
 from pathlib import Path
+from types import SimpleNamespace
 import unittest
+
+import torch
 
 sys.path.insert(0, str(Path(__file__).parents[1] / "src"))
 
@@ -42,6 +45,25 @@ class CausalScoringTests(unittest.TestCase):
             causal_scoring.option_logprobabilities = original
         self.assertEqual(response["selected_option"], "a")
         self.assertAlmostEqual(sum(response["option_probabilities"].values()), 1.0)
+
+    def test_tail_logit_optimization_matches_full_logits(self):
+        class Full(torch.nn.Module):
+            def __init__(self):
+                super().__init__()
+                self.marker = torch.nn.Parameter(torch.zeros(1))
+
+            def forward(self, input_ids):
+                return SimpleNamespace(logits=torch.nn.functional.one_hot(input_ids, 128).float() * 2)
+
+        class Tail(Full):
+            def forward(self, input_ids, logits_to_keep=0):
+                output = super().forward(input_ids)
+                return SimpleNamespace(logits=output.logits[:, -logits_to_keep:])
+
+        kwargs = {"state": "A", "question": "B?", "options": {"a": "Yes", "b": "No"}}
+        full = causal_scoring.option_logprobabilities(Full(), FakeTokenizer(), **kwargs)
+        tail = causal_scoring.option_logprobabilities(Tail(), FakeTokenizer(), **kwargs)
+        self.assertEqual(full, tail)
 
 
 if __name__ == "__main__":

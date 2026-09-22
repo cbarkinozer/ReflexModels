@@ -1,0 +1,61 @@
+{
+  "timestamp_utc": "2026-09-21T22:24:07.236360+00:00",
+  "git_commit": "1a2d0a345a0266deaf74e8a4de7c8e22a735212e",
+  "run": "berturk_tr",
+  "model": "dbmdz/bert-base-turkish-cased",
+  "model_source": "C:\\Repos\\ReflexModels\\data\\raw\\models\\dbmdz-bert-base-turkish-cased",
+  "language": "tr",
+  "seed": 42,
+  "dataset": {
+    "name": "MASSIVE",
+    "version": "1.0",
+    "prepared_directory": "data/prepared/massive",
+    "task": "intent_fixed_label"
+  },
+  "overlap_policy": "report_only",
+  "removed_counts": {
+    "train": 0,
+    "dev": 0,
+    "test": 0
+  },
+  "hyperparameters": {
+    "epochs": 3,
+    "batch_size": 8,
+    "learning_rate": 2e-05,
+    "max_length": 128,
+    "num_threads": 6
+  },
+  "validation_best_nll": 0.5494937103617393,
+  "temperature": 1.0696387250673032,
+  "selected_checkpoint": "C:\\Repos\\ReflexModels\\results\\berturk_tr_checkpointed\\checkpoints\\epoch_3.pt",
+  "selected_epoch": 3,
+  "record_counts": {
+    "test": 2974,
+    "train": 11514,
+    "dev": 2033
+  },
+  "test_metrics_raw": {
+    "accuracy": 0.8776059179556154,
+    "macro_f1": 0.8377139922696331,
+    "nll": 0.5077384654572197,
+    "brier": 0.19081654439843695,
+    "ece": 0.03230773795637736
+  },
+  "test_metrics_temperature_calibrated": {
+    "accuracy": 0.8776059179556154,
+    "macro_f1": 0.8377139922696331,
+    "nll": 0.5058886766278845,
+    "brier": 0.18931346438798444,
+    "ece": 0.020060719601372647
+  },
+  "cpu_single_request": {
+    "requests": 20,
+    "latency_ms_mean": 49.142815,
+    "latency_ms_p50": 48.5287,
+    "latency_ms_p95": 53.3315,
+    "requests_per_second": 20.34885465962827,
+    "python_peak_ram_bytes": 19172
+  },
+  "hardware": "Windows-11-10.0.26200-SP0",
+  "torch": "2.5.1+cpu"
+}

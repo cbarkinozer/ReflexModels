@@ -33,7 +33,9 @@ def load_records(path: Path) -> list[dict[str, Any]]:
     return records
 
 
-def validate(records: list[dict[str, Any]]) -> None:
+def validate(records: list[dict[str, Any]], *, allowed_splits: frozenset[str] = frozenset(VALID_SPLITS)) -> None:
+    if not allowed_splits or not allowed_splits <= {"train", "validation", "test"}:
+        raise ValueError("allowed_splits must be a non-empty subset of train, validation, test")
     identifiers: set[str] = set()
     for number, record in enumerate(records, 1):
         missing = REQUIRED_FIELDS - record.keys()
@@ -46,8 +48,8 @@ def validate(records: list[dict[str, Any]]) -> None:
             raise ValueError("language must be 'tr' or 'en'")
         if record["origin"] not in VALID_ORIGINS:
             raise ValueError("origin must be native, translated, or synthetic")
-        if record["split"] not in VALID_SPLITS:
-            raise ValueError("split must be train or validation")
+        if record["split"] not in allowed_splits:
+            raise ValueError(f"split must be one of: {', '.join(sorted(allowed_splits))}")
         if not all(isinstance(record[field], str) and record[field].strip() for field in ("source", "state", "question")):
             raise ValueError("source, state, and question must be non-empty strings")
         options = record["options"]

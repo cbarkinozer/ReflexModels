@@ -11,3 +11,13 @@ __pycache__/
 # Transient experiment process logs; committed result JSON remains reproducible.
 results/**/stdout*.log
 results/**/stderr*.log
+results/**/run*.log
+results/overnight_queue/
+results/overnight_xlmr/
+results/overnight_v1/
+results/**/checkpoints/
+results/berturk_tr_smoke*/
+results/berturk_tr_sensitivity_smoke/
+results/xlmr_tr_smoke/
+results/xlmr_en_smoke/
+results/qwen3_0_6b_v1_head_smoke/

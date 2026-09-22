@@ -29,7 +29,7 @@ def request_to_dict(request: Binary | Choice | Ordinal, *, request_id: str) -> d
     if isinstance(request, Choice):
         return {**base, "decision_type": "choice", "options": dict(request.options)}
     if isinstance(request, Binary):
-        return {**base, "decision_type": "binary", "options": {"yes": "Evet", "no": "Hayır"}}
+        return {**base, "decision_type": "binary", "options": decision_candidates(request)}
     return {**base, "decision_type": "ordinal", "options": {level: level for level in request.levels}}
 
 
@@ -53,7 +53,7 @@ def decision_candidates(decision: Decision) -> dict[str, str]:
     if isinstance(decision, Choice):
         return dict(decision.options)
     if isinstance(decision, Binary):
-        return {"yes": "Evet", "no": "Hayır"}
+        return {"yes": "Yes", "no": "No"} if decision.language == "en" else {"yes": "Evet", "no": "Hayır"}
     return {level: level for level in decision.levels}
 
 

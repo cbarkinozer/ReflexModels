@@ -5,6 +5,11 @@ from reflexmodels import Choice, choice_response, request_to_dict, request_to_js
 
 
 class ProtocolTests(unittest.TestCase):
+    def test_english_binary_candidates_use_english_text(self):
+        from reflexmodels import Binary, request_to_dict
+        request = Binary(state="The service is healthy.", question="Is it healthy?", language="en")
+        self.assertEqual(request_to_dict(request, request_id="en-1")["options"], {"yes": "Yes", "no": "No"})
+
     def setUp(self):
         self.request = Choice("Kullanıcı dosya arıyor.", "Hangi araç?", {"files": "Dosyaları ara", "web": "Web'de ara"})
 

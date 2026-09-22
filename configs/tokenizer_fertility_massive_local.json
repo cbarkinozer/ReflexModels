@@ -1,0 +1,12 @@
+{
+  "models": [
+    "data/raw/models/Qwen-Qwen3-0.6B-Base",
+    "data/raw/models/dbmdz-bert-base-turkish-cased",
+    "data/raw/models/FacebookAI-xlm-roberta-base"
+  ],
+  "corpora": {
+    "tr": "data/prepared/massive/massive_tr_train.jsonl",
+    "en": "data/prepared/massive/massive_en_train.jsonl"
+  },
+  "trust_remote_code": false
+}

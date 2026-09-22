@@ -80,6 +80,25 @@ The runner requires the compatible CPU environment recorded in
 [`requirements-cpu.txt`](requirements-cpu.txt). Checkpoint files remain local
 and are deliberately excluded from Git.
 
+Before a full CPU training run, exercise the entire path with a short smoke
+run. It trains, saves and reloads an epoch checkpoint, calibrates on validation,
+and writes test predictions and metrics:
+
+```powershell
+.\.venv\Scripts\python.exe -u scripts\run_fixed_label_baseline.py `
+  --config configs\baselines\massive_fixed_label.example.json `
+  --run berturk_tr `
+  --model-path data\raw\models\dbmdz-bert-base-turkish-cased `
+  --overlap-policy report_only `
+  --output-dir results\berturk_tr_smoke `
+  --epochs 1 --batch-size 4 --max-length 64 --num-threads 4 `
+  --limit-train 8 --limit-dev 8 --limit-test 8
+```
+
+Every full epoch writes a checkpoint under `results/<run>/checkpoints/` before
+the next epoch starts. If evaluation fails, rerun only evaluation with
+`--evaluate-checkpoint <checkpoint-file>` and the original run arguments.
+
 ## V0 causal-LM option scoring
 
 `run_v0_causal_choice.py` runs the non-generative duplicated-branch oracle
@@ -87,3 +106,42 @@ against a local causal-LM checkpoint. It does not download a model and is not
 started while a training run is using the CPU. Each supplied option is scored
 independently; choice, binary, and ordinal requests retain the strict typed
 response format.
+
+Once a local Qwen3-0.6B-Base checkpoint is available, evaluate the frozen
+Turkish negation seed without using its labels for prompt or threshold tuning:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\evaluate_v0_negation.py `
+  --model-path data\raw\models\Qwen-Qwen3-0.6B-Base `
+  --output-dir results\qwen3_0_6b_v0_negation
+```
+
+## V1 Turkish pilot data
+
+Generate a small, explicitly synthetic decision-training pilot from MASSIVE
+train/dev. It produces paired answerable and insufficient-option records and
+never reads the MASSIVE test split or frozen ReflexBench-TR:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\prepare_v1_massive_pilot.py `
+  --output data\prepared\v1\massive_tr_pilot.jsonl `
+  --train-limit 600 --validation-limit 120
+```
+
+The pilot is for testing the V1 training path; it is not a native Turkish
+benchmark or an unseen-option generalization result.
+
+After a V1 training run, `scripts/run_v1_decision.py` loads its saved
+`backbone/`, `decision_heads.pt`, and validation calibration metadata. It
+accepts the same typed request JSON as the V0 runner and returns a bounded
+decision, `P(answerable)`, and separate fallback metadata.
+
+The V1 trainer saves the best epoch before final calibration and artifact
+writing. If that final stage fails, rerun it with the original training
+arguments and `--finalize-checkpoint results\<run>\checkpoints\best.pt`;
+it verifies the data hash and run configuration and does not repeat training.
+For an independent frozen test file, use
+`scripts/evaluate_v1_decision_model.py --model-dir results\<run> --data
+<test.jsonl> --output-dir results\<test-run>`. The evaluator accepts only
+`split=test` records, rejects train/validation state overlap, and never
+refits calibration on test data.

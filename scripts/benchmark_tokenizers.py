@@ -113,7 +113,8 @@ def main() -> None:
 
         def load_tokenizer(model_name: str) -> Any:
             return AutoTokenizer.from_pretrained(
-                model_name, trust_remote_code=bool(config.get("trust_remote_code", False))
+                model_name, trust_remote_code=bool(config.get("trust_remote_code", False)),
+                local_files_only=Path(model_name).is_dir(),
             )
 
         backend = "transformers"

@@ -7,6 +7,7 @@ not let sibling options interact and does not generate text.
 
 from __future__ import annotations
 
+import inspect
 from collections.abc import Mapping
 from typing import Any
 
@@ -70,14 +71,19 @@ def option_logprobabilities(
     sequences = candidate_sequences(tokenizer, state=state, question=question, options=options)
     device = next(model.parameters()).device
     was_training = model.training
+    supports_tail_logits = "logits_to_keep" in inspect.signature(model.forward).parameters
     model.eval()
     scores: dict[str, float] = {}
     with torch.inference_mode():
         for key, (input_ids, continuation_ids) in sequences.items():
             values = torch.tensor([input_ids], dtype=torch.long, device=device)
-            logits = model(input_ids=values).logits[0]
+            if supports_tail_logits:
+                logits = model(input_ids=values, logits_to_keep=len(continuation_ids) + 1).logits[0]
+            else:
+                logits = model(input_ids=values).logits[0]
             start = len(input_ids) - len(continuation_ids)
-            token_log_probs = torch.log_softmax(logits[start - 1:-1], dim=-1)
+            candidate_logits = logits[:-1] if supports_tail_logits else logits[start - 1:-1]
+            token_log_probs = torch.log_softmax(candidate_logits, dim=-1)
             targets = values[0, start:]
             score = token_log_probs.gather(1, targets.unsqueeze(1)).sum().item()
             scores[key] = score / len(continuation_ids) if length_normalize else score

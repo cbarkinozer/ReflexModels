@@ -37,6 +37,11 @@ class V1DecisionDataValidationTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "split"):
             MODULE.validate([record(split="test")])
 
+    def test_test_only_validation_is_explicit(self):
+        MODULE.validate([record(split="test")], allowed_splits=frozenset({"test"}))
+        with self.assertRaisesRegex(ValueError, "split"):
+            MODULE.validate([record(split="validation")], allowed_splits=frozenset({"test"}))
+
 
 if __name__ == "__main__":
     unittest.main()

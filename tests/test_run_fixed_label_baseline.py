@@ -1,6 +1,9 @@
 import importlib.util
 import unittest
 from pathlib import Path
+import tempfile
+
+import torch
 
 
 SCRIPT = Path(__file__).parents[1] / "scripts" / "run_fixed_label_baseline.py"
@@ -30,6 +33,29 @@ class FixedLabelRunnerTests(unittest.TestCase):
         rows = runner.probabilities([[1.0, 2.0]])
         self.assertAlmostEqual(sum(rows[0]), 1.0)
         self.assertGreater(rows[0][1], rows[0][0])
+
+    def test_calibration_preserves_all_prediction_rows(self):
+        rows = [[0.8, 0.2], [0.1, 0.9]]
+        scaled = runner.calibrated_probabilities(rows, 2.0)
+        self.assertEqual(len(scaled), 2)
+        self.assertTrue(all(len(row) == 2 for row in scaled))
+        self.assertTrue(all(abs(sum(row) - 1.0) < 1e-9 for row in scaled))
+
+    def test_postprocessing_preflight_runs_before_training(self):
+        runner.preflight_postprocessing()
+
+    def test_epoch_checkpoint_survives_model_recreation(self):
+        model = torch.nn.Linear(2, 2)
+        optimizer = torch.optim.AdamW(model.parameters())
+        expected = {key: value.detach().clone() for key, value in model.state_dict().items()}
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "epoch_1.pt"
+            runner.save_checkpoint(path, model=model, optimizer=optimizer, epoch=1, validation_nll=0.5, torch=torch)
+            restored = torch.nn.Linear(2, 2)
+            checkpoint = runner.load_checkpoint(path, model=restored, torch=torch)
+        self.assertEqual(checkpoint["epoch"], 1)
+        self.assertEqual(checkpoint["validation_nll"], 0.5)
+        self.assertTrue(all(torch.equal(expected[key], restored.state_dict()[key]) for key in expected))
 
 
 if __name__ == "__main__":

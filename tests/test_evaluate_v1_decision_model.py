@@ -1,0 +1,69 @@
+import importlib.util
+import json
+from pathlib import Path
+import tempfile
+import unittest
+
+SCRIPT = Path(__file__).parents[1] / "scripts" / "evaluate_v1_decision_model.py"
+SPEC = importlib.util.spec_from_file_location("evaluate_v1_decision_model", SCRIPT)
+MODULE = importlib.util.module_from_spec(SPEC)
+assert SPEC and SPEC.loader
+SPEC.loader.exec_module(MODULE)
+
+from reflexmodels.split_policy import normalized_text_hash
+
+
+def record(identifier, language, answerable, correct_option):
+    return {
+        "id": identifier, "split": "test", "language": language, "origin": "native",
+        "options": {"a": "Evet", "b": "Hayır"}, "answerable": answerable,
+        "correct_option": correct_option,
+    }
+
+
+class V1FrozenEvaluationTests(unittest.TestCase):
+    def test_fixed_calibration_and_separate_language_metrics(self):
+        records = [
+            record("tr-1", "tr", True, "a"), record("tr-2", "tr", False, None),
+            record("en-1", "en", True, "b"),
+        ]
+        scores = [{"a": 3.0, "b": 1.0}, {"a": 2.0, "b": 1.0}, {"a": 1.0, "b": 4.0}]
+        metrics, predictions = MODULE.evaluate_predictions(
+            records, scores, [0.9, 0.1, 0.8], temperature=2.0, threshold=0.5,
+        )
+        self.assertEqual(set(metrics["by_language"]), {"tr", "en"})
+        self.assertEqual(metrics["calibration_temperature"], 2.0)
+        self.assertEqual(metrics["answerability_threshold"], 0.5)
+        self.assertEqual(metrics["by_language"]["tr"]["coverage"]["coverage"], 0.5)
+        self.assertEqual(metrics["by_language"]["en"]["decision"]["accuracy"], 1.0)
+        self.assertFalse(predictions[1]["accepted"])
+        self.assertAlmostEqual(predictions[0]["option_probabilities"]["a"], 0.73105858, places=6)
+
+    def test_rejects_validation_records(self):
+        bad = record("r", "tr", True, "a")
+        bad["split"] = "validation"
+        with self.assertRaisesRegex(ValueError, "split=test"):
+            MODULE.evaluate_predictions([bad], [{"a": 1.0, "b": 0.0}], [0.9], temperature=1, threshold=0.5)
+
+    def test_rejects_option_mismatch_and_invalid_probability(self):
+        one = record("r", "tr", True, "a")
+        with self.assertRaisesRegex(ValueError, "scores do not match"):
+            MODULE.evaluate_predictions([one], [{"a": 1.0}], [0.9], temperature=1, threshold=0.5)
+        with self.assertRaisesRegex(ValueError, "invalid answerability"):
+            MODULE.evaluate_predictions([one], [{"a": 1.0, "b": 0.0}], [float("nan")], temperature=1, threshold=0.5)
+
+    def test_rejects_train_or_validation_state_overlap(self):
+        with tempfile.TemporaryDirectory() as directory:
+            manifest = Path(directory) / "fingerprints.json"
+            manifest.write_text(json.dumps({
+                "normalization": "strip+casefold+sha256 of state text",
+                "train_state_hashes": [normalized_text_hash("Örnek durum")],
+                "validation_state_hashes": [],
+            }), encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "overlap"):
+                MODULE.reject_training_overlap([{"id": "test-1", "state": " örnek durum "}], manifest)
+            MODULE.reject_training_overlap([{"id": "test-2", "state": "Başka durum"}], manifest)
+
+
+if __name__ == "__main__":
+    unittest.main()
