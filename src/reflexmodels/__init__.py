@@ -9,6 +9,7 @@ from .scoring import score_decision, score_shared_state, softmax
 from .routing import fallback_gate
 from .answerability import answerability_metrics, select_answerability_threshold, selective_accuracy
 from .causal_scoring import branch_prefix, candidate_sequences, option_logprobabilities, score_causal_decision
+from .packed_execution_contract import assert_packed_matches_oracle, reference_batches
 
 __all__ = [
     "Binary", "Choice", "Ordinal", "SharedStateDecisions", "classification_metrics", "fit_temperature",
@@ -18,4 +19,5 @@ __all__ = [
     "fallback_gate",
     "answerability_metrics", "select_answerability_threshold", "selective_accuracy",
     "branch_prefix", "candidate_sequences", "option_logprobabilities", "score_causal_decision",
+    "assert_packed_matches_oracle", "reference_batches",
 ]

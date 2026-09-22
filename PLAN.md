@@ -49,6 +49,10 @@ algorithm reproduction.
 Add dedicated decision representations or heads, shared-state multi-question
 execution, branch isolation, and packed execution. Prove packed results match
 the duplicated-branch oracle before using the optimization in evaluation.
+`src/reflexmodels/packed_execution_contract.py` is the reusable check for
+that requirement: a candidate packed executor must pass
+`assert_packed_matches_oracle` on every batch in `reference_batches()` before
+any packed result is trusted for evaluation.
 
 V2 is conditional: if V1 already has near-reference decision quality, sound
 calibration, useful answerability, and acceptable CPU latency, V2 complexity

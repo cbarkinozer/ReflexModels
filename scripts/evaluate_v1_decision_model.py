@@ -7,8 +7,10 @@ metadata. This command never fits or selects them on test examples.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import math
+import platform
 import sys
 from pathlib import Path
 from typing import Any
@@ -18,6 +20,7 @@ sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT / "scripts"))
 
 from reflexmodels.answerability import answerability_metrics, selective_accuracy
+from reflexmodels.cpu_benchmark import measure_callable
 from reflexmodels.scoring import softmax
 from reflexmodels.split_policy import normalized_text_hash
 from train_v1_decision_model import DecisionExample, DecisionModel, VALIDATOR, decision_validation_metrics, predict
@@ -46,6 +49,34 @@ def reject_training_overlap(records: list[dict[str, Any]], fingerprint_path: Pat
     duplicates = [record["id"] for record in records if normalized_text_hash(record["state"]) in seen]
     if duplicates:
         raise ValueError(f"test states overlap train/validation: {', '.join(duplicates[:10])}")
+
+
+def file_sha256(path: Path) -> str:
+    """Hash a small saved artifact in streaming mode for run provenance."""
+    digest = hashlib.sha256()
+    with path.open("rb") as source:
+        for chunk in iter(lambda: source.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def reproducibility_metadata(model_dir: Path, data_path: Path, *, torch_version: str) -> dict[str, Any]:
+    """Identify the exact small artifacts and execution environment used."""
+    backbone = model_dir / "backbone"
+    required = {
+        "training_metadata_sha256": model_dir / "train_metadata.json",
+        "decision_heads_sha256": model_dir / "decision_heads.pt",
+        "backbone_config_sha256": backbone / "config.json",
+        "tokenizer_config_sha256": backbone / "tokenizer_config.json",
+        "test_data_sha256": data_path,
+    }
+    missing = [str(path) for path in required.values() if not path.is_file()]
+    if missing:
+        raise ValueError(f"required evaluation artifacts are missing: {', '.join(missing)}")
+    return {
+        **{key: file_sha256(path) for key, path in required.items()},
+        "platform": platform.platform(), "python": platform.python_version(), "torch": torch_version,
+    }
 
 
 def evaluate_predictions(
@@ -107,9 +138,11 @@ def main() -> None:
     parser.add_argument("--output-dir", required=True, type=Path)
     parser.add_argument("--batch-size", type=int, default=4)
     parser.add_argument("--num-threads", type=int, default=6)
+    parser.add_argument("--latency-repetitions", type=int, default=0,
+                        help="Optional single-request CPU measurements; zero disables timing")
     args = parser.parse_args()
-    if args.batch_size < 1 or args.num_threads < 1:
-        raise ValueError("batch-size and num-threads must be positive")
+    if args.batch_size < 1 or args.num_threads < 1 or args.latency_repetitions < 0:
+        raise ValueError("batch-size and num-threads must be positive; latency-repetitions must be non-negative")
     import torch
     from transformers import AutoModel, AutoTokenizer
 
@@ -134,6 +167,15 @@ def main() -> None:
     )
     metrics["model_dir"] = str(args.model_dir)
     metrics["test_data"] = str(args.data)
+    metrics["reproducibility"] = reproducibility_metadata(args.model_dir, args.data, torch_version=torch.__version__)
+    if args.latency_repetitions:
+        single_example = examples[:1]
+        metrics["cpu_single_request"] = measure_callable(
+            lambda: predict(
+                model, single_example, tokenizer, max_length=int(metadata["hyperparameters"]["max_length"]), batch_size=1
+            ),
+            warmup=1, repetitions=args.latency_repetitions,
+        )
     args.output_dir.mkdir(parents=True, exist_ok=True)
     (args.output_dir / "metrics.json").write_text(json.dumps(metrics, indent=2, ensure_ascii=False), encoding="utf-8")
     with (args.output_dir / "predictions.jsonl").open("w", encoding="utf-8") as destination:

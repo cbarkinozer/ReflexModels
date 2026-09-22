@@ -59,6 +59,11 @@ state-text overlap with the model's recorded train/validation states. It writes
 machine-readable metrics and per-record predictions for audit. Keep the test
 set frozen before inspecting its results; repeated tuning against it would
 still contaminate the estimate even when the script itself does not train.
+Its metrics record SHA-256 fingerprints of the heads, metadata, tokenizer
+configuration, backbone configuration, and test data. Pass
+`--latency-repetitions N` only after accuracy evaluation to additionally
+measure the real single-request CPU decision path; timing is disabled by
+default so it does not accidentally contend with training.
 
 `--freeze-backbone` is an optional low-cost pilot mode that updates only the
 two decision heads. It is a diagnostic baseline, not the full V1 fine-tuning

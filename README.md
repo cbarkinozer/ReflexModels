@@ -145,3 +145,70 @@ For an independent frozen test file, use
 <test.jsonl> --output-dir results\<test-run>`. The evaluator accepts only
 `split=test` records, rejects train/validation state overlap, and never
 refits calibration on test data.
+
+## Native Turkish benchmark annotation
+
+`benchmarks/reflexbench_tr/annotation_templates/items.tsv` is a blank
+collection template for independent native-Turkish annotators (see
+`ANNOTATION.md`). Each row moves through `blank -> drafted ->
+double_annotated -> adjudicated`; only an adjudicator may set
+`adjudicated_label`, and only after both `annotation_1` and `annotation_2`
+are recorded together with their annotator ids, ISO-8601 dates, and
+guideline version -- with no dangling audit field on a step that was never
+filled in. Every family carries structured `options_json` (`{"option_id":
+"option text"}`, at least two), because that is the actual runtime input the
+V1 decision path and the answerability head consume, not a free-text label.
+Every label must name a supplied option key, with one exception:
+`answerability` items may also be labeled `insufficient`, meaning none of
+the supplied options is answerable from the state.
+
+```powershell
+.\.venv\Scripts\python.exe scripts\lint_annotation_template.py `
+  benchmarks\reflexbench_tr\annotation_templates\items.tsv
+```
+
+`lint_annotation_template.py` rejects inconsistent rows (a label set out of
+order, a label that names no supplied option, an unknown `task_family`, a
+duplicate `item_id`, a missing or non-ISO-8601 annotator/adjudicator date, an
+`answerability` item that defines an option literally named `insufficient`)
+and reports how many items in each task family have reached each stage. Once
+both annotators have recorded labels, compute raw agreement and Cohen's
+kappa per task family (kappa is reported as undefined, not 1.0, when both
+raters only ever used one category), and ingest only adjudicated rows into a
+frozen JSONL file:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\adjudicate_annotation_template.py `
+  benchmarks\reflexbench_tr\annotation_templates\items.tsv `
+  --ingest benchmarks\reflexbench_tr\expansion_frozen.jsonl
+```
+
+`--ingest` refuses to overwrite an existing frozen file; choose a new path
+per batch. Every family is ingested in the same
+`options`/`correct_option`/`answerable`/`split: "test"` contract as
+`V1_DATA.md`, so the output is directly usable by
+`scripts/validate_v1_decision_data.py` and
+`scripts/evaluate_v1_decision_model.py` with no conversion step. An
+`answerability` item adjudicated `insufficient` is emitted with
+`answerable: false, correct_option: null`; every other item (including
+`relevance`, now a `relevant`/`not_relevant`-style choice) is emitted with
+`answerable: true` and `correct_option` set to the adjudicated option. Every
+record includes a `provenance` block (annotator/adjudicator ids, dates,
+guideline version, and the row's `notes` as adjudication rationale) for
+auditability. Neither tool invents item text, translates an English seed, or
+infers a label; both only check structure and aggregate what annotators
+already wrote.
+
+## Release checklist: results registry
+
+Before a release, verify every RESULTS.md row that claims a completed run
+links to a real, parseable result file, and that no completed result on disk
+was left out of RESULTS.md:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\validate_results_registry.py
+```
+
+It exits non-zero and lists the gap if a link is missing/broken or an
+artifact under `results/` (other than a `*smoke*`/`*_eval` gate) has no
+RESULTS.md row.

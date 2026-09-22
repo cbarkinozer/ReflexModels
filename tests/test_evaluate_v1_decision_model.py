@@ -64,6 +64,26 @@ class V1FrozenEvaluationTests(unittest.TestCase):
                 MODULE.reject_training_overlap([{"id": "test-1", "state": " örnek durum "}], manifest)
             MODULE.reject_training_overlap([{"id": "test-2", "state": "Başka durum"}], manifest)
 
+    def test_reproducibility_metadata_hashes_artifacts(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "backbone").mkdir()
+            files = {
+                root / "train_metadata.json": "metadata",
+                root / "decision_heads.pt": "heads",
+                root / "backbone" / "config.json": "config",
+                root / "backbone" / "tokenizer_config.json": "tokenizer",
+                root / "test.jsonl": "test data",
+            }
+            for path, content in files.items():
+                path.write_text(content, encoding="utf-8")
+            value = MODULE.reproducibility_metadata(root, root / "test.jsonl", torch_version="test")
+            self.assertEqual(value["torch"], "test")
+            self.assertEqual(value["test_data_sha256"], MODULE.file_sha256(root / "test.jsonl"))
+            (root / "decision_heads.pt").unlink()
+            with self.assertRaisesRegex(ValueError, "missing"):
+                MODULE.reproducibility_metadata(root, root / "test.jsonl", torch_version="test")
+
 
 if __name__ == "__main__":
     unittest.main()
