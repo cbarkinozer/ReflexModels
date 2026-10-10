@@ -1,0 +1,115 @@
+{
+  "run_id": "unsloth_qwen35_08b_typed_decisions_60steps",
+  "git_commit": "1a5a08681525431763a9504a6daf27aeb6c1cae5",
+  "timestamp_utc": "2026-10-10T16:52:54.870224+00:00",
+  "model": {
+    "name": "unsloth/Qwen3.5-0.8B",
+    "revision": "23c69c53358a07516b5827588b3fdb12ae78fd65"
+  },
+  "task": "choice|binary|ordinal",
+  "language": "en",
+  "dataset": {
+    "name": "LocalLLaMA/typed-decisions",
+    "subset": "all",
+    "revision": "6a7927fa3c8ac114e29f5300eacb86f6f37a6447",
+    "split": "test",
+    "source_rows": 400,
+    "decisions": 2000
+  },
+  "config": "experiments/unsloth-qwen35-08b-decision/Qwen3_5_08B-Decision.ipynb",
+  "seed": 3407,
+  "hardware": {
+    "gpu": "RTX 4090",
+    "vram_gb": 24,
+    "torch_peak_reserved_gib": 2.938
+  },
+  "recipe": {
+    "steps": 60,
+    "lora_rank": 16,
+    "lora_alpha": 16,
+    "learning_rate": 0.0002,
+    "head_learning_rate": 0.0001,
+    "batch_size": 8,
+    "gradient_accumulation": 4,
+    "max_seq_length": 2048,
+    "quantization": "4-bit",
+    "training_precision": "bf16"
+  },
+  "metrics": {
+    "before_test": {
+      "accuracy": 0.344,
+      "ece": 0.01847788563370704,
+      "loss": 1.210313813060522,
+      "record_accuracy": 0.0025
+    },
+    "after_calibrated_test": {
+      "accuracy": 0.657,
+      "ece": 0.027768489733338324,
+      "loss": 1.084928025824367,
+      "record_accuracy": 0.1625
+    },
+    "saved_adapter_test": {
+      "metrics": {
+        "accuracy": 0.6575,
+        "ece": 0.027285409986972868,
+        "loss": 1.0845507650990913,
+        "record_accuracy": 0.16
+      },
+      "build_report": {
+        "total": 2000,
+        "skipped": 0,
+        "reason": null,
+        "truncated": 0
+      },
+      "accuracy_delta_from_presave": 0.0004999999999999449,
+      "calibration_refitted": false
+    },
+    "holdout_raw": {
+      "accuracy": 0.6675,
+      "ece": 0.13244370110332973,
+      "loss": 0.9558072040043771,
+      "record_accuracy": 0.25
+    },
+    "calibration": {
+      "accuracy": 0.6675,
+      "ece": 0.06161402232944966,
+      "loss": 1.0996991209778935,
+      "record_accuracy": 0.25,
+      "fitted_types": [
+        0,
+        1,
+        2
+      ]
+    }
+  },
+  "split_audit": {
+    "source_train_rows": 1200,
+    "source_test_rows": 400,
+    "normalized_state_overlap": 0,
+    "train_items": 1120,
+    "holdout_items": 80
+  },
+  "duration_seconds": 150.9813,
+  "wandb": {
+    "id": "4khq3xdg",
+    "url": "https://wandb.ai/c-barkinozer/reflexmodels/runs/4khq3xdg",
+    "name": "qwen35-08b-decision-typed-decisions-lora16-lr2e4-60steps",
+    "synced": true
+  },
+  "scope": "typed-decisions notebook adaptation; not mixed-dataset blog reproduction",
+  "limitations": [
+    "Single seed; no Turkish evaluation.",
+    "No BANKING77/CLINC150 or mixed-source training; not an exact blog benchmark replication.",
+    "No Android runtime or GGUF parity measured.",
+    "Calibration loss is the library soft-target loss; Brier and hard-label NLL not measured."
+  ],
+  "artifact_backup": {
+    "files_verified": 77,
+    "archive_sha256": "6c2539de33cbfc0dacfe14d8b114381088bee4469496e2393684b72a9c431a4c",
+    "local_adapter": "/Users/cbarkinozer/Documents/GitHub/ReflexModels/experiments/unsloth-qwen35-08b-decision/runs/pod-backup/extracted/runs/notebook-60steps/adapter",
+    "remote_merged": "/workspace/reflex-decision/runs/notebook-60steps/merged",
+    "local_merged": "/Users/cbarkinozer/Documents/GitHub/ReflexModels/experiments/unsloth-qwen35-08b-decision/runs/pod-backup/merged",
+    "local_checkpoint": "/Users/cbarkinozer/Documents/GitHub/ReflexModels/experiments/unsloth-qwen35-08b-decision/runs/pod-backup/checkpoints"
+  },
+  "additional_benchmark_run": "unsloth_qwen35_08b_balanced_benchmarks"
+}

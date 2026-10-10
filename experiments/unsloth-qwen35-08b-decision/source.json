@@ -1,0 +1,11 @@
+{
+  "source_filename": "qwen3_5_(4B)_Decision.ipynb",
+  "sha256": "ac4c13bfdfc9d041402b712316f20f675ee049702aad59626cc3d8c40b3bb35c",
+  "changes": [
+    "0.8B backbone",
+    "immutable model/dataset revision resolution",
+    "metric and environment artifacts",
+    "optional two-step smoke mode",
+    "isolated run directories; no overwrite"
+  ]
+}

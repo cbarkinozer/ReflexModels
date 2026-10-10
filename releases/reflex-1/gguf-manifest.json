@@ -1,0 +1,45 @@
+{
+  "release": "reflex-1",
+  "export": {
+    "format": "unsloth-decision-gguf",
+    "version": 1,
+    "layout": "clef",
+    "quantizations": [
+      "Q8_0",
+      "Q4_K_M"
+    ],
+    "files": {
+      "Q8_0": {
+        "model": "model-Q8_0.gguf",
+        "mmproj": "mmproj-Q8_0.gguf"
+      },
+      "Q4_K_M": {
+        "model": "model-Q4_K_M.gguf",
+        "mmproj": "mmproj-Q8_0.gguf"
+      }
+    },
+    "source_fingerprint": "ef5e67a984dd7e370da5bf41262bc1bdf000fb115c64f74b68e33ca88d6b6e34"
+  },
+  "files": [
+    {
+      "name": "export.json",
+      "bytes": 419,
+      "sha256": "79e7cc5f5c648b1135de7b4607f2e7c39a1e9e80fc63e1eecb48c7cfb89a7c1f"
+    },
+    {
+      "name": "mmproj-Q8_0.gguf",
+      "bytes": 115923136,
+      "sha256": "37800be294d8c041e6146516b636414b8a75d0dd0878b08f6e0282e471790f94"
+    },
+    {
+      "name": "model-Q4_K_M.gguf",
+      "bytes": 545161248,
+      "sha256": "8480ccc295ac7379106f33ad76c978da5d9e8da0785e827786fe9d17f5a5beb5"
+    },
+    {
+      "name": "model-Q8_0.gguf",
+      "bytes": 841068096,
+      "sha256": "283ff1d783c2fad935c30a38ec019b53498fea58f869372d9f7e546cc15eaf8a"
+    }
+  ]
+}

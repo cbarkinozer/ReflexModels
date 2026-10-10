@@ -1,0 +1,70 @@
+{
+  "completed_utc": "2026-10-10T17:36:22.951198+00:00",
+  "complete": true,
+  "remote_model_artifacts_required": false,
+  "verified_inventory_file_counts": {
+    "original_portable": 77,
+    "supplement": 127,
+    "merged_model": 13,
+    "optimizer_checkpoint": 15
+  },
+  "archive_sha256": {
+    "artifacts-supplement.tar": "078e19d0b213f152a7495ffb9fc79a5209f9428454f6a851017955e9e874c8fe",
+    "artifacts-portable.tar": "6c2539de33cbfc0dacfe14d8b114381088bee4469496e2393684b72a9c431a4c"
+  },
+  "merged_reload": {
+    "answers": {
+      "team": {
+        "type": "choice",
+        "choice": "billing",
+        "confidence": 0.9322,
+        "probabilities": {
+          "billing": 0.9322,
+          "technical": 0.0011,
+          "sales": 0.0027,
+          "other": 0.064
+        },
+        "answer": "billing"
+      },
+      "refund": {
+        "type": "noul",
+        "noul": 0.5015,
+        "answer": true,
+        "probabilities": {
+          "true": 0.5015,
+          "false": 0.4985
+        }
+      },
+      "urgency": {
+        "type": "score",
+        "score": 1.7771,
+        "confidence": 0.7785,
+        "legend": {
+          "0": "not urgent",
+          "1": "soon",
+          "2": "today"
+        },
+        "probabilities": {
+          "0": 0.0014,
+          "1": 0.2202,
+          "2": 0.7785
+        },
+        "answer": 2
+      }
+    },
+    "latency_seconds": 0.8780596642754972,
+    "loaded_merged_in_4bit": true,
+    "text_generation_forbidden": true,
+    "changed_answers": {},
+    "maximum_probability_delta": 0.04930000000000001
+  },
+  "wandb_cloud_sync": "https://wandb.ai/c-barkinozer/reflexmodels/runs/4khq3xdg",
+  "excluded": "Credentials, virtualenv/cache binaries and redundant diagnostic model weights; configs/logs/metrics retained.",
+  "gguf": {
+    "complete": true,
+    "verified_export_files": 4,
+    "local_directory": "runs/pod-backup/reflex-1-gguf",
+    "llama_cpp_revision": "aa94f2086147cd4bfbcff818ce998dffce5fcb39",
+    "api_validation_scope": "single request per quantization on pod CPU; close refund decision flipped; full accuracy/Android parity pending"
+  }
+}

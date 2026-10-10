@@ -4,6 +4,8 @@
 
 | Run | Status | Finding |
 |---|---|---|
+| [`unsloth_qwen35_08b_balanced_benchmarks`](results/unsloth_qwen35_08b_balanced_benchmarks/result.json) | completed | Balanced gold-label tests of the typed-only adapter: BANKING77 8.23% → 44.59% (462), CLINC150 4.67% → 47.11% (450), typed-decisions repeat 34.30% → 65.60% (2,000 decisions). All intent options, 4,096-token evaluation context. Not the blog benchmark recipe. |
+| [`unsloth_qwen35_08b_typed_decisions_60steps`](results/unsloth_qwen35_08b_typed_decisions_60steps/result.json) | completed | Independent Unsloth notebook adaptation: typed-decisions test accuracy 34.4% → 65.7% over 2,000 decisions; saved-adapter reload 65.75%, ECE 0.0273. RTX 4090 training 151 seconds. Not the mixed-source blog benchmark; Android untested. |
 | [`tokenizer_fertility_smoke_2026-09-21`](results/tokenizer_fertility_smoke_2026-09-21.json) | completed | Qwen3 0.6B and 1.7B share the same tokenizer. On 12 hand-authored paired smoke examples, Turkish averaged 2.59 tokens/word and English 1.18. This is a tooling sanity check, not a backbone-selection result. |
 | `massive_1.0_prepare_2026-09-21` | completed | Prepared 33,042 Turkish/English records locally for fixed-label baselines. The split validator found no source-ID leakage and flagged 278 normalized-text duplicates across official splits; no records were removed. |
 | [`berturk_tr_checkpointed`](results/berturk_tr_checkpointed/result.json) | completed | MASSIVE Turkish 60-intent fixed-label test: accuracy 0.8776, macro-F1 0.8377, calibrated NLL 0.5059, ECE 0.0201; single-request CPU latency p50 48.5 ms. Three epoch checkpoints were saved and result/prediction integrity validated. |

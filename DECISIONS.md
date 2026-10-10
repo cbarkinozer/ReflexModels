@@ -13,3 +13,5 @@
 
 Add a new row before any material deviation from `PLAN.md`, including its
 evaluation impact.
+
+| D-009 | 2026-10-10 | Run a user-requested independent Unsloth Qwen3.5-0.8B decision-notebook reproduction on a supplied RTX 4090, before Android integration; defer Mac training. | Validate the public recipe without replacing the Turkish-first Reflex roadmap. | Report typed-decisions results separately from phone routing and Reflex benchmarks; preserve held-out evaluation and source provenance. |

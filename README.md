@@ -212,3 +212,5 @@ was left out of RESULTS.md:
 It exits non-zero and lists the gap if a link is missing/broken or an
 artifact under `results/` (other than a `*smoke*`/`*_eval` gate) has no
 RESULTS.md row.
+
+Experiment records and GPU closeout: [EXPERIMENT_CLOSEOUT.md](EXPERIMENT_CLOSEOUT.md).

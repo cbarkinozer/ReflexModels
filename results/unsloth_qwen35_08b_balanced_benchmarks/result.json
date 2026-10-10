@@ -1,0 +1,174 @@
+{
+  "run_id": "unsloth_qwen35_08b_balanced_benchmarks",
+  "git_commit": "1a5a08681525431763a9504a6daf27aeb6c1cae5",
+  "timestamp_utc": "2026-10-10T17:31:56.711765+00:00",
+  "model": {
+    "name": "unsloth/Qwen3.5-0.8B",
+    "revision": "23c69c53358a07516b5827588b3fdb12ae78fd65",
+    "adapter_run": "unsloth_qwen35_08b_typed_decisions_60steps"
+  },
+  "task": "choice|binary|ordinal",
+  "language": "en",
+  "dataset": {
+    "name": "typed-decisions + BANKING77 + CLINC150",
+    "split": "official test subsets",
+    "sample_sizes": {
+      "typed-decisions": 400,
+      "banking77": 462,
+      "clinc150": 450
+    },
+    "typed_decisions_count": 2000,
+    "banking77_per_intent": 6,
+    "clinc150_per_intent": 3,
+    "clinc_oos_excluded": true
+  },
+  "config": {
+    "seed": 3407,
+    "banking77_github_revision": "57ec275d8078af65b7731c2a98be812d844a6d6b",
+    "banking77_test_sha256": "d12d6e3bc4c3103966ae786dc435913c0c563dfa328f5a3646d0e62cfeeb474d",
+    "clinc_revision": "155b9c710419136e17307b80d0a13e68cd46b4ec",
+    "model_revision": "23c69c53358a07516b5827588b3fdb12ae78fd65",
+    "typed_revision": "6a7927fa3c8ac114e29f5300eacb86f6f37a6447",
+    "typed_workflow_counts": {
+      "agent_trace_observability": 100,
+      "customer_service": 100,
+      "invoice_processing": 100,
+      "security_incidents": 100
+    },
+    "calibration_refitted": false,
+    "evaluation_max_seq_length": 4096,
+    "training_max_seq_length": 2048,
+    "note": "All 77/150 intent candidates, balanced test samples; not claimed identical to blog option construction."
+  },
+  "seed": 3407,
+  "hardware": {
+    "gpu": "RTX 4090",
+    "vram_gb": 24
+  },
+  "metrics": {
+    "typed-decisions": {
+      "before": {
+        "stage": "before",
+        "dataset": "typed-decisions",
+        "metrics": {
+          "accuracy": 0.343,
+          "ece": 0.01746766677498815,
+          "loss": 1.2103081922233105,
+          "record_accuracy": 0.0025
+        },
+        "build_report": {
+          "total": 2000,
+          "skipped": 0,
+          "reason": null,
+          "truncated": 0
+        },
+        "duration_seconds": 8.487269878387451,
+        "calibration_refitted": false
+      },
+      "trained": {
+        "stage": "trained",
+        "dataset": "typed-decisions",
+        "metrics": {
+          "accuracy": 0.656,
+          "ece": 0.02655447797477244,
+          "loss": 1.084506577957247,
+          "record_accuracy": 0.1625
+        },
+        "build_report": {
+          "total": 2000,
+          "skipped": 0,
+          "reason": null,
+          "truncated": 0
+        },
+        "duration_seconds": 12.078411340713501,
+        "calibration_refitted": false
+      }
+    },
+    "banking77": {
+      "before": {
+        "stage": "before",
+        "dataset": "banking77",
+        "metrics": {
+          "accuracy": 0.08225108225108226,
+          "ece": 0.06856838455907517,
+          "loss": 4.3285258322051074,
+          "record_accuracy": 0.08225108225108226
+        },
+        "build_report": {
+          "total": 462,
+          "skipped": 0,
+          "reason": null,
+          "truncated": 0
+        },
+        "duration_seconds": 19.336729764938354,
+        "calibration_refitted": false
+      },
+      "trained": {
+        "stage": "trained",
+        "dataset": "banking77",
+        "metrics": {
+          "accuracy": 0.4458874458874459,
+          "ece": 0.28004206181604624,
+          "loss": 2.4992356579025072,
+          "record_accuracy": 0.4458874458874459
+        },
+        "build_report": {
+          "total": 462,
+          "skipped": 0,
+          "reason": null,
+          "truncated": 0
+        },
+        "duration_seconds": 23.690819263458252,
+        "calibration_refitted": false
+      }
+    },
+    "clinc150": {
+      "before": {
+        "stage": "before",
+        "dataset": "clinc150",
+        "metrics": {
+          "accuracy": 0.04666666666666667,
+          "ece": 0.03946865506677164,
+          "loss": 4.98906148592631,
+          "record_accuracy": 0.04666666666666667
+        },
+        "build_report": {
+          "total": 450,
+          "skipped": 0,
+          "reason": null,
+          "truncated": 0
+        },
+        "duration_seconds": 32.73192644119263,
+        "calibration_refitted": false
+      },
+      "trained": {
+        "stage": "trained",
+        "dataset": "clinc150",
+        "metrics": {
+          "accuracy": 0.4711111111111111,
+          "ece": 0.33968292805055783,
+          "loss": 2.5987588765886094,
+          "record_accuracy": 0.4711111111111111
+        },
+        "build_report": {
+          "total": 450,
+          "skipped": 0,
+          "reason": null,
+          "truncated": 0
+        },
+        "duration_seconds": 41.56379294395447,
+        "calibration_refitted": false
+      }
+    }
+  },
+  "human_evaluation_used": false,
+  "calibration_refitted": false,
+  "scope": "Gold-label evaluation of the existing typed-only adapter; not a replication of mixed-source blog training.",
+  "limitations": [
+    "All 77/150 intent options; blog question construction and exact sample IDs were not supplied.",
+    "Fresh-head baseline is independently initialized, not byte-identical to the initial main-run head.",
+    "Evaluation context increased to 4096; a 2048 attempt skipped CLINC because its schema needed 3042 tokens before input.",
+    "High transferred ECE on BANKING77 and CLINC150; no test-set tuning or calibration.",
+    "Not an Android or CPU inference benchmark."
+  ]
+}
