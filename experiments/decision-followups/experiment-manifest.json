@@ -1,0 +1,177 @@
+{
+  "_comment": "Frozen experiment manifest. Written 2026-10-11. Do not modify until new training run completes.",
+
+  "scope": {
+    "runs": [
+      "qwen35-08b-reflex1-phone-routing-v1-lora16-s3407",
+      "qwen35-08b-reflex1-general-mix-v1-lora16-s3407",
+      "qwen35-08b-reflex1-combined-v1-lora16-s3407"
+    ],
+    "ten_ambiguity_resolution": "10 = nine routes in current schema. No tenth route exists. Do not invent one.",
+    "routes": [
+      "answer",
+      "get_battery_info",
+      "get_device_info",
+      "get_media_info",
+      "get_storage_info",
+      "phone_health_check",
+      "save_note",
+      "search_local_files",
+      "search_notes"
+    ],
+    "route_boundary_rule": "Use phone_health_check when request spans two or more live-data categories (battery+storage, charging+RAM, etc.) or asks for overall phone condition. Use single-category routes (get_battery_info, get_storage_info, get_device_info) only when the request is unambiguously about that single category. Use answer when no live phone data is needed.",
+    "hard_constraints": [
+      "Do NOT publish reflex-1 or push weights to HuggingFace",
+      "Do NOT log eval runs to W&B (only training runs)",
+      "Do NOT retrain on the 50-case development suite and call it held-out evidence",
+      "Do NOT claim Kotlin AgentDecisionSelector is a complete adapter integration — it is a code seam only",
+      "The Clef GGUF cannot do chat completions (no vocabulary logits)",
+      "--no-repack is required for Clef. Do not remove this flag",
+      "Do NOT load both models simultaneously",
+      "data/phone_routing/test.jsonl is held-out — never include in training or calibration"
+    ]
+  },
+
+  "reflex1_artifacts": {
+    "gguf_q4_k_m": {
+      "file": "model-Q4_K_M.gguf",
+      "bytes": 545161248,
+      "sha256": "8480ccc295ac7379106f33ad76c978da5d9e8da0785e827786fe9d17f5a5beb5"
+    },
+    "gguf_q8_0": {
+      "file": "model-Q8_0.gguf",
+      "bytes": 841068096,
+      "sha256": "283ff1d783c2fad935c30a38ec019b53498fea58f869372d9f7e546cc15eaf8a"
+    },
+    "gguf_mmproj": {
+      "file": "mmproj-Q8_0.gguf",
+      "bytes": 115923136,
+      "sha256": "37800be294d8c041e6146516b636414b8a75d0dd0878b08f6e0282e471790f94"
+    },
+    "adapter_lora": {
+      "file": "checkpoint-60/adapter_model.safetensors",
+      "bytes": 43346432,
+      "sha256": "2eef23b07522d4a371f6e6a5e4e44bdebe29d97b97e066b1ad5e09034ac91cd7"
+    },
+    "joint_head": {
+      "file": "checkpoint-60/joint_head.safetensors",
+      "bytes": 109311728,
+      "sha256": "6904172944df6d142c490fadc9beae6b38d83401b5ee71703b1866672094bd6b"
+    },
+    "adapter_config": {
+      "file": "checkpoint-60/adapter_config.json",
+      "sha256": "397aeb36809aa70abc5896502d1edd0ccc61efc50260f37a61ed0a614f8ea1c2"
+    },
+    "checkpoint_path_pod": "runs/pod-backup/extracted/checkpoint-60",
+    "checkpoint_path_local": "experiments/unsloth-qwen35-08b-decision/runs/pod-backup/extracted/checkpoint-60"
+  },
+
+  "datasets": {
+    "phone_routing_v1": {
+      "train": {
+        "path": "data/phone_routing/train.jsonl",
+        "records": 900,
+        "per_route": 100,
+        "sha256": "76afcebcf1ae72f36514e27cfb42fbd50aaa309d3a31a411d771a5f3d8162925"
+      },
+      "calibration": {
+        "path": "data/phone_routing/calibration.jsonl",
+        "records": 90,
+        "per_route": 10,
+        "sha256": "6082bea44e25ffb9f55bfbd60a10185f1fab48424c568c2d3700b318aee5744e"
+      },
+      "test": {
+        "path": "data/phone_routing/test.jsonl",
+        "records": 90,
+        "per_route": 10,
+        "sha256": "ed41b456f4c7eee7b6311df19bd16f39f594016dbc9b47ffd398906ac6315dec",
+        "status": "SEALED — do not open until after candidate selection"
+      }
+    },
+    "initial_trial_splits": {
+      "note": "For the initial existing-data trial, carve 90 validation rows (10/route, stratified) from the 900-row train pool. Remaining 810 rows are training. Calibration and test unchanged.",
+      "train_after_carve": 810,
+      "val_carved": 90,
+      "carve_seed": 3407,
+      "carve_stratified_by": "route__label"
+    }
+  },
+
+  "historical_baselines": {
+    "reflex1_before_retrain": {
+      "model": "reflex-1",
+      "model_sha256": "8480ccc295ac7379106f33ad76c978da5d9e8da0785e827786fe9d17f5a5beb5",
+      "test_set": "data/phone_routing/test.jsonl",
+      "test_sha256": "ed41b456f4c7eee7b6311df19bd16f39f594016dbc9b47ffd398906ac6315dec",
+      "correct": 18,
+      "total": 90,
+      "accuracy": 0.2,
+      "mean_latency_s": 28.1,
+      "note": "82/90 routed to phone_health_check; 5 routes never chosen",
+      "result_file": "benchmarks/phone-routing-eval/reflex1-before-retrain-results.json"
+    },
+    "qwen_raw_http_matched": {
+      "model": "Qwen3.5-0.8B-Q4_K_M",
+      "model_sha256": "bd258782e35f7f458f8aced1adc053e6e92e89bc735ba3be89d38a06121dc517",
+      "test_set": "data/phone_routing/test.jsonl",
+      "test_sha256": "ed41b456f4c7eee7b6311df19bd16f39f594016dbc9b47ffd398906ac6315dec",
+      "correct": 50,
+      "total": 90,
+      "accuracy": 0.556,
+      "mean_latency_s": 36.8,
+      "treatment": "raw — no chat template, GBNF grammar, /v1/completions",
+      "note": "This is the WIN TARGET. Retrained reflex-1 must beat 50/90 on this same test set.",
+      "result_file": "benchmarks/phone-routing-eval/qwen-raw-phone-routing-results.json"
+    },
+    "win_condition": "retrained_reflex1.accuracy > 0.556 on data/phone_routing/test.jsonl AND retrained_reflex1.a32_latency_s < 36.8 AND no unacceptable regression on typed-decisions/BANKING77/CLINC150"
+  },
+
+  "candidate_selection_criteria": {
+    "primary_metric": "routing_accuracy on phone_routing_v1 validation set (macro-F1 preferred; accuracy acceptable for balanced set)",
+    "threshold_to_open_test": "validation macro-F1 >= 0.70 (vs 0.20 for reflex-1 before retrain)",
+    "general_retention": {
+      "typed_decisions": "accuracy must not drop more than 5pp from reflex-1 baseline",
+      "banking77": "accuracy must not drop more than 5pp from reflex-1 baseline (pre-retrain: 44.59%)",
+      "clinc150": "accuracy must not drop more than 5pp from reflex-1 baseline (pre-retrain: 47.11%)"
+    },
+    "calibration": "ECE after temperature scaling on calibration data < 0.15",
+    "resource_budget": {
+      "a32_latency": "mean warm latency < 36.8s (beat Qwen raw baseline)",
+      "peak_memory_mb": "peak PSS < 1500 MB on A32",
+      "thermal": "no sustained throttling after 10 consecutive requests"
+    },
+    "selection_order": [
+      "1. Use validation macro-F1 to select best checkpoint per run",
+      "2. Compare phone-only, general-only, combined runs on validation",
+      "3. Verify general retention on typed-decisions/BANKING77/CLINC150",
+      "4. Calibrate selected checkpoint on calibration data",
+      "5. Open test.jsonl once for the selected candidate only"
+    ],
+    "warning": "Do not declare a win from a small percentage increase on 90 cases without reporting uncertainty. Winning by 1-2 cases is not statistically meaningful."
+  },
+
+  "lora_config": {
+    "rank": 16,
+    "alpha": 16,
+    "dropout": 0,
+    "use_gradient_checkpointing": "unsloth",
+    "seed": 3407
+  },
+
+  "training_config": {
+    "max_steps_initial": 60,
+    "per_device_train_batch_size": 8,
+    "gradient_accumulation_steps": 4,
+    "effective_batch_size": 32,
+    "warmup_steps": 10,
+    "learning_rate": "2e-4",
+    "optimizer": "adamw_8bit",
+    "lr_scheduler": "cosine",
+    "weight_decay": 0.01,
+    "checkpoint_selection": "best checkpoint by validation macro-F1 during training"
+  },
+
+  "adapter_loading_strategy": "RESUME: FastDecisionModel.from_pretrained(reflex1_checkpoint_path) loads backbone + LoRA + head together. Do NOT call get_peft_model again — that would wrap an existing adapter twice. Enable training on existing LoRA parameters directly.",
+
+  "version": "2026-10-11-v1"
+}

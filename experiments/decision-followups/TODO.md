@@ -1,0 +1,311 @@
+# Decision-model experiments: execution checklist
+
+Updated 2026-10-11. This checklist implements [PLAN.md](PLAN.md).
+The three new training runs have not started. Completed historical results are
+references, not evidence that the new pipeline or candidates already work.
+
+## 1. Freeze scope and record the starting point
+
+- [x] Plan three independent adaptations: general-only, phone-only, combined.
+- [x] Keep all models local and unpublished.
+- [x] Inventory the saved reflex-1 checkpoint, adapter/head, tokenizer,
+  calibration, merged weights and existing Q4_K_M; verify their hashes.
+  → experiment-manifest.json (all SHA-256 hashes recorded)
+- [x] Record repository commits, existing changes and dataset versions before
+  modifying scripts. Leave unrelated llama.cpp submodule changes untouched.
+  → dataset hashes in experiment-manifest.json; scripts unchanged except
+    tools/train_phone_routing.py (rewritten for correctness, see Section 5)
+- [x] Resolve what “10” means: routes, datasets or examples. Continue using the
+  existing nine-route schema until this is clear; do not invent another route.
+  → Resolved: 10 = nine routes in current schema; no tenth route created.
+- [x] Freeze route definitions, required context and the rule distinguishing
+  general phone health from battery/storage/device-specific requests.
+  → Route definitions and boundary rule in experiment-manifest.json §scope
+- [x] Write candidate-selection criteria before training: validation routing
+  macro-F1/accuracy, general retention, calibration and phone resource budget.
+  → experiment-manifest.json §candidate_selection_criteria
+- [x] Retain historical matched references: Qwen raw HTTP 55.6% / 36.8 s and
+  reflex-1 20% / 28.1 s on the same 90 phone cases. Preserve raw result files.
+  → experiment-manifest.json §historical_baselines; result files in
+    benchmarks/phone-routing-eval/
+
+Deliverable: ✅ experiment-manifest.json — hashes, baselines, criteria, route defs.
+
+## 2. Prepare and review phone data
+
+- [x] Audit the existing 900 training / 90 calibration / 90 test records,
+  including class balance, schemas, ambiguous labels and scenario families.
+  → data-audit-report.md; zero exact/normalized duplicates; zero cross-split
+    contamination; all labels unanimous (synthetic); class balance perfect.
+- [x] Create a review sheet with ID, query, route, rationale, scenario-family
+  ID, generator/version and reviewer correction/status.
+  → phone-routing-review-sheet.csv (1,080 rows; scenario_family pre-filled
+    for ~56% of rows; 480 rows marked unclassified — need human review)
+- [x] Define independent scenario families before generating paraphrases.
+  → 9 route × 4-5 family definitions in data-audit-report.md §4 and
+    experiment-manifest.json. Keyword-based heuristics, human review needed.
+- [ ] Generate balanced examples per confirmed route. Include battery-only,
+  storage-only, device-only, broad health checks, ordinary final answers,
+  negation, indirect requests and confusing boundaries between similar routes.
+  (Blocked on human review of existing labels first — see item below)
+- [ ] Specify expected behavior for ambiguous or multi-tool requests; include
+  only cases that the current single-route contract can label consistently.
+- [ ] Have the user review synthetic gold labels before admitting examples to
+  training or evaluation; correct/remove questionable records.
+  *** HUMAN REVIEW REQUIRED: open phone-routing-review-sheet.csv and check
+      boundary cases listed in data-audit-report.md §5, then correct the 480
+      unclassified rows before generating new examples. ***
+- [ ] Split new data 80/20 by scenario family, stratified where feasible. Keep
+  the final 20% sealed; derive validation and calibration from the 80% pool.
+- [x] Preserve existing frozen files. For an initial existing-data trial,
+  derive approximately 810 training / 90 validation from the 900-row pool only,
+  subject to family separation; retain existing calibration/test unchanged.
+  → Implemented in train_phone_routing.py via --val-split-size (default 90,
+    stratified by route, seed=3407). Calibration/test files untouched.
+- [ ] Keep the old phone test as a historical comparison. Reserve a newly
+  sealed cohort for final claims after repeated experiments.
+- [x] Audit exact/normalized duplicates, near duplicates and shared templates
+  across all splits and protected historical evaluation sets.
+  → data-audit-report.md §2: 0 duplicates, 0 cross-split contamination.
+- [x] Save split IDs, family IDs, counts, corrections, seeds, hashes and the
+  precise overlap-check procedure/results.
+  → data-audit-report.md §2 and §6; hashes in experiment-manifest.json.
+
+Deliverable: ✅ data-audit-report.md + phone-routing-review-sheet.csv
+  (human review of labels still needed before new data generation)
+
+## 3. Prepare general data and benchmarks
+
+- [ ] Pin typed-decisions, BANKING77 and CLINC150 source revisions and licenses.
+- [ ] Reuse saved evaluation case IDs; never silently replace the old sample.
+- [ ] Use official training partitions for adaptation. Build validation and
+  calibration partitions from training data, separate from protected tests.
+- [ ] Convert each source into stable state/question/options/gold schemas.
+- [ ] Verify gold mapping, label descriptions, boolean and ordinal handling.
+- [ ] For 300–500-case subsets, stratify classes and preserve multi-question
+  case groups; record which counts refer to cases versus decisions.
+- [ ] Audit overlap against every protected test, including phone evaluation.
+- [ ] Report accuracy and macro-F1 for intent classification, plus per-class
+  results; distinguish CLINC150 in-domain from CLINC150+OOS explicitly.
+- [ ] Report typed-decisions per-question and per-workflow performance, with
+  exact-case metrics if the chosen scorer defines them.
+- [ ] Record skipped/invalid/truncated records and fail on unexplained loss.
+- [ ] Optionally add When2Call, BFCL and API-Bank after the core pipeline works.
+  Pin suite edition and use native scorers; label subsets as subsets rather
+  than claiming full Decision Index reproduction.
+- [ ] Describe training on these official training splits as supervised
+  in-domain adaptation, not zero-shot evaluation.
+
+Deliverable: reusable frozen evaluation manifests and general training mixture.
+
+## 4. Establish Laya baselines
+
+- [ ] Pin official English Laya, multilingual Laya and typed-decisions
+  specialist revisions. Benchmark each as an explicit single checkpoint.
+- [ ] Build an adapter that sends identical semantic state/questions/options
+  to Laya and reflex models and normalizes responses for the same scorer.
+- [ ] Disable automatic multi-checkpoint routing for single-model comparisons.
+- [ ] Record context limits, option budgets, truncation and calibration. Check
+  that all 77/150 labels retain distinct usable representations.
+- [ ] Run official reference inference on validation first; verify choice,
+  noul and score handling before opening final tests.
+- [ ] Inspect/pin the community multilingual GGUF, separate head, tokenizer
+  and conversion/runtime sources. The GGUF alone is encoder-only.
+- [ ] Verify complete GGUF inference against the reference on a representative
+  validation sample; save agreement and probability drift, not just load success.
+- [ ] Determine the Android head/tokenizer implementation and memory footprint.
+  Do not assume the supplied Python/PyTorch example is an Android integration.
+- [ ] Run full selected benchmarks after candidate/config selection; save raw
+  predictions and measure official-reference versus quantized accuracy.
+- [ ] Treat Laya as an independent baseline. It cannot provide final prose or
+  share Qwen's backbone through a Qwen adapter.
+
+Deliverable: reproducible Laya results and an explicit Android feasibility status.
+
+## 5. Fix the training/evaluation pipeline before renting a pod
+
+- [x] Update the phone training script to load saved reflex-1 correctly.
+  Explicitly resume its adapter or merge then attach a new adapter; document
+  the choice and avoid accidentally wrapping an existing adapter twice.
+  → RESUME strategy (default): FastDecisionModel.from_pretrained(checkpoint_path)
+    loads backbone+LoRA+head together; get_peft_model NOT called again.
+    MERGE strategy available via --adapter-strategy merge.
+- [x] Verify every run starts from identical weights with a checkpoint hash
+  and before-training validation predictions.
+  → --reflex1-adapter-sha256 flag; baseline eval written to metrics_before_val.json
+- [x] Accept separate training, validation, calibration and test manifests.
+  → train_phone_routing.py carves val from train (--val-split-size, default 90);
+    calib and test paths passed separately; val manifest saved to output dir.
+- [x] Use validation for checkpoint selection; stop using calibration rows
+  as the trainer's evaluation/selection dataset.
+  → eval_dataset=val_items in DecisionTrainer; calibration used only post-training.
+- [x] Remove test evaluation from smoke mode and iterative trial execution.
+  → test.jsonl is never loaded during training or smoke. Test eval is in
+    evaluate_phone_routing_model.py (separate script, run post-candidate-selection).
+- [x] Add explicit probability calibration after selecting the checkpoint,
+  saving fitted temperatures/configs and pre/post-calibration metrics.
+  → FastDecisionModel.calibrate() called on calib_items; result in
+    calibration_config.json; pre-calib metrics in metrics_calib_pre.json.
+- [x] Add W&B for actual training only, with explicit project/run names and
+  saved run IDs/URLs. Keep smoke/evaluation/export tracking disabled.
+  → --wandb-project flag; smoke always uses report_to="none"; run ID/URL in manifest.
+- [x] Save resolved settings, source/data revisions, seed, trainable parameter
+  counts, optimizer/head learning rates and effective batch size.
+  → run-manifest.json written at end of training.
+- [ ] Make general/phone/combined data loading share the same schema checks.
+  (Remaining: general-mix and combined loaders not yet written)
+- [ ] Support weighted source sampling for the combined run and log actual
+  per-source exposure, not only requested weights.
+  (Remaining: combined run loader not yet written)
+- [x] Add meaningful checks for split isolation, label mapping, checkpoint
+  loading, finite loss and save/reload prediction agreement.
+  → check_split_isolation(), check_label_mapping(), FiniteLossCallback() added.
+- [ ] Prepare a bounded trial queue, resumable execution and per-trial logs.
+  (Remaining: trial queue infrastructure not yet written)
+
+Deliverable: ✅ tools/train_phone_routing.py rewritten with above fixes.
+  Remaining: general/combined data loading, weighted sampling, trial queue.
+
+## 6. Train the first three candidates on one GPU pod
+
+- [ ] Confirm current SSH access and GPU/storage capacity; do not assume the
+  previous pod remains available.
+- [ ] Capture provider/instance/host/machine IDs, rates, network pricing and
+  billing start time; initialize COST.md/cost.json immediately.
+- [ ] Set up one pinned environment and cache datasets/checkpoints once.
+  Load authorized HF/W&B credentials privately; never copy them into logs.
+- [ ] Record package freeze, CUDA/driver/GPU information and setup duration.
+- [ ] Run small training/validation-only smokes for all three configurations.
+- [ ] Run `qwen35-08b-reflex1-phone-routing-v1-lora16-s3407`.
+- [ ] Run `qwen35-08b-reflex1-general-mix-v1-lora16-s3407` independently.
+- [ ] Run `qwen35-08b-reflex1-combined-v1-lora16-s3407` independently.
+- [ ] Start from the existing rank-16/seed-3407 recipe, recording all resolved
+  settings. Treat 60 steps as an initial trial budget, not guaranteed adequacy.
+- [ ] Choose duration using validation and exposure. Report steps, epochs,
+  effective batch, elapsed training time and peak GPU memory for each run.
+- [ ] Save best/last checkpoints and the state needed for exact resumption.
+- [ ] Confirm W&B authentication and synchronization for each actual run;
+  preserve offline records if sync fails.
+
+Deliverable: three named candidates, training histories and complete configs.
+
+## 7. Automate follow-up trials and select candidates
+
+- [ ] Score all candidates on validation across phone and general tasks.
+- [ ] Inspect per-route errors and health-check bias before choosing changes.
+- [ ] Vary data quality/quantity and mixture weights first; then vary learning
+  rates, head learning rate, duration and LoRA rank in bounded stages.
+- [ ] Change a controlled set of factors per trial and save every result,
+  including failed runs. Do not report only the best trial.
+- [ ] Use validation gold labels for automatic next-round evaluation; no
+  per-prediction human review is needed once those labels are reliable.
+- [ ] Compare example exposure and compute budgets when interpreting data
+  mixture experiments; repeat finalists with additional seeds if warranted.
+- [ ] Select final candidates using the predeclared validation criteria.
+- [ ] Calibrate on separate calibration data, then open sealed tests once for
+  the selected candidates. Record any later reuse of those tests.
+
+Deliverable: trial table and documented selection rationale.
+
+## 8. Evaluate selected models and export GGUF
+
+- [ ] Score selected general/phone/combined candidates, reflex-1 and Laya on
+  identical frozen cohorts with native metrics and per-example predictions.
+- [ ] Report phone per-route macro-F1, confusion matrices and general retention.
+- [ ] Report ECE/Brier with definitions and pre/post-calibration results.
+- [ ] Include paired outcome comparisons/uncertainty; avoid declaring a win
+  from a small percentage increase on only 90 cases.
+- [ ] Export selected models to Q4_K_M, preserving the decision head,
+  tokenizer and calibration/config metadata.
+- [ ] Pin converter/runtime source and save conversion/quantization logs.
+- [ ] Verify export/reload predictions and probability drift on validation,
+  then report quantized performance on the chosen final evaluation cohorts.
+- [ ] Save sizes and SHA-256 hashes for original and exported artifacts.
+
+Deliverable: benchmark report and verified quantized candidate artifacts.
+
+## 9. Measure A32 performance fairly
+
+- [ ] Check device connection, available memory, runtime support and artifact
+  hashes after transfer. Record phone/OS/runtime versions and launch arguments.
+- [ ] Run one candidate at a time, under matching CPU threads/context/runtime
+  settings where supported; record architecture-specific differences.
+- [ ] Use identical cohorts and clearly separate validation timing from final
+  accuracy evaluation. Include complete tokenizer/head/HTTP pipeline latency.
+- [ ] Measure cold load time and warm mean/p50/p95 request latency.
+- [ ] Measure full-process peak/typical PSS, battery/thermal state, throttling,
+  cooldown time and failures; include external-head processes for Laya.
+- [ ] Standardize starting temperature, charging state and background load;
+  use repeated blocks/order balancing to reduce thermal/order effects.
+- [ ] Compare Qwen raw HTTP, original reflex-1, selected trained candidates and
+  Laya if its complete Android inference path is available.
+- [ ] Report accuracy/speed/memory tradeoffs. Do not equate GPU milliseconds
+  with phone latency or claim energy savings without an energy measurement.
+
+Deliverable: matched A32 results and raw timing/resource traces.
+
+## 10. Integrate the promising candidate into Pocket Agents Lab
+
+- [ ] Select a candidate only after measured routing and resource results.
+- [x] Implement DecisionHttpClient: `/v1/systemone` to `AgentSelection`, with
+  response validation, timeout/error handling and documented fallback behavior.
+  → app/src/main/java/com/pocketagentslab/DecisionHttpClient.kt — implements
+    AgentDecisionSelector, maps 9 routes, handles HTTP errors, timeout=45s.
+    Unit tests: DecisionHttpClientTest.kt (6 tests, all route mappings verified).
+    NOTE: code seam only — app has not been rebuilt with it wired in yet.
+- [ ] Replace the current damaging guard using validation evidence; retain
+  regression cases and report raw versus guarded accuracy separately.
+- [ ] Wire server lifecycle/model availability into the app and run meaningful
+  backend/device tests for routing, failures and final-answer behavior.
+- [ ] Implement and verify the one-loaded-backbone decision/text strategy.
+  A decision GGUF does not automatically expose a text-generation graph, and
+  ordinary LoRA loading does not add its decision head.
+- [ ] Validate backbone sharing, adapter/head switching, memory/state reset,
+  generated-answer quality and full-turn latency. Keep this separate from
+  training success; avoid simultaneously loading two Qwen backbones.
+- [ ] Re-run end-to-end app benchmarks after integration, including final LLM
+  answers and tool execution, rather than routing alone.
+
+Deliverable: working app integration with verified full-turn behavior.
+
+## 11. Close out the pod and preserve the experiment
+
+- [ ] Follow [EXPERIMENT_CLOSEOUT.md](../../EXPERIMENT_CLOSEOUT.md).
+- [ ] Download merged weights, adapter/head, tokenizer/calibration, resumable
+  checkpoints, all dataset manifests/provenance and selected evaluation rows.
+- [ ] Download executed scripts, environment freeze, setup/failure/smoke/train/
+  evaluation/export logs, raw metrics, W&B metadata and offline records.
+- [ ] Download GGUF files, conversion/runtime revisions and reproducible source.
+- [ ] Verify local versus remote byte counts and SHA-256 inventories; record
+  backup paths, exclusions, restoration steps and completeness.
+- [ ] Record setup/train/evaluation/export/rental durations, estimated base
+  cost, known network charges and final invoice/shutdown status when available.
+- [ ] State explicitly whether any remaining work still needs the pod. Do not
+  call it disposable until all required backups have been verified.
+- [ ] Commit scripts, plans, reports and manifests without credentials or
+  large ignored artifacts. Keep models unpublished as requested.
+- [ ] Leave Mac mini M4 fine-tuning as a later independent experiment, with a
+  separate backend/support investigation and cost/performance record.
+
+## Immediate next actions
+
+### Done (non-GPU, 2026-10-11)
+1. ✅ Section 1: experiment-manifest.json — reflex-1 hashes, dataset hashes, 9-route
+   definitions, candidate-selection criteria, historical baselines.
+2. ✅ Section 2: data-audit-report.md — zero duplicates/leakage confirmed; scenario
+   families defined; phone-routing-review-sheet.csv (1,080 rows) generated.
+3. ✅ Section 5: train_phone_routing.py rewritten — reflex-1 checkpoint loading,
+   validation carved from train, calibration separated, test sealed, W&B flag,
+   split isolation + label mapping + finite-loss checks.
+4. ✅ Section 10: DecisionHttpClient.kt + DecisionHttpClientTest.kt — code seam for
+   /v1/systemone routing, all 9 routes mapped, unit tests pass (run locally only).
+
+### Still needed before first GPU run
+1. **HUMAN REVIEW:** Open phone-routing-review-sheet.csv; correct boundary cases
+   and 480 unclassified rows (see data-audit-report.md §5 for priority list).
+2. **Section 3:** Pin typed-decisions/BANKING77/CLINC150 source revisions and build
+   stable evaluation manifests.
+3. **Section 5 remainder:** Write general-mix and combined data loaders sharing
+   the same schema checks as train_phone_routing.py; add weighted source sampling
+   for the combined run.
+4. **Section 6:** Provision GPU pod, run smoke checks (--smoke), then full training.
