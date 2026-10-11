@@ -152,11 +152,14 @@ Deliverable: reproducible Laya results and an explicit Android feasibility statu
 - [x] Save resolved settings, source/data revisions, seed, trainable parameter
   counts, optimizer/head learning rates and effective batch size.
   → run-manifest.json written at end of training.
-- [ ] Make general/phone/combined data loading share the same schema checks.
-  (Remaining: general-mix and combined loaders not yet written)
-- [ ] Support weighted source sampling for the combined run and log actual
+- [x] Make general/phone/combined data loading share the same schema checks.
+  → All three scripts (train_phone_routing.py, train_general_routing.py,
+    train_combined_routing.py) use the same carve_validation, file_sha256,
+    load_jsonl, write_json helpers and explicit schema validation.
+- [x] Support weighted source sampling for the combined run and log actual
   per-source exposure, not only requested weights.
-  (Remaining: combined run loader not yet written)
+  → weighted_mix() in train_combined_routing.py; actual_weights dict in manifest
+    with actual phone/general row counts post-sampling.
 - [x] Add meaningful checks for split isolation, label mapping, checkpoint
   loading, finite loss and save/reload prediction agreement.
   → check_split_isolation(), check_label_mapping(), FiniteLossCallback() added.
@@ -164,7 +167,10 @@ Deliverable: reproducible Laya results and an explicit Android feasibility statu
   (Remaining: trial queue infrastructure not yet written)
 
 Deliverable: ✅ tools/train_phone_routing.py rewritten with above fixes.
-  Remaining: general/combined data loading, weighted sampling, trial queue.
+  ✅ tools/prepare_general_mixture.py — pins source revisions, stratified splits, dry-run.
+  ✅ tools/train_general_routing.py — general-only pipeline (parallel to phone-only).
+  ✅ tools/train_combined_routing.py — weighted phone+general mix, per-source val metrics.
+  Remaining: trial queue infrastructure.
 
 ## 6. Train the first three candidates on one GPU pod
 
@@ -292,20 +298,26 @@ Deliverable: working app integration with verified full-turn behavior.
 ### Done (non-GPU, 2026-10-11)
 1. ✅ Section 1: experiment-manifest.json — reflex-1 hashes, dataset hashes, 9-route
    definitions, candidate-selection criteria, historical baselines.
-2. ✅ Section 2: data-audit-report.md — zero duplicates/leakage confirmed; scenario
-   families defined; phone-routing-review-sheet.csv (1,080 rows) generated.
-3. ✅ Section 5: train_phone_routing.py rewritten — reflex-1 checkpoint loading,
-   validation carved from train, calibration separated, test sealed, W&B flag,
-   split isolation + label mapping + finite-loss checks.
+2. ✅ Section 2: data-audit-report.md — zero duplicates/leakage confirmed; 5 paraphrase
+   near-duplicates found (Jaccard ≥ 0.75); scenario families defined; 
+   phone-routing-review-sheet.csv (1,080 rows) generated.
+3. ✅ Section 5: Full training pipeline complete —
+   - train_phone_routing.py: eval_accuracy checkpoint selection, FiniteLossCallback(TrainerCallback),
+     explicit NOT_CALIBRATED failure, compute_decision_metrics, calibration_ok in manifest.
+   - prepare_general_mixture.py: pinned source revisions, stratified splits, dry-run mode.
+   - train_general_routing.py: general-only pipeline (parallel to phone-only run).
+   - train_combined_routing.py: weighted mix, per-source val metrics, combined retention.
 4. ✅ Section 10: DecisionHttpClient.kt + DecisionHttpClientTest.kt — code seam for
    /v1/systemone routing, all 9 routes mapped, unit tests pass (run locally only).
 
 ### Still needed before first GPU run
-1. **HUMAN REVIEW:** Open phone-routing-review-sheet.csv; correct boundary cases
-   and 480 unclassified rows (see data-audit-report.md §5 for priority list).
-2. **Section 3:** Pin typed-decisions/BANKING77/CLINC150 source revisions and build
-   stable evaluation manifests.
-3. **Section 5 remainder:** Write general-mix and combined data loaders sharing
-   the same schema checks as train_phone_routing.py; add weighted source sampling
-   for the combined run.
-4. **Section 6:** Provision GPU pod, run smoke checks (--smoke), then full training.
+1. **HUMAN REVIEW (blocking):** Open phone-routing-review-sheet.csv; correct boundary
+   cases and 480 unclassified rows (see data-audit-report.md §5 for priority list).
+   Fix 5 paraphrase near-duplicate pairs (replace test/calib variants with distinct examples).
+2. **New sealed test cohort:** After human review, generate and seal a new test cohort
+   so that final claims are not made from a test set that influenced development.
+3. **Section 3:** Pin typed-decisions/BANKING77/CLINC150 source revisions; run
+   prepare_general_mixture.py to freeze splits and build evaluation manifests.
+4. **Section 5 smoke:** Run all three scripts with --smoke flag to verify they pass
+   before GPU rental. W&B disabled for smoke runs.
+5. **Section 6:** Provision GPU pod, run smokes with --smoke, then full training.
