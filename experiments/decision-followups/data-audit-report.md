@@ -41,8 +41,31 @@ and scenario family assignments, per `phone-routing-review-sheet.csv`.
 | Normalized duplicates (lowercase, strip punctuation) | 0 |
 | ID duplicates across splits | 0 |
 | Cross-split contamination (same normalized text in ≥2 splits) | 0 |
+| Cross-split near-duplicates (word-set Jaccard ≥ 0.75) | **5** |
 
-**No leakage detected.** Test data is clean.
+**5 paraphrase/template pairs found.** These share the same correct label but are
+minor wording variants, likely from the same generator template. A model trained on
+the train version may have effectively seen the test/calibration version at training time.
+
+| Jaccard | Train | Test/Calib | Route |
+|---|---|---|---|
+| 0.80 | `What video file is playing?` | `What video is playing?` (test) | get_media_info |
+| 0.80 | `What is a haiku?` | `What is a haiku exactly?` (test) | answer |
+| 0.75 | `How far into the podcast am I?` | `How far am I through the podcast?` (test) | get_media_info |
+| 0.75 | `What did I note about the apartment?` | `What did I note about the interview?` (calib) | search_notes |
+| 0.75 | `What did I note about the appointment?` | `What did I note about the interview?` (calib) | search_notes |
+
+**Action before next generation:**
+- The search_notes calibration pair shares a template (`What did I note about [X]?`).
+  Replace one of the two train variants or the calibration variant with a distinct example.
+- The media/podcast pairs are paraphrases of the same query. Remove the test variant
+  and replace with a structurally distinct example.
+- The haiku pair differs by only one adverb; both are correct. Keep for now but note
+  this inflates perceived test accuracy for that one example.
+
+These are generator template leaks, not label errors. The correct label is the same in
+both members of each pair, so there is no label contamination — only inflated score
+expectations for the affected examples.
 
 ---
 
@@ -129,12 +152,21 @@ Cases where the question has both forms need to be checked.
 ## 6. Validation Split Plan
 
 For the initial existing-data trial, derive validation from the 900-row train pool:
-- **810 train** (90/route) + **90 validation** (10/route), stratified by route, seed=3407
+- **810 train** (90/route) + **90 validation** (10/route), stratified by **route only** for now, seed=3407
 - Calibration split (90 rows) used only for probability calibration after checkpoint selection
 - Test split (90 rows) sealed until final candidate evaluation
 
-Family separation across the train/val split cannot be verified until humans assign
-families. After review, re-split to ensure the same families appear in both halves.
+**Family separation is not yet enforced.** The current route-stratified split may place
+paraphrase variants of the same underlying example in both train and validation (see the 5
+near-duplicate pairs in §2). After human review assigns scenario families to the review
+sheet, re-split using family groups instead:
+- Group examples by their scenario_family (e.g., all `What did I note about [X]?` examples
+  form one group).
+- Keep the entire group either in train or in validation, never split across both.
+- Re-freeze the split (save IDs + seed) and update the manifest before training.
+
+Until that review is complete, the initial run uses route-stratified splitting with the
+near-duplicate limitation noted above. Results on this split are preliminary only.
 
 ---
 
