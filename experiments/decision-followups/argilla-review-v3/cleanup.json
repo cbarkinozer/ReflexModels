@@ -1,0 +1,74 @@
+{
+  "backup_manifest": "data/prepared/argilla-cleanup-20261011T210456Z/manifest.json",
+  "removed_datasets": [
+    {
+      "id": "b955c052-946a-4a98-bd93-8938df46caea",
+      "name": "phone-routing-v1-train-review",
+      "records": 900,
+      "path": "data/prepared/argilla-cleanup-20261011T210456Z/phone-routing-v1-train-review.json",
+      "sha256": "1208bfe11a419498c035d62e2dc78071c8f3df18f5facd6c721c9d1bdf05bc76",
+      "records_with_responses": 0,
+      "deleted_from_ui": true
+    },
+    {
+      "id": "921e9995-8787-48eb-905e-7576831338a9",
+      "name": "phone-routing-v1-train-review-v2",
+      "records": 900,
+      "path": "data/prepared/argilla-cleanup-20261011T210456Z/phone-routing-v1-train-review-v2.json",
+      "sha256": "b53ad4c0b320953b81a43a85d5dfe7b7c24530dd9d93fe955743686827d54b6a",
+      "records_with_responses": 0,
+      "deleted_from_ui": true
+    },
+    {
+      "id": "23553bda-6379-4bdc-9964-f406bc9dee7a",
+      "name": "phone-routing-v1-calibration-review",
+      "records": 90,
+      "path": "data/prepared/argilla-cleanup-20261011T210456Z/phone-routing-v1-calibration-review.json",
+      "sha256": "6bc80fd96cb12401b4df06747f4a6877ceda255108571060c9e57c8c21aac3b8",
+      "records_with_responses": 0,
+      "deleted_from_ui": true
+    },
+    {
+      "id": "3f5f6168-773a-4f04-a1af-556a6e475687",
+      "name": "phone-routing-v1-calibration-review-v2",
+      "records": 90,
+      "path": "data/prepared/argilla-cleanup-20261011T210456Z/phone-routing-v1-calibration-review-v2.json",
+      "sha256": "d4acc0aa4c1ff3e4d3263ad20ed9def64385d3762560bc5b258b164b8f9d1513",
+      "records_with_responses": 0,
+      "deleted_from_ui": true
+    },
+    {
+      "id": "ec12bf52-d4a7-44b5-b681-1b1c067f77dc",
+      "name": "phone-routing-v1-historical-test-review",
+      "records": 90,
+      "path": "data/prepared/argilla-cleanup-20261011T210456Z/phone-routing-v1-historical-test-review.json",
+      "sha256": "57c73256ba8869831f2b5edff44bb23aeee2f37bd58c8ee41ad20e01c5185894",
+      "records_with_responses": 0,
+      "deleted_from_ui": true
+    },
+    {
+      "id": "4006e353-04d4-47eb-9d54-d72041ef4248",
+      "name": "phone-routing-v1-historical-test-review-v2",
+      "records": 90,
+      "path": "data/prepared/argilla-cleanup-20261011T210456Z/phone-routing-v1-historical-test-review-v2.json",
+      "sha256": "59f1ba5263fe7325ce36fc7e23cd0d54d21fd61a89748aabf4bef28c7df76ef1",
+      "records_with_responses": 0,
+      "deleted_from_ui": true
+    }
+  ],
+  "remaining": [
+    {
+      "name": "phone-routing-v1-train-review-v3",
+      "id": "1d27fbfc-4c2c-4dcd-a796-59071967a210"
+    },
+    {
+      "name": "phone-routing-v1-calibration-review-v3",
+      "id": "c1760daf-5a33-43a0-a113-8d8e50a5f53e"
+    },
+    {
+      "name": "phone-routing-v1-historical-test-review-v3",
+      "id": "6a063185-6b9a-45c2-a584-8a6b5314e8a8"
+    }
+  ],
+  "media_capability": "offline availability unsupported; review flags added; no human decisions overwritten"
+}

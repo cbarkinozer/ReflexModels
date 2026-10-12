@@ -29,3 +29,7 @@ unsloth_compiled_cache/
 
 # macOS metadata.
 .DS_Store
+
+# Local review credentials and environment.
+experiments/decision-followups/review-ui/.env
+experiments/decision-followups/review-ui/.venv/

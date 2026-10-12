@@ -298,12 +298,12 @@ Deliverable: working app integration with verified full-turn behavior.
 ### Done (non-GPU, 2026-10-11)
 1. ✅ Section 1: experiment-manifest.json — reflex-1 hashes, dataset hashes, 9-route
    definitions, candidate-selection criteria, historical baselines.
-2. ✅ Section 2: data-audit-report.md — zero duplicates/leakage confirmed; 5 paraphrase
+2. ✅ Section 2: data-audit-report.md — zero exact/normalized duplicates confirmed; semantic isolation pending; 5 paraphrase
    near-duplicates found (Jaccard ≥ 0.75); scenario families defined; 
    phone-routing-review-sheet.csv (1,080 rows) generated.
-3. ✅ Section 5: Full training pipeline complete —
-   - train_phone_routing.py: eval_accuracy checkpoint selection, FiniteLossCallback(TrainerCallback),
-     explicit NOT_CALIBRATED failure, compute_decision_metrics, calibration_ok in manifest.
+3. ✅ Section 5: Training scripts implemented; GPU validation pending —
+   - train_phone_routing.py: native eval_accuracy checkpoint selection, FiniteLossCallback(TrainerCallback),
+     explicit NOT_CALIBRATED failure, native multi-question evaluation, calibration_ok in manifest.
    - prepare_general_mixture.py: pinned source revisions, stratified splits, dry-run mode.
    - train_general_routing.py: general-only pipeline (parallel to phone-only run).
    - train_combined_routing.py: weighted mix, per-source val metrics, combined retention.
@@ -321,3 +321,45 @@ Deliverable: working app integration with verified full-turn behavior.
 4. **Section 5 smoke:** Run all three scripts with --smoke flag to verify they pass
    before GPU rental. W&B disabled for smoke runs.
 5. **Section 6:** Provision GPU pod, run smokes with --smoke, then full training.
+
+## Verified follow-up — 2026-10-11
+
+- [x] Replace three nonexistent source revision IDs with verified full commits;
+  use pinned upstream BANKING77 CSV files rather than an HF script fetching master.
+- [x] Preserve typed-decisions multi-question schemas and soft gold; add missing
+  gold to BANKING77/CLINC150 and deterministic source-index IDs.
+- [x] Prepare `data/prepared/general-routing-v1-balanced`: 2,240 training cases
+  (6,720 decisions), 2,529 validation cases (2,689 decisions), 1,287 calibration
+  cases (1,447 decisions). All 77/150 training intent classes retained.
+- [x] Exclude 115 duplicate/protected-overlap cases. Verify normalized cross-split
+  isolation, all choice label mappings, SHA-256s and Dataset construction.
+- [x] Copy historical BANKING77/CLINC150 selections unchanged. General test cohorts
+  are not newly sampled. Original phone files unchanged.
+- [x] Reconstruct original reflex-1 typed holdout using its pinned source algorithm
+  and verify original snapshot row order/content. Never re-carve validation from
+  the 1,120 previously trained cases. Original holdout was previously calibrated;
+  it remains validation/calibration evidence, not a pristine new test.
+- [x] Enable loaded `model.head` gradients explicitly; use native decision
+  evaluation to preserve multiple questions and explicit gold labels.
+- [x] Bound smoke inference to 16 validation/calibration cases per domain.
+- [x] Eight CPU regression checks, syntax compilation and CLI-help checks pass.
+- [ ] GPU model build, adapter/head loading and save/reload parity remain untested.
+- [ ] Human phone label/group review and newly sealed phone cohort remain pending.
+- [ ] Current GPU access needed: previous direct address timed out; proxy refused.
+
+See GENERAL_DATA.md for preparation commands, provenance and validation limits.
+
+## Laptop review handoff — 2026-10-12
+
+Current UI is v3 only; previous duplicate UIs were backed up and removed.
+Categories are prepared, optional dropdowns. The user reviews tool labels and
+keep/correct/rewrite/exclude/uncertain decisions; no mandatory category typing.
+Paraphrase grouping and independent sealed-test preparation remain separate work.
+
+Saved human reviews are in review-ui/review-snapshot.json. Read the root
+LAPTOP_HANDOFF.md and review-ui/README.md to start Argilla and restore them on
+another computer. Fresh UUID links are printed on import. Docker defaults/API
+keys in .env.example are local setup placeholders, not this Mac's credentials.
+
+Companion pocket-agents-lab training/data fixes: commit 4dfb9f3. The existing
+third_party/llama.cpp changes were excluded. No new GPU run or W&B run started.

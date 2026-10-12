@@ -1,6 +1,5 @@
 {
   "_comment": "Frozen experiment manifest. Written 2026-10-11. Do not modify until new training run completes.",
-
   "scope": {
     "runs": [
       "qwen35-08b-reflex1-phone-routing-v1-lora16-s3407",
@@ -24,14 +23,13 @@
       "Do NOT publish reflex-1 or push weights to HuggingFace",
       "Do NOT log eval runs to W&B (only training runs)",
       "Do NOT retrain on the 50-case development suite and call it held-out evidence",
-      "Do NOT claim Kotlin AgentDecisionSelector is a complete adapter integration — it is a code seam only",
+      "Do NOT claim Kotlin AgentDecisionSelector is a complete adapter integration \u2014 it is a code seam only",
       "The Clef GGUF cannot do chat completions (no vocabulary logits)",
       "--no-repack is required for Clef. Do not remove this flag",
       "Do NOT load both models simultaneously",
-      "data/phone_routing/test.jsonl is held-out — never include in training or calibration"
+      "data/phone_routing/test.jsonl is held-out \u2014 never include in training or calibration"
     ]
   },
-
   "reflex1_artifacts": {
     "gguf_q4_k_m": {
       "file": "model-Q4_K_M.gguf",
@@ -65,7 +63,6 @@
     "checkpoint_path_pod": "runs/pod-backup/extracted/checkpoint-60",
     "checkpoint_path_local": "experiments/unsloth-qwen35-08b-decision/runs/pod-backup/extracted/checkpoint-60"
   },
-
   "datasets": {
     "phone_routing_v1": {
       "train": {
@@ -85,7 +82,7 @@
         "records": 90,
         "per_route": 10,
         "sha256": "ed41b456f4c7eee7b6311df19bd16f39f594016dbc9b47ffd398906ac6315dec",
-        "status": "SEALED — do not open until after candidate selection"
+        "status": "SEALED \u2014 do not open until after candidate selection"
       }
     },
     "initial_trial_splits": {
@@ -96,7 +93,6 @@
       "carve_stratified_by": "route__label"
     }
   },
-
   "historical_baselines": {
     "reflex1_before_retrain": {
       "model": "reflex-1",
@@ -119,15 +115,14 @@
       "total": 90,
       "accuracy": 0.556,
       "mean_latency_s": 36.8,
-      "treatment": "raw — no chat template, GBNF grammar, /v1/completions",
+      "treatment": "raw \u2014 no chat template, GBNF grammar, /v1/completions",
       "note": "This is the WIN TARGET. Retrained reflex-1 must beat 50/90 on this same test set.",
       "result_file": "benchmarks/phone-routing-eval/qwen-raw-phone-routing-results.json"
     },
     "win_condition": "retrained_reflex1.accuracy > 0.556 on data/phone_routing/test.jsonl AND retrained_reflex1.a32_latency_s < 36.8 AND no unacceptable regression on typed-decisions/BANKING77/CLINC150"
   },
-
   "candidate_selection_criteria": {
-    "primary_metric": "routing_accuracy on phone_routing_v1 validation set (macro-F1 preferred; accuracy acceptable for balanced set)",
+    "primary_metric": "Native FastDecisionModel.evaluate validation accuracy for checkpoint selection; phone macro-F1/per-route recall reported separately.",
     "threshold_to_open_test": "validation macro-F1 >= 0.70 (vs 0.20 for reflex-1 before retrain)",
     "general_retention": {
       "typed_decisions": "accuracy must not drop more than 5pp from reflex-1 baseline",
@@ -149,7 +144,6 @@
     ],
     "warning": "Do not declare a win from a small percentage increase on 90 cases without reporting uncertainty. Winning by 1-2 cases is not statistically meaningful."
   },
-
   "lora_config": {
     "rank": 16,
     "alpha": 16,
@@ -157,7 +151,6 @@
     "use_gradient_checkpointing": "unsloth",
     "seed": 3407
   },
-
   "training_config": {
     "max_steps_initial": 60,
     "per_device_train_batch_size": 8,
@@ -168,10 +161,15 @@
     "optimizer": "adamw_8bit",
     "lr_scheduler": "cosine",
     "weight_decay": 0.01,
-    "checkpoint_selection": "best checkpoint by validation macro-F1 during training"
+    "checkpoint_selection": "Best checkpoint by native validation eval_accuracy; evaluate/save every 20 steps (2 in smoke)."
   },
-
-  "adapter_loading_strategy": "RESUME: FastDecisionModel.from_pretrained(reflex1_checkpoint_path) loads backbone + LoRA + head together. Do NOT call get_peft_model again — that would wrap an existing adapter twice. Enable training on existing LoRA parameters directly.",
-
-  "version": "2026-10-11-v1"
+  "adapter_loading_strategy": "RESUME: FastDecisionModel.from_pretrained(reflex1_checkpoint_path) loads backbone + LoRA + head together. Do NOT call get_peft_model again \u2014 that would wrap an existing adapter twice. Enable training on existing LoRA parameters directly.",
+  "version": "2026-10-11-v1",
+  "general_data_preparation": {
+    "path": "data/prepared/general-routing-v1-balanced",
+    "status": "prepared and CPU-validated; GPU build/smoke pending",
+    "manifest": "general-data/split-manifest.json",
+    "source_revisions": "general-data/source-revisions.json",
+    "typed_holdout_prior_use": "Original reflex-1 held-out cases, previously evaluated/calibrated; not a fresh test."
+  }
 }

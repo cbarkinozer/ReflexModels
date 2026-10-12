@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-11",
+  "regression_tests": 8,
+  "regression_status": "passed",
+  "dataset_construction": "passed",
+  "choice_gold_mapping": "passed",
+  "intent_class_coverage": {
+    "banking77": 77,
+    "clinc150": 150
+  },
+  "artifact_hashes": "verified",
+  "syntax_compilation": "passed",
+  "cli_help": "passed",
+  "gpu_smokes": "not run",
+  "fine_tuning": "not run",
+  "wandb": "not started",
+  "phone_human_review": "pending",
+  "new_phone_test_cohort": "pending"
+}

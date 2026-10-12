@@ -1,0 +1,29 @@
+/Users/cbarkinozer/.cache/reflex-data-prep-venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 1200 examples [00:00, 77030.38 examples/s]
+Generating test split: 0 examples [00:00, ? examples/s]Generating test split: 400 examples [00:00, 72275.09 examples/s]
+Generating train split:   0%|          | 0/15250 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 15250/15250 [00:00<00:00, 919790.28 examples/s]
+Generating validation split:   0%|          | 0/3100 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 3100/3100 [00:00<00:00, 601486.90 examples/s]
+Generating test split:   0%|          | 0/5500 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 5500/5500 [00:00<00:00, 1011207.29 examples/s]
+{
+  "output": "/Users/cbarkinozer/Documents/GitHub/ReflexModels/data/prepared/general-routing-v1",
+  "splits": {
+    "train": {
+      "banking77": 560,
+      "typed_decisions": 1120,
+      "clinc150": 560
+    },
+    "val": {
+      "typed_decisions": 40,
+      "banking77": 993,
+      "clinc150": 1496
+    },
+    "calibration": {
+      "typed_decisions": 40,
+      "banking77": 497,
+      "clinc150": 750
+    }
+  },
+  "excluded": 115
+}

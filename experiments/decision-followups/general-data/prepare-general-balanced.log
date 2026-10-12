@@ -1,0 +1,24 @@
+/Users/cbarkinozer/.cache/reflex-data-prep-venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+{
+  "output": "/Users/cbarkinozer/Documents/GitHub/ReflexModels/data/prepared/general-routing-v1-balanced",
+  "splits": {
+    "train": {
+      "typed_decisions": 1120,
+      "banking77": 560,
+      "clinc150": 560
+    },
+    "val": {
+      "typed_decisions": 40,
+      "banking77": 993,
+      "clinc150": 1496
+    },
+    "calibration": {
+      "typed_decisions": 40,
+      "banking77": 497,
+      "clinc150": 750
+    }
+  },
+  "excluded": 115
+}

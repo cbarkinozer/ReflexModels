@@ -1,0 +1,26 @@
+{
+  "workspace": "reflexmodels",
+  "csv_sha256": "5e90322d6d2ac4b1664c5d33d1d8f323ea4601a6c8f6f52eb711f7aeb9f879da",
+  "datasets": {
+    "train": {
+      "name": "phone-routing-v1-train-review-v3",
+      "id": "1d27fbfc-4c2c-4dcd-a796-59071967a210",
+      "records": 900,
+      "url": "http://127.0.0.1:7900/dataset/1d27fbfc-4c2c-4dcd-a796-59071967a210/annotation-mode"
+    },
+    "calibration": {
+      "name": "phone-routing-v1-calibration-review-v3",
+      "id": "c1760daf-5a33-43a0-a113-8d8e50a5f53e",
+      "records": 90,
+      "url": "http://127.0.0.1:7900/dataset/c1760daf-5a33-43a0-a113-8d8e50a5f53e/annotation-mode"
+    },
+    "test": {
+      "name": "phone-routing-v1-historical-test-review-v3",
+      "id": "6a063185-6b9a-45c2-a584-8a6b5314e8a8",
+      "records": 90,
+      "url": "http://127.0.0.1:7900/dataset/6a063185-6b9a-45c2-a584-8a6b5314e8a8/annotation-mode"
+    }
+  },
+  "original_data_modified": false,
+  "test_status": "Historical/exposed only; no new sealed test imported"
+}
