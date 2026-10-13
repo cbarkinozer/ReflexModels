@@ -27,6 +27,9 @@ experiments/unsloth-qwen35-08b-decision/runs/
 experiments/unsloth-qwen35-08b-decision/*executed.ipynb
 unsloth_compiled_cache/
 
+# GGUF binaries for the combined decision model; manifests/README carry the hashes.
+experiments/decision-followups/gguf-combined-step100/*.gguf
+
 # macOS metadata.
 .DS_Store
 

@@ -1,4 +1,6 @@
-# reflex-1
+# reflex-1 (now referred to as reflex-1-beta)
+
+**Relabeled 2026-10-14:** this model was never published, so the user retroactively renamed it `reflex-1-beta` once the combined phone+general model superseded it. The folder path and all cross-references below are left as `reflex-1` for historical accuracy; use `reflex-1-beta` when talking about this model going forward. The new model is [reflex-1.1](../reflex-1.1/README.md).
 
 First ReflexModels Qwen3.5-0.8B decision-head model, trained on public typed-decisions using Unsloth. Research release prepared locally; not published to a model hub yet.
 
