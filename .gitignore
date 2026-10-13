@@ -1,6 +1,7 @@
 # Downloaded and derived datasets are not repository assets.
 data/raw/
 data/prepared/
+data/hf-cache/
 
 # Python environments and caches.
 .venv/

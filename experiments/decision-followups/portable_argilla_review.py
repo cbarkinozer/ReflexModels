@@ -39,9 +39,9 @@ def export_snapshot(client, workspace, csv_path, path):
                 "users": users, "datasets": datasets}
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_suffix(".tmp")
-    temporary.write_text(json.dumps(snapshot, indent=2) + "\n")
+    temporary.write_text(json.dumps(snapshot, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     # Validate serializable responses and counts before replacing the snapshot.
-    restored = json.loads(temporary.read_text())
+    restored = json.loads(temporary.read_text(encoding="utf-8"))
     assert sum(len(d["records"]) for d in restored["datasets"]) == 1080
     temporary.replace(path)
     return snapshot
@@ -99,7 +99,7 @@ def main():
         print(json.dumps({"snapshot": str(args.snapshot), "reviewed": {
             d["name"]: d["reviewed_records"] for d in snapshot["datasets"]}}, indent=2))
         return
-    snapshot = json.loads(args.snapshot.read_text())
+    snapshot = json.loads(args.snapshot.read_text(encoding="utf-8"))
     if hashlib.sha256(csv_path.read_bytes()).hexdigest() != snapshot["csv_sha256"]:
         raise ValueError("Snapshot CSV differs from checkout")
     for saved in snapshot["datasets"]:

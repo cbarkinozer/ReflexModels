@@ -2,7 +2,7 @@ name: reflexmodels-review
 
 services:
   argilla:
-    image: argilla/argilla-server@sha256:aa3fa3da08859efd7202c85da8a2a95a87b78441f53c909607dc18dc679559cd
+    image: argilla/argilla-server:v2.8.0
     restart: unless-stopped
     ports:
       # Localhost only: do not expose review data on the network.
@@ -27,7 +27,7 @@ services:
       - argilla
 
   worker:
-    image: argilla/argilla-server@sha256:aa3fa3da08859efd7202c85da8a2a95a87b78441f53c909607dc18dc679559cd
+    image: argilla/argilla-server:v2.8.0
     restart: unless-stopped
     environment:
       <<: *argilla_environment

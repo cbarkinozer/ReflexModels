@@ -1,5 +1,7 @@
 # Three decision-model follow-up runs
 
+> **Current status (2026-10-13):** See [VAST_FINE_TUNE_HANDOFF_20261013.md](VAST_FINE_TUNE_HANDOFF_20261013.md). The user chose three independent runs from base Qwen3.5-0.8B; the checkpoint-based starting-point plan below is historical. Three runs have completed, and one validation-only combined follow-up is running.
+
 Requested 2026-10-11. Status: planned; none of these training runs has started.
 Reuse one pinned GPU environment, downloaded datasets and evaluation artifacts.
 

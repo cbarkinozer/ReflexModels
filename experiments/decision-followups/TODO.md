@@ -1,5 +1,7 @@
 # Decision-model experiments: execution checklist
 
+> **Current status (2026-10-13):** See [VAST_FINE_TUNE_HANDOFF_20261013.md](VAST_FINE_TUNE_HANDOFF_20261013.md) for the live GPU run, actual configs, results and remaining test/backup steps. The old unchecked items and "not started" statements below are historical.
+
 Updated 2026-10-11. This checklist implements [PLAN.md](PLAN.md).
 The three new training runs have not started. Completed historical results are
 references, not evidence that the new pipeline or candidates already work.

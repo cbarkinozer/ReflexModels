@@ -1,5 +1,7 @@
 # General decision data preparation
 
+> **Current fine-tune and held-out status (2026-10-13):** The old "no GPU rental" statements below are historical. See [VAST_FINE_TUNE_HANDOFF_20261013.md](VAST_FINE_TUNE_HANDOFF_20261013.md) for the live runs and [HELDOUT_EVALUATION_20261013.md](HELDOUT_EVALUATION_20261013.md) for the final test protocol and results.
+
 Prepared locally on 2026-10-11. No GPU rental, fine-tuning or W&B run started.
 
 The frozen training data is at `data/prepared/general-routing-v1-balanced/`.

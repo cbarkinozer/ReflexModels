@@ -9,15 +9,15 @@ The 1,080-row CSV is at
 90 calibration and 90 historical test rows. Only review UI v3 is current.
 Route and review decision are required; scenario categories are optional prepared
 dropdowns. `other` means a missing category; `unclear` means ambiguous wording.
-Offline availability has its own category, but the current media tool does not
-support that request. Use rewrite/exclude for unsupported examples.
+Offline availability has its own category. Label clear requests by intended
+route even where the current app tool would need future implementation work.
 
 **Laptop agent task:** start a local Argilla instance, import the CSV, restore
 the committed annotation snapshot, and give the user the new laptop-local train
 review link. Follow
 [review-ui/README.md](experiments/decision-followups/review-ui/README.md).
 Do not reuse this Mac's dataset UUID links: a fresh server generates new IDs.
-The snapshot preserves 42 reviewed training rows at handoff. Do not overwrite
+The snapshot preserves submitted training reviews. Do not overwrite
 reviews or silently relabel human decisions. Ask the user to click Submit for
 each reviewed row, then export their progress back into the snapshot.
 
@@ -26,7 +26,7 @@ and not transferred by Git. Full source commits, split IDs/hashes and reproducti
 instructions are in `experiments/decision-followups/GENERAL_DATA.md`. Training
 scripts and shared helpers are committed in the companion pocket-agents-lab repo.
 
-Still pending: finish human review; resolve unsupported/ambiguous examples and
+Still pending: finish human review; resolve ambiguous examples and
 paraphrase groups; seal a genuinely new phone test cohort; obtain current GPU
 SSH/rates; smoke all three pipelines; train/evaluate/export; benchmark A32;
 implement one-backbone decision/text app integration. Existing phone test results

@@ -84,27 +84,34 @@ generator confidence/unanimity is not independent human validation.
 
 - answer: general knowledge, arithmetic or prose requiring no live phone data.
 - get_battery_info: battery level, charging, battery health/temperature or estimates.
-- get_storage_info: capacity, free space or storage usage.
-- get_device_info: model, OS, RAM or hardware specifications.
-- get_media_info: currently playing media and its metadata.
+- get_storage_info: capacity, free space, usage or external-storage status.
+- get_device_info: model, OS, RAM or hardware specifications (including IP rating).
+- get_media_info: media playback, metadata or media availability.
 - phone_health_check: overall phone condition or multiple live-data categories.
 - save_note: explicitly save a note.
 - search_notes: retrieve previously saved notes.
-- search_local_files: find files on device storage.
+- search_local_files: find files on device storage, including by origin or context.
 
 Battery-only requests stay battery-specific, even if they say “health”. Broad
 phone condition or battery+storage requests use phone_health_check. Flag requests
 whose context is insufficient or whose single-route contract is unclear.
+Classify by the request's intended tool, including plausible future capabilities.
+Do not exclude a clear request only because today's Android implementation cannot
+answer it. This review evaluates decision-model routing, not current tool coverage.
 
 1. Select the corrected route (or confirm the suggestion).
-2. Select keep, correct, rewrite, exclude or uncertain. Use uncertain when unsure.
+2. Select keep, correct, rewrite, exclude or uncertain. Keep clear examples with
+   the correct intended route, even if the app needs a future tool upgrade. Use
+   `correct` when you change the proposed route; use `keep` only when its route
+   is already right. Use uncertain when the intent is genuinely unclear.
+   Exclude only when a stable single route cannot be assigned or the example
+   is otherwise unsuitable.
 3. Optionally check the prepared scenario category. Choose another dropdown option
    only if it is wrong; no category typing is required. Other means the request
    is clear but its category is missing. Unclear means the request itself is
    ambiguous. Categories help coverage analysis, not tool execution.
-   Offline availability is a media category, but get_media_info cannot report
-   downloads/cache/offline availability. Exclude such unsupported examples or
-   propose a supported rewrite; do not approve a route based only on topic.
+   Use `other` for a clear scenario missing from the dropdown; we can cluster
+   repeated cases into new categories after review.
 4. Optional notes are useful for ambiguity or a proposed rewrite. Click Submit.
    Only route and review decision are required. Suggestions alone are not reviews.
 
@@ -129,8 +136,6 @@ def fields_for(row):
         flags.append("Scenario category needs assignment.")
     if row["state"] in NEAR_DUPLICATES:
         flags.append("Flagged near-duplicate/template overlap; review group and exclusion/rewrite.")
-    if proposed_scenario(row) == "offline_availability":
-        flags.append("UNSUPPORTED: get_media_info exposes title, artist, album, package and playback state; it cannot check offline availability, downloads or playlist sync. Consider exclude or a supported rewrite.")
     return {"request": row["state"],
             "source_context": f"ID: {row['id']}\nOriginal split: {row['split']}\nProposed route: {row['route']}\nPrepared scenario category: {proposed_scenario(row)} (automated proposal)\nOriginal category: {row['scenario_family']}\nGenerator: {row['generator']}\n",
             "review_flags": "\n".join(flags) or "Standard review; check the route and ambiguity.",
@@ -154,7 +159,7 @@ def main():
     workspace = client.workspaces(name=args.workspace)
     if workspace is None:
         workspace = rg.Workspace(name=args.workspace, client=client).create()
-    with args.csv.open(newline="") as handle:
+    with args.csv.open(newline="", encoding="utf-8") as handle:
         rows = list(csv.DictReader(handle))
     if len(rows) != 1080 or len({r["id"] for r in rows}) != len(rows):
         raise ValueError("Expected 1080 unique CSV rows")

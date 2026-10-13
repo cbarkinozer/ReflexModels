@@ -50,6 +50,16 @@ responses. Export saves raw annotations locally without applying corrections.
 After review, inspect exported decisions and create a new reviewed dataset
 version; do not silently overwrite the frozen source data.
 
+The companion pocket-agents-lab repository now has
+`tools/prepare_phone_routing_reviewed.py` and
+`tools/PHONE_ROUTING_REVIEWED_V2.md`. Run its read-only audit against the
+portable snapshot during review. Finalization requires every submitted row,
+consistent keep/correct decisions, and resolution of unclear cases. It writes
+a new dataset with an explicit template-grouped validation split and a semantic
+v2 route contract; the existing JSONL files stay frozen. The old phone test
+remains historical. A genuinely new sealed test still needs independent cases
+and human review.
+
 Server-side reviews currently live in the existing Docker volumes. Export after
 review and before deleting/recreating those volumes. Links and CSV hash are
 recorded in `argilla-review-v3/links.json`.
@@ -62,10 +72,11 @@ request whose category is missing; `unclear` means the request is ambiguous.
 The obsolete combined `other_or_unclear` option is removed. A heuristic miss
 suggests `other`; it must not automatically label clear text ambiguous.
 
-Offline media examples are flagged unsupported: MediaSessionAccess.kt reports
-package, title, artist, album and playback state, not downloads/cache/offline
-availability. Review those examples for exclusion or a supported rewrite.
-Category membership alone does not establish tool capability.
+Review by intended semantic route, including plausible future app capabilities.
+Keep a clear media availability request under `get_media_info` even if the
+current Android implementation cannot yet answer it. Exclude only examples
+without a stable single route or otherwise unsuitable for this classification
+task. Current tool coverage is a separate implementation audit.
 
 Argilla cannot change the number of options on an existing published question.
 Replacement datasets were verified against all 1,080 source records. The six
