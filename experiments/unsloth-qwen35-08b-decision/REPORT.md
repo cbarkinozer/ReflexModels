@@ -65,7 +65,7 @@ The merged model also reloaded successfully in 4-bit mode and answered the same 
 
 ## reflex-1 release preparation
 
-The trained model is named reflex-1. See ../../releases/reflex-1/README.md. Replacement W&B authentication and original-run cloud sync succeeded. GGUF export uses the dedicated decision exporter; its initial automatic llama.cpp release download returned 404, so a direct upstream source checkout is used instead.
+The trained model was named reflex-1 at the time (renamed reflex-1-beta on 2026-10-14 once a later combined model took the reflex-1 name). See ../../releases/reflex-1-beta/README.md. Replacement W&B authentication and original-run cloud sync succeeded. GGUF export uses the dedicated decision exporter; its initial automatic llama.cpp release download returned 404, so a direct upstream source checkout is used instead.
 
 GGUF Q8_0 and Q4_K_M export completed using llama.cpp revision aa94f2086147cd4bfbcff818ce998dffce5fcb39. Both passed one CPU structured request (choice/noul/score), output_tokens=0. A close refund decision flipped: merged PyTorch yes=0.5015, Q8=0.4941, Q4=0.4804. Billing/urgency agreed. This is an API/load smoke, not full accuracy parity. CPU request times were 1.54s / 1.32s on the pod; Android performance remains unmeasured. Sources, build/export/failure logs, GGUF inventory, calibration and raw response validation are preserved.
 

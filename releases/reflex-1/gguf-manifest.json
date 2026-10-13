@@ -1,30 +1,30 @@
 {
   "release": "reflex-1",
+  "supersedes": "reflex-1-beta (formerly reflex-1, unpublished)",
+  "selected_checkpoint": "runs/combined-balanced-scratch-120step-s3407/checkpoints/checkpoint-100",
+  "validation_only": true,
+  "held_out_test_run": false,
   "export": {
     "format": "unsloth-decision-gguf",
     "version": 1,
     "layout": "clef",
     "quantizations": [
-      "Q8_0",
       "Q4_K_M"
     ],
     "files": {
-      "Q8_0": {
-        "model": "model-Q8_0.gguf",
-        "mmproj": "mmproj-Q8_0.gguf"
-      },
       "Q4_K_M": {
         "model": "model-Q4_K_M.gguf",
         "mmproj": "mmproj-Q8_0.gguf"
       }
     },
-    "source_fingerprint": "ef5e67a984dd7e370da5bf41262bc1bdf000fb115c64f74b68e33ca88d6b6e34"
+    "source_fingerprint": "5089f0d7e22510472f36b98ad63f1351f6c086a95b00421f9c2dc8badb8ef960",
+    "llama_cpp_converter_tag": "b11541-mix-2500203"
   },
   "files": [
     {
       "name": "export.json",
-      "bytes": 419,
-      "sha256": "79e7cc5f5c648b1135de7b4607f2e7c39a1e9e80fc63e1eecb48c7cfb89a7c1f"
+      "bytes": 317,
+      "sha256": "3c99413547cc08220f1b2ff55fe19cf3247da19367e1f465dac2976771b59b79"
     },
     {
       "name": "mmproj-Q8_0.gguf",
@@ -34,12 +34,8 @@
     {
       "name": "model-Q4_K_M.gguf",
       "bytes": 545161248,
-      "sha256": "8480ccc295ac7379106f33ad76c978da5d9e8da0785e827786fe9d17f5a5beb5"
-    },
-    {
-      "name": "model-Q8_0.gguf",
-      "bytes": 841068096,
-      "sha256": "283ff1d783c2fad935c30a38ec019b53498fea58f869372d9f7e546cc15eaf8a"
+      "sha256": "abfea5f878331206f65e4117157984e14803b093b634c0ed52513c0723ef0699"
     }
-  ]
+  ],
+  "local_path": "../../experiments/decision-followups/gguf-combined-step100/"
 }

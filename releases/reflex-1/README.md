@@ -1,40 +1,48 @@
-# reflex-1 (now referred to as reflex-1-beta)
+# reflex-1
 
-**Relabeled 2026-10-14:** this model was never published, so the user retroactively renamed it `reflex-1-beta` once the combined phone+general model superseded it. The folder path and all cross-references below are left as `reflex-1` for historical accuracy; use `reflex-1-beta` when talking about this model going forward. The new model is [reflex-1.1](../reflex-1.1/README.md).
+**Renamed 2026-10-14:** this is the second ReflexModels decision-head model overall, but since the original (single-domain, typed-decisions-only) model was never published, it was renamed `reflex-1-beta` and this combined model takes the `reflex-1` name instead.
 
-First ReflexModels Qwen3.5-0.8B decision-head model, trained on public typed-decisions using Unsloth. Research release prepared locally; not published to a model hub yet.
+Built with Unsloth's `FastDecisionModel`/`DecisionTrainer` (the "Clef" architecture: LoRA-adapted causal backbone plus a trainable classification head for `choice`/`noul`/`score` questions). Supersedes the unpublished single-domain [reflex-1-beta](../reflex-1-beta/README.md). Research release prepared locally; not published to a model hub.
 
-Supports structured `choice`, `noul` (yes/no probability), and `score` questions. It scores options without generating text. Tested with FastDecisionModel and our local `/v1/systemone` HTTP adapter. The adapter accepts `reflex-1`; it is not an official Unsloth Studio deployment.
+Trained on a **combined phone-routing + general mixture** (781 phone examples + 781 class-preserving general examples: 391 typed-decisions, 195 BANKING77, 195 CLINC150; equal domain weights), independently from base `unsloth/Qwen3.5-0.8B`, LoRA rank/alpha 16, LR `2e-4`, seed 3407. Two independent combined runs were trained (80 steps and 120 steps); the **120-step run's checkpoint-100** was selected on validation and is the model exported here.
 
-## Measured results
+## Measured results — validation only, no held-out test yet
 
-| Gold-label test | Accuracy |
-| --- | --- |
-| typed-decisions: 400 records / 2,000 decisions | 65.6–65.75% |
-| BANKING77: 462 balanced examples, 77 options | 44.59% |
-| CLINC150: 450 balanced examples, 150 options | 47.11% |
-| Training holdout: 80 records / 400 decisions | 66.75% |
+| Checkpoint | Phone val | General val | Equal-domain mean |
+| --- | ---: | ---: | ---: |
+| Combined 80-step (best) | 98.89% | 74.49% | 86.67% |
+| Combined 120-step, step 80 | 98.89% | 77.35% | 88.12% |
+| **Combined 120-step, step 100 (selected)** | **98.89%** | **78.39%** | **88.64%** |
+| Combined 120-step, step 120 | 98.89% | 77.80% | 88.34% |
 
-These results do not reproduce the blog's mixed-source benchmark. Training used typed-decisions only, LoRA rank 16, 60 steps, seed 3407. Calibration was fitted on the training holdout, never the test sets. BANKING77 / CLINC150 calibration error was high (0.280 / 0.340); validate thresholds for your application.
+Calibration fitted and OK (`calibration_ok: true`); post-calibration ECE `.0377` vs pre-calibration `.0511`. These are **validation-set** numbers computed automatically during training, not an independent test. The frozen held-out test protocol (historical phone, typed-decisions official test, BANKING77, CLINC150 — same four sets reflex-1-beta's README reports real numbers on) is defined in [`../../experiments/decision-followups/HELDOUT_EVALUATION_20261013.md`](../../experiments/decision-followups/HELDOUT_EVALUATION_20261013.md) but **has not been run** for this model yet. Treat reflex-1 as validation-qualified, not test-qualified, until that runs.
+
+Known leakage/interpretation caveats (phone validation reuse across pilots, lexical overlap, in-domain-not-zero-shot general sets) are documented in the same held-out-evaluation doc — read it before quoting the phone 98.89% as a generalization claim.
 
 ## Local artifacts and reproduction
 
-Canonical merged checkpoint: `../../experiments/unsloth-qwen35-08b-decision/runs/pod-backup/merged/`.
-Original adapter, optimizer checkpoint, exact configs, dataset selections, logs and source revisions are preserved in the same pod-backup folder. See the experiment's REPORT.md and BACKUP.md for provenance and restore instructions.
+Training ran on a rented Vast.ai RTX 4090 (instance `55798314`, now destroyed). Full provenance — exact commands, environment freeze, data/split hashes, leakage audit, cost — is in [`../../experiments/decision-followups/VAST_FINE_TUNE_HANDOFF_20261013.md`](../../experiments/decision-followups/VAST_FINE_TUNE_HANDOFF_20261013.md). Total pod runtime was approximately 2.0 h (training + merge + GGUF export); provisional cost at `$0.443/h` plus network ≈ **$0.90–0.95** (last confirmed snapshot before shutdown: 1.66 h / ≈$0.79, plus the ~20–25 min GGUF export step not separately billed-and-captured — treat as an estimate, not a final invoice).
 
-Q8_0 (803 MiB) and Q4_K_M (520 MiB) GGUF exports completed and each passed a CPU `/v1/systemone` request with zero output tokens. Files are in `../../experiments/unsloth-qwen35-08b-decision/runs/pod-backup/reflex-1-gguf/`; the optional vision projector is preserved too. GGUF must retain the Clef decision head and temperatures; an ordinary text-only converter is insufficient. Android A32 loading, probability parity, memory, latency and task accuracy are not yet validated. Both GGUF tests flipped a close refund decision relative to the merged PyTorch 4-bit reload: yes probability 0.5015 became 0.4941 (Q8) / 0.4804 (Q4). Billing and urgency choices agreed. Full benchmark parity is not established. CPU single-request times on the pod were 1.54 / 1.32 seconds; these are not phone benchmarks.
+Backed up locally (SHA-256 verified against the pod before it was destroyed):
+- Full project workspace (all three training runs' checkpoints/adapters/logs/manifests, prepared data, smoke-test runs): `pocket-agents-lab/runs/decision-followups-vast-20261013/reflex-decision-artifacts-20261013.tar.gz` (4.6 GB), sha256 `2f4fd5a651880e8504013ac525f6f204f63690de5e04cc42702d397cda0f73be`.
+- Base-model Hugging Face cache: `pocket-agents-lab/runs/decision-followups-vast-20261013/hf-hub-cache-20261013.tar.gz` (1.3 GB), sha256 `e586d4ef1737edd9899c3e137a4e848365fa31b51ae6ecba483d7f1c21568d81`.
+- Selected adapter path inside the archive: `runs/combined-balanced-scratch-120step-s3407/adapter` (best-checkpoint reload of step 100).
 
-The Qwen base model and typed-decisions dataset declare Apache-2.0. BASE_MODEL_LICENSE preserves the upstream license; DATASET_CARD.md preserves the training-revision dataset card. The weights were modified by decision-head and LoRA training on 2026-10-10. Unsloth/notebook source retains its own license. No public upload has been performed.
+## GGUF export
+
+Merged with base (`FastDecisionModel.save_pretrained_merged`) and exported via `unsloth.models.decision_gguf.export_decision_gguf` in the same "clef" layout as reflex-1-beta — a text-model GGUF plus a vision-projector sidecar GGUF (the sidecar is untouched by this LoRA fine-tune, hence byte-identical to reflex-1-beta's). One snag: Unsloth's auto-fetch for the required llama.cpp fork looked up the bare tag `b11443` and 404'd; the actual tag has a `-mix-<hash>` suffix. Fixed by setting `UNSLOTH_LLAMA_CPP_CONVERTER_TAG=b11541-mix-2500203`.
+
+Files are in [`../../experiments/decision-followups/gguf-combined-step100/`](../../experiments/decision-followups/gguf-combined-step100/) (gitignored — binaries stay local, hashes below are the source of truth). See [`gguf-manifest.json`](gguf-manifest.json) for the full file list.
+
+| File | Size | SHA-256 |
+| --- | ---: | --- |
+| `model-Q4_K_M.gguf` | 545,161,248 B | `abfea5f878331206f65e4117157984e14803b093b634c0ed52513c0723ef0699` |
+| `mmproj-Q8_0.gguf` | 115,923,136 B | `37800be294d8c041e6146516b636414b8a75d0dd0878b08f6e0282e471790f94` |
+
+Only Q4_K_M was exported for the main model (no Q8_0 this time); the mmproj sidecar is always kept at Q8_0. GGUF-vs-PyTorch probability parity has not been re-verified for this release the way reflex-1-beta's README documents (the 0.5015→0.4941/0.4804 flip check); repeat that spot-check before relying on the GGUF for a close decision.
 
 ## Run the GGUF Decision API
 
-Use a decision-capable llama.cpp build. The verified source revision is `aa94f2086147cd4bfbcff818ce998dffce5fcb39`, preserved as `llama-decision-source.tar.gz` in pod-backup. Build `llama-server`, then:
+Same as reflex-1-beta — see [its README](../reflex-1-beta/README.md#run-the-gguf-decision-api) for the `llama-server` / `/v1/systemone` invocation. Point `-m` at this release's `model-Q4_K_M.gguf`.
 
-```bash
-llama-server -m /path/to/model-Q4_K_M.gguf --host 127.0.0.1 --port 8080 -c 4096 -ngl 0
-curl http://127.0.0.1:8080/v1/systemone -H 'Content-Type: application/json' --data-binary @decision-request.json
-```
-
-Use the experiment's decision-request.json, optionally setting model to reflex-1. The tested llama.cpp server reports the loaded file path in its response. For text decisions the vision projector is not needed. Android requires an ARM64 build and an appropriate phone context budget. Do not assume that server `confidence` is interchangeable with the Python predictor; threshold the selected option probability and validate it for your task.
-
-Publication is deferred at the user’s request. Cost notes: ../../experiments/unsloth-qwen35-08b-decision/COST.md.
+The Qwen base model and training data sources declare Apache-2.0 (general mixture) / see dataset provenance in the handoff doc for the phone-routing data. Weights modified by decision-head and LoRA training on 2026-10-13. Not published; no public upload performed.
