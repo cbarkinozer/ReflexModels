@@ -1,0 +1,120 @@
+---
+base_model: unsloth/Qwen3.5-0.8B
+language:
+- en
+tags:
+- decision-model
+- tool-routing
+- qwen3.5
+- unsloth
+- lora
+- gguf
+datasets:
+- LocalLLaMA/typed-decisions
+- PolyAI/banking77
+- clinc/clinc_oos
+---
+
+# Reflex-1
+
+Reflex-1 is a Qwen3.5-0.8B decision model trained to select among supplied options, including nine phone-assistant routes. It uses Unsloth's Clef-style decision head and rank-16 LoRA. It returns structured decisions/probabilities rather than generating an answer or tool arguments. The current Hugging Face repository is private; this is a local release-card draft pending final mobile results and author-selected release licensing.
+
+## Results
+
+### Saved PyTorch adapter
+
+| Benchmark | Cases / decisions | Reflex-1 accuracy | Notes |
+| --- | ---: | ---: | --- |
+| Fresh phone routing | 180 / 180 | **91.11% (164/180)** | 20 cases per route; macro-F1 90.84% |
+| Historical phone routing | 88 / 88 | 96.59% (85/88) | Previously exposed development cohort |
+| typed-decisions | 400 / 2,000 | 60.70% | Per-question; exact-record accuracy 10.00% |
+| BANKING77 | 462 / 462 | 74.89% | Six cases per class; supervised in-domain |
+| CLINC150 | 450 / 450 | 81.11% | Three cases per class; OOS excluded |
+
+These are saved-adapter scores, not phone/GGUF scores. General tests had no reported skipped/truncated decisions in the PyTorch pipeline. These are not a reproduction of Unsloth's published multi-source recipe or Cloudflare's Decision Index.
+
+### Samsung Galaxy A32 / Q4_K_M
+
+<!-- A32_RESULTS_START -->
+| Model | A32 cohort | Cases / decisions | Accuracy | Macro-F1 | Warm p50 / p95 | Errors |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| reflex-1 | Fresh phone180 | 17 completed | pending | pending | pending | pending |
+| Qwen raw JSON | Fresh phone180 | 0 completed | pending | pending | pending | pending |
+| reflex-1-beta | Fresh phone180 | 0 completed | pending | pending | pending | pending |
+| reflex-1 | Historical phone90 | 0 completed | pending | pending | pending | pending |
+| Qwen raw JSON | Historical phone90 | 0 completed | pending | pending | pending | pending |
+| reflex-1 | typed-decisions | 0 completed | pending | pending | pending | pending |
+| reflex-1 | BANKING77 | 0 completed | pending | pending | pending | pending |
+| reflex-1 | CLINC150 in-domain | 0 completed | pending | pending | pending | pending |
+| reflex-1-beta | typed-decisions | 0 completed | pending | pending | pending | pending |
+| reflex-1-beta | BANKING77 | 0 completed | pending | pending | pending | pending |
+| reflex-1-beta | CLINC150 in-domain | 0 completed | pending | pending | pending | pending |
+
+Completed runs only; partial counts are not scores. Warm timing excludes first request. General contexts4096 vs phone2048; see recorded protocol and per-run raw outputs.
+<!-- A32_RESULTS_END -->
+
+The earlier **55.6% / 36.8 s** Qwen raw-HTTP result used a historical 90-case set. The fresh 180-case result cannot be compared directly against that percentage. Historical JNI 82% used a different runtime/prompt/cohort and is not a matched baseline. The current evaluation compares actual per-case outcomes and records its prompt/grammar treatment rather than assuming these historical numbers transfer.
+
+## Model and training
+
+- Base: `unsloth/Qwen3.5-0.8B`, independently loaded from base for this run; not continued from reflex-1-beta.
+- Data: 781 reviewed synthetic phone requests + 781 general requests (391 typed-decisions, 195 BANKING77, 195 CLINC150). Equal phone/general domain exposure, all general intent classes retained.
+- Nine phone routes: answer, get_device_info, get_battery_info, get_storage_info, get_media_info, search_local_files, search_notes, save_note, phone_health_check.
+- LoRA rank/alpha16, base learning rate2e-4, seed3407, effective batch32, max training sequence4096. See executed run manifests for full settings/head LR rather than assuming defaults.
+- Independent 120-step combined trial; checkpoint100 selected on validation equal-domain mean, then calibrated on a separate calibration split. Validation phone98.89%, general78.39%; those selection scores are not held-out performance.
+- Training optimizer time approximately17.5min for the selected 120-step run, on RTX4090 24GB. Setup/validation/calibration/export/billing add time; cost estimates are not final invoices.
+- Fresh180 test was reviewed and frozen after candidate selection. Test results did not select checkpoint100. Single reviewer saw synthetic proposed labels, so human review was not blind independent annotation.
+
+The first unpublished model is now called reflex-1-beta. It was typed-decisions-only; this combined model takes the Reflex-1 name. Do not confuse the two GGUF files: they share the same byte size but have different hashes.
+
+## Files and use
+
+Private repository: [cbarkinozer/Reflex-1](https://huggingface.co/cbarkinozer/Reflex-1).
+
+- `adapter/`: LoRA, `joint_head.safetensors`, joint-head/decision configs, tokenizer and processor files. The head/configs are required; an ordinary LoRA-only loader is insufficient.
+- `gguf/model-Q4_K_M.gguf`: 545,161,248 bytes; SHA-256 `abfea5f878331206f65e4117157984e14803b093b634c0ed52513c0723ef0699`.
+- `gguf/mmproj-Q8_0.gguf`: 115,923,136 bytes; SHA-256 `37800be294d8c041e6146516b636414b8a75d0dd0878b08f6e0282e471790f94`. Preserved export sidecar; not needed for these text-only routing requests.
+
+Use a decision-capable Unsloth/llama.cpp runtime and POST to `/v1/systemone`. This is not a `/v1/chat/completions` GGUF. Android tests use the documented build11443 with `--no-repack`; ordinary llama.cpp builds may not expose the Decision API.
+
+```python
+from unsloth import FastDecisionModel
+model, tokenizer = FastDecisionModel.from_pretrained(
+    "PATH_TO_DOWNLOADED_ADAPTER_FOLDER", load_in_4bit=True,
+)
+FastDecisionModel.for_inference(model)
+answers = FastDecisionModel.predict(model, tokenizer, "How much free storage do I have?", {
+    "route": {
+        "type": "choice",
+        "instructions": "Select the best route for the request.",
+        "criteria": {
+            "get_storage_info": "Inspect storage space, usage or capacity.",
+            "answer": "Ordinary text response without live phone data.",
+        },
+    },
+})
+```
+
+The example illustrates API shape, not the nine-option benchmark schema. To reproduce reported routing scores use the exact committed frozen schema and state strings. Threshold selected option probabilities only after validating calibration for the deployed runtime/domain; do not transfer API confidence thresholds blindly.
+
+## Data provenance and planned dataset link
+
+Phone examples were synthetically constructed and reviewed in Argilla by one human; scenario categories are audit metadata, not learned output classes. The admitted phone training component contains781 examples; the original900 train examples include records excluded during review and validation selection. A separate phone training dataset will be linked here after its exact executed inputs, license and final repo name are confirmed. No dataset ID is invented in the YAML above.
+
+General sources:
+
+| Source | Pinned revision | Declared source license |
+| --- | --- | --- |
+| LocalLLaMA/typed-decisions (all) | `6a7927fa3c8ac114e29f5300eacb86f6f37a6447` | Apache-2.0 |
+| PolyAI-LDN/task-specific-datasets, banking_data CSV | `57ec275d8078af65b7731c2a98be812d844a6d6b` | CC-BY-4.0 |
+| clinc/clinc_oos (plus, OOS excluded) | `155b9c710419136e17307b80d0a13e68cd46b4ec` | CC-BY-3.0 |
+
+Official training partitions supplied adaptation data; official tests supplied general evaluation. These measure supervised in-domain adaptation, not zero-shot generalization. Exact normalized overlap checks passed, but public benchmark pretraining exposure and semantic template overlap cannot be ruled out. Keep source attribution/licenses intact; the mixture is not uniformly Apache-2.0. Dataset upload instructions are in the local `DATASET_UPLOAD_GUIDE.md`; author must select and document the release license before public upload.
+
+## Limits
+
+Battery and device-info were the weakest fresh PyTorch routes (65% and75% recall). Indirect/boundary requests were harder than everyday requests. Some schema intents refer to plausible future phone capabilities; correct routing does not mean that the current tool can carry out the request. This model does not generate tool arguments, clarify interactively, execute tools or produce final assistant prose.
+
+The decision-only GGUF does not automatically share a loaded backbone with a chat model. Single-backbone decision/text switching and full Pocket Agents Lab integration remain separate work. Routing latency is not full assistant-turn latency. USB-powered temperature/battery traces do not demonstrate energy savings. Mobile timing depends on runtime, threads, context, request schema, starting temperature and sustained load; see the recorded protocol.
+
+Keep tests out of training/calibration/model selection. If released or used to guide a future model, treat these cohorts as regression benchmarks and collect a new independent final test.

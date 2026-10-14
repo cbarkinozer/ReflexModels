@@ -1,0 +1,90 @@
+#!/usr/bin/env python3
+"""Build local report/card from completed outputs only. Never uploads."""
+import hashlib
+import json
+import math
+from pathlib import Path
+import random
+import re
+import statistics
+
+ROOT=Path(__file__).resolve().parents[1]
+BASE=ROOT/'experiments/decision-followups/a32-fresh180'
+JOBS=[('run-01','reflex-1','Fresh phone180'),('qwen-fresh180','Qwen raw JSON','Fresh phone180'),('beta-fresh180','reflex-1-beta','Fresh phone180'),('reflex-historical90','reflex-1','Historical phone90'),('qwen-historical90','Qwen raw JSON','Historical phone90')]
+for slug,label in [('reflex','reflex-1'),('beta','reflex-1-beta')]:
+    for name,title in [('typed_decisions','typed-decisions'),('banking77','BANKING77'),('clinc150','CLINC150 in-domain')]:JOBS.append((slug+'-'+name,label,title))
+
+
+def rows(path):return [json.loads(l) for l in path.read_text().splitlines() if l.strip()]
+
+
+def normalized(r):
+    return r if 'gold_labels' in r else r|{'gold_labels':{'route':r['gold']},'predictions':{'route':r.get('prediction')}}
+
+
+def resources(directory):
+    records=rows(directory/'predictions.jsonl')
+    telemetry=[r['before'] for r in records if 'before' in r]
+    p=directory/'telemetry.jsonl'
+    if p.exists():telemetry += [r['after'] for r in rows(p)]
+    temps=[];ap=[];skin=[];pss=[];rss=[]
+    for t in telemetry:
+        m=re.search(r'temperature:\s*(\d+)',t.get('battery',''))
+        if m:temps.append(int(m[1])/10)
+        for name,values in [('AP',ap),('SKIN',skin)]:
+            values += [float(x) for x in re.findall(r'mValue=([\d.]+), mType=\d+, mName='+name+r',',t.get('thermal',''))]
+        pss += [int(x) for x in re.findall(r'TOTAL PSS:\s*(\d+)',t.get('memory',''))]
+        rss += [int(x) for x in re.findall(r'VmHWM:\s*(\d+)',t.get('process_status',''))]
+    return {'battery_c_min':min(temps) if temps else None,'battery_c_max':max(temps) if temps else None,'ap_c_max':max(ap) if ap else None,'skin_c_max':max(skin) if skin else None,'sampled_max_pss_kib':max(pss) if pss else None,'rss_high_water_kib':max(rss) if rss else None}
+
+
+def paired(a,b):
+    left={r['id']:normalized(r) for r in rows(a/'predictions.jsonl')}
+    right={r['id']:normalized(r) for r in rows(b/'predictions.jsonl')}
+    if set(left)!=set(right):raise ValueError('Unmatched cohort IDs')
+    deltas=[];better=worse=0
+    for key,r in left.items():
+        other=right[key]
+        if r['state']!=other['state'] or r['gold_labels']!=other['gold_labels']:raise ValueError('Unmatched states/gold')
+        x=all(r.get('predictions',{}).get(k)==v for k,v in r['gold_labels'].items())
+        y=all(other.get('predictions',{}).get(k)==v for k,v in other['gold_labels'].items())
+        better+=x and not y;worse+=y and not x;deltas.append(int(x)-int(y))
+    n=better+worse
+    p=min(1,2*sum(math.comb(n,k) for k in range(min(better,worse)+1))/(2**n)) if n else 1
+    rng=random.Random(3407);boot=sorted(sum(rng.choices(deltas,k=len(deltas)))/len(deltas) for _ in range(10000))
+    return {'n':len(deltas),'reflex_only_correct':better,'baseline_only_correct':worse,'accuracy_difference':statistics.mean(deltas),'paired_bootstrap_95ci':[boot[249],boot[9749]],'exact_mcnemar_two_sided_p':p,'bootstrap_seed':3407,'bootstrap_replicates':10000}
+
+
+def generate():
+    records=[];lines=['| Model | A32 cohort | Cases / decisions | Accuracy | Macro-F1 | Warm p50 / p95 | Errors |','| --- | --- | ---: | ---: | ---: | ---: | ---: |']
+    for name,label,title in JOBS:
+        d=BASE/name;p=d/'summary.json'
+        if not p.exists() or not json.loads(p.read_text()).get('complete'):
+            progress=d/'progress.json';completed=json.loads(progress.read_text()).get('completed',0) if progress.exists() else 0
+            lines.append(f'| {label} | {title} | {completed} completed | pending | pending | pending | pending |');continue
+        s=json.loads(p.read_text());original=name=='run-01';total=s['all_requests'] if original else s;warm=s['warm_requests'] if original else s['warm']
+        decision_count=total.get('decisions',total.get('total'))
+        count=total.get('rows',total.get('total'))
+        macro=total.get('macro_f1')
+        if macro is None and len(total.get('by_question',{}))==1:macro=next(iter(total['by_question'].values()))['macro_f1']
+        macro_text=f'{100*macro:.2f}%' if macro is not None else 'per-question in report'
+        lines.append(f'| {label} | {title} | {count} / {decision_count} | {100*total["accuracy"]:.2f}% | {macro_text} | {warm["p50_latency_ms"]/1000:.2f} / {warm["p95_latency_ms"]/1000:.2f} s | {total["failures"]} |')
+        records.append({'directory':name,'model':label,'cohort':title,'summary':s,'resources':resources(d),'predictions_sha256':hashlib.sha256((d/'predictions.jsonl').read_bytes()).hexdigest()})
+    text='\n'.join(lines)
+    comparisons={}
+    for name in ['qwen-fresh180','beta-fresh180']:
+        if (BASE/name/'summary.json').exists() and (BASE/'run-01/summary.json').exists():comparisons[name]=paired(BASE/'run-01',BASE/name)
+    report='# Samsung A32 benchmark results\n\nOnly completed jobs have scores; pending jobs are explicit. '+text+'\n\n'
+    report=report.replace('explicit. |','explicit.\n\n|')
+    report+='CPU-only 4 threads, Q4_K_M, runtime build11443, USB powered. Phone ctx2048, general ctx4096. Warm timing excludes first request and includes ADB/HTTP. General per-question accuracy and exact-record metrics are separate; CLINC excludes OOS. Raw Qwen uses fixed no-chat-template JSON-grammar treatment; not a claim about every Qwen prompting/runtime strategy.\n\n'
+    report+='Resource traces and measured sampled maxima:\n\n```json\n'+json.dumps([{k:v for k,v in r.items() if k in ['directory','resources']} for r in records],indent=2)+'\n```\n\nPaired fresh180 comparisons (reflex minus comparator):\n\n```json\n'+json.dumps(comparisons,indent=2)+'\n```\n'
+    (BASE/'RESULTS.md').write_text(report)
+    (BASE/'results-index.json').write_text(json.dumps({'completed_jobs':records,'paired_fresh180':comparisons,'complete':len(records)==len(JOBS)},indent=2)+'\n')
+    card=ROOT/'releases/reflex-1/HF_MODEL_CARD.md'
+    s=card.read_text();start='<!-- A32_RESULTS_START -->';end='<!-- A32_RESULTS_END -->'
+    before,rest=s.split(start,1);_,after=rest.split(end,1)
+    card.write_text(before+start+'\n'+text+'\n\nCompleted runs only; partial counts are not scores. Warm timing excludes first request. General contexts4096 vs phone2048; see recorded protocol and per-run raw outputs.\n'+end+after)
+    print('Report updated:',len(records),'/',len(JOBS),'completed')
+
+
+if __name__=='__main__':generate()
