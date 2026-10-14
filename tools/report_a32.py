@@ -27,15 +27,42 @@ def resources(directory):
     telemetry=[r['before'] for r in records if 'before' in r]
     p=directory/'telemetry.jsonl'
     if p.exists():telemetry += [r['after'] for r in rows(p)]
-    temps=[];ap=[];skin=[];pss=[];rss=[]
+    temps=[];ap=[];skin=[];pss=[];rss=[];thermal_status=[]
     for t in telemetry:
         m=re.search(r'temperature:\s*(\d+)',t.get('battery',''))
         if m:temps.append(int(m[1])/10)
         for name,values in [('AP',ap),('SKIN',skin)]:
             values += [float(x) for x in re.findall(r'mValue=([\d.]+), mType=\d+, mName='+name+r',',t.get('thermal',''))]
+        thermal_status += [int(x) for x in re.findall(r'Thermal Status:\s*(\d+)',t.get('thermal',''))]
         pss += [int(x) for x in re.findall(r'TOTAL PSS:\s*(\d+)',t.get('memory',''))]
         rss += [int(x) for x in re.findall(r'VmHWM:\s*(\d+)',t.get('process_status',''))]
-    return {'battery_c_min':min(temps) if temps else None,'battery_c_max':max(temps) if temps else None,'ap_c_max':max(ap) if ap else None,'skin_c_max':max(skin) if skin else None,'sampled_max_pss_kib':max(pss) if pss else None,'rss_high_water_kib':max(rss) if rss else None}
+    return {'max_android_thermal_status':max(thermal_status) if thermal_status else None,'battery_c_min':min(temps) if temps else None,'battery_c_max':max(temps) if temps else None,'ap_c_max':max(ap) if ap else None,'skin_c_max':max(skin) if skin else None,'sampled_max_pss_kib':max(pss) if pss else None,'rss_high_water_kib':max(rss) if rss else None}
+
+
+
+def calibration(directory):
+    pairs=[];brier=[];nll=[]
+    for original in rows(directory/'predictions.jsonl'):
+        r=normalized(original)
+        if 'error' in r:continue
+        probs=r.get('probabilities')
+        if probs is None and 'prediction' in r:
+            probs={'route':json.loads(r['raw_response'])['answers']['route']['probabilities']}
+        if probs is None:continue
+        for name,gold in r['gold_labels'].items():
+            pmf=probs[name];pred=r['predictions'][name]
+            pairs.append((pmf[pred],int(pred==gold)))
+            brier.append(sum((v-int(k==gold))**2 for k,v in pmf.items()))
+            nll.append(-math.log(max(pmf[gold],1e-12)))
+    if not pairs:return {'valid_decisions':0,'note':'No decision probability distribution available'}
+    bins=[];ece=0
+    for i in range(10):
+        members=[(p,c) for p,c in pairs if min(int(p*10),9)==i]
+        if not members:continue
+        confidence=statistics.mean(p for p,c in members);accuracy=statistics.mean(c for p,c in members)
+        ece+=len(members)/len(pairs)*abs(confidence-accuracy)
+        bins.append({'bin':i,'n':len(members),'mean_selected_probability':confidence,'accuracy':accuracy})
+    return {'valid_decisions':len(pairs),'ece_10_equal_width_bins':ece,'mean_multiclass_brier_sum':statistics.mean(brier),'hard_label_nll':statistics.mean(nll),'bins':bins,'definitions':'Explicit hard gold labels; Brier=sum over options, not divided by class count; NLL clipped at1e-12; failures excluded from calibration only, never accuracy.'}
 
 
 def paired(a,b):
@@ -69,21 +96,30 @@ def generate():
         if macro is None and len(total.get('by_question',{}))==1:macro=next(iter(total['by_question'].values()))['macro_f1']
         macro_text=f'{100*macro:.2f}%' if macro is not None else 'per-question in report'
         lines.append(f'| {label} | {title} | {count} / {decision_count} | {100*total["accuracy"]:.2f}% | {macro_text} | {warm["p50_latency_ms"]/1000:.2f} / {warm["p95_latency_ms"]/1000:.2f} s | {total["failures"]} |')
-        records.append({'directory':name,'model':label,'cohort':title,'summary':s,'resources':resources(d),'predictions_sha256':hashlib.sha256((d/'predictions.jsonl').read_bytes()).hexdigest()})
+        records.append({'directory':name,'model':label,'cohort':title,'summary':s,'resources':resources(d),'calibration':calibration(d),'predictions_sha256':hashlib.sha256((d/'predictions.jsonl').read_bytes()).hexdigest()})
     text='\n'.join(lines)
+    resource_lines=['| Model | A32 cohort | Battery min–max | AP max | Android thermal status max | Sampled max PSS | RSS high-water |', '| --- | --- | ---: | ---: | ---: | ---: | ---: |']
+    for r in records:
+        v=r['resources']
+        display=lambda key,scale=1: f"{v[key]/scale:.2f}" if v[key] is not None else 'unavailable'
+        resource_lines.append(f"| {r['model']} | {r['cohort']} | {display('battery_c_min')}–{display('battery_c_max')} °C | {display('ap_c_max')} °C | {display('max_android_thermal_status')} | {display('sampled_max_pss_kib',1024)} MiB | {display('rss_high_water_kib',1024)} MiB |")
+    resource_table='\n'.join(resource_lines)
     comparisons={}
     for name in ['qwen-fresh180','beta-fresh180']:
         if (BASE/name/'summary.json').exists() and (BASE/'run-01/summary.json').exists():comparisons[name]=paired(BASE/'run-01',BASE/name)
     report='# Samsung A32 benchmark results\n\nOnly completed jobs have scores; pending jobs are explicit. '+text+'\n\n'
     report=report.replace('explicit. |','explicit.\n\n|')
     report+='CPU-only 4 threads, Q4_K_M, runtime build11443, USB powered. Phone ctx2048, general ctx4096. Warm timing excludes first request and includes ADB/HTTP. General per-question accuracy and exact-record metrics are separate; CLINC excludes OOS. Raw Qwen uses fixed no-chat-template JSON-grammar treatment; not a claim about every Qwen prompting/runtime strategy.\n\n'
+    report+=resource_table+'\n\nPSS maxima are sampled; RSS high-water is kernel-reported. USB power precludes an energy-saving claim.\n\n'
+    report+='Probability calibration (explicit hard labels, successful decisions only; failures still count in accuracy):\n\n```json\n'+json.dumps([{'directory':r['directory'],'metrics':r['calibration']} for r in records],indent=2)+'\n```\n\n'
     report+='Resource traces and measured sampled maxima:\n\n```json\n'+json.dumps([{k:v for k,v in r.items() if k in ['directory','resources']} for r in records],indent=2)+'\n```\n\nPaired fresh180 comparisons (reflex minus comparator):\n\n```json\n'+json.dumps(comparisons,indent=2)+'\n```\n'
     (BASE/'RESULTS.md').write_text(report)
     (BASE/'results-index.json').write_text(json.dumps({'completed_jobs':records,'paired_fresh180':comparisons,'complete':len(records)==len(JOBS)},indent=2)+'\n')
     card=ROOT/'releases/reflex-1/HF_MODEL_CARD.md'
     s=card.read_text();start='<!-- A32_RESULTS_START -->';end='<!-- A32_RESULTS_END -->'
     before,rest=s.split(start,1);_,after=rest.split(end,1)
-    card.write_text(before+start+'\n'+text+'\n\nCompleted runs only; partial counts are not scores. Warm timing excludes first request. General contexts4096 vs phone2048; see recorded protocol and per-run raw outputs.\n'+end+after)
+    paired_text='\n\n'.join(f"Fresh180 vs {name}: accuracy difference {100*v['accuracy_difference']:+.2f} percentage points; paired bootstrap95% interval [{100*v['paired_bootstrap_95ci'][0]:+.2f}, {100*v['paired_bootstrap_95ci'][1]:+.2f}] points (10,000 resamples, seed3407). This interval concerns this reviewed synthetic cohort, not unrestricted real-world requests." for name,v in comparisons.items())
+    card.write_text(before+start+'\n'+text+'\n\n'+resource_table+'\n\n'+paired_text+'\n\nCompleted runs only; partial counts are not scores. Warm timing excludes first request. General contexts4096 vs phone2048; see recorded protocol and per-run raw outputs.\n'+end+after)
     print('Report updated:',len(records),'/',len(JOBS),'completed')
 
 
