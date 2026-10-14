@@ -37,3 +37,6 @@ experiments/decision-followups/gguf-combined-step100/*.gguf
 # Local review credentials and environment.
 experiments/decision-followups/review-ui/.env
 experiments/decision-followups/review-ui/.venv/
+
+# Private HF adapter/head/tokenizer backup (verified separately).
+data/private-hf-reflex1/

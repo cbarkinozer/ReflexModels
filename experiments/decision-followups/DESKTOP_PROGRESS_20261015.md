@@ -45,3 +45,11 @@ Installed Android runtime reports `0.6.0-dev`, build `11443`, commit `f0c41e016`
 | `libggml-cpu-android_armv8.0_1.so` | `c55abebfdb8084c242c00a87d8b2f15f96766b2bab54b57588f6b6939e563221` |
 
 Searched this Mac's Documents, Downloads and mounted Volumes for Q4_K_M files and October 13 training archives; only the original beta model was found. The previous evaluation pod SSH endpoint `ssh6.vast.ai:10788` refuses connections. No pod was created or changed. Transfer from laptop is required before selected-model inference can begin. The phone runtime was inspected without loading the beta or starting an inference server.
+
+## Blocker resolved via private Hugging Face repository
+
+User supplied `cbarkinozer/Reflex-1` as the transfer source. Authenticated read succeeded at pinned revision `157a0d6ed5a218352bcd5b6bed57dbef090b151d`; privacy remained true. Main GGUF and projector were downloaded and SHA-256 verified against the existing inventory, then placed in `gguf-combined-step100/`. Main GGUF was transferred to the distinct combined filename on A32 and the device SHA verified. All nine adapter/head/tokenizer/config files were separately downloaded into ignored `data/private-hf-reflex1/` and verified byte-for-byte against `releases/reflex-1/huggingface-upload.json`. No HF or Git upload occurred.
+
+Local model-card conflict from the laptop update was resolved retaining both corrected licenses and private-upload status; merge commit `f5767f0`.
+
+A32 run started with the recorded historical runtime/settings; see `a32-fresh180/startup-01/launch.json`. Initial premature launch during ADB transfer failed and was preserved separately; verified complete-file restart reached ready in 2.08 s with filesystem caches retained. This is process launch/readiness, not cache-flushed cold loading. Full fixed-order benchmark output is under `a32-fresh180/run-01/`; treat results as incomplete until summary and manifest both declare completion. No Qwen comparison or app integration is implied.
