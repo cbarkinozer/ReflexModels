@@ -77,3 +77,7 @@ Additional exact-overlap audit on the downloaded backup found **zero normalized 
 ## Fresh phone test frozen ? 2026-10-15
 
 All 180 fresh reviews are submitted and accepted, exactly 20 per route. The separate [frozen test record](fresh-phone-test-180/README.md) documents schema, hashes, overlap audit and review limitations. No model predictions have been obtained. This cohort remains excluded from training, calibration and checkpoint selection. Raw prior benchmark JSON, environment and frozen official test files are committed in `heldout-results-20261014/`; full logs/models remain in the verified local archive.
+
+## Fresh phone test evaluated - 2026-10-15
+
+Fixed reflex-1 scores 164/180 (91.11%) accuracy and 90.84% macro-F1; no skipped/truncated decisions. Battery recall is 65%, device-info recall 75%; ordinary wording is easier than indirect/boundary requests. See [full results and per-case errors](fresh-phone-test-180/RESULTS.md). No test-based tuning occurred. Future model improvements informed by this result require a new sealed evaluation cohort.

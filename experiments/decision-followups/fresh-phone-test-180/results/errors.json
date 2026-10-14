@@ -1,0 +1,402 @@
+[
+  {
+    "id": "fresh180_search_local_files_20",
+    "state": "Open the saved device-specification spreadsheet rather than querying this handset's hardware.",
+    "gold": "search_local_files",
+    "prediction": "get_device_info",
+    "correct": false,
+    "coverage": "boundary",
+    "response": {
+      "type": "choice",
+      "choice": "get_device_info",
+      "confidence": 0.9392,
+      "probabilities": {
+        "answer": 0.0133,
+        "get_battery_info": 0.0037,
+        "get_device_info": 0.9392,
+        "get_media_info": 0.0028,
+        "get_storage_info": 0.0028,
+        "phone_health_check": 0.0102,
+        "save_note": 0.0057,
+        "search_local_files": 0.0074,
+        "search_notes": 0.0148
+      },
+      "answer": "get_device_info"
+    }
+  },
+  {
+    "id": "fresh180_get_battery_info_15",
+    "state": "The back feels warm near the cell; read that sensor rather than guessing from touch.",
+    "gold": "get_battery_info",
+    "prediction": "phone_health_check",
+    "correct": false,
+    "coverage": "indirect",
+    "response": {
+      "type": "choice",
+      "choice": "phone_health_check",
+      "confidence": 0.7509,
+      "probabilities": {
+        "answer": 0.032,
+        "get_battery_info": 0.1655,
+        "get_device_info": 0.011,
+        "get_media_info": 0.0055,
+        "get_storage_info": 0.004,
+        "phone_health_check": 0.7509,
+        "save_note": 0.0197,
+        "search_local_files": 0.0039,
+        "search_notes": 0.0076
+      },
+      "answer": "phone_health_check"
+    }
+  },
+  {
+    "id": "fresh180_get_storage_info_15",
+    "state": "The card is inserted, but I don't know whether Android can access its volume.",
+    "gold": "get_storage_info",
+    "prediction": "get_device_info",
+    "correct": false,
+    "coverage": "indirect",
+    "response": {
+      "type": "choice",
+      "choice": "get_device_info",
+      "confidence": 0.4889,
+      "probabilities": {
+        "answer": 0.0315,
+        "get_battery_info": 0.0154,
+        "get_device_info": 0.4889,
+        "get_media_info": 0.0931,
+        "get_storage_info": 0.0065,
+        "phone_health_check": 0.3556,
+        "save_note": 0.0043,
+        "search_local_files": 0.0023,
+        "search_notes": 0.0024
+      },
+      "answer": "get_device_info"
+    }
+  },
+  {
+    "id": "fresh180_answer_11",
+    "state": "I keep mixing up latitude and longitude; give me a way to remember them.",
+    "gold": "answer",
+    "prediction": "save_note",
+    "correct": false,
+    "coverage": "indirect",
+    "response": {
+      "type": "choice",
+      "choice": "save_note",
+      "confidence": 0.9998,
+      "probabilities": {
+        "answer": 0.0,
+        "get_battery_info": 0.0,
+        "get_device_info": 0.0,
+        "get_media_info": 0.0,
+        "get_storage_info": 0.0,
+        "phone_health_check": 0.0001,
+        "save_note": 0.9998,
+        "search_local_files": 0.0,
+        "search_notes": 0.0
+      },
+      "answer": "save_note"
+    }
+  },
+  {
+    "id": "fresh180_answer_18",
+    "state": "Don't store this anywhere: help me invent a mnemonic for the planets.",
+    "gold": "answer",
+    "prediction": "save_note",
+    "correct": false,
+    "coverage": "boundary",
+    "response": {
+      "type": "choice",
+      "choice": "save_note",
+      "confidence": 0.5012,
+      "probabilities": {
+        "answer": 0.4807,
+        "get_battery_info": 0.0004,
+        "get_device_info": 0.0004,
+        "get_media_info": 0.0004,
+        "get_storage_info": 0.0134,
+        "phone_health_check": 0.0021,
+        "save_note": 0.5012,
+        "search_local_files": 0.0007,
+        "search_notes": 0.0008
+      },
+      "answer": "save_note"
+    }
+  },
+  {
+    "id": "fresh180_get_battery_info_07",
+    "state": "Compare its remaining full-charge capacity with when it was new.",
+    "gold": "get_battery_info",
+    "prediction": "phone_health_check",
+    "correct": false,
+    "coverage": "everyday",
+    "response": {
+      "type": "choice",
+      "choice": "phone_health_check",
+      "confidence": 0.571,
+      "probabilities": {
+        "answer": 0.0038,
+        "get_battery_info": 0.4154,
+        "get_device_info": 0.0032,
+        "get_media_info": 0.0009,
+        "get_storage_info": 0.0038,
+        "phone_health_check": 0.571,
+        "save_note": 0.0009,
+        "search_local_files": 0.0004,
+        "search_notes": 0.0005
+      },
+      "answer": "phone_health_check"
+    }
+  },
+  {
+    "id": "fresh180_get_device_info_14",
+    "state": "The shop listing was vague about SIM support; can this handset accommodate two lines?",
+    "gold": "get_device_info",
+    "prediction": "phone_health_check",
+    "correct": false,
+    "coverage": "indirect",
+    "response": {
+      "type": "choice",
+      "choice": "phone_health_check",
+      "confidence": 0.5575,
+      "probabilities": {
+        "answer": 0.2528,
+        "get_battery_info": 0.0148,
+        "get_device_info": 0.1287,
+        "get_media_info": 0.0133,
+        "get_storage_info": 0.0088,
+        "phone_health_check": 0.5575,
+        "save_note": 0.011,
+        "search_local_files": 0.0045,
+        "search_notes": 0.0086
+      },
+      "answer": "phone_health_check"
+    }
+  },
+  {
+    "id": "fresh180_get_battery_info_13",
+    "state": "This phone used to last longer between plugs; has its cell deteriorated?",
+    "gold": "get_battery_info",
+    "prediction": "phone_health_check",
+    "correct": false,
+    "coverage": "indirect",
+    "response": {
+      "type": "choice",
+      "choice": "phone_health_check",
+      "confidence": 0.9995,
+      "probabilities": {
+        "answer": 0.0,
+        "get_battery_info": 0.0003,
+        "get_device_info": 0.0001,
+        "get_media_info": 0.0,
+        "get_storage_info": 0.0,
+        "phone_health_check": 0.9995,
+        "save_note": 0.0,
+        "search_local_files": 0.0,
+        "search_notes": 0.0
+      },
+      "answer": "phone_health_check"
+    }
+  },
+  {
+    "id": "fresh180_get_battery_info_14",
+    "state": "I have a ninety-minute audio call ahead; judge whether the remaining charge will cover it.",
+    "gold": "get_battery_info",
+    "prediction": "get_media_info",
+    "correct": false,
+    "coverage": "indirect",
+    "response": {
+      "type": "choice",
+      "choice": "get_media_info",
+      "confidence": 0.5185,
+      "probabilities": {
+        "answer": 0.099,
+        "get_battery_info": 0.03,
+        "get_device_info": 0.0151,
+        "get_media_info": 0.5185,
+        "get_storage_info": 0.0397,
+        "phone_health_check": 0.2417,
+        "save_note": 0.0323,
+        "search_local_files": 0.0108,
+        "search_notes": 0.0129
+      },
+      "answer": "get_media_info"
+    }
+  },
+  {
+    "id": "fresh180_get_device_info_18",
+    "state": "Which audio codecs does this handset support, regardless of the current track?",
+    "gold": "get_device_info",
+    "prediction": "get_media_info",
+    "correct": false,
+    "coverage": "boundary",
+    "response": {
+      "type": "choice",
+      "choice": "get_media_info",
+      "confidence": 0.5951,
+      "probabilities": {
+        "answer": 0.0002,
+        "get_battery_info": 0.0001,
+        "get_device_info": 0.4041,
+        "get_media_info": 0.5951,
+        "get_storage_info": 0.0001,
+        "phone_health_check": 0.0003,
+        "save_note": 0.0,
+        "search_local_files": 0.0,
+        "search_notes": 0.0
+      },
+      "answer": "get_media_info"
+    }
+  },
+  {
+    "id": "fresh180_get_device_info_02",
+    "state": "How much physical working memory was fitted at the factory?",
+    "gold": "get_device_info",
+    "prediction": "answer",
+    "correct": false,
+    "coverage": "everyday",
+    "response": {
+      "type": "choice",
+      "choice": "answer",
+      "confidence": 0.2735,
+      "probabilities": {
+        "answer": 0.2735,
+        "get_battery_info": 0.014,
+        "get_device_info": 0.2575,
+        "get_media_info": 0.0136,
+        "get_storage_info": 0.1978,
+        "phone_health_check": 0.051,
+        "save_note": 0.0277,
+        "search_local_files": 0.0107,
+        "search_notes": 0.1542
+      },
+      "answer": "answer"
+    }
+  },
+  {
+    "id": "fresh180_get_battery_info_17",
+    "state": "With every other factor held constant, would the remaining charge cover another hour of recording?",
+    "gold": "get_battery_info",
+    "prediction": "phone_health_check",
+    "correct": false,
+    "coverage": "boundary",
+    "response": {
+      "type": "choice",
+      "choice": "phone_health_check",
+      "confidence": 0.4083,
+      "probabilities": {
+        "answer": 0.1843,
+        "get_battery_info": 0.0373,
+        "get_device_info": 0.0177,
+        "get_media_info": 0.1829,
+        "get_storage_info": 0.0953,
+        "phone_health_check": 0.4083,
+        "save_note": 0.035,
+        "search_local_files": 0.0161,
+        "search_notes": 0.023
+      },
+      "answer": "phone_health_check"
+    }
+  },
+  {
+    "id": "fresh180_get_device_info_20",
+    "state": "Tell me how much RAM this model was manufactured with, rather than current free disk space.",
+    "gold": "get_device_info",
+    "prediction": "get_storage_info",
+    "correct": false,
+    "coverage": "boundary",
+    "response": {
+      "type": "choice",
+      "choice": "get_storage_info",
+      "confidence": 0.6864,
+      "probabilities": {
+        "answer": 0.0678,
+        "get_battery_info": 0.0037,
+        "get_device_info": 0.1891,
+        "get_media_info": 0.005,
+        "get_storage_info": 0.6864,
+        "phone_health_check": 0.0237,
+        "save_note": 0.0079,
+        "search_local_files": 0.0026,
+        "search_notes": 0.0139
+      },
+      "answer": "get_storage_info"
+    }
+  },
+  {
+    "id": "fresh180_get_battery_info_16",
+    "state": "Ignore disk capacity; I only want the battery's condition and remaining percentage.",
+    "gold": "get_battery_info",
+    "prediction": "phone_health_check",
+    "correct": false,
+    "coverage": "boundary",
+    "response": {
+      "type": "choice",
+      "choice": "phone_health_check",
+      "confidence": 0.988,
+      "probabilities": {
+        "answer": 0.0002,
+        "get_battery_info": 0.0091,
+        "get_device_info": 0.0001,
+        "get_media_info": 0.0,
+        "get_storage_info": 0.0024,
+        "phone_health_check": 0.988,
+        "save_note": 0.0002,
+        "search_local_files": 0.0,
+        "search_notes": 0.0
+      },
+      "answer": "phone_health_check"
+    }
+  },
+  {
+    "id": "fresh180_get_battery_info_11",
+    "state": "The lightning symbol appeared, but I can't tell whether energy is actually flowing in.",
+    "gold": "get_battery_info",
+    "prediction": "answer",
+    "correct": false,
+    "coverage": "indirect",
+    "response": {
+      "type": "choice",
+      "choice": "answer",
+      "confidence": 0.5388,
+      "probabilities": {
+        "answer": 0.5388,
+        "get_battery_info": 0.0538,
+        "get_device_info": 0.027,
+        "get_media_info": 0.1494,
+        "get_storage_info": 0.0187,
+        "phone_health_check": 0.1562,
+        "save_note": 0.0252,
+        "search_local_files": 0.0148,
+        "search_notes": 0.0162
+      },
+      "answer": "answer"
+    }
+  },
+  {
+    "id": "fresh180_get_device_info_17",
+    "state": "Give me the advertised cell capacity for this model rather than today's charge reading.",
+    "gold": "get_device_info",
+    "prediction": "answer",
+    "correct": false,
+    "coverage": "boundary",
+    "response": {
+      "type": "choice",
+      "choice": "answer",
+      "confidence": 0.264,
+      "probabilities": {
+        "answer": 0.264,
+        "get_battery_info": 0.1911,
+        "get_device_info": 0.1041,
+        "get_media_info": 0.0631,
+        "get_storage_info": 0.0351,
+        "phone_health_check": 0.2446,
+        "save_note": 0.0394,
+        "search_local_files": 0.0135,
+        "search_notes": 0.0449
+      },
+      "answer": "answer"
+    }
+  }
+]

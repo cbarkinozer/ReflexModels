@@ -60,5 +60,15 @@
         "rows": 450
       }
     }
+  },
+  "fresh_phone_test": {
+    "date": "2026-10-15",
+    "rows": 180,
+    "correct": 164,
+    "accuracy": 0.9111111111111111,
+    "macro_f1": 0.9083804972988432,
+    "format": "PyTorch adapter; GGUF not evaluated",
+    "test_sha256": "2d18133e44a9f9db82fe80099b642f00cd6a12ebf643dc043d1f89f9ddfa209b",
+    "report": "../../experiments/decision-followups/fresh-phone-test-180/RESULTS.md"
   }
 }

@@ -1,0 +1,7 @@
+[90mHint: A new version of huggingface_hub (2.2.0) is available! You are using version 1.33.0.
+To update, run: hf update[0m
+[90mHint: The `hf-cli` skill is not installed. Run `hf skills add -g` to teach your AI agents how to use the `hf` CLI.[0m
+Fetching 16 files:   0%|          | 0/16 [00:00<?, ?it/s]Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Fetching 16 files:   6%|▋         | 1/16 [00:00<00:02,  6.94it/s]Fetching 16 files:  50%|█████     | 8/16 [00:00<00:00, 31.94it/s]Fetching 16 files:  88%|████████▊ | 14/16 [00:00<00:00, 27.87it/s]Fetching 16 files: 100%|██████████| 16/16 [00:04<00:00,  3.68it/s]
+[32m✓ Downloaded[0m
+  path: /workspace/reflex-decision/cache/huggingface/hub/models--unsloth--Qwen3.5-0.8B/snapshots/23c69c53358a07516b5827588b3fdb12ae78fd65

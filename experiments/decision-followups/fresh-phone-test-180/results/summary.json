@@ -1,0 +1,220 @@
+{
+  "model": "runs/combined-balanced-scratch-120step-s3407/adapter",
+  "source_commit": "570b4b26c8f834902e05b960a010f505dbfda3c6",
+  "test_sha256": "2d18133e44a9f9db82fe80099b642f00cd6a12ebf643dc043d1f89f9ddfa209b",
+  "rows": 180,
+  "correct": 164,
+  "accuracy": 0.9111111111111111,
+  "macro_f1": 0.9083804972988432,
+  "wilson_95_accuracy": [
+    0.860496082186412,
+    0.9445453973002615
+  ],
+  "native_metrics": {
+    "accuracy": 0.9111111111111111,
+    "ece": 0.05524084584580526,
+    "loss": 0.33115994478313143,
+    "record_accuracy": 0.9111111111111111
+  },
+  "build_report": {
+    "total": 180,
+    "skipped": 0,
+    "reason": null,
+    "truncated": 0
+  },
+  "per_route": {
+    "answer": {
+      "support": 20,
+      "correct": 18,
+      "accuracy": 0.9,
+      "precision": 0.8571428571428571,
+      "recall": 0.9,
+      "f1": 0.8780487804878048
+    },
+    "get_battery_info": {
+      "support": 20,
+      "correct": 13,
+      "accuracy": 0.65,
+      "precision": 1.0,
+      "recall": 0.65,
+      "f1": 0.787878787878788
+    },
+    "get_device_info": {
+      "support": 20,
+      "correct": 15,
+      "accuracy": 0.75,
+      "precision": 0.8823529411764706,
+      "recall": 0.75,
+      "f1": 0.8108108108108107
+    },
+    "get_media_info": {
+      "support": 20,
+      "correct": 20,
+      "accuracy": 1.0,
+      "precision": 0.9090909090909091,
+      "recall": 1.0,
+      "f1": 0.9523809523809523
+    },
+    "get_storage_info": {
+      "support": 20,
+      "correct": 19,
+      "accuracy": 0.95,
+      "precision": 0.95,
+      "recall": 0.95,
+      "f1": 0.9500000000000001
+    },
+    "phone_health_check": {
+      "support": 20,
+      "correct": 20,
+      "accuracy": 1.0,
+      "precision": 0.7692307692307693,
+      "recall": 1.0,
+      "f1": 0.8695652173913044
+    },
+    "save_note": {
+      "support": 20,
+      "correct": 20,
+      "accuracy": 1.0,
+      "precision": 0.9090909090909091,
+      "recall": 1.0,
+      "f1": 0.9523809523809523
+    },
+    "search_local_files": {
+      "support": 20,
+      "correct": 19,
+      "accuracy": 0.95,
+      "precision": 1.0,
+      "recall": 0.95,
+      "f1": 0.9743589743589743
+    },
+    "search_notes": {
+      "support": 20,
+      "correct": 20,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    }
+  },
+  "confusion_matrix": {
+    "answer": {
+      "answer": 18,
+      "get_battery_info": 0,
+      "get_device_info": 0,
+      "get_media_info": 0,
+      "get_storage_info": 0,
+      "phone_health_check": 0,
+      "save_note": 2,
+      "search_local_files": 0,
+      "search_notes": 0
+    },
+    "get_battery_info": {
+      "answer": 1,
+      "get_battery_info": 13,
+      "get_device_info": 0,
+      "get_media_info": 1,
+      "get_storage_info": 0,
+      "phone_health_check": 5,
+      "save_note": 0,
+      "search_local_files": 0,
+      "search_notes": 0
+    },
+    "get_device_info": {
+      "answer": 2,
+      "get_battery_info": 0,
+      "get_device_info": 15,
+      "get_media_info": 1,
+      "get_storage_info": 1,
+      "phone_health_check": 1,
+      "save_note": 0,
+      "search_local_files": 0,
+      "search_notes": 0
+    },
+    "get_media_info": {
+      "answer": 0,
+      "get_battery_info": 0,
+      "get_device_info": 0,
+      "get_media_info": 20,
+      "get_storage_info": 0,
+      "phone_health_check": 0,
+      "save_note": 0,
+      "search_local_files": 0,
+      "search_notes": 0
+    },
+    "get_storage_info": {
+      "answer": 0,
+      "get_battery_info": 0,
+      "get_device_info": 1,
+      "get_media_info": 0,
+      "get_storage_info": 19,
+      "phone_health_check": 0,
+      "save_note": 0,
+      "search_local_files": 0,
+      "search_notes": 0
+    },
+    "phone_health_check": {
+      "answer": 0,
+      "get_battery_info": 0,
+      "get_device_info": 0,
+      "get_media_info": 0,
+      "get_storage_info": 0,
+      "phone_health_check": 20,
+      "save_note": 0,
+      "search_local_files": 0,
+      "search_notes": 0
+    },
+    "save_note": {
+      "answer": 0,
+      "get_battery_info": 0,
+      "get_device_info": 0,
+      "get_media_info": 0,
+      "get_storage_info": 0,
+      "phone_health_check": 0,
+      "save_note": 20,
+      "search_local_files": 0,
+      "search_notes": 0
+    },
+    "search_local_files": {
+      "answer": 0,
+      "get_battery_info": 0,
+      "get_device_info": 1,
+      "get_media_info": 0,
+      "get_storage_info": 0,
+      "phone_health_check": 0,
+      "save_note": 0,
+      "search_local_files": 19,
+      "search_notes": 0
+    },
+    "search_notes": {
+      "answer": 0,
+      "get_battery_info": 0,
+      "get_device_info": 0,
+      "get_media_info": 0,
+      "get_storage_info": 0,
+      "phone_health_check": 0,
+      "save_note": 0,
+      "search_local_files": 0,
+      "search_notes": 20
+    }
+  },
+  "per_coverage": {
+    "everyday": {
+      "rows": 90,
+      "correct": 88
+    },
+    "indirect": {
+      "rows": 45,
+      "correct": 38
+    },
+    "boundary": {
+      "rows": 45,
+      "correct": 38
+    }
+  },
+  "elapsed_seconds": 88.24901604652405,
+  "max_seq_length": 4096,
+  "batch_size": 8,
+  "seed": 3407,
+  "predictions_sha256": "a306da09234eec2939e21e3991a765ab31ebee435706e0f2a677f712adae5993",
+  "selection": "Fixed checkpoint 100 selected before this test; no tuning on results"
+}

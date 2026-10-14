@@ -1,0 +1,152 @@
+{
+  "files": [
+    {
+      "path": "base-download.log",
+      "bytes": 925,
+      "sha256": "08109a3438d50f58ea3eb25489d2170d6de27938a7f5d89d4aeae4e2a0d53521"
+    },
+    {
+      "path": "closeout_evaluation.py",
+      "bytes": 2309,
+      "sha256": "e623d844dbba27d2f6d632b831ce7cf0078af4ae6ada304125606b75f2c78256"
+    },
+    {
+      "path": "evaluation-cost-final-snapshot.json",
+      "bytes": 755,
+      "sha256": "e9d2e85e04df71f4629f3c63b10918b48f9b00fa2c96508943a358644c02bea7"
+    },
+    {
+      "path": "evaluation-gpu-details.txt",
+      "bytes": 14050,
+      "sha256": "101dce2825ed2ebda2edc5005783471bdbe69dbd8e8e7898c219b2aa9874be7e"
+    },
+    {
+      "path": "fresh180-launch.log",
+      "bytes": 62,
+      "sha256": "69d88d76edcf76b1e131c993824c456b48a2b42f43021d6c769b6eb6b996ea75"
+    },
+    {
+      "path": "launch_evaluation.sh",
+      "bytes": 895,
+      "sha256": "6e066ad9eaf1ef385fef376cd4bfb3b2567fa2b0aabe8060b1ebf8fe152ba30e"
+    },
+    {
+      "path": "reflex-decision/environment-freeze.txt",
+      "bytes": 2067,
+      "sha256": "f3676d7bd5aee681f8ca2449f1a73a414b9605128745769e1fc25eb3742865e3"
+    },
+    {
+      "path": "reflex-decision/evaluation-environment-freeze.txt",
+      "bytes": 2067,
+      "sha256": "f3676d7bd5aee681f8ca2449f1a73a414b9605128745769e1fc25eb3742865e3"
+    },
+    {
+      "path": "reflex-decision/fresh-test/RUN_20261015.md",
+      "bytes": 920,
+      "sha256": "c21c295054721664bbe0df8c3aa5031b6470bdc749c06f38dd07eb5e519a8da4"
+    },
+    {
+      "path": "reflex-decision/fresh-test/evaluate_frozen.py",
+      "bytes": 3907,
+      "sha256": "280a35f908058b5b6d5bb4d39a67024143ac4e48bcb90d715cbee3a27b2af3e8"
+    },
+    {
+      "path": "reflex-decision/fresh-test/freeze-manifest.json",
+      "bytes": 1357,
+      "sha256": "3b69d827674de3fbb3ad614e3b2069e8c67f575696cd7fb51e0a442641a47aee"
+    },
+    {
+      "path": "reflex-decision/fresh-test/test.jsonl",
+      "bytes": 379440,
+      "sha256": "2d18133e44a9f9db82fe80099b642f00cd6a12ebf643dc043d1f89f9ddfa209b"
+    },
+    {
+      "path": "reflex-decision/fresh180-evaluation.log",
+      "bytes": 149604,
+      "sha256": "78e5af5e4591113ac44db4a8c2af9d39a2b33598573da6cd19b1e95bbf21a0b2"
+    },
+    {
+      "path": "reflex-decision/runs/combined-balanced-scratch-120step-s3407/adapter/README.md",
+      "bytes": 5204,
+      "sha256": "4c2423cde13d2ef1775d1e90f1a3a8cd59b82b401b8915b18c198488d3c18f88"
+    },
+    {
+      "path": "reflex-decision/runs/combined-balanced-scratch-120step-s3407/adapter/adapter_config.json",
+      "bytes": 1743,
+      "sha256": "a442ac240800f8b600fd11028d4b109ce0abe53cab3bda3a9b6425a0c1d6e1fe"
+    },
+    {
+      "path": "reflex-decision/runs/combined-balanced-scratch-120step-s3407/adapter/adapter_model.safetensors",
+      "bytes": 43346432,
+      "sha256": "30e1aa405b994d72a2f89bb04897f601014b3414789b85df22d06c116aa42a7a"
+    },
+    {
+      "path": "reflex-decision/runs/combined-balanced-scratch-120step-s3407/adapter/chat_template.jinja",
+      "bytes": 7991,
+      "sha256": "ea210e5b4997b7b1d3af5ee3ad34e7677ffe38df7469e8d88089789b5a27fae5"
+    },
+    {
+      "path": "reflex-decision/runs/combined-balanced-scratch-120step-s3407/adapter/joint_head.safetensors",
+      "bytes": 54661902,
+      "sha256": "2d27f016b2d8e0714ccb2f2f06d42831a4fa68d6b5e7356a72677407e15ceff4"
+    },
+    {
+      "path": "reflex-decision/runs/combined-balanced-scratch-120step-s3407/adapter/joint_head_config.json",
+      "bytes": 116,
+      "sha256": "99f65ef462b1c92d9304ad1acecbbab93506efc0ba8227c46582b4264d27aa30"
+    },
+    {
+      "path": "reflex-decision/runs/combined-balanced-scratch-120step-s3407/adapter/processor_config.json",
+      "bytes": 1300,
+      "sha256": "14932921ca485d458a04dafd8069fbb0a4505622a48208d19ed247115801385b"
+    },
+    {
+      "path": "reflex-decision/runs/combined-balanced-scratch-120step-s3407/adapter/tokenizer.json",
+      "bytes": 19989343,
+      "sha256": "87a7830d63fcf43bf241c3c5242e96e62dd3fdc29224ca26fed8ea333db72de4"
+    },
+    {
+      "path": "reflex-decision/runs/combined-balanced-scratch-120step-s3407/adapter/tokenizer_config.json",
+      "bytes": 7161,
+      "sha256": "50f7ac27a0406e04c3c7f9d9f3f1b628952d7f8449b365655e4ed89373f41c64"
+    },
+    {
+      "path": "reflex-decision/runs/combined-balanced-scratch-120step-s3407/adapter/unsloth_decision_config.json",
+      "bytes": 250,
+      "sha256": "003cafe1317dd7277508b8878d0bd4ab7084b94fa51e5b96412e66612de81c49"
+    },
+    {
+      "path": "reflex-decision/runs/eval-fresh180-reflex1/errors.json",
+      "bytes": 11807,
+      "sha256": "9f97ce3b4274252e45cf728184f20c7895e931d82fa85212fb0e993b7ead7ca6"
+    },
+    {
+      "path": "reflex-decision/runs/eval-fresh180-reflex1/predictions.jsonl",
+      "bytes": 101957,
+      "sha256": "a306da09234eec2939e21e3991a765ab31ebee435706e0f2a677f712adae5993"
+    },
+    {
+      "path": "reflex-decision/runs/eval-fresh180-reflex1/summary.json",
+      "bytes": 5268,
+      "sha256": "f6cd08fb1c919fb3ecfef0f92c667424a5d5b26ba9f67f9f8cceade53ed82d90"
+    },
+    {
+      "path": "setup-evaluation.log",
+      "bytes": 6357,
+      "sha256": "467d5f2ce88c08d6235adc527097e84ba3ae4970a5119bfb47413a5041d04d32"
+    },
+    {
+      "path": "setup_eval.sh",
+      "bytes": 1009,
+      "sha256": "f553fd67a69b9a104f08fad863e47e373513a5172ee2938038e976c2da191296"
+    }
+  ],
+  "excluded": [
+    "virtualenv",
+    "download/compiled caches",
+    "credentials",
+    "redundant transfer archives"
+  ],
+  "restore": "Extract under /workspace; recreate venv with setup_eval.sh. HF base snapshot is recorded in base-download.log. Original full training archive is retained locally.",
+  "wandb": "No W&B runs created for evaluation."
+}

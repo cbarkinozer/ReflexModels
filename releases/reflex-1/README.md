@@ -46,3 +46,7 @@ Only Q4_K_M was exported for the main model (no Q8_0 this time); the mmproj side
 Same as reflex-1-beta — see [its README](../reflex-1-beta/README.md#run-the-gguf-decision-api) for the `llama-server` / `/v1/systemone` invocation. Point `-m` at this release's `model-Q4_K_M.gguf`.
 
 The Qwen base model and training data sources declare Apache-2.0 (general mixture) / see dataset provenance in the handoff doc for the phone-routing data. Weights modified by decision-head and LoRA training on 2026-10-13. Not published; no public upload performed.
+
+## Fresh phone routing test - 2026-10-15
+
+On 180 fresh synthetic, human-validated cases (20 per route), the saved PyTorch adapter scores **91.11% accuracy (164/180), 90.84% macro-F1**. Zero skipped/truncated decisions. Battery recall 65%, device-info recall 75%; everyday requests 97.78%, indirect/boundary groups 84.44% each. The historical phone score of 96.59% does not describe this harder cohort. [Per-route scores, errors, provenance and limits](../../experiments/decision-followups/fresh-phone-test-180/RESULTS.md). GGUF and on-device results remain pending.
