@@ -1,0 +1,77 @@
+{
+  "created_unix": 1792018078.485235,
+  "jobs": [
+    {
+      "model": "qwen",
+      "mode": "raw",
+      "data": "/Users/cbarkinozer/Documents/GitHub/ReflexModels/experiments/decision-followups/fresh-phone-test-180/test.jsonl",
+      "out": "/Users/cbarkinozer/Documents/GitHub/ReflexModels/experiments/decision-followups/a32-fresh180/qwen-fresh180",
+      "data_sha256": "2d18133e44a9f9db82fe80099b642f00cd6a12ebf643dc043d1f89f9ddfa209b"
+    },
+    {
+      "model": "reflex-1-beta",
+      "mode": "decision",
+      "data": "/Users/cbarkinozer/Documents/GitHub/ReflexModels/experiments/decision-followups/fresh-phone-test-180/test.jsonl",
+      "out": "/Users/cbarkinozer/Documents/GitHub/ReflexModels/experiments/decision-followups/a32-fresh180/beta-fresh180",
+      "data_sha256": "2d18133e44a9f9db82fe80099b642f00cd6a12ebf643dc043d1f89f9ddfa209b"
+    },
+    {
+      "model": "reflex-1",
+      "mode": "decision",
+      "data": "/Users/cbarkinozer/Documents/GitHub/pocket-agents-lab/data/phone_routing/test.jsonl",
+      "out": "/Users/cbarkinozer/Documents/GitHub/ReflexModels/experiments/decision-followups/a32-fresh180/reflex-historical90",
+      "data_sha256": "ed41b456f4c7eee7b6311df19bd16f39f594016dbc9b47ffd398906ac6315dec"
+    },
+    {
+      "model": "qwen",
+      "mode": "raw",
+      "data": "/Users/cbarkinozer/Documents/GitHub/pocket-agents-lab/data/phone_routing/test.jsonl",
+      "out": "/Users/cbarkinozer/Documents/GitHub/ReflexModels/experiments/decision-followups/a32-fresh180/qwen-historical90",
+      "data_sha256": "ed41b456f4c7eee7b6311df19bd16f39f594016dbc9b47ffd398906ac6315dec"
+    },
+    {
+      "model": "reflex-1",
+      "mode": "decision",
+      "data": "/Users/cbarkinozer/Documents/GitHub/ReflexModels/experiments/decision-followups/heldout-results-20261014/frozen-general-tests/typed_decisions.jsonl",
+      "out": "/Users/cbarkinozer/Documents/GitHub/ReflexModels/experiments/decision-followups/a32-fresh180/reflex-typed_decisions",
+      "data_sha256": "1d6c24f9709b62451ece105df85b8f293a4cde9a5a8b73721928b62876ad8365"
+    },
+    {
+      "model": "reflex-1",
+      "mode": "decision",
+      "data": "/Users/cbarkinozer/Documents/GitHub/ReflexModels/experiments/decision-followups/heldout-results-20261014/frozen-general-tests/banking77.jsonl",
+      "out": "/Users/cbarkinozer/Documents/GitHub/ReflexModels/experiments/decision-followups/a32-fresh180/reflex-banking77",
+      "data_sha256": "3c7873d2de8b9bad9445c3acf72e85802a499ed059c44626121cc4fdd3b510c0"
+    },
+    {
+      "model": "reflex-1",
+      "mode": "decision",
+      "data": "/Users/cbarkinozer/Documents/GitHub/ReflexModels/experiments/decision-followups/heldout-results-20261014/frozen-general-tests/clinc150.jsonl",
+      "out": "/Users/cbarkinozer/Documents/GitHub/ReflexModels/experiments/decision-followups/a32-fresh180/reflex-clinc150",
+      "data_sha256": "0a484b00b94b66d5a7aeefb564eaab9393cc737a4b5078690055e2778e8aa3bd"
+    },
+    {
+      "model": "reflex-1-beta",
+      "mode": "decision",
+      "data": "/Users/cbarkinozer/Documents/GitHub/ReflexModels/experiments/decision-followups/heldout-results-20261014/frozen-general-tests/typed_decisions.jsonl",
+      "out": "/Users/cbarkinozer/Documents/GitHub/ReflexModels/experiments/decision-followups/a32-fresh180/beta-typed_decisions",
+      "data_sha256": "1d6c24f9709b62451ece105df85b8f293a4cde9a5a8b73721928b62876ad8365"
+    },
+    {
+      "model": "reflex-1-beta",
+      "mode": "decision",
+      "data": "/Users/cbarkinozer/Documents/GitHub/ReflexModels/experiments/decision-followups/heldout-results-20261014/frozen-general-tests/banking77.jsonl",
+      "out": "/Users/cbarkinozer/Documents/GitHub/ReflexModels/experiments/decision-followups/a32-fresh180/beta-banking77",
+      "data_sha256": "3c7873d2de8b9bad9445c3acf72e85802a499ed059c44626121cc4fdd3b510c0"
+    },
+    {
+      "model": "reflex-1-beta",
+      "mode": "decision",
+      "data": "/Users/cbarkinozer/Documents/GitHub/ReflexModels/experiments/decision-followups/heldout-results-20261014/frozen-general-tests/clinc150.jsonl",
+      "out": "/Users/cbarkinozer/Documents/GitHub/ReflexModels/experiments/decision-followups/a32-fresh180/beta-clinc150",
+      "data_sha256": "0a484b00b94b66d5a7aeefb564eaab9393cc737a4b5078690055e2778e8aa3bd"
+    }
+  ],
+  "no_uploads": true,
+  "scope": "Matched fresh and historical phone comparisons plus all three frozen general suites for both decision versions. General suites can exceed overnight budget; no silent downsampling."
+}

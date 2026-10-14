@@ -63,3 +63,7 @@ hf download cbarkinozer/Reflex-1 --revision 157a0d6ed5a218352bcd5b6bed57dbef090b
 ```
 
 For only A32 artifacts, add `--include "gguf/*"`. Verify hashes against `gguf-manifest.json` before benchmarking. Private token stays in your local credential store or env; never commit it.
+
+## Mobile benchmark release draft
+
+The detailed local Hugging Face model-card draft is [HF_MODEL_CARD.md](HF_MODEL_CARD.md). Sequential Samsung A32 evaluation is recorded in [the A32 report](../../experiments/decision-followups/a32-fresh180/RESULTS.md); only completed runs have scores. [Dataset packaging/upload instructions](DATASET_UPLOAD_GUIDE.md) explain how to publish the exact admitted phone training component and link it to this model without including held-out examples. These files remain local; no new Hub upload or public visibility change has been performed.
