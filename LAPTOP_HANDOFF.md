@@ -1,3 +1,5 @@
+> Current continuation (2026-10-15): annotation, training and fresh evaluation are complete. Continue desktop A32 testing from [DESKTOP_HANDOFF_20261015.md](experiments/decision-followups/DESKTOP_HANDOFF_20261015.md) and the current [TODO.md](experiments/decision-followups/TODO.md). The laptop instructions below are historical.
+
 # Continue phone-routing review on the laptop
 
 Current stage (2026-10-12): **human data review, before any new GPU training**.

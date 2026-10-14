@@ -1,5 +1,27 @@
 # Decision-model experiments: execution checklist
 
+## Current todo - 2026-10-15
+
+Start on the desktop with [DESKTOP_HANDOFF_20261015.md](DESKTOP_HANDOFF_20261015.md). This section supersedes the historical checklist below.
+
+- [x] Complete original annotation and independent phone/general/combined fine-tunes; select combined checkpoint 100 as reflex-1.
+- [x] Export Q4_K_M GGUF and preserve adapter/head/configs and original full training backups locally.
+- [x] Complete official general benchmark evaluations and historical phone comparison.
+- [x] Review and freeze the fresh 180-case phone test: exactly 20 per route.
+- [x] Evaluate the fixed PyTorch adapter: 164/180 (91.11%) accuracy, 90.84% macro-F1; save all predictions/errors.
+- [x] Download and hash-verify full GPU backups/logs/configs/results; commit and push source, frozen tests and result records.
+- [ ] User: close the latest Vast pod if still running (instance 55996354); all required evaluation artifacts are downloaded. No shutdown was performed by the agent.
+- [ ] Desktop: confirm the GGUF binaries are present, or transfer them from the laptop. Git does not carry model binaries or large archives.
+- [ ] User on desktop: connect the A32 and run ADB benchmark. No laptop ADB work is requested.
+- [ ] Run the committed fresh 180 cases through GGUF with the same route schema; compare individual predictions and accuracy with the saved PyTorch reference.
+- [ ] Measure A32 latency (cold start and warm p50/p95), peak memory and sustained temperature/battery behaviour. Record software/build revisions, model hash, settings, full outputs and logs.
+- [ ] Commit the mobile benchmark results and update model/release cards. Preserve verified artifact backups before any GPU closeout.
+- [ ] If results justify publication: prepare Hugging Face adapter plus decision head/tokenizer/configs/calibration, GGUF, and reviewed dataset with source licenses/provenance and privacy checks. Choose final dataset name then. Publish only when explicitly requested.
+
+Optional later versions: improve battery/device routing and negation/indirect cases; compare a smaller classifier or an unmodified 0.8B tool-calling baseline; consider scenario targets only if they serve the agent. If this test informs new training, keep it as a regression test and reserve a new sealed final cohort.
+
+## Historical checklist (retained for provenance)
+
 > **Current status (2026-10-13):** See [VAST_FINE_TUNE_HANDOFF_20261013.md](VAST_FINE_TUNE_HANDOFF_20261013.md) for the live GPU run, actual configs, results and remaining test/backup steps. The old unchecked items and "not started" statements below are historical.
 
 Updated 2026-10-11. This checklist implements [PLAN.md](PLAN.md).
