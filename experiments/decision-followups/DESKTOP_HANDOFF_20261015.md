@@ -1,6 +1,6 @@
 # Continue on desktop - 2026-10-15
 
-User will perform ADB testing on the desktop. The laptop task was to preserve and push records; do not restart annotation or training. Pull GitHub main, then follow [TODO.md](TODO.md). No Hugging Face upload has occurred.
+User will perform ADB testing on the desktop. The laptop task was to preserve and push records; do not restart annotation or training. Pull GitHub main, then follow [TODO.md](TODO.md). The model package is now uploaded privately to Hugging Face; public publication remains pending.
 
 ## Model and measurements
 
@@ -35,3 +35,14 @@ User connects A32 through ADB. Use Clef-compatible llama.cpp/Decision API runtim
 If successful, prepare Hugging Face adapter **with decision head and required configs/calibration/tokenizer**, GGUF and dataset cards; document licenses, provenance, splits, real benchmark results and limitations. Choose the dataset name later. User will authorize publication after review. Keep test out of training/calibration/model selection. Once public or used to guide improvements, it is a regression benchmark for later versions.
 
 Latest GPU was instance 55996354, SSH ssh6.vast.ai:10788, rate about $0.477/hour. Backup complete; user may close it. Agent did not stop/destroy it.
+
+## Download from private Hugging Face instead of copying laptop files
+
+The transfer package is now at https://huggingface.co/cbarkinozer/Reflex-1 (private), revision `157a0d6ed5a218352bcd5b6bed57dbef090b151d`. Authenticate on desktop, then:
+
+```powershell
+hf auth login
+hf download cbarkinozer/Reflex-1 --revision 157a0d6ed5a218352bcd5b6bed57dbef090b151d --local-dir Reflex-1
+```
+
+Use `Reflex-1/gguf/model-Q4_K_M.gguf` and `Reflex-1/gguf/mmproj-Q8_0.gguf` for the A32 benchmark. `adapter/` contains the selected adapter/head/configs/calibration/tokenizer. Merged standalone PyTorch weights are absent; the adapter requires the Qwen base model. Dataset/test files remain on GitHub. Remote weights were verified by size and LFS SHA-256 after upload.

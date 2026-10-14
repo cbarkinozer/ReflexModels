@@ -2,7 +2,7 @@
 
 **Renamed 2026-10-14:** this is the second ReflexModels decision-head model overall, but since the original (single-domain, typed-decisions-only) model was never published, it was renamed `reflex-1-beta` and this combined model takes the `reflex-1` name instead.
 
-Built with Unsloth's `FastDecisionModel`/`DecisionTrainer` (the "Clef" architecture: LoRA-adapted causal backbone plus a trainable classification head for `choice`/`noul`/`score` questions). Supersedes the unpublished single-domain [reflex-1-beta](../reflex-1-beta/README.md). Research release prepared locally; not published to a model hub.
+Built with Unsloth's `FastDecisionModel`/`DecisionTrainer` (the "Clef" architecture: LoRA-adapted causal backbone plus a trainable classification head for `choice`/`noul`/`score` questions). Supersedes the unpublished single-domain [reflex-1-beta](../reflex-1-beta/README.md). Research release available in a private Hugging Face repository for desktop testing.
 
 Trained on a **combined phone-routing + general mixture** (781 phone examples + 781 class-preserving general examples: 391 typed-decisions, 195 BANKING77, 195 CLINC150; equal domain weights), independently from base `unsloth/Qwen3.5-0.8B`, LoRA rank/alpha 16, LR `2e-4`, seed 3407. Two independent combined runs were trained (80 steps and 120 steps); the **120-step run's checkpoint-100** was selected on validation and is the model exported here.
 
@@ -45,8 +45,21 @@ Only Q4_K_M was exported for the main model (no Q8_0 this time); the mmproj side
 
 Same as reflex-1-beta — see [its README](../reflex-1-beta/README.md#run-the-gguf-decision-api) for the `llama-server` / `/v1/systemone` invocation. Point `-m` at this release's `model-Q4_K_M.gguf`.
 
-The Qwen base model and training data sources declare Apache-2.0 (general mixture) / see dataset provenance in the handoff doc for the phone-routing data. Weights modified by decision-head and LoRA training on 2026-10-13. Not published; no public upload performed.
+The Qwen base model and training data sources declare Apache-2.0 (general mixture) / see dataset provenance in the handoff doc for the phone-routing data. Weights modified by decision-head and LoRA training on 2026-10-13. Privately uploaded for desktop testing; no public publication performed.
 
 ## Fresh phone routing test - 2026-10-15
 
 On 180 fresh synthetic, human-validated cases (20 per route), the saved PyTorch adapter scores **91.11% accuracy (164/180), 90.84% macro-F1**. Zero skipped/truncated decisions. Battery recall 65%, device-info recall 75%; everyday requests 97.78%, indirect/boundary groups 84.44% each. The historical phone score of 96.59% does not describe this harder cohort. [Per-route scores, errors, provenance and limits](../../experiments/decision-followups/fresh-phone-test-180/RESULTS.md). GGUF and on-device results remain pending.
+
+## Private Hugging Face transfer - 2026-10-15
+
+Repository: https://huggingface.co/cbarkinozer/Reflex-1 (private). Upload revision: `157a0d6ed5a218352bcd5b6bed57dbef090b151d`. Remote sizes and LFS SHA-256 values matched the local release manifest. Adapter, joint decision head, tokenizer/processor/calibration/configs are under `adapter/`; model and projector GGUF files under `gguf/`. The standalone merged PyTorch model is **not included**: saved merged weights were absent from the verified artifacts. Adapter loading still requires the base model. Dataset upload remains separate.
+
+On desktop, authenticate with your Hugging Face account and download:
+
+```powershell
+hf auth login
+hf download cbarkinozer/Reflex-1 --revision 157a0d6ed5a218352bcd5b6bed57dbef090b151d --local-dir Reflex-1
+```
+
+For only A32 artifacts, add `--include "gguf/*"`. Verify hashes against `gguf-manifest.json` before benchmarking. Private token stays in your local credential store or env; never commit it.
