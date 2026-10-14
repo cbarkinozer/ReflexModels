@@ -13,7 +13,8 @@ Desktop continuation: [DESKTOP_PROGRESS_20261015.md](DESKTOP_PROGRESS_20261015.m
 - [x] Evaluate the fixed PyTorch adapter: 164/180 (91.11%) accuracy, 90.84% macro-F1; save all predictions/errors.
 - [x] Download and hash-verify full GPU backups/logs/configs/results; commit and push source, frozen tests and result records.
 - [ ] User: close the latest Vast pod if still running (instance 55996354); all required evaluation artifacts are downloaded. No shutdown was performed by the agent.
-- [ ] Desktop: confirm the GGUF binaries are present, or transfer them from the laptop. Git does not carry model binaries or large archives.
+- [x] Upload selected adapter/head/configs/tokenizer and GGUF to private Hugging Face `cbarkinozer/Reflex-1`; verify remote sizes/LFS hashes.
+- [ ] Desktop: authenticate and download the private Hugging Face model package following DESKTOP_HANDOFF_20261015.md. Git does not carry model binaries or large archives.
 - [ ] User on desktop: connect the A32 and run ADB benchmark. No laptop ADB work is requested.
 - [ ] Run the committed fresh 180 cases through GGUF with the same route schema; compare individual predictions and accuracy with the saved PyTorch reference.
 - [ ] Measure A32 latency (cold start and warm p50/p95), peak memory and sustained temperature/battery behaviour. Record software/build revisions, model hash, settings, full outputs and logs.
