@@ -1,0 +1,4 @@
+
+# Preserve exact bytes of frozen datasets/provenance so SHA-256 survives checkout.
+experiments/decision-followups/fresh-phone-test-180/** -text
+experiments/decision-followups/heldout-results-20261014/** -text

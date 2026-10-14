@@ -1,0 +1,35 @@
+{
+  "frozen_utc": "2026-10-14T21:44:06.974245+00:00",
+  "rows": 180,
+  "route_counts": {
+    "answer": 20,
+    "get_device_info": 20,
+    "get_media_info": 20,
+    "get_storage_info": 20,
+    "save_note": 20,
+    "search_notes": 20,
+    "phone_health_check": 20,
+    "search_local_files": 20,
+    "get_battery_info": 20
+  },
+  "coverage_counts": {
+    "everyday": 90,
+    "boundary": 45,
+    "indirect": 45
+  },
+  "test_sha256": "2d18133e44a9f9db82fe80099b642f00cd6a12ebf643dc043d1f89f9ddfa209b",
+  "review_snapshot_sha256": "6d3b6ed9ec2ee5e0d61364c5332c3ed6094ac3ee0724c1706f247caf98d5bca5",
+  "candidate_sha256": "24c6175b0060275f6fcd5d68168617977e5f891fccaef34840cbf78e788fba5a",
+  "schema_sha256": "95091aa81bc987c4283ff54e7b5286b02b6bcbf3d72aa4faf727c7fba0e4531a",
+  "exact_overlap": 0,
+  "protected_normalized_states": 8446,
+  "label_changes": [],
+  "status": "frozen_test_not_model_evaluated",
+  "allowed_use": "Final evaluation only; no training, calibration or checkpoint selection",
+  "limitations": [
+    "Synthetic author previously saw project examples",
+    "Human review used author suggestions; possible anchoring",
+    "Lexical screening does not establish semantic or pretraining independence"
+  ],
+  "training_source_archive_sha256": "883959885b9280506688ab33fdeac3560fdef13ddcf4ed37d9105ff750b98a90"
+}

@@ -1,0 +1,11 @@
+{
+  "name": "phone-routing-fresh-test-180-review-20261014",
+  "id": "dc58a336-e9dc-4314-bace-26a4794df390",
+  "records": 180,
+  "url": "http://127.0.0.1:7900/dataset/dc58a336-e9dc-4314-bace-26a4794df390/annotation-mode",
+  "candidate_sha256": "24c6175b0060275f6fcd5d68168617977e5f891fccaef34840cbf78e788fba5a",
+  "status": "unreviewed_candidates_not_sealed",
+  "route_suggestions": true,
+  "model_evaluated": false,
+  "suggestion_source": "synthetic author; not model prediction"
+}

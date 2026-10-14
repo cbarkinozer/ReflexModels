@@ -1,0 +1,3610 @@
+{
+  "exported_utc": "2026-10-14T21:43:30.725220+00:00",
+  "dataset": "phone-routing-fresh-test-180-review-20261014",
+  "users": {
+    "3d42eca8-f5aa-4e3e-8c85-a22996710b59": "argilla"
+  },
+  "records": [
+    {
+      "id": "fresh180_answer_04",
+      "fields": {
+        "request": "Explain why leap years are necessary in two sentences."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "answer"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_device_info_16",
+      "fields": {
+        "request": "I'm asking what kind of flash hardware is installed, not how many gigabytes are vacant."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_device_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_media_info_01",
+      "fields": {
+        "request": "Read the artist credit for the track currently selected in the player."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_media_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_storage_info_05",
+      "fields": {
+        "request": "Report the capacity of the currently mounted external card."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_storage_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_save_note_04",
+      "fields": {
+        "request": "Remember that the electrician arrives Thursday at 08:45."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "save_note"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_save_note_20",
+      "fields": {
+        "request": "Keep the title 'River at Dusk' in my notes; I'm not asking about what's playing."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "save_note"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_storage_info_02",
+      "fields": {
+        "request": "Is the removable memory card accessible to the system?"
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_storage_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_search_notes_02",
+      "fields": {
+        "request": "What pickup location did I record for the furniture delivery?"
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "search_notes"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_search_notes_19",
+      "fields": {
+        "request": "Search the notes database for my copied contract clause, rather than searching PDF files."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "search_notes"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_save_note_01",
+      "fields": {
+        "request": "Keep a note that the spare door key is with Aunt Lale."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "save_note"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_storage_info_06",
+      "fields": {
+        "request": "How much disk space is being consumed by temporary application caches?"
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_storage_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_phone_health_check_16",
+      "fields": {
+        "request": "Don't just read the charge meter; assess whether the whole device can sustain my workload."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "phone_health_check"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_media_info_04",
+      "fields": {
+        "request": "Which album contains the song in the active player?"
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_media_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_search_notes_01",
+      "fields": {
+        "request": "Retrieve the note where I wrote the guest Wi-Fi passphrase."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "search_notes"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_search_local_files_19",
+      "fields": {
+        "request": "Search the filesystem for a song named River at Dusk, regardless of the active player."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "search_local_files"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_answer_01",
+      "fields": {
+        "request": "Why does a metal spoon feel colder than a wooden one in the same room?"
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "answer"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_storage_info_17",
+      "fields": {
+        "request": "Count the bytes consumed by videos collectively, rather than opening any video."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_storage_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_device_info_11",
+      "fields": {
+        "request": "I'm picking a compatible accessory; which exact handset variant do I own?"
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_device_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_battery_info_08",
+      "fields": {
+        "request": "Which installed process consumed the most energy since the last recharge?"
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_battery_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_search_notes_14",
+      "fields": {
+        "request": "We settled on a restaurant and I saved the name; find that note for me."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "search_notes"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_media_info_05",
+      "fields": {
+        "request": "Report the current playback speed for my audiobook."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_media_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_answer_12",
+      "fields": {
+        "request": "My nephew thinks heavier things always fall faster; how should I explain it?"
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "answer"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_media_info_15",
+      "fields": {
+        "request": "I'm hearing silence; check whether the media session is muted or paused."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_media_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_battery_info_04",
+      "fields": {
+        "request": "How many recharge cycles has this handset accumulated?"
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_battery_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_device_info_13",
+      "fields": {
+        "request": "I can't tell whether this unit includes NFC hardware; check its capabilities."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_device_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_search_notes_10",
+      "fields": {
+        "request": "Which paint colour did I record for the hallway?"
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "search_notes"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_save_note_12",
+      "fields": {
+        "request": "For future reference, the parcel label must include apartment 6B; retain that detail."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "save_note"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_search_local_files_20",
+      "fields": {
+        "request": "Open the saved device-specification spreadsheet rather than querying this handset's hardware."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "search_local_files"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_device_info_15",
+      "fields": {
+        "request": "I need the hardware release date of the model I'm holding for an inventory record."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_device_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_search_local_files_11",
+      "fields": {
+        "request": "The supplier sent me a price list as an attachment; help me locate it on this device."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "search_local_files"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_search_local_files_07",
+      "fields": {
+        "request": "Find the slide deck with revised-launch in its filename."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "search_local_files"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_save_note_17",
+      "fields": {
+        "request": "Even though it looks like a filename, store the text 'budget-draft-v7.xlsx' as a note."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "save_note"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_media_info_14",
+      "fields": {
+        "request": "The next track keeps changing; is random ordering enabled in the player?"
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_media_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_media_info_02",
+      "fields": {
+        "request": "How many seconds remain in the episode that's playing?"
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_media_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_device_info_04",
+      "fields": {
+        "request": "Name the graphics processor inside this handset."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_device_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_phone_health_check_10",
+      "fields": {
+        "request": "Produce a brief overview of this handset's current operating condition."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "phone_health_check"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_search_local_files_14",
+      "fields": {
+        "request": "I'm looking for the exported itinerary attachment, not information I typed into my notes."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "search_local_files"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_search_notes_12",
+      "fields": {
+        "request": "There was a note about where we left the spare badges; what did it say?"
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "search_notes"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_media_info_20",
+      "fields": {
+        "request": "Inspect the active video's subtitles setting; don't search for subtitle files."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_media_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_phone_health_check_19",
+      "fields": {
+        "request": "Evaluate overall readiness without searching for any presentation files."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "phone_health_check"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_media_info_06",
+      "fields": {
+        "request": "Which device is receiving the player's audio output?"
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_media_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_save_note_06",
+      "fields": {
+        "request": "Preserve the measurements for the shelf: 74 cm wide and 29 cm deep."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "save_note"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_media_info_09",
+      "fields": {
+        "request": "Has the current podcast episode been downloaded for offline listening?"
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_media_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_save_note_11",
+      "fields": {
+        "request": "I'll forget this detail unless you keep it: the visitor entrance is around the courtyard."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "save_note"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_save_note_02",
+      "fields": {
+        "request": "Write down my parcel collection reference: PK-4826-Q."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "save_note"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_search_local_files_03",
+      "fields": {
+        "request": "Bring up the image attachments received over Bluetooth this week."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "search_local_files"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_media_info_11",
+      "fields": {
+        "request": "That voice sounds familiar; read the performer credit from what's playing."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_media_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_phone_health_check_03",
+      "fields": {
+        "request": "Check whether this phone is ready for several hours of navigation and recording."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "phone_health_check"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_answer_13",
+      "fields": {
+        "request": "I'm writing to a landlord about a dripping tap; make the message friendly."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "answer"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_search_local_files_05",
+      "fields": {
+        "request": "Look for the ZIP archive inside my Downloads folder."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "search_local_files"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_device_info_05",
+      "fields": {
+        "request": "Does this unit support eSIM profiles?"
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_device_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_device_info_10",
+      "fields": {
+        "request": "Report the device's declared dust and water protection certification."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_device_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_search_local_files_09",
+      "fields": {
+        "request": "Locate the scan I imported from the printer application."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "search_local_files"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_save_note_19",
+      "fields": {
+        "request": "Save the phrase 'battery replacement booked for Monday' rather than inspecting the phone's battery."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "save_note"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_search_local_files_10",
+      "fields": {
+        "request": "Find the video file I copied from a USB drive this morning."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "search_local_files"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_search_notes_18",
+      "fields": {
+        "request": "Read the battery replacement date from my notes, without querying battery condition."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "search_notes"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_storage_info_16",
+      "fields": {
+        "request": "Tell me whether storage is writable; don't locate a particular document."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_storage_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_battery_info_12",
+      "fields": {
+        "request": "I've been away from a socket all morning; how much charge remains in this handset?"
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_battery_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_battery_info_19",
+      "fields": {
+        "request": "Show the power pack temperature alone; don't run a whole-device assessment."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_battery_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_search_local_files_16",
+      "fields": {
+        "request": "Find the exported notes-backup ZIP on disk; don't retrieve entries from the notes database."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "search_local_files"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_storage_info_11",
+      "fields": {
+        "request": "I'm about to record a long clip; is there room for an estimated 4 GB file?"
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_storage_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_storage_info_14",
+      "fields": {
+        "request": "I need to decide whether to copy an archive here; compare its 850 MB size with vacant space."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_storage_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_answer_10",
+      "fields": {
+        "request": "How does fermentation preserve vegetables?"
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "answer"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_storage_info_03",
+      "fields": {
+        "request": "Break down occupied disk space between applications and personal media."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_storage_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_media_info_07",
+      "fields": {
+        "request": "Is the active playlist set to shuffle?"
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_media_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_search_notes_20",
+      "fields": {
+        "request": "The album recommendation was saved as a note; retrieve it without inspecting playback."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "search_notes"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_storage_info_13",
+      "fields": {
+        "request": "I removed a large game; what is the available capacity now?"
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_storage_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_storage_info_07",
+      "fields": {
+        "request": "Will a 6 GB offline map package fit on the internal volume?"
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_storage_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_phone_health_check_02",
+      "fields": {
+        "request": "Give me a combined view of charge, disk headroom and working-memory pressure."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "phone_health_check"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_battery_info_03",
+      "fields": {
+        "request": "Report the cell's measured temperature in Celsius."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_battery_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_phone_health_check_01",
+      "fields": {
+        "request": "Assess whether this handset is in good working condition overall."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "phone_health_check"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_search_notes_03",
+      "fields": {
+        "request": "Find my saved notes concerning balcony plants."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "search_notes"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_search_notes_08",
+      "fields": {
+        "request": "Bring up every note I saved about the workshop."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "search_notes"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_storage_info_09",
+      "fields": {
+        "request": "Has the external USB drive been mounted successfully?"
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_storage_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_search_notes_04",
+      "fields": {
+        "request": "Read back the measurements I noted for the study curtains."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "search_notes"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_phone_health_check_13",
+      "fields": {
+        "request": "I need this handset to be dependable for an emergency shift; perform a broad assessment."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "phone_health_check"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_search_notes_06",
+      "fields": {
+        "request": "Show the note containing my ideas for a retirement gift."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "search_notes"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_storage_info_04",
+      "fields": {
+        "request": "What fraction of the internal volume is occupied?"
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_storage_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_battery_info_15",
+      "fields": {
+        "request": "The back feels warm near the cell; read that sensor rather than guessing from touch."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_battery_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_search_local_files_12",
+      "fields": {
+        "request": "I remember the document mentions a warranty extension, but not its filename; search its contents."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "search_local_files"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_phone_health_check_07",
+      "fields": {
+        "request": "Look across the phone's live readings for signs of trouble."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "phone_health_check"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_search_notes_16",
+      "fields": {
+        "request": "Find my note about the storage upgrade, rather than checking this phone's disk usage."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "search_notes"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_storage_info_15",
+      "fields": {
+        "request": "The card is inserted, but I don't know whether Android can access its volume."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_storage_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_device_info_09",
+      "fields": {
+        "request": "Tell me the lens specifications of this device's rear camera."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_device_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_answer_05",
+      "fields": {
+        "request": "Convert three quarters of an hour into seconds."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "answer"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_phone_health_check_05",
+      "fields": {
+        "request": "Review this handset's condition before I use it for a client demonstration."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "phone_health_check"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_save_note_05",
+      "fields": {
+        "request": "Add this to my notes: the blue suitcase weighs 3.8 kg empty."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "save_note"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_battery_info_05",
+      "fields": {
+        "request": "Show the present voltage across the phone's battery."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_battery_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_search_local_files_06",
+      "fields": {
+        "request": "Retrieve the audio recording file created during yesterday's lecture."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "search_local_files"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_answer_14",
+      "fields": {
+        "request": "The recipe serves eight, but there are only three of us; scale its 400 g of flour."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "answer"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_phone_health_check_11",
+      "fields": {
+        "request": "I'll be relying on this phone throughout a day outdoors; flag any readiness concerns."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "phone_health_check"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_battery_info_01",
+      "fields": {
+        "request": "Read the percentage beside the power icon for me."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_battery_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_search_local_files_08",
+      "fields": {
+        "request": "Show the local files ending in .epub."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "search_local_files"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_media_info_10",
+      "fields": {
+        "request": "What resolution is the video in the active player using?"
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_media_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_storage_info_12",
+      "fields": {
+        "request": "The camera says it cannot write another image; tell me how much disk headroom remains."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_storage_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_answer_20",
+      "fields": {
+        "request": "Without looking at my saved notes, explain how booking references are usually used."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "answer"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_device_info_08",
+      "fields": {
+        "request": "Which Bluetooth standard can this hardware use?"
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_device_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_answer_09",
+      "fields": {
+        "request": "Help me describe the smell of rain in a short poem."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "answer"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_search_notes_17",
+      "fields": {
+        "request": "Retrieve the appointment already stored in notes; don't create another entry."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "search_notes"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_phone_health_check_12",
+      "fields": {
+        "request": "Several apps are stuttering and the case is getting warm; investigate the overall situation."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "phone_health_check"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_answer_11",
+      "fields": {
+        "request": "I keep mixing up latitude and longitude; give me a way to remember them."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "answer"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_device_info_06",
+      "fields": {
+        "request": "Read the kernel build identifier from this phone."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_device_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_battery_info_09",
+      "fields": {
+        "request": "Estimate when this handset will run out at its current discharge rate."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_battery_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_media_info_13",
+      "fields": {
+        "request": "I'd like to know whether this episode can continue after I switch off mobile data."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_media_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_save_note_08",
+      "fields": {
+        "request": "Make a note that the return window ends on November 12."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "save_note"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_phone_health_check_14",
+      "fields": {
+        "request": "Something feels off, but I can't identify a single subsystem; examine the phone's condition."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "phone_health_check"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_media_info_16",
+      "fields": {
+        "request": "Give me the duration recorded in the active track's metadata, not a list of audio files."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_media_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_device_info_12",
+      "fields": {
+        "request": "An installer offers ARM and x86 downloads; which instruction set does this phone require?"
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_device_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_search_local_files_13",
+      "fields": {
+        "request": "There was a photo saved from the browser after breakfast; find that local image."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "search_local_files"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_answer_19",
+      "fields": {
+        "request": "I'm not asking about the track on my phone; what is a musical time signature?"
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "answer"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_battery_info_18",
+      "fields": {
+        "request": "I'm asking for this handset's live cell voltage, not its advertised battery capacity."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_battery_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_save_note_03",
+      "fields": {
+        "request": "Store the decision that our team lunch will be vegetarian."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "save_note"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_search_notes_07",
+      "fields": {
+        "request": "What refund reference did I save after the cancelled journey?"
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "search_notes"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_battery_info_06",
+      "fields": {
+        "request": "Is the power pack losing charge while the cable is attached?"
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_battery_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_phone_health_check_15",
+      "fields": {
+        "request": "Before a live stream, consider power, temperature and resource headroom together."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "phone_health_check"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_phone_health_check_04",
+      "fields": {
+        "request": "Investigate the device-wide slowdown I've noticed since this morning."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "phone_health_check"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_search_notes_11",
+      "fields": {
+        "request": "I wrote down the caretaker's contact details so I wouldn't lose them; retrieve that entry."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "search_notes"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_answer_18",
+      "fields": {
+        "request": "Don't store this anywhere: help me invent a mnemonic for the planets."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "answer"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_battery_info_07",
+      "fields": {
+        "request": "Compare its remaining full-charge capacity with when it was new."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_battery_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_search_local_files_17",
+      "fields": {
+        "request": "Locate a text file called charging-log.txt rather than reading the current battery sensor."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "search_local_files"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_device_info_14",
+      "fields": {
+        "request": "The shop listing was vague about SIM support; can this handset accommodate two lines?"
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_device_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_battery_info_13",
+      "fields": {
+        "request": "This phone used to last longer between plugs; has its cell deteriorated?"
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_battery_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_answer_16",
+      "fields": {
+        "request": "Explain what a battery cycle means without reading anything from my handset."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "answer"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_answer_08",
+      "fields": {
+        "request": "A jacket costs 80 pounds before a 15 percent discount; work out the sale price."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "answer"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_battery_info_14",
+      "fields": {
+        "request": "I have a ninety-minute audio call ahead; judge whether the remaining charge will cover it."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_battery_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_battery_info_20",
+      "fields": {
+        "request": "Before I unplug, tell me whether charging has reached its configured limit."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_battery_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_search_notes_05",
+      "fields": {
+        "request": "Which date did I write down for the dentist visit?"
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "search_notes"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_device_info_18",
+      "fields": {
+        "request": "Which audio codecs does this handset support, regardless of the current track?"
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_device_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_media_info_08",
+      "fields": {
+        "request": "Tell me whether repeat is enabled for the playing track."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_media_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_device_info_02",
+      "fields": {
+        "request": "How much physical working memory was fitted at the factory?"
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_device_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_answer_06",
+      "fields": {
+        "request": "Give me a memorable name for a neighbourhood gardening club."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "answer"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_battery_info_02",
+      "fields": {
+        "request": "Which power source is topping up this handset at the moment?"
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_battery_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_storage_info_20",
+      "fields": {
+        "request": "Report remaining disk capacity without retrieving anything from my saved notes."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_storage_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_search_notes_09",
+      "fields": {
+        "request": "Read the packing checklist from my notes collection."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "search_notes"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_phone_health_check_09",
+      "fields": {
+        "request": "Assess charge and available recording capacity together before my interview."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "phone_health_check"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_answer_02",
+      "fields": {
+        "request": "Split a 96-dollar dinner bill equally among six guests."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "answer"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_storage_info_08",
+      "fields": {
+        "request": "Show how much space the Downloads directory occupies."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_storage_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_answer_03",
+      "fields": {
+        "request": "Draft a polite message declining a weekend invitation."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "answer"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_battery_info_17",
+      "fields": {
+        "request": "With every other factor held constant, would the remaining charge cover another hour of recording?"
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_battery_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_media_info_18",
+      "fields": {
+        "request": "Read the volume setting for the active media stream; leave hardware specifications aside."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_media_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_storage_info_10",
+      "fields": {
+        "request": "Which storage volume is closest to its capacity limit?"
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_storage_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_save_note_14",
+      "fields": {
+        "request": "Let's keep a written record of what we agreed: the prototype ships without the optional sensor."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "save_note"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_answer_07",
+      "fields": {
+        "request": "What makes a lunar eclipse different from a solar eclipse?"
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "answer"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_answer_15",
+      "fields": {
+        "request": "I need a gentle way to tell a colleague that the deadline is unrealistic."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "answer"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_media_info_19",
+      "fields": {
+        "request": "The audiobook is already open; tell me its chapter title without searching my notes."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_media_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_storage_info_18",
+      "fields": {
+        "request": "I'm interested in this phone's mounted volumes, not the brand of its flash chip."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_storage_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_phone_health_check_20",
+      "fields": {
+        "request": "The model specifications are known; use live device condition to judge whether to start the workload."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "phone_health_check"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_save_note_16",
+      "fields": {
+        "request": "Don't search old notes; create a new one saying the inspection moved to Friday afternoon."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "save_note"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_phone_health_check_08",
+      "fields": {
+        "request": "Check thermal state and free memory before I launch a local inference workload."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "phone_health_check"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_search_notes_13",
+      "fields": {
+        "request": "I can't recall the meeting point, but I entered it in my notes after the call; read it back."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "search_notes"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_save_note_10",
+      "fields": {
+        "request": "Put the workshop address in my notes: 18 Cedar Lane, Unit 4."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "save_note"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_device_info_20",
+      "fields": {
+        "request": "Tell me how much RAM this model was manufactured with, rather than current free disk space."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_device_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_answer_17",
+      "fields": {
+        "request": "Describe the difference between RAM and disk capacity in general."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "answer"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_phone_health_check_17",
+      "fields": {
+        "request": "Check both disk headroom and charging state; I need the two readings in one assessment."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "phone_health_check"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_device_info_19",
+      "fields": {
+        "request": "Read the installed OS build string; leave operating condition checks for later."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_device_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_save_note_09",
+      "fields": {
+        "request": "Save my preference for an aisle seat on overnight journeys."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "save_note"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_save_note_07",
+      "fields": {
+        "request": "Record the rental agency's extension, 604, for later."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "save_note"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_media_info_17",
+      "fields": {
+        "request": "I want the current playback queue, rather than documents containing song titles."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_media_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_battery_info_16",
+      "fields": {
+        "request": "Ignore disk capacity; I only want the battery's condition and remaining percentage."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_battery_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_save_note_15",
+      "fields": {
+        "request": "I'd like this available in my notes next time: the spare adapter lives in the red pouch."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "save_note"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_storage_info_19",
+      "fields": {
+        "request": "Leave charge levels aside; would disk capacity alone prevent installing a 3 GB package?"
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_storage_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_save_note_18",
+      "fields": {
+        "request": "Record this hardware fact in my notes: the meeting-room display accepts USB-C input."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "save_note"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_media_info_03",
+      "fields": {
+        "request": "Is playback paused or advancing right now?"
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_media_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_phone_health_check_18",
+      "fields": {
+        "request": "I'm asking whether this handset can run inference now, considering its present resources and heat."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "phone_health_check"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_device_info_01",
+      "fields": {
+        "request": "Identify the product code printed in this handset's system information."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_device_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_device_info_07",
+      "fields": {
+        "request": "What maximum refresh rate does this handset's display support?"
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_device_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_storage_info_01",
+      "fields": {
+        "request": "How many gigabytes can I still write to internal storage?"
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_storage_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_phone_health_check_06",
+      "fields": {
+        "request": "Tell me whether this device is fit for an extended video conference today."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "phone_health_check"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_media_info_12",
+      "fields": {
+        "request": "I lost my place during the interruption; where is the player positioned now?"
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_media_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_battery_info_11",
+      "fields": {
+        "request": "The lightning symbol appeared, but I can't tell whether energy is actually flowing in."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_battery_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_save_note_13",
+      "fields": {
+        "request": "When I ask later, remind me of this recorded fact: the cat's medicine is kept on the top shelf."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "save_note"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_search_local_files_04",
+      "fields": {
+        "request": "Which local document contains the phrase 'payment upon delivery'?"
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "search_local_files"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_device_info_17",
+      "fields": {
+        "request": "Give me the advertised cell capacity for this model rather than today's charge reading."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_device_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_battery_info_10",
+      "fields": {
+        "request": "Tell me whether the phone is drawing power from the charging pad."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_battery_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_search_local_files_18",
+      "fields": {
+        "request": "Find a PDF about memory cards; I am asking for a document, not storage statistics."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "search_local_files"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_search_local_files_01",
+      "fields": {
+        "request": "Locate the spreadsheet whose filename starts with vendor-prices."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "search_local_files"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_get_device_info_03",
+      "fields": {
+        "request": "Which Android security patch date is installed here?"
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "get_device_info"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_search_notes_15",
+      "fields": {
+        "request": "I'd like the instructions I previously recorded for watering the seedlings."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "search_notes"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_search_local_files_15",
+      "fields": {
+        "request": "The backup archive landed in Downloads sometime over the weekend; locate the file."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "search_local_files"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    },
+    {
+      "id": "fresh180_search_local_files_02",
+      "fields": {
+        "request": "Find the PDF I downloaded from the council portal last Friday."
+      },
+      "responses": [
+        {
+          "values": {
+            "correct_route": {
+              "value": "search_local_files"
+            },
+            "review_decision": {
+              "value": "accept"
+            }
+          },
+          "status": "submitted",
+          "user_id": "3d42eca8-f5aa-4e3e-8c85-a22996710b59"
+        }
+      ]
+    }
+  ],
+  "status": "review_only_not_frozen"
+}

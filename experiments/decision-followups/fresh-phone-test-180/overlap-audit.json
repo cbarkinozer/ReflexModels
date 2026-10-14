@@ -1,0 +1,909 @@
+{
+  "exact_overlap": 0,
+  "existing_unique_requests": 1096,
+  "candidate_count": 180,
+  "candidate_sha256": "24c6175b0060275f6fcd5d68168617977e5f891fccaef34840cbf78e788fba5a",
+  "method": "Normalized exact check and character SequenceMatcher screening; not proof of semantic independence. Includes submitted snapshot plus original phone source JSONL splits.",
+  "pairs": [
+    {
+      "id": "fresh180_get_device_info_05",
+      "similarity": 0.7164,
+      "nearest_existing": "does this phone support wi fi 6"
+    },
+    {
+      "id": "fresh180_search_notes_05",
+      "similarity": 0.7045,
+      "nearest_existing": "what time did i write down for the call"
+    },
+    {
+      "id": "fresh180_answer_17",
+      "similarity": 0.6727,
+      "nearest_existing": "what is the difference between ram and storage"
+    },
+    {
+      "id": "fresh180_get_media_info_09",
+      "similarity": 0.6364,
+      "nearest_existing": "can i download this for offline listening"
+    },
+    {
+      "id": "fresh180_get_media_info_03",
+      "similarity": 0.6341,
+      "nearest_existing": "is my battery rising or falling right now"
+    },
+    {
+      "id": "fresh180_search_notes_02",
+      "similarity": 0.6286,
+      "nearest_existing": "what measurement did i save for the furniture"
+    },
+    {
+      "id": "fresh180_search_notes_10",
+      "similarity": 0.6279,
+      "nearest_existing": "what time did i write down for the call"
+    },
+    {
+      "id": "fresh180_get_battery_info_01",
+      "similarity": 0.619,
+      "nearest_existing": "what percentage of the phone is full"
+    },
+    {
+      "id": "fresh180_get_device_info_04",
+      "similarity": 0.6173,
+      "nearest_existing": "what is the chip inside this phone"
+    },
+    {
+      "id": "fresh180_get_storage_info_04",
+      "similarity": 0.6173,
+      "nearest_existing": "what is the internal storage size"
+    },
+    {
+      "id": "fresh180_get_media_info_02",
+      "similarity": 0.6154,
+      "nearest_existing": "how many seconds in a day"
+    },
+    {
+      "id": "fresh180_get_device_info_02",
+      "similarity": 0.6154,
+      "nearest_existing": "how much physical memory does this device have"
+    },
+    {
+      "id": "fresh180_search_local_files_08",
+      "similarity": 0.6133,
+      "nearest_existing": "search my phone for a file ending in csv"
+    },
+    {
+      "id": "fresh180_search_notes_07",
+      "similarity": 0.6095,
+      "nearest_existing": "what measurement did i save for the furniture"
+    },
+    {
+      "id": "fresh180_search_local_files_03",
+      "similarity": 0.6078,
+      "nearest_existing": "find the file i received via bluetooth"
+    },
+    {
+      "id": "fresh180_get_device_info_07",
+      "similarity": 0.6038,
+      "nearest_existing": "what cpu architecture does this phone support"
+    },
+    {
+      "id": "fresh180_search_notes_08",
+      "similarity": 0.6022,
+      "nearest_existing": "find the note i made about the software license"
+    },
+    {
+      "id": "fresh180_get_storage_info_08",
+      "similarity": 0.6,
+      "nearest_existing": "how much space do downloaded files use"
+    },
+    {
+      "id": "fresh180_get_device_info_03",
+      "similarity": 0.5981,
+      "nearest_existing": "what android release version is installed on this device"
+    },
+    {
+      "id": "fresh180_get_battery_info_05",
+      "similarity": 0.5977,
+      "nearest_existing": "what percentage of the phone is full"
+    },
+    {
+      "id": "fresh180_search_local_files_02",
+      "similarity": 0.5962,
+      "nearest_existing": "locate the file i downloaded from the email"
+    },
+    {
+      "id": "fresh180_search_local_files_05",
+      "similarity": 0.5952,
+      "nearest_existing": "look for image files i downloaded"
+    },
+    {
+      "id": "fresh180_search_local_files_09",
+      "similarity": 0.5918,
+      "nearest_existing": "locate the file i downloaded from the email"
+    },
+    {
+      "id": "fresh180_get_battery_info_04",
+      "similarity": 0.5895,
+      "nearest_existing": "how many rear cameras does this phone have"
+    },
+    {
+      "id": "fresh180_search_notes_04",
+      "similarity": 0.5882,
+      "nearest_existing": "what measurement did i save for the furniture"
+    },
+    {
+      "id": "fresh180_get_device_info_06",
+      "similarity": 0.5814,
+      "nearest_existing": "what is the release year of this phone"
+    },
+    {
+      "id": "fresh180_get_storage_info_01",
+      "similarity": 0.5806,
+      "nearest_existing": "how many minutes until the phone dies"
+    },
+    {
+      "id": "fresh180_search_local_files_10",
+      "similarity": 0.58,
+      "nearest_existing": "find the file i received from my colleague"
+    },
+    {
+      "id": "fresh180_answer_06",
+      "similarity": 0.58,
+      "nearest_existing": "give me a one line joke about programming"
+    },
+    {
+      "id": "fresh180_get_storage_info_05",
+      "similarity": 0.5745,
+      "nearest_existing": "what is the bpm of the current track"
+    },
+    {
+      "id": "fresh180_get_device_info_09",
+      "similarity": 0.5688,
+      "nearest_existing": "what is the hardware configuration of this device"
+    },
+    {
+      "id": "fresh180_save_note_07",
+      "similarity": 0.5684,
+      "nearest_existing": "find the colleague s extension number i saved"
+    },
+    {
+      "id": "fresh180_get_media_info_10",
+      "similarity": 0.5679,
+      "nearest_existing": "what video file is playing"
+    },
+    {
+      "id": "fresh180_get_storage_info_06",
+      "similarity": 0.56,
+      "nearest_existing": "how much space is taken by apps"
+    },
+    {
+      "id": "fresh180_search_notes_09",
+      "similarity": 0.557,
+      "nearest_existing": "find the packing list i made"
+    },
+    {
+      "id": "fresh180_save_note_04",
+      "similarity": 0.5545,
+      "nearest_existing": "remember to call about the package on thursday"
+    },
+    {
+      "id": "fresh180_get_battery_info_10",
+      "similarity": 0.5524,
+      "nearest_existing": "is my phone in shape for the camping trip"
+    },
+    {
+      "id": "fresh180_save_note_01",
+      "similarity": 0.5517,
+      "nearest_existing": "note that the api key is abc123xyz"
+    },
+    {
+      "id": "fresh180_get_device_info_18",
+      "similarity": 0.5487,
+      "nearest_existing": "what is the isrc of the current track"
+    },
+    {
+      "id": "fresh180_get_media_info_06",
+      "similarity": 0.5455,
+      "nearest_existing": "what device model is running this app"
+    },
+    {
+      "id": "fresh180_get_media_info_07",
+      "similarity": 0.5455,
+      "nearest_existing": "is my offline playlist synced"
+    },
+    {
+      "id": "fresh180_answer_07",
+      "similarity": 0.5437,
+      "nearest_existing": "what is the difference between ram and storage"
+    },
+    {
+      "id": "fresh180_get_battery_info_16",
+      "similarity": 0.541,
+      "nearest_existing": "how is battery life and remaining storage"
+    },
+    {
+      "id": "fresh180_phone_health_check_03",
+      "similarity": 0.5401,
+      "nearest_existing": "check if the phone is overheating and running out of space"
+    },
+    {
+      "id": "fresh180_search_local_files_04",
+      "similarity": 0.5385,
+      "nearest_existing": "find documents containing travel itinerary"
+    },
+    {
+      "id": "fresh180_get_battery_info_03",
+      "similarity": 0.5366,
+      "nearest_existing": "is the battery temperature normal"
+    },
+    {
+      "id": "fresh180_phone_health_check_07",
+      "similarity": 0.5333,
+      "nearest_existing": "what is the phone s geekbench single core score"
+    },
+    {
+      "id": "fresh180_save_note_08",
+      "similarity": 0.5319,
+      "nearest_existing": "remember that the event is december 15th"
+    },
+    {
+      "id": "fresh180_get_battery_info_06",
+      "similarity": 0.5294,
+      "nearest_existing": "what is the amperage going into the battery"
+    },
+    {
+      "id": "fresh180_search_notes_03",
+      "similarity": 0.5287,
+      "nearest_existing": "find documents containing travel itinerary"
+    },
+    {
+      "id": "fresh180_get_media_info_08",
+      "similarity": 0.5275,
+      "nearest_existing": "what is the bpm of the current track"
+    },
+    {
+      "id": "fresh180_answer_05",
+      "similarity": 0.5263,
+      "nearest_existing": "who is the artist of this song"
+    },
+    {
+      "id": "fresh180_get_storage_info_07",
+      "similarity": 0.5253,
+      "nearest_existing": "will this phone make it through the night"
+    },
+    {
+      "id": "fresh180_get_storage_info_11",
+      "similarity": 0.5234,
+      "nearest_existing": "is there room for a 600mb gguf file"
+    },
+    {
+      "id": "fresh180_get_storage_info_02",
+      "similarity": 0.5217,
+      "nearest_existing": "what is the total memory of this device"
+    },
+    {
+      "id": "fresh180_get_battery_info_02",
+      "similarity": 0.5208,
+      "nearest_existing": "what type of storage is in this phone"
+    },
+    {
+      "id": "fresh180_phone_health_check_09",
+      "similarity": 0.5203,
+      "nearest_existing": "check battery level and available storage for me"
+    },
+    {
+      "id": "fresh180_search_local_files_01",
+      "similarity": 0.52,
+      "nearest_existing": "find the spreadsheet with my expenses"
+    },
+    {
+      "id": "fresh180_search_local_files_06",
+      "similarity": 0.5179,
+      "nearest_existing": "find the presentation file i saved yesterday"
+    },
+    {
+      "id": "fresh180_get_media_info_04",
+      "similarity": 0.5176,
+      "nearest_existing": "how long has this song been playing"
+    },
+    {
+      "id": "fresh180_get_storage_info_13",
+      "similarity": 0.5161,
+      "nearest_existing": "what is the ram capacity of my phone"
+    },
+    {
+      "id": "fresh180_get_device_info_10",
+      "similarity": 0.5149,
+      "nearest_existing": "what is the device identification"
+    },
+    {
+      "id": "fresh180_save_note_05",
+      "similarity": 0.5128,
+      "nearest_existing": "add this to my notes"
+    },
+    {
+      "id": "fresh180_get_media_info_05",
+      "similarity": 0.5122,
+      "nearest_existing": "identify the current audio track"
+    },
+    {
+      "id": "fresh180_answer_09",
+      "similarity": 0.5122,
+      "nearest_existing": "what time is the meeting i noted"
+    },
+    {
+      "id": "fresh180_phone_health_check_15",
+      "similarity": 0.5116,
+      "nearest_existing": "are battery temperature and storage space both okay"
+    },
+    {
+      "id": "fresh180_get_device_info_16",
+      "similarity": 0.5106,
+      "nearest_existing": "what android release version is installed on this device"
+    },
+    {
+      "id": "fresh180_search_local_files_07",
+      "similarity": 0.5106,
+      "nearest_existing": "find the note with my bank account info"
+    },
+    {
+      "id": "fresh180_search_notes_01",
+      "similarity": 0.5102,
+      "nearest_existing": "remember the guest wifi is guestpass2026"
+    },
+    {
+      "id": "fresh180_get_device_info_08",
+      "similarity": 0.5102,
+      "nearest_existing": "what generation of bluetooth does this phone support"
+    },
+    {
+      "id": "fresh180_save_note_09",
+      "similarity": 0.5102,
+      "nearest_existing": "search my phone for a file ending in csv"
+    },
+    {
+      "id": "fresh180_get_media_info_12",
+      "similarity": 0.5085,
+      "nearest_existing": "is my battery draining even while plugged in"
+    },
+    {
+      "id": "fresh180_get_device_info_01",
+      "similarity": 0.5079,
+      "nearest_existing": "what is the official name of this phone s system on chip"
+    },
+    {
+      "id": "fresh180_get_storage_info_16",
+      "similarity": 0.5043,
+      "nearest_existing": "is there storage available for the model file"
+    },
+    {
+      "id": "fresh180_get_battery_info_19",
+      "similarity": 0.5043,
+      "nearest_existing": "how are battery temperature and disk usage"
+    },
+    {
+      "id": "fresh180_search_local_files_14",
+      "similarity": 0.5039,
+      "nearest_existing": "what booking confirmation is in my notes"
+    },
+    {
+      "id": "fresh180_get_media_info_01",
+      "similarity": 0.5,
+      "nearest_existing": "what is the album name for the current song"
+    },
+    {
+      "id": "fresh180_save_note_20",
+      "similarity": 0.5,
+      "nearest_existing": "what did i note about the party planning"
+    },
+    {
+      "id": "fresh180_search_notes_17",
+      "similarity": 0.5,
+      "nearest_existing": "can i browse the internet for an hour on this battery"
+    },
+    {
+      "id": "fresh180_phone_health_check_04",
+      "similarity": 0.5,
+      "nearest_existing": "what did i jot down this morning"
+    },
+    {
+      "id": "fresh180_phone_health_check_19",
+      "similarity": 0.4956,
+      "nearest_existing": "search for any exported chat history files"
+    },
+    {
+      "id": "fresh180_get_storage_info_10",
+      "similarity": 0.4946,
+      "nearest_existing": "will battery and storage be issues today"
+    },
+    {
+      "id": "fresh180_search_notes_16",
+      "similarity": 0.4921,
+      "nearest_existing": "what is the storage breakdown on this phone"
+    },
+    {
+      "id": "fresh180_get_battery_info_09",
+      "similarity": 0.4915,
+      "nearest_existing": "tell me everything about my phone s current state"
+    },
+    {
+      "id": "fresh180_get_storage_info_09",
+      "similarity": 0.4898,
+      "nearest_existing": "what is the difference between ram and storage"
+    },
+    {
+      "id": "fresh180_search_notes_06",
+      "similarity": 0.4894,
+      "nearest_existing": "find the note with my bank account info"
+    },
+    {
+      "id": "fresh180_answer_04",
+      "similarity": 0.4872,
+      "nearest_existing": "explain what a podcast is"
+    },
+    {
+      "id": "fresh180_get_battery_info_07",
+      "similarity": 0.486,
+      "nearest_existing": "show me storage capacity and current battery"
+    },
+    {
+      "id": "fresh180_get_device_info_15",
+      "similarity": 0.4853,
+      "nearest_existing": "what is the hardware architecture of the main processor"
+    },
+    {
+      "id": "fresh180_search_local_files_15",
+      "similarity": 0.4848,
+      "nearest_existing": "search my downloaded folder for the application form"
+    },
+    {
+      "id": "fresh180_search_notes_12",
+      "similarity": 0.4842,
+      "nearest_existing": "is there a note about that"
+    },
+    {
+      "id": "fresh180_get_battery_info_13",
+      "similarity": 0.4839,
+      "nearest_existing": "what is the difference between a virus and a bacterium"
+    },
+    {
+      "id": "fresh180_get_media_info_14",
+      "similarity": 0.4833,
+      "nearest_existing": "check my phone s charging status and available ram"
+    },
+    {
+      "id": "fresh180_get_media_info_16",
+      "similarity": 0.4818,
+      "nearest_existing": "is my phone in a good state to start a long ai task"
+    },
+    {
+      "id": "fresh180_save_note_18",
+      "similarity": 0.4818,
+      "nearest_existing": "what is the hardware architecture of the main processor"
+    },
+    {
+      "id": "fresh180_save_note_06",
+      "similarity": 0.4808,
+      "nearest_existing": "is there room for the os update package"
+    },
+    {
+      "id": "fresh180_answer_19",
+      "similarity": 0.4793,
+      "nearest_existing": "note down hotel check in is at 3pm on saturday"
+    },
+    {
+      "id": "fresh180_search_local_files_13",
+      "similarity": 0.4786,
+      "nearest_existing": "is there room for the os update package"
+    },
+    {
+      "id": "fresh180_answer_16",
+      "similarity": 0.4786,
+      "nearest_existing": "how long will my battery last at this rate"
+    },
+    {
+      "id": "fresh180_get_media_info_19",
+      "similarity": 0.4769,
+      "nearest_existing": "is my phone in shape for a hike with no charging"
+    },
+    {
+      "id": "fresh180_get_device_info_19",
+      "similarity": 0.4769,
+      "nearest_existing": "save the server s recommendation try the meze platter"
+    },
+    {
+      "id": "fresh180_save_note_03",
+      "similarity": 0.4762,
+      "nearest_existing": "is the registration form i downloaded still here"
+    },
+    {
+      "id": "fresh180_search_local_files_17",
+      "similarity": 0.4755,
+      "nearest_existing": "is the charging cable working based on battery reading"
+    },
+    {
+      "id": "fresh180_get_storage_info_03",
+      "similarity": 0.4754,
+      "nearest_existing": "search my downloaded folder for the application form"
+    },
+    {
+      "id": "fresh180_get_storage_info_18",
+      "similarity": 0.4754,
+      "nearest_existing": "is this phone manufactured in korea or china"
+    },
+    {
+      "id": "fresh180_phone_health_check_01",
+      "similarity": 0.4752,
+      "nearest_existing": "what is this device s instruction set"
+    },
+    {
+      "id": "fresh180_save_note_02",
+      "similarity": 0.4731,
+      "nearest_existing": "write a motivational sentence for a runner"
+    },
+    {
+      "id": "fresh180_get_media_info_18",
+      "similarity": 0.4714,
+      "nearest_existing": "check the phone s battery and hardware specs together"
+    },
+    {
+      "id": "fresh180_save_note_10",
+      "similarity": 0.4706,
+      "nearest_existing": "what address did i note down"
+    },
+    {
+      "id": "fresh180_search_notes_14",
+      "similarity": 0.4696,
+      "nearest_existing": "what was that address i saved for the pharmacy"
+    },
+    {
+      "id": "fresh180_search_notes_11",
+      "similarity": 0.4681,
+      "nearest_existing": "save the server s recommendation try the meze platter"
+    },
+    {
+      "id": "fresh180_answer_08",
+      "similarity": 0.4677,
+      "nearest_existing": "do a quick check before i present to the client"
+    },
+    {
+      "id": "fresh180_get_media_info_17",
+      "similarity": 0.4667,
+      "nearest_existing": "find documents containing travel itinerary"
+    },
+    {
+      "id": "fresh180_answer_03",
+      "similarity": 0.4651,
+      "nearest_existing": "what is the device identification"
+    },
+    {
+      "id": "fresh180_get_device_info_12",
+      "similarity": 0.464,
+      "nearest_existing": "what sim card size does this phone use"
+    },
+    {
+      "id": "fresh180_get_battery_info_12",
+      "similarity": 0.4615,
+      "nearest_existing": "what type of storage is in this phone"
+    },
+    {
+      "id": "fresh180_search_notes_15",
+      "similarity": 0.4615,
+      "nearest_existing": "locate the file i downloaded from the email"
+    },
+    {
+      "id": "fresh180_get_battery_info_08",
+      "similarity": 0.4602,
+      "nearest_existing": "what is the smallest country in the world"
+    },
+    {
+      "id": "fresh180_get_media_info_15",
+      "similarity": 0.4602,
+      "nearest_existing": "is my phone charging faster on this adapter"
+    },
+    {
+      "id": "fresh180_phone_health_check_11",
+      "similarity": 0.4593,
+      "nearest_existing": "is everything okay to start a model download and run"
+    },
+    {
+      "id": "fresh180_phone_health_check_08",
+      "similarity": 0.4593,
+      "nearest_existing": "check my battery level and let me know if i should charge"
+    },
+    {
+      "id": "fresh180_phone_health_check_17",
+      "similarity": 0.4593,
+      "nearest_existing": "check if i can both call and browse without issues"
+    },
+    {
+      "id": "fresh180_get_device_info_17",
+      "similarity": 0.459,
+      "nearest_existing": "give me battery and storage readings"
+    },
+    {
+      "id": "fresh180_search_notes_18",
+      "similarity": 0.458,
+      "nearest_existing": "is my battery normal temperature for this weather"
+    },
+    {
+      "id": "fresh180_answer_13",
+      "similarity": 0.4576,
+      "nearest_existing": "remember to call about the package on thursday"
+    },
+    {
+      "id": "fresh180_phone_health_check_06",
+      "similarity": 0.4576,
+      "nearest_existing": "is my device info current and is storage okay"
+    },
+    {
+      "id": "fresh180_get_media_info_11",
+      "similarity": 0.4561,
+      "nearest_existing": "what is the storage capacity of this phone"
+    },
+    {
+      "id": "fresh180_search_local_files_11",
+      "similarity": 0.4538,
+      "nearest_existing": "how much space is left on the device"
+    },
+    {
+      "id": "fresh180_search_local_files_19",
+      "similarity": 0.4526,
+      "nearest_existing": "save the server s recommendation try the meze platter"
+    },
+    {
+      "id": "fresh180_get_battery_info_18",
+      "similarity": 0.4522,
+      "nearest_existing": "what percentage is my battery at"
+    },
+    {
+      "id": "fresh180_phone_health_check_05",
+      "similarity": 0.4516,
+      "nearest_existing": "what is the raw storage capacity before formatting"
+    },
+    {
+      "id": "fresh180_get_device_info_20",
+      "similarity": 0.4511,
+      "nearest_existing": "is this phone manufactured in korea or china"
+    },
+    {
+      "id": "fresh180_search_notes_19",
+      "similarity": 0.4496,
+      "nearest_existing": "search for any exported chat history files"
+    },
+    {
+      "id": "fresh180_save_note_16",
+      "similarity": 0.4493,
+      "nearest_existing": "search for files containing the phrase renewal date"
+    },
+    {
+      "id": "fresh180_search_local_files_18",
+      "similarity": 0.448,
+      "nearest_existing": "search my phone for a document about insurance"
+    },
+    {
+      "id": "fresh180_search_local_files_12",
+      "similarity": 0.4478,
+      "nearest_existing": "remember to renew insurance before march"
+    },
+    {
+      "id": "fresh180_answer_20",
+      "similarity": 0.4463,
+      "nearest_existing": "what flight booking reference did i save"
+    },
+    {
+      "id": "fresh180_answer_18",
+      "similarity": 0.4444,
+      "nearest_existing": "save this helpline number for me"
+    },
+    {
+      "id": "fresh180_save_note_15",
+      "similarity": 0.4427,
+      "nearest_existing": "save this for later read the quarterly report"
+    },
+    {
+      "id": "fresh180_phone_health_check_12",
+      "similarity": 0.4409,
+      "nearest_existing": "is my battery getting worse over time"
+    },
+    {
+      "id": "fresh180_get_device_info_11",
+      "similarity": 0.4404,
+      "nearest_existing": "is this device compatible with armv8 2"
+    },
+    {
+      "id": "fresh180_save_note_13",
+      "similarity": 0.4394,
+      "nearest_existing": "what is the name of the track that is on"
+    },
+    {
+      "id": "fresh180_search_local_files_16",
+      "similarity": 0.439,
+      "nearest_existing": "find the backup i made of my notes"
+    },
+    {
+      "id": "fresh180_answer_01",
+      "similarity": 0.4381,
+      "nearest_existing": "what song came on after the last one"
+    },
+    {
+      "id": "fresh180_search_notes_20",
+      "similarity": 0.438,
+      "nearest_existing": "save the server s recommendation try the meze platter"
+    },
+    {
+      "id": "fresh180_search_local_files_20",
+      "similarity": 0.4375,
+      "nearest_existing": "show me this device s specifications"
+    },
+    {
+      "id": "fresh180_save_note_11",
+      "similarity": 0.4375,
+      "nearest_existing": "will this phone make it through the night"
+    },
+    {
+      "id": "fresh180_phone_health_check_10",
+      "similarity": 0.437,
+      "nearest_existing": "tell me everything about my phone s current state"
+    },
+    {
+      "id": "fresh180_save_note_19",
+      "similarity": 0.4366,
+      "nearest_existing": "save the appointment for next thursday at noon"
+    },
+    {
+      "id": "fresh180_get_battery_info_17",
+      "similarity": 0.4366,
+      "nearest_existing": "remember to call about the package on thursday"
+    },
+    {
+      "id": "fresh180_search_notes_13",
+      "similarity": 0.4366,
+      "nearest_existing": "can i browse the internet for an hour on this battery"
+    },
+    {
+      "id": "fresh180_answer_10",
+      "similarity": 0.4348,
+      "nearest_existing": "what soc does this phone use"
+    },
+    {
+      "id": "fresh180_get_battery_info_15",
+      "similarity": 0.4348,
+      "nearest_existing": "save the book title i want to read midnight in chernobyl"
+    },
+    {
+      "id": "fresh180_answer_15",
+      "similarity": 0.4348,
+      "nearest_existing": "give me a complete status before i head out"
+    },
+    {
+      "id": "fresh180_get_storage_info_15",
+      "similarity": 0.4324,
+      "nearest_existing": "what version of android is installed"
+    },
+    {
+      "id": "fresh180_get_storage_info_19",
+      "similarity": 0.432,
+      "nearest_existing": "do i have enough space to install an app"
+    },
+    {
+      "id": "fresh180_phone_health_check_02",
+      "similarity": 0.431,
+      "nearest_existing": "give me a one line joke about programming"
+    },
+    {
+      "id": "fresh180_phone_health_check_14",
+      "similarity": 0.4296,
+      "nearest_existing": "search for any file with recipe in the content"
+    },
+    {
+      "id": "fresh180_get_media_info_20",
+      "similarity": 0.4286,
+      "nearest_existing": "is the media playing on speakerphone"
+    },
+    {
+      "id": "fresh180_answer_02",
+      "similarity": 0.4286,
+      "nearest_existing": "is there a file called itinerary on my phone"
+    },
+    {
+      "id": "fresh180_get_media_info_13",
+      "similarity": 0.4274,
+      "nearest_existing": "what song came on after the last one"
+    },
+    {
+      "id": "fresh180_phone_health_check_13",
+      "similarity": 0.4242,
+      "nearest_existing": "do i need to delete files before taking photos"
+    },
+    {
+      "id": "fresh180_get_device_info_13",
+      "similarity": 0.4237,
+      "nearest_existing": "what neural processing unit is on this chip"
+    },
+    {
+      "id": "fresh180_save_note_17",
+      "similarity": 0.4228,
+      "nearest_existing": "is this device ready for the next 8 hours"
+    },
+    {
+      "id": "fresh180_answer_14",
+      "similarity": 0.4211,
+      "nearest_existing": "explain the difference between their there and they re"
+    },
+    {
+      "id": "fresh180_get_storage_info_14",
+      "similarity": 0.4203,
+      "nearest_existing": "i need to know about both battery and free space"
+    },
+    {
+      "id": "fresh180_get_device_info_14",
+      "similarity": 0.4186,
+      "nearest_existing": "does this device support av1 hardware decoding"
+    },
+    {
+      "id": "fresh180_answer_11",
+      "similarity": 0.4174,
+      "nearest_existing": "check my battery and storage at the same time"
+    },
+    {
+      "id": "fresh180_get_battery_info_14",
+      "similarity": 0.4167,
+      "nearest_existing": "note this car service reminder oil change every 10 000km"
+    },
+    {
+      "id": "fresh180_save_note_12",
+      "similarity": 0.416,
+      "nearest_existing": "locate the file i downloaded from the email"
+    },
+    {
+      "id": "fresh180_save_note_14",
+      "similarity": 0.416,
+      "nearest_existing": "what are the specs of this phone"
+    },
+    {
+      "id": "fresh180_get_battery_info_20",
+      "similarity": 0.4138,
+      "nearest_existing": "is my charging speed fast or slow right now"
+    },
+    {
+      "id": "fresh180_phone_health_check_16",
+      "similarity": 0.4122,
+      "nearest_existing": "is my current charge enough for the meeting"
+    },
+    {
+      "id": "fresh180_get_storage_info_12",
+      "similarity": 0.4122,
+      "nearest_existing": "both my battery and storage feel low check both"
+    },
+    {
+      "id": "fresh180_answer_12",
+      "similarity": 0.4103,
+      "nearest_existing": "is my phone charging faster on this adapter"
+    },
+    {
+      "id": "fresh180_get_storage_info_20",
+      "similarity": 0.4038,
+      "nearest_existing": "find something in my notes"
+    },
+    {
+      "id": "fresh180_phone_health_check_18",
+      "similarity": 0.4,
+      "nearest_existing": "explain the difference between their there and they re"
+    },
+    {
+      "id": "fresh180_get_battery_info_11",
+      "similarity": 0.3969,
+      "nearest_existing": "check if storage or battery is causing problems"
+    },
+    {
+      "id": "fresh180_get_storage_info_17",
+      "similarity": 0.391,
+      "nearest_existing": "can my phone handle a video call for an hour check specs"
+    },
+    {
+      "id": "fresh180_phone_health_check_20",
+      "similarity": 0.3857,
+      "nearest_existing": "how much space do i have for the download"
+    }
+  ]
+}

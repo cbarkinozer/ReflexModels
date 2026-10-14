@@ -1,3 +1,5 @@
+> Current status ? 2026-10-14: training and GGUF export completed previously; the release README records the original training instance as destroyed. Held-out evaluation is now complete on new RTX 4090 instance `55976079` (`ssh -p 12238 root@ssh4.vast.ai`), with a SHA-256 verified local results archive. The new instance remains running at approximately $0.53037/hour. See [held-out results](HELDOUT_EVALUATION_20261013.md). The historical execution checklist below predates this completed evaluation.
+
 # Decision fine-tunes: live handoff (2026-10-13)
 
 **Latest user direction:** download and verify all artifacts, but **do not destroy the Vast instance**. Leave it running for the user after the work; the hourly rental continues until they stop/destroy it themselves or give a new instruction.

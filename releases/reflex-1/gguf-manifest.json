@@ -2,8 +2,8 @@
   "release": "reflex-1",
   "supersedes": "reflex-1-beta (formerly reflex-1, unpublished)",
   "selected_checkpoint": "runs/combined-balanced-scratch-120step-s3407/checkpoints/checkpoint-100",
-  "validation_only": true,
-  "held_out_test_run": false,
+  "validation_only": false,
+  "held_out_test_run": true,
   "export": {
     "format": "unsloth-decision-gguf",
     "version": 1,
@@ -37,5 +37,28 @@
       "sha256": "abfea5f878331206f65e4117157984e14803b093b634c0ed52513c0723ef0699"
     }
   ],
-  "local_path": "../../experiments/decision-followups/gguf-combined-step100/"
+  "local_path": "../../experiments/decision-followups/gguf-combined-step100/",
+  "held_out_evaluation": {
+    "date": "2026-10-14",
+    "format": "PyTorch saved adapter; GGUF not evaluated",
+    "report": "../../experiments/decision-followups/HELDOUT_EVALUATION_20261013.md",
+    "accuracy": {
+      "phone_historical": {
+        "accuracy": 0.9659090909090909,
+        "rows": 88
+      },
+      "typed_decisions": {
+        "accuracy": 0.607,
+        "rows": 400
+      },
+      "banking77": {
+        "accuracy": 0.7489177489177489,
+        "rows": 462
+      },
+      "clinc150": {
+        "accuracy": 0.8111111111111111,
+        "rows": 450
+      }
+    }
+  }
 }
