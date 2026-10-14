@@ -1,0 +1,47 @@
+# Desktop continuation — 2026-10-15
+
+Current source: `73b305b`. No push or publication authorized. No GPU needed for the next phone evaluation.
+
+## Verified locally
+
+- ADB detects Samsung SM-A325F, serial `R68T800LZ0H` (connection briefly dropped during initial inspection).
+- This Mac has only the original beta GGUF under `experiments/unsloth-qwen35-08b-decision/runs/pod-backup/reflex-1-gguf/`. The selected combined release binaries are absent from this Mac's ReflexModels tree and Downloads.
+- Phone has `/sdcard/Download/models/reflex-1-Q4_K_M.gguf`, dated October 10; verified SHA `8480ccc295ac7379106f33ad76c978da5d9e8da0785e827786fe9d17f5a5beb5` confirms it is the old beta. Do not trust its name: the selected October 13 combined model must hash to `abfea5f878331206f65e4117157984e14803b093b634c0ed52513c0723ef0699`.
+- New `tools/benchmark_fresh180.py --validate-only` passes: original frozen test SHA, 180 IDs/states/gold labels, and unchanged question schema against saved reference.
+- Failure-inclusive accuracy/macro-F1 and nearest-rank p95 checks pass. Two mocked end-to-end tests pass (180 saved responses, invalid-response failure accounting, wrong-model rejection). Actual HTTP/device inference remains untested for this runner.
+- Release README now distinguishes completed held-out results and corrects the mixed source licenses. Final weight redistribution terms still need review.
+
+## Next actions
+
+1. Transfer selected combined GGUF from the laptop path in `DESKTOP_HANDOFF_20261015.md` to `experiments/decision-followups/gguf-combined-step100/model-Q4_K_M.gguf`; verify SHA above. The old file has the same byte size: size alone is insufficient. Locate/transfer adapter, head, tokenizer and calibration archives as well before packaging a release.
+2. Transfer the verified model to a distinct phone filename, e.g. `/sdcard/Download/models/reflex-1-combined-Q4_K_M.gguf`. Preserve the beta for comparisons.
+3. Inspect installed decision-capable runtime, pin its binary/source hashes and save exact startup command/log. Start with the existing beta settings, including `--no-repack`, and the frozen schema. Forward localhost port 8091. Record server PID.
+4. Run from repo root:
+
+   ```sh
+   python3 tools/benchmark_fresh180.py \
+     --adb /Users/cbarkinozer/.cache/reflex-android/platform-tools/adb \
+     --serial R68T800LZ0H \
+     --device-model /sdcard/Download/models/reflex-1-combined-Q4_K_M.gguf \
+     --runtime-revision '<verified revision and binary SHA>' \
+     --launch-command '<exact server startup command>' \
+     --pid '<server PID>' \
+     --out experiments/decision-followups/a32-fresh180/run-01
+   ```
+
+   Output directory must be new. Runner verifies the phone model SHA before inference; failures count as incorrect. Fixed order, no guard/cooldown, first request separated from remaining warm sustained requests. Saves raw responses, drift/agreement against PyTorch and full battery/thermal/memory traces. HTTP duration includes transport. It does **not** measure server load time or sample in-flight peak PSS; measure those separately. USB-powered traces do not establish energy savings. Do not change schema or tune on this cohort.
+5. Inspect full completion, failures, paired label/probability differences, per-route recall, latency and resource traces. Measure cold startup and peak memory separately; repeat matched sustained blocks where justified. No claims of superiority over Qwen without a matched fresh-180 baseline.
+6. Update model card and GGUF manifest with actual measured results; prepare adapter/head/config/tokenizer/calibration and GGUF inventories, attribution/license notes and dataset card. Keep held-out data private and models local until explicit publication request. Do not push.
+
+## Runtime inspection and artifact blocker
+
+Installed Android runtime reports `0.6.0-dev`, build `11443`, commit `f0c41e016`, Clang 21.0.0 / Android aarch64. Installed file SHA-256s:
+
+| File in `/data/local/tmp/reflex-runtime/` | SHA-256 |
+| --- | --- |
+| `llama-server` | `db82377125f69e87c06b402bba1af072e2a4c4cc9945946e4d6378cc213a84d7` |
+| `libllama-server-impl.so` | `067ddf037540476eff509d9b6f75169f849a9459c4cab0546c6cc61a7d304730` |
+| `libllama.so` | `0a1a6cdaa5889f613244e03a87fb4232a0ce9dae49b023de0759a28976026d82` |
+| `libggml-cpu-android_armv8.0_1.so` | `c55abebfdb8084c242c00a87d8b2f15f96766b2bab54b57588f6b6939e563221` |
+
+Searched this Mac's Documents, Downloads and mounted Volumes for Q4_K_M files and October 13 training archives; only the original beta model was found. The previous evaluation pod SSH endpoint `ssh6.vast.ai:10788` refuses connections. No pod was created or changed. Transfer from laptop is required before selected-model inference can begin. The phone runtime was inspected without loading the beta or starting an inference server.

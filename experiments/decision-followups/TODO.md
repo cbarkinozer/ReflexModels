@@ -4,6 +4,8 @@
 
 Start on the desktop with [DESKTOP_HANDOFF_20261015.md](DESKTOP_HANDOFF_20261015.md). This section supersedes the historical checklist below.
 
+Desktop continuation: [DESKTOP_PROGRESS_20261015.md](DESKTOP_PROGRESS_20261015.md). Frozen-180 benchmark runner is prepared and CPU-validated; current combined GGUF transfer and device inference remain pending. No push or publication authorized.
+
 - [x] Complete original annotation and independent phone/general/combined fine-tunes; select combined checkpoint 100 as reflex-1.
 - [x] Export Q4_K_M GGUF and preserve adapter/head/configs and original full training backups locally.
 - [x] Complete official general benchmark evaluations and historical phone comparison.
