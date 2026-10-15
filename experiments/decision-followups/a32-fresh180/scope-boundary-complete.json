@@ -1,0 +1,6 @@
+{
+  "stopped_worker_pid": 17020,
+  "after_completed_job": "qwen-legacy-cached-fresh180",
+  "time_unix": 1792053823.5715609,
+  "reason": "Expanded runs deferred after user objection to multi-day ETA; no request interrupted."
+}

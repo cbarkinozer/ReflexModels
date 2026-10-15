@@ -1,0 +1,129 @@
+{
+  "complete": true,
+  "rows": 180,
+  "decisions": 180,
+  "accuracy": 0.5444444444444444,
+  "record_accuracy": 0.5444444444444444,
+  "failures": 0,
+  "mean_latency_ms": 35395.459384916685,
+  "p50_latency_ms": 36321.98522950009,
+  "p95_latency_ms": 38778.471208000155,
+  "by_question": {
+    "route": {
+      "accuracy": 0.5444444444444444,
+      "macro_f1": 0.5252001986234163,
+      "per_label": {
+        "answer": {
+          "support": 20,
+          "predicted": 9,
+          "tp": 5
+        },
+        "get_battery_info": {
+          "support": 20,
+          "predicted": 18,
+          "tp": 14
+        },
+        "get_device_info": {
+          "support": 20,
+          "predicted": 14,
+          "tp": 8
+        },
+        "get_media_info": {
+          "support": 20,
+          "predicted": 22,
+          "tp": 17
+        },
+        "get_storage_info": {
+          "support": 20,
+          "predicted": 18,
+          "tp": 8
+        },
+        "phone_health_check": {
+          "support": 20,
+          "predicted": 3,
+          "tp": 3
+        },
+        "save_note": {
+          "support": 20,
+          "predicted": 22,
+          "tp": 16
+        },
+        "search_local_files": {
+          "support": 20,
+          "predicted": 45,
+          "tp": 18
+        },
+        "search_notes": {
+          "support": 20,
+          "predicted": 29,
+          "tp": 9
+        }
+      }
+    }
+  },
+  "warm": {
+    "complete": true,
+    "rows": 179,
+    "decisions": 179,
+    "accuracy": 0.547486033519553,
+    "record_accuracy": 0.547486033519553,
+    "failures": 0,
+    "mean_latency_ms": 35378.0120590894,
+    "p50_latency_ms": 36314.859042000026,
+    "p95_latency_ms": 38826.29079100025,
+    "by_question": {
+      "route": {
+        "accuracy": 0.547486033519553,
+        "macro_f1": 0.5287813011155895,
+        "per_label": {
+          "answer": {
+            "support": 19,
+            "predicted": 9,
+            "tp": 5
+          },
+          "get_battery_info": {
+            "support": 20,
+            "predicted": 17,
+            "tp": 14
+          },
+          "get_device_info": {
+            "support": 20,
+            "predicted": 14,
+            "tp": 8
+          },
+          "get_media_info": {
+            "support": 20,
+            "predicted": 22,
+            "tp": 17
+          },
+          "get_storage_info": {
+            "support": 20,
+            "predicted": 18,
+            "tp": 8
+          },
+          "phone_health_check": {
+            "support": 20,
+            "predicted": 3,
+            "tp": 3
+          },
+          "save_note": {
+            "support": 20,
+            "predicted": 22,
+            "tp": 16
+          },
+          "search_local_files": {
+            "support": 20,
+            "predicted": 45,
+            "tp": 18
+          },
+          "search_notes": {
+            "support": 20,
+            "predicted": 29,
+            "tp": 9
+          }
+        }
+      }
+    }
+  },
+  "first_request_ms": 38518.530708
+}

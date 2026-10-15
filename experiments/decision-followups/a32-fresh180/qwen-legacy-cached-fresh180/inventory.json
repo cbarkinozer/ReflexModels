@@ -1,0 +1,45 @@
+{
+  "complete": true,
+  "files": [
+    {
+      "file": "manifest.json",
+      "bytes": 59195,
+      "sha256": "81a92bc0c62ac6006c939b0036a2832cc938ee657db9e0f6ed1bdfc804211d25"
+    },
+    {
+      "file": "predictions.jsonl",
+      "bytes": 1922671,
+      "sha256": "9954bf40b6fb39f98d34af4e1cc96369de0db5a7f868faa017b90d470b4730b4"
+    },
+    {
+      "file": "progress.json",
+      "bytes": 188,
+      "sha256": "2305514d4f336a85d96864d040d4aa199887edb18c37d0adca60d9161530ddc7"
+    },
+    {
+      "file": "server-final.log",
+      "bytes": 175157,
+      "sha256": "3c3e6986002d9e092702ecdde1d3f659e15dc394a299a05c752811a342cd7e8a"
+    },
+    {
+      "file": "server.log",
+      "bytes": 175082,
+      "sha256": "adec87c3c5fb83c442a3d6a13f7b2950dbb5d2932eee863de07991da9f8ae76a"
+    },
+    {
+      "file": "startup.json",
+      "bytes": 58154,
+      "sha256": "ec495a4a581ffa5cd979dcde8489b8f89b8723e3d7ae995fc3dcb19551719086"
+    },
+    {
+      "file": "summary.json",
+      "bytes": 2968,
+      "sha256": "ce5de867ef49772a15f4eb18730d8b08b2ab8e32133b048fbb8dd6f7e2fc3e3e"
+    },
+    {
+      "file": "telemetry.jsonl",
+      "bytes": 973584,
+      "sha256": "d3b4680b1e435fdc8fb0afecbe346bd3b5aae0312b3f2fd01677eb0cf29d2344"
+    }
+  ]
+}

@@ -135,23 +135,23 @@ def generate():
     scope_path=BASE/'scope-update.json'
     scope=json.loads(scope_path.read_text()) if scope_path.exists() else None
     required=set(scope['required_jobs']) if scope else {name for name,_,_ in JOBS}
-    records=[];lines=['| Model | A32 cohort | Cases / decisions | Accuracy | Macro-F1 | Warm p50 / p95 | Errors |','| --- | --- | ---: | ---: | ---: | ---: | ---: |']
+    records=[];lines=['| Model | A32 cohort | Cases / decisions | Accuracy | Macro-F1 | Mean latency | Warm p50 / p95 | Errors |','| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |']
     for name,label,title in JOBS:
         d=BASE/name;p=d/'summary.json'
         if not p.exists() or not json.loads(p.read_text()).get('complete'):
             progress=d/'progress.json';completed=json.loads(progress.read_text()).get('completed',0) if progress.exists() else 0
             state='pending' if name in required else 'deferred'
-            lines.append(f'| {label} | {title} | {completed} completed | {state} | {state} | {state} | {state} |');continue
+            lines.append(f'| {label} | {title} | {completed} completed | {state} | {state} | {state} | {state} | {state} |');continue
         s=json.loads(p.read_text());original=name=='run-01';total=s['all_requests'] if original else s;warm=s['warm_requests'] if original else s['warm']
         decision_count=total.get('decisions',total.get('total'))
         count=total.get('rows',total.get('total'))
         macro=total.get('macro_f1')
         if macro is None and len(total.get('by_question',{}))==1:macro=next(iter(total['by_question'].values()))['macro_f1']
         macro_text=f'{100*macro:.2f}%' if macro is not None else 'per-question in report'
-        lines.append(f'| {label} | {title} | {count} / {decision_count} | {100*total["accuracy"]:.2f}% | {macro_text} | {warm["p50_latency_ms"]/1000:.2f} / {warm["p95_latency_ms"]/1000:.2f} s | {total["failures"]} |')
+        lines.append(f'| {label} | {title} | {count} / {decision_count} | {100*total["accuracy"]:.2f}% | {macro_text} | {total["mean_latency_ms"]/1000:.2f} s | {warm["p50_latency_ms"]/1000:.2f} / {warm["p95_latency_ms"]/1000:.2f} s | {total["failures"]} |')
         records.append({'directory':name,'model':label,'cohort':title,'summary':s,'resources':resources(d),'token_usage':usage_statistics(d),'groups':grouped_results(d),'calibration':calibration(d),'predictions_sha256':hashlib.sha256((d/'predictions.jsonl').read_bytes()).hexdigest()})
     text='\n'.join(lines)
-    resource_lines=['| Model | A32 cohort | Battery min–max | AP max | Android thermal status max | Sampled max PSS | RSS high-water |', '| --- | --- | ---: | ---: | ---: | ---: | ---: |']
+    resource_lines=['| Model | A32 cohort | Battery min–max | AP max | Android thermal status max | Sampled max PSS | RSS high-water |', '| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |']
     for r in records:
         v=r['resources']
         display=lambda key,scale=1: f"{v[key]/scale:.2f}" if v[key] is not None else 'unavailable'
@@ -160,7 +160,7 @@ def generate():
     comparisons={}
     for name in ['qwen-fresh180','qwen-cached-fresh180','qwen-legacy-fresh180','qwen-legacy-cached-fresh180','beta-fresh180']:
         if (BASE/name/'summary.json').exists() and (BASE/'run-01/summary.json').exists():comparisons[name]=paired(BASE/'run-01',BASE/name)
-    scope_note='Scope reduced after user objection to multi-day runtime: finish the selected-model and cached/uncached app-router comparisons. Expanded beta, historical and general Android runs are deferred, not completed. Existing GPU general results remain separate.\n\n' if scope else ''
+    scope_note='Android evaluation covers the selected model and matched cached/uncached app-router comparisons, plus a schema-format control. Beta, historical and general Android runs are deferred. General benchmark scores reported elsewhere were measured with PyTorch on GPU.\n\n' if scope else ''
     report='# Samsung A32 benchmark results\n\n'+scope_note+'Only completed jobs have scores; pending jobs are explicit. '+text+'\n\n'
     report=report.replace('explicit. |','explicit.\n\n|')
     report+='CPU-only 4 threads, Q4_K_M, runtime build11443, USB powered. Phone ctx2048, general ctx4096. Warm timing excludes first request and includes ADB/HTTP. General per-question accuracy and exact-record metrics are separate; CLINC excludes OOS. Raw Qwen uses fixed no-chat-template JSON-grammar treatment; not a claim about every Qwen prompting/runtime strategy.\n\n'
@@ -178,7 +178,8 @@ def generate():
     s=card.read_text();start='<!-- A32_RESULTS_START -->';end='<!-- A32_RESULTS_END -->'
     before,rest=s.split(start,1);_,after=rest.split(end,1)
     paired_text='\n\n'.join(f"Fresh180 vs {name}: accuracy difference {100*v['accuracy_difference']:+.2f} percentage points; paired bootstrap95% interval [{100*v['paired_bootstrap_95ci'][0]:+.2f}, {100*v['paired_bootstrap_95ci'][1]:+.2f}] points (10,000 resamples, seed3407). This interval concerns this reviewed synthetic cohort, not unrestricted real-world requests." for name,v in comparisons.items())
-    card.write_text(before+start+'\n'+scope_note+text+'\n\n'+resource_table+'\n\n'+paired_text+'\n\nCompleted runs only; partial counts are not scores. Warm timing excludes first request. General contexts4096 vs phone2048; see recorded protocol and per-run raw outputs.\n'+end+after)
+    card_text='\n'.join(line for line in lines if '| deferred |' not in line)
+    card.write_text(before+start+'\n'+scope_note+card_text+'\n\n'+resource_table+'\n\n'+paired_text+'\n\nCompleted runs only; partial counts are not scores. Warm timing excludes first request; phone context2048. See recorded protocol and per-run raw outputs.\n'+end+after)
     print('Report updated:',len(records),'completed;',len(required),'required;',len(JOBS)-len(required),'deferred')
 
 

@@ -632,6 +632,253 @@
       "predictions_sha256": "4fed70ec9f846bfc37bc07860dc1082fe1ea728e582f5a7b04bd9bd40c29c1fb"
     },
     {
+      "directory": "qwen-legacy-cached-fresh180",
+      "model": "Qwen app router (cache on)",
+      "cohort": "Fresh phone (180)",
+      "summary": {
+        "complete": true,
+        "rows": 180,
+        "decisions": 180,
+        "accuracy": 0.5444444444444444,
+        "record_accuracy": 0.5444444444444444,
+        "failures": 0,
+        "mean_latency_ms": 35395.459384916685,
+        "p50_latency_ms": 36321.98522950009,
+        "p95_latency_ms": 38778.471208000155,
+        "by_question": {
+          "route": {
+            "accuracy": 0.5444444444444444,
+            "macro_f1": 0.5252001986234163,
+            "per_label": {
+              "answer": {
+                "support": 20,
+                "predicted": 9,
+                "tp": 5
+              },
+              "get_battery_info": {
+                "support": 20,
+                "predicted": 18,
+                "tp": 14
+              },
+              "get_device_info": {
+                "support": 20,
+                "predicted": 14,
+                "tp": 8
+              },
+              "get_media_info": {
+                "support": 20,
+                "predicted": 22,
+                "tp": 17
+              },
+              "get_storage_info": {
+                "support": 20,
+                "predicted": 18,
+                "tp": 8
+              },
+              "phone_health_check": {
+                "support": 20,
+                "predicted": 3,
+                "tp": 3
+              },
+              "save_note": {
+                "support": 20,
+                "predicted": 22,
+                "tp": 16
+              },
+              "search_local_files": {
+                "support": 20,
+                "predicted": 45,
+                "tp": 18
+              },
+              "search_notes": {
+                "support": 20,
+                "predicted": 29,
+                "tp": 9
+              }
+            }
+          }
+        },
+        "warm": {
+          "complete": true,
+          "rows": 179,
+          "decisions": 179,
+          "accuracy": 0.547486033519553,
+          "record_accuracy": 0.547486033519553,
+          "failures": 0,
+          "mean_latency_ms": 35378.0120590894,
+          "p50_latency_ms": 36314.859042000026,
+          "p95_latency_ms": 38826.29079100025,
+          "by_question": {
+            "route": {
+              "accuracy": 0.547486033519553,
+              "macro_f1": 0.5287813011155895,
+              "per_label": {
+                "answer": {
+                  "support": 19,
+                  "predicted": 9,
+                  "tp": 5
+                },
+                "get_battery_info": {
+                  "support": 20,
+                  "predicted": 17,
+                  "tp": 14
+                },
+                "get_device_info": {
+                  "support": 20,
+                  "predicted": 14,
+                  "tp": 8
+                },
+                "get_media_info": {
+                  "support": 20,
+                  "predicted": 22,
+                  "tp": 17
+                },
+                "get_storage_info": {
+                  "support": 20,
+                  "predicted": 18,
+                  "tp": 8
+                },
+                "phone_health_check": {
+                  "support": 20,
+                  "predicted": 3,
+                  "tp": 3
+                },
+                "save_note": {
+                  "support": 20,
+                  "predicted": 22,
+                  "tp": 16
+                },
+                "search_local_files": {
+                  "support": 20,
+                  "predicted": 45,
+                  "tp": 18
+                },
+                "search_notes": {
+                  "support": 20,
+                  "predicted": 29,
+                  "tp": 9
+                }
+              }
+            }
+          }
+        },
+        "first_request_ms": 38518.530708
+      },
+      "resources": {
+        "max_android_thermal_status": 3,
+        "battery_c_min": 29.3,
+        "battery_c_max": 37.5,
+        "ap_c_max": 52.9,
+        "skin_c_max": 42.6,
+        "sampled_max_pss_kib": 875343,
+        "rss_high_water_kib": 918320
+      },
+      "token_usage": {
+        "requests_with_input_usage": 180,
+        "mean_reported_input_tokens": 657.1166666666667,
+        "mean_output_tokens": 15.366666666666667,
+        "requested_cache_values": [
+          true
+        ],
+        "requests_with_cache_reporting": 180,
+        "requests_reporting_nonzero_cached_tokens": 179,
+        "mean_reported_cached_tokens": 148.86111111111111,
+        "cached_fraction_of_reported_input_tokens": 0.2265368064186133,
+        "mean_server_prompt_evaluated_tokens": 508.25555555555553,
+        "note": "Measured server usage across all responses, including first request. Missing cache reporting means unknown, not zero. Requested flag alone does not prove reuse."
+      },
+      "groups": {
+        "coverage": {
+          "everyday": {
+            "rows": 90,
+            "decisions": 90,
+            "correct_decisions": 52,
+            "correct_records": 52,
+            "accuracy": 0.5777777777777777,
+            "record_accuracy": 0.5777777777777777
+          },
+          "boundary": {
+            "rows": 45,
+            "decisions": 45,
+            "correct_decisions": 22,
+            "correct_records": 22,
+            "accuracy": 0.4888888888888889,
+            "record_accuracy": 0.4888888888888889
+          },
+          "indirect": {
+            "rows": 45,
+            "decisions": 45,
+            "correct_decisions": 24,
+            "correct_records": 24,
+            "accuracy": 0.5333333333333333,
+            "record_accuracy": 0.5333333333333333
+          }
+        },
+        "workflow": {
+          "phone_routing": {
+            "rows": 180,
+            "decisions": 180,
+            "correct_decisions": 98,
+            "correct_records": 98,
+            "accuracy": 0.5444444444444444,
+            "record_accuracy": 0.5444444444444444
+          }
+        },
+        "route": {
+          "answer": {
+            "support": 20,
+            "correct": 5,
+            "recall": 0.25
+          },
+          "get_device_info": {
+            "support": 20,
+            "correct": 8,
+            "recall": 0.4
+          },
+          "get_media_info": {
+            "support": 20,
+            "correct": 17,
+            "recall": 0.85
+          },
+          "get_storage_info": {
+            "support": 20,
+            "correct": 8,
+            "recall": 0.4
+          },
+          "save_note": {
+            "support": 20,
+            "correct": 16,
+            "recall": 0.8
+          },
+          "search_notes": {
+            "support": 20,
+            "correct": 9,
+            "recall": 0.45
+          },
+          "phone_health_check": {
+            "support": 20,
+            "correct": 3,
+            "recall": 0.15
+          },
+          "search_local_files": {
+            "support": 20,
+            "correct": 18,
+            "recall": 0.9
+          },
+          "get_battery_info": {
+            "support": 20,
+            "correct": 14,
+            "recall": 0.7
+          }
+        }
+      },
+      "calibration": {
+        "valid_decisions": 0,
+        "note": "No decision probability distribution available"
+      },
+      "predictions_sha256": "9954bf40b6fb39f98d34af4e1cc96369de0db5a7f868faa017b90d470b4730b4"
+    },
+    {
       "directory": "qwen-fresh180",
       "model": "Qwen schema JSON (cache off)",
       "cohort": "Fresh phone (180)",
@@ -905,9 +1152,22 @@
       "exact_mcnemar_two_sided_p": 1.8345664258432237e-15,
       "bootstrap_seed": 3407,
       "bootstrap_replicates": 10000
+    },
+    "qwen-legacy-cached-fresh180": {
+      "n": 180,
+      "reflex_only_correct": 70,
+      "baseline_only_correct": 4,
+      "accuracy_difference": 0.36666666666666664,
+      "paired_bootstrap_95ci": [
+        0.28888888888888886,
+        0.4444444444444444
+      ],
+      "exact_mcnemar_two_sided_p": 1.2898469490022716e-16,
+      "bootstrap_seed": 3407,
+      "bootstrap_replicates": 10000
     }
   },
-  "complete": false,
+  "complete": true,
   "original_expanded_queue_complete": false,
   "required_jobs": [
     "qwen-fresh180",

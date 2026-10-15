@@ -17,7 +17,7 @@ datasets:
 
 # Reflex-1
 
-Reflex-1 is a Qwen3.5-0.8B decision model trained to select among supplied options, including nine phone-assistant routes. It uses Unsloth's Clef-style decision head and rank-16 LoRA. It returns structured decisions/probabilities rather than generating an answer or tool arguments. The current Hugging Face repository is private; this is a local release-card draft pending final mobile results and author-selected release licensing.
+Reflex-1 is a Qwen3.5-0.8B decision model trained to select among supplied options, including nine phone-assistant routes. It uses Unsloth's Clef-style decision head and rank-16 LoRA. It returns structured decisions/probabilities rather than generating an answer or tool arguments. The current Hugging Face repository is private; this is a local release-card draft with completed matched mobile results and release licensing still to be selected by the author.
 
 ## Results
 
@@ -35,42 +35,39 @@ These are saved-adapter scores, not phone/GGUF scores. General tests had no repo
 
 ### Samsung Galaxy A32 / Q4_K_M
 
-<!-- A32_RESULTS_START -->
-Scope reduced after user objection to multi-day runtime: finish the selected-model and cached/uncached app-router comparisons. Expanded beta, historical and general Android runs are deferred, not completed. Existing GPU general results remain separate.
+On the same frozen 180-case phone cohort, Reflex-1 achieved **91.11% accuracy at 31.36s mean latency**, compared with **54.44% at 35.40s** for the unchanged Qwen app router with prompt caching enabled. This is +36.67 percentage points and 11.39% lower mean latency in these runs. The uncached app router scored 55.56% at 41.14s. These results cover routing under the documented nine-route policy; they do not establish general tool execution quality. Reflex-1 used more memory and showed similar maximum temperatures; no RAM, thermal or energy advantage is established. A shorter schema-format control was faster but much less accurate, so this is not a universal speed claim.
 
-| Model | A32 cohort | Cases / decisions | Accuracy | Macro-F1 | Warm p50 / p95 | Errors |
-| --- | --- | ---: | ---: | ---: | ---: | ---: |
-| reflex-1 | Fresh phone (180) | 180 / 180 | 91.11% | 91.06% | 32.34 / 33.87 s | 0 |
-| Qwen app router (cache off) | Fresh phone (180) | 180 / 180 | 55.56% | 53.71% | 41.05 / 44.92 s | 0 |
-| Qwen app router (cache on) | Fresh phone (180) | 91 completed | pending | pending | pending | pending |
-| reflex-1-beta | Fresh phone (180) | 0 completed | deferred | deferred | deferred | deferred |
-| reflex-1 | Historical phone (original 90) | 0 completed | deferred | deferred | deferred | deferred |
-| Qwen app router (cache off) | Historical phone (original 90) | 0 completed | deferred | deferred | deferred | deferred |
-| Qwen schema JSON (cache off) | Fresh phone (180) | 180 / 180 | 23.33% | 22.41% | 25.44 / 26.70 s | 0 |
-| Qwen schema JSON (cache on) | Fresh phone (180) | 0 completed | deferred | deferred | deferred | deferred |
-| reflex-1 | typed-decisions | 0 completed | deferred | deferred | deferred | deferred |
-| reflex-1 | BANKING77 | 0 completed | deferred | deferred | deferred | deferred |
-| reflex-1 | CLINC150 in-domain | 0 completed | deferred | deferred | deferred | deferred |
-| reflex-1-beta | typed-decisions | 0 completed | deferred | deferred | deferred | deferred |
-| reflex-1-beta | BANKING77 | 0 completed | deferred | deferred | deferred | deferred |
-| reflex-1-beta | CLINC150 in-domain | 0 completed | deferred | deferred | deferred | deferred |
+<!-- A32_RESULTS_START -->
+Android evaluation covers the selected model and matched cached/uncached app-router comparisons, plus a schema-format control. Beta, historical and general Android runs are deferred. General benchmark scores reported elsewhere were measured with PyTorch on GPU.
+
+| Model | A32 cohort | Cases / decisions | Accuracy | Macro-F1 | Mean latency | Warm p50 / p95 | Errors |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| reflex-1 | Fresh phone (180) | 180 / 180 | 91.11% | 91.06% | 31.36 s | 32.34 / 33.87 s | 0 |
+| Qwen app router (cache off) | Fresh phone (180) | 180 / 180 | 55.56% | 53.71% | 41.14 s | 41.05 / 44.92 s | 0 |
+| Qwen app router (cache on) | Fresh phone (180) | 180 / 180 | 54.44% | 52.52% | 35.40 s | 36.31 / 38.83 s | 0 |
+| Qwen schema JSON (cache off) | Fresh phone (180) | 180 / 180 | 23.33% | 22.41% | 24.93 s | 25.44 / 26.70 s | 0 |
 
 | Model | A32 cohort | Battery min–max | AP max | Android thermal status max | Sampled max PSS | RSS high-water |
-| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | reflex-1 | Fresh phone (180) | 28.90–37.50 °C | 52.60 °C | 3.00 | 1090.65 MiB | 1093.00 MiB |
 | Qwen app router (cache off) | Fresh phone (180) | 31.60–37.60 °C | 53.10 °C | 3.00 | 796.23 MiB | 838.14 MiB |
+| Qwen app router (cache on) | Fresh phone (180) | 29.30–37.50 °C | 52.90 °C | 3.00 | 854.83 MiB | 896.80 MiB |
 | Qwen schema JSON (cache off) | Fresh phone (180) | 31.80–37.40 °C | 53.00 °C | 3.00 | 764.54 MiB | 813.60 MiB |
 
 Fresh180 vs qwen-fresh180: accuracy difference +67.78 percentage points; paired bootstrap95% interval [+60.00, +75.00] points (10,000 resamples, seed3407). This interval concerns this reviewed synthetic cohort, not unrestricted real-world requests.
 
 Fresh180 vs qwen-legacy-fresh180: accuracy difference +35.56 percentage points; paired bootstrap95% interval [+27.78, +43.33] points (10,000 resamples, seed3407). This interval concerns this reviewed synthetic cohort, not unrestricted real-world requests.
 
-Completed runs only; partial counts are not scores. Warm timing excludes first request. General contexts4096 vs phone2048; see recorded protocol and per-run raw outputs.
+Fresh180 vs qwen-legacy-cached-fresh180: accuracy difference +36.67 percentage points; paired bootstrap95% interval [+28.89, +44.44] points (10,000 resamples, seed3407). This interval concerns this reviewed synthetic cohort, not unrestricted real-world requests.
+
+Completed runs only; partial counts are not scores. Warm timing excludes first request; phone context2048. See recorded protocol and per-run raw outputs.
 <!-- A32_RESULTS_END -->
 
 On the 180-case phone test, GGUF and PyTorch have equal aggregate accuracy but **94.44% route agreement** (10 changed predictions). Mean per-case maximum absolute probability drift is 0.0654; the largest is 0.8273. On this held-out phone cohort, native GGUF ECE is 3.10% (10 equal-width confidence bins), multiclass Brier sum is 0.1338 and hard-label NLL is 0.3178; these describe the measured cohort rather than universal calibration. These differences include quantization and runtime/numerical effects; no test-based calibration or threshold adjustment was made. Aggregate score agreement does not establish probability parity.
 
 The A32 historical 90-case cohort is the original pre-review set; it differs from the 88 usable reviewed cases in the PyTorch historical row. Their scores are not a quantization-parity comparison.
+
+The app baseline preserves its preexisting raw prompt/action grammar and narrower descriptions of currently available tools. The decision model uses the frozen nine-route schema, including some future-capability requests. This compares the documented routing systems; prompt/policy differences and fine-tuning mean the gain cannot be attributed to the decision head alone. Runs were sequential, not randomized repetitions; starting temperatures differed and both reached Android thermal status3.
 
 The earlier **55.6% / 36.8 s** Qwen raw-HTTP result used a historical 90-case set. The fresh 180-case result cannot be compared directly against that percentage. Historical JNI 82% used a different runtime/prompt/cohort and is not a matched baseline. The current evaluation compares actual per-case outcomes and records its prompt/grammar treatment rather than assuming these historical numbers transfer.
 

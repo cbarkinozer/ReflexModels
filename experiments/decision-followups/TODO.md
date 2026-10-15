@@ -4,7 +4,7 @@
 
 Start on the desktop with [DESKTOP_HANDOFF_20261015.md](DESKTOP_HANDOFF_20261015.md). This section supersedes the historical checklist below.
 
-Desktop continuation: [DESKTOP_PROGRESS_20261015.md](DESKTOP_PROGRESS_20261015.md). Frozen-180 benchmark runner is prepared and CPU-validated; current combined GGUF transfer and device inference remain pending. No push or publication authorized.
+Desktop continuation: [DESKTOP_PROGRESS_20261015.md](DESKTOP_PROGRESS_20261015.md). The revised matched A32 scope is complete at11:43 Istanbul: Reflex-1 91.11%/31.36s mean, app Qwen uncached55.56%/41.14s, cached54.44%/35.40s. All180 cases each; zero request errors. Model card, dataset upload guide, raw logs and SHA inventories are saved. Ten expanded Android jobs are deferred after the ETA/scope discussion; GPU general metrics remain separately labeled. No push or publication authorized.
 
 - [x] Complete original annotation and independent phone/general/combined fine-tunes; select combined checkpoint 100 as reflex-1.
 - [x] Export Q4_K_M GGUF and preserve adapter/head/configs and original full training backups locally.
@@ -14,11 +14,11 @@ Desktop continuation: [DESKTOP_PROGRESS_20261015.md](DESKTOP_PROGRESS_20261015.m
 - [x] Download and hash-verify full GPU backups/logs/configs/results; commit and push source, frozen tests and result records.
 - [ ] User: close the latest Vast pod if still running (instance 55996354); all required evaluation artifacts are downloaded. No shutdown was performed by the agent.
 - [x] Upload selected adapter/head/configs/tokenizer and GGUF to private Hugging Face `cbarkinozer/Reflex-1`; verify remote sizes/LFS hashes.
-- [ ] Desktop: authenticate and download the private Hugging Face model package following DESKTOP_HANDOFF_20261015.md. Git does not carry model binaries or large archives.
-- [x] User on desktop: A32 connected through ADB. Fresh-180 benchmark started; completion/results pending.
-- [x] Run the committed fresh180 through selected GGUF on A32: 164/180 (91.11%), macro-F1 91.06%, zero request errors. PyTorch route agreement94.44% (10 changed cases); raw outputs and probability drift saved. Matched Qwen/beta comparisons are still running.
-- [ ] Measure A32 latency (cold start and warm p50/p95), peak memory and sustained temperature/battery behaviour. Record software/build revisions, model hash, settings, full outputs and logs.
-- [ ] Commit the mobile benchmark results and update model/release cards. Preserve verified artifact backups before any GPU closeout.
+- [x] Desktop: authenticate and download/verify private HF GGUFs and adapter/head/tokenizer/configs. Full executed training-data archive remains on Windows; Git does not carry large archives.
+- [x] User on desktop: A32 connected through ADB. revised matched fresh180 benchmark scope completed.
+- [x] Run the committed fresh180 through selected GGUF on A32: 164/180 (91.11%), macro-F1 91.06%, zero request errors. PyTorch route agreement94.44% (10 changed cases); raw outputs and probability drift saved. Matched app Qwen cached/uncached comparisons are complete; beta Android reruns deferred.
+- [x] Measure A32 process launch/readiness (filesystem caches retained), first request, warm mean/p50/p95, sampled PSS, RSS high-water and sustained thermal/battery traces. Preserve settings/hashes/raw logs. Cache-flushed cold loading and in-flight peak PSS were not measured.
+- [x] Commit mobile results and update local model/release cards, aggregate summary and dataset-upload guide. No push or HF write performed.
 - [ ] If results justify publication: prepare Hugging Face adapter plus decision head/tokenizer/configs/calibration, GGUF, and reviewed dataset with source licenses/provenance and privacy checks. Choose final dataset name then. Publish only when explicitly requested.
 
 Optional later versions: improve battery/device routing and negation/indirect cases; compare a smaller classifier or an unmodified 0.8B tool-calling baseline; consider scenario targets only if they serve the agent. If this test informs new training, keep it as a regression test and reserve a new sealed final cohort.
