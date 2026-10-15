@@ -80,7 +80,7 @@ MOBILE_ROUTING9 on A32 compares the selected model with the cached base app-rout
 | Qwen app router (cache on) | MOBILE_ROUTING9 (ours, 180) | 180 / 180 | 54.44% | 52.52% | 35.40 s | 36.31 / 38.83 s | 0 |
 
 | Model | A32 cohort | Battery min–max | AP max | Android thermal status max | Sampled max PSS | RSS high-water |
-| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
 | Reflex-1 (780M) | MOBILE_ROUTING9 (ours, 180) | 28.90–37.50 °C | 52.60 °C | 3.00 | 1090.65 MiB | 1093.00 MiB |
 | Qwen app router (cache on) | MOBILE_ROUTING9 (ours, 180) | 29.30–37.50 °C | 52.90 °C | 3.00 | 854.83 MiB | 896.80 MiB |
 

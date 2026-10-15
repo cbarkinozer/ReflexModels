@@ -151,7 +151,7 @@ def generate():
         lines.append(f'| {label} | {title} | {count} / {decision_count} | {100*total["accuracy"]:.2f}% | {macro_text} | {total["mean_latency_ms"]/1000:.2f} s | {warm["p50_latency_ms"]/1000:.2f} / {warm["p95_latency_ms"]/1000:.2f} s | {total["failures"]} |')
         records.append({'directory':name,'model':label,'cohort':title,'summary':s,'resources':resources(d),'token_usage':usage_statistics(d),'groups':grouped_results(d),'calibration':calibration(d),'predictions_sha256':hashlib.sha256((d/'predictions.jsonl').read_bytes()).hexdigest()})
     text='\n'.join(lines)
-    resource_lines=['| Model | A32 cohort | Battery min–max | AP max | Android thermal status max | Sampled max PSS | RSS high-water |', '| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |']
+    resource_lines=['| Model | A32 cohort | Battery min–max | AP max | Android thermal status max | Sampled max PSS | RSS high-water |', '| --- | --- | ---: | ---: | ---: | ---: | ---: |']
     for r in records:
         v=r['resources']
         display=lambda key,scale=1: f"{v[key]/scale:.2f}" if v[key] is not None else 'unavailable'
