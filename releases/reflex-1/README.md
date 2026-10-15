@@ -15,7 +15,7 @@ Trained on a **combined phone-routing + general mixture** (781 phone examples + 
 | **Combined 120-step, step 100 (selected)** | **98.89%** | **78.39%** | **88.64%** |
 | Combined 120-step, step 120 | 98.89% | 77.80% | 88.34% |
 
-Calibration fitted and OK (`calibration_ok: true`); post-calibration ECE `.0377` vs pre-calibration `.0511`. These are validation scores used to select checkpoint 100. Held-out evaluation completed on 2026-10-14 using the restored PyTorch adapter: **96.59% historical phone (85/88), 60.70% typed-decisions (2,000 decisions across 400 cases), 74.89% BANKING77 (462 cases), and 81.11% CLINC150 (450 cases)**. All tests had zero skipped/truncated decisions. Typed complete-record accuracy is 10%. Historical phone has prior development exposure; official general results measure supervised in-domain adaptation. See [full protocol, comparisons and verified backup](../../experiments/decision-followups/HELDOUT_EVALUATION_20261013.md). GGUF parity and on-device benchmarking remain pending.
+Calibration fitted and OK (`calibration_ok: true`); post-calibration ECE `.0377` vs pre-calibration `.0511`. These are validation scores used to select checkpoint 100. Held-out evaluation completed on 2026-10-14 using the restored PyTorch adapter: **96.59% historical phone (85/88), 60.70% typed-decisions (2,000 decisions across 400 cases), 74.89% BANKING77 (462 cases), and 81.11% CLINC150 (450 cases)**. All tests had zero skipped/truncated decisions. Typed complete-record accuracy is 10%. Historical phone has prior development exposure; official general results measure supervised in-domain adaptation. See [full protocol, comparisons and verified backup](../../experiments/decision-followups/HELDOUT_EVALUATION_20261013.md). Fresh180 A32 GGUF evaluation is complete at 91.11% (164/180), with 94.44% per-case agreement to PyTorch; matched baseline and broader mobile evaluations are continuing.
 
 Known leakage/interpretation caveats (phone validation reuse across pilots, lexical overlap, in-domain-not-zero-shot general sets) are documented in the same held-out-evaluation doc — read it before quoting the phone 98.89% as a generalization claim.
 
@@ -39,7 +39,7 @@ Files are in [`../../experiments/decision-followups/gguf-combined-step100/`](../
 | `model-Q4_K_M.gguf` | 545,161,248 B | `abfea5f878331206f65e4117157984e14803b093b634c0ed52513c0723ef0699` |
 | `mmproj-Q8_0.gguf` | 115,923,136 B | `37800be294d8c041e6146516b636414b8a75d0dd0878b08f6e0282e471790f94` |
 
-Only Q4_K_M was exported for the main model (no Q8_0 this time); the mmproj sidecar is always kept at Q8_0. GGUF-vs-PyTorch probability parity has not been re-verified for this release the way reflex-1-beta's README documents (the 0.5015→0.4941/0.4804 flip check); repeat that spot-check before relying on the GGUF for a close decision.
+Only Q4_K_M was exported for the main model (no Q8_0 this time); the mmproj sidecar is always kept at Q8_0. Full fresh180 comparison now finds 94.44% route agreement (10 changed predictions), despite equal aggregate accuracy of 91.11%. Mean per-case maximum absolute option-probability drift is 0.0654, and the largest is 0.8273. Quantization/runtime differences can therefore materially change confidence; do not transfer confidence thresholds without separate validation. No calibration was fitted on this test.
 
 ## Run the GGUF Decision API
 
@@ -49,7 +49,7 @@ The Qwen base model and typed-decisions declare Apache-2.0; BANKING77 declares C
 
 ## Fresh phone routing test - 2026-10-15
 
-On 180 fresh synthetic, human-validated cases (20 per route), the saved PyTorch adapter scores **91.11% accuracy (164/180), 90.84% macro-F1**. Zero skipped/truncated decisions. Battery recall 65%, device-info recall 75%; everyday requests 97.78%, indirect/boundary groups 84.44% each. The historical phone score of 96.59% does not describe this harder cohort. [Per-route scores, errors, provenance and limits](../../experiments/decision-followups/fresh-phone-test-180/RESULTS.md). GGUF and on-device results remain pending.
+On 180 fresh synthetic, human-validated cases (20 per route), the saved PyTorch adapter scores **91.11% accuracy (164/180), 90.84% macro-F1**. Zero skipped/truncated decisions. Battery recall 65%, device-info recall 75%; everyday requests 97.78%, indirect/boundary groups 84.44% each. The historical phone score of 96.59% does not describe this harder cohort. [Per-route scores, errors, provenance and limits](../../experiments/decision-followups/fresh-phone-test-180/RESULTS.md). A32 Q4_K_M also scores 164/180 (91.11%), macro-F1 91.06%, warm p50/p95 32.34/33.87 seconds, with zero request errors. This retains aggregate accuracy while changing ten individual predictions. Matched baseline comparisons are still running; see the A32 report.
 
 ## Private Hugging Face transfer - 2026-10-15
 

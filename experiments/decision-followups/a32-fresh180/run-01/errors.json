@@ -1,0 +1,130 @@
+[
+  {
+    "id": "fresh180_get_storage_info_17",
+    "state": "Count the bytes consumed by videos collectively, rather than opening any video.",
+    "gold": "get_storage_info",
+    "prediction": "get_media_info",
+    "error": null,
+    "max_probability_drift": 0.8273341479429893
+  },
+  {
+    "id": "fresh180_search_local_files_20",
+    "state": "Open the saved device-specification spreadsheet rather than querying this handset's hardware.",
+    "gold": "search_local_files",
+    "prediction": "get_device_info",
+    "error": null,
+    "max_probability_drift": 0.4208203355791724
+  },
+  {
+    "id": "fresh180_get_storage_info_15",
+    "state": "The card is inserted, but I don't know whether Android can access its volume.",
+    "gold": "get_storage_info",
+    "prediction": "get_device_info",
+    "error": null,
+    "max_probability_drift": 0.1535141094892253
+  },
+  {
+    "id": "fresh180_answer_20",
+    "state": "Without looking at my saved notes, explain how booking references are usually used.",
+    "gold": "answer",
+    "prediction": "search_notes",
+    "error": null,
+    "max_probability_drift": 0.5050759653753321
+  },
+  {
+    "id": "fresh180_answer_11",
+    "state": "I keep mixing up latitude and longitude; give me a way to remember them.",
+    "gold": "answer",
+    "prediction": "save_note",
+    "error": null,
+    "max_probability_drift": 0.0007908902372014692
+  },
+  {
+    "id": "fresh180_answer_18",
+    "state": "Don't store this anywhere: help me invent a mnemonic for the planets.",
+    "gold": "answer",
+    "prediction": "save_note",
+    "error": null,
+    "max_probability_drift": 0.23024578495891168
+  },
+  {
+    "id": "fresh180_get_device_info_14",
+    "state": "The shop listing was vague about SIM support; can this handset accommodate two lines?",
+    "gold": "get_device_info",
+    "prediction": "answer",
+    "error": null,
+    "max_probability_drift": 0.3912081393547475
+  },
+  {
+    "id": "fresh180_get_battery_info_13",
+    "state": "This phone used to last longer between plugs; has its cell deteriorated?",
+    "gold": "get_battery_info",
+    "prediction": "phone_health_check",
+    "error": null,
+    "max_probability_drift": 0.009384149692373334
+  },
+  {
+    "id": "fresh180_get_battery_info_14",
+    "state": "I have a ninety-minute audio call ahead; judge whether the remaining charge will cover it.",
+    "gold": "get_battery_info",
+    "prediction": "get_media_info",
+    "error": null,
+    "max_probability_drift": 0.1332773147736543
+  },
+  {
+    "id": "fresh180_get_device_info_18",
+    "state": "Which audio codecs does this handset support, regardless of the current track?",
+    "gold": "get_device_info",
+    "prediction": "get_media_info",
+    "error": null,
+    "max_probability_drift": 0.2841913008430292
+  },
+  {
+    "id": "fresh180_get_device_info_02",
+    "state": "How much physical working memory was fitted at the factory?",
+    "gold": "get_device_info",
+    "prediction": "answer",
+    "error": null,
+    "max_probability_drift": 0.17631813421000564
+  },
+  {
+    "id": "fresh180_get_battery_info_17",
+    "state": "With every other factor held constant, would the remaining charge cover another hour of recording?",
+    "gold": "get_battery_info",
+    "prediction": "answer",
+    "error": null,
+    "max_probability_drift": 0.2909059914093868
+  },
+  {
+    "id": "fresh180_get_storage_info_18",
+    "state": "I'm interested in this phone's mounted volumes, not the brand of its flash chip.",
+    "gold": "get_storage_info",
+    "prediction": "get_media_info",
+    "error": null,
+    "max_probability_drift": 0.7598482221208471
+  },
+  {
+    "id": "fresh180_get_battery_info_16",
+    "state": "Ignore disk capacity; I only want the battery's condition and remaining percentage.",
+    "gold": "get_battery_info",
+    "prediction": "phone_health_check",
+    "error": null,
+    "max_probability_drift": 0.1349192411826411
+  },
+  {
+    "id": "fresh180_get_media_info_12",
+    "state": "I lost my place during the interruption; where is the player positioned now?",
+    "gold": "get_media_info",
+    "prediction": "answer",
+    "error": null,
+    "max_probability_drift": 0.4549784751868917
+  },
+  {
+    "id": "fresh180_get_battery_info_11",
+    "state": "The lightning symbol appeared, but I can't tell whether energy is actually flowing in.",
+    "gold": "get_battery_info",
+    "prediction": "answer",
+    "error": null,
+    "max_probability_drift": 0.1558434949491685
+  }
+]

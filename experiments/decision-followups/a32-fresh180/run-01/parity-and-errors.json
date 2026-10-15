@@ -1,0 +1,175 @@
+{
+  "pytorch_accuracy": 0.9111111111111111,
+  "gguf_accuracy": 0.9111111111111111,
+  "changed_predictions": 10,
+  "agreement": 0.9444444444444444,
+  "changed_cases": [
+    {
+      "id": "fresh180_get_storage_info_17",
+      "state": "Count the bytes consumed by videos collectively, rather than opening any video.",
+      "gold": "get_storage_info",
+      "pytorch": "get_storage_info",
+      "gguf": "get_media_info",
+      "pytorch_correct": true,
+      "gguf_correct": false,
+      "max_probability_drift": 0.8273341479429893
+    },
+    {
+      "id": "fresh180_get_battery_info_15",
+      "state": "The back feels warm near the cell; read that sensor rather than guessing from touch.",
+      "gold": "get_battery_info",
+      "pytorch": "phone_health_check",
+      "gguf": "get_battery_info",
+      "pytorch_correct": false,
+      "gguf_correct": true,
+      "max_probability_drift": 0.5036464330557666
+    },
+    {
+      "id": "fresh180_answer_20",
+      "state": "Without looking at my saved notes, explain how booking references are usually used.",
+      "gold": "answer",
+      "pytorch": "answer",
+      "gguf": "search_notes",
+      "pytorch_correct": true,
+      "gguf_correct": false,
+      "max_probability_drift": 0.5050759653753321
+    },
+    {
+      "id": "fresh180_get_battery_info_07",
+      "state": "Compare its remaining full-charge capacity with when it was new.",
+      "gold": "get_battery_info",
+      "pytorch": "phone_health_check",
+      "gguf": "get_battery_info",
+      "pytorch_correct": false,
+      "gguf_correct": true,
+      "max_probability_drift": 0.42779312086656973
+    },
+    {
+      "id": "fresh180_get_device_info_14",
+      "state": "The shop listing was vague about SIM support; can this handset accommodate two lines?",
+      "gold": "get_device_info",
+      "pytorch": "phone_health_check",
+      "gguf": "answer",
+      "pytorch_correct": false,
+      "gguf_correct": false,
+      "max_probability_drift": 0.3912081393547475
+    },
+    {
+      "id": "fresh180_get_battery_info_17",
+      "state": "With every other factor held constant, would the remaining charge cover another hour of recording?",
+      "gold": "get_battery_info",
+      "pytorch": "phone_health_check",
+      "gguf": "answer",
+      "pytorch_correct": false,
+      "gguf_correct": false,
+      "max_probability_drift": 0.2909059914093868
+    },
+    {
+      "id": "fresh180_get_storage_info_18",
+      "state": "I'm interested in this phone's mounted volumes, not the brand of its flash chip.",
+      "gold": "get_storage_info",
+      "pytorch": "get_storage_info",
+      "gguf": "get_media_info",
+      "pytorch_correct": true,
+      "gguf_correct": false,
+      "max_probability_drift": 0.7598482221208471
+    },
+    {
+      "id": "fresh180_get_device_info_20",
+      "state": "Tell me how much RAM this model was manufactured with, rather than current free disk space.",
+      "gold": "get_device_info",
+      "pytorch": "get_storage_info",
+      "gguf": "get_device_info",
+      "pytorch_correct": false,
+      "gguf_correct": true,
+      "max_probability_drift": 0.4148724954056007
+    },
+    {
+      "id": "fresh180_get_media_info_12",
+      "state": "I lost my place during the interruption; where is the player positioned now?",
+      "gold": "get_media_info",
+      "pytorch": "get_media_info",
+      "gguf": "answer",
+      "pytorch_correct": true,
+      "gguf_correct": false,
+      "max_probability_drift": 0.4549784751868917
+    },
+    {
+      "id": "fresh180_get_device_info_17",
+      "state": "Give me the advertised cell capacity for this model rather than today's charge reading.",
+      "gold": "get_device_info",
+      "pytorch": "answer",
+      "gguf": "get_device_info",
+      "pytorch_correct": false,
+      "gguf_correct": true,
+      "max_probability_drift": 0.13391604912448804
+    }
+  ],
+  "per_route": {
+    "answer": {
+      "rows": 20,
+      "correct": 17,
+      "accuracy": 0.85
+    },
+    "get_device_info": {
+      "rows": 20,
+      "correct": 17,
+      "accuracy": 0.85
+    },
+    "get_media_info": {
+      "rows": 20,
+      "correct": 19,
+      "accuracy": 0.95
+    },
+    "get_storage_info": {
+      "rows": 20,
+      "correct": 17,
+      "accuracy": 0.85
+    },
+    "save_note": {
+      "rows": 20,
+      "correct": 20,
+      "accuracy": 1.0
+    },
+    "search_notes": {
+      "rows": 20,
+      "correct": 20,
+      "accuracy": 1.0
+    },
+    "phone_health_check": {
+      "rows": 20,
+      "correct": 20,
+      "accuracy": 1.0
+    },
+    "search_local_files": {
+      "rows": 20,
+      "correct": 19,
+      "accuracy": 0.95
+    },
+    "get_battery_info": {
+      "rows": 20,
+      "correct": 15,
+      "accuracy": 0.75
+    }
+  },
+  "per_coverage": {
+    "everyday": {
+      "rows": 90,
+      "correct": 89,
+      "accuracy": 0.9888888888888889
+    },
+    "boundary": {
+      "rows": 45,
+      "correct": 37,
+      "accuracy": 0.8222222222222222
+    },
+    "indirect": {
+      "rows": 45,
+      "correct": 38,
+      "accuracy": 0.8444444444444444
+    }
+  },
+  "mean_max_probability_drift": 0.06540567468536422,
+  "largest_probability_drift": 0.8273341479429893,
+  "interpretation": "Equal aggregate accuracy does not establish identical predictions or isolate quantization from runtime/numerical differences. No thresholds/calibration changed after this test."
+}

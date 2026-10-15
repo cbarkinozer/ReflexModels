@@ -1,0 +1,50 @@
+{
+  "complete": true,
+  "files": [
+    {
+      "file": "errors.json",
+      "bytes": 4430,
+      "sha256": "0e1cf22735bd317ee2576fa5f03ef6ea4ff836f5f002afb439bc911d572c2a98"
+    },
+    {
+      "file": "manifest.json",
+      "bytes": 58851,
+      "sha256": "47fd6b1ec47b5eed2cd8054094f3b1aff061ad4947b09eb4711837b0d0b214ba"
+    },
+    {
+      "file": "parity-and-errors.json",
+      "bytes": 5314,
+      "sha256": "70ad2eb9204d4985a38963e44dc2d866d2b492dabc45a4406a71d700e8220c2b"
+    },
+    {
+      "file": "predictions.jsonl",
+      "bytes": 1140396,
+      "sha256": "9c12b8b1f19b352dd4b251f23d1cca30878e552a3e91b58906274ef8ef3f98bc"
+    },
+    {
+      "file": "progress.json",
+      "bytes": 5423,
+      "sha256": "eda5e731198a0e9e316d6c1b77c981692ab3131e7364fdf27cdb6b0e8515e25c"
+    },
+    {
+      "file": "server.log",
+      "bytes": 51742,
+      "sha256": "f026faa57fdd296ac34fe555fd9d0190e4ca2cd5cc82980f2f20707ecde4e5cc"
+    },
+    {
+      "file": "summary.json",
+      "bytes": 6159,
+      "sha256": "6bf64d061ae21b2c7eb7ed44fac2141925d638d515b809cb13c9bbf4d8c2e6ce"
+    },
+    {
+      "file": "telemetry.json",
+      "bytes": 1955000,
+      "sha256": "9ca03aa0897c9a01e8f8bed92bd234b005354db8ab5fdab91d7ca5e07a620a69"
+    },
+    {
+      "file": "telemetry.jsonl",
+      "bytes": 973615,
+      "sha256": "a56ce4bb51aad364a9d4830c2759e0242ad9d0b13ae94bb785f18592dd27fe40"
+    }
+  ]
+}

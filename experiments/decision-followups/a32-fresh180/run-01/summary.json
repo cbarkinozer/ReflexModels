@@ -1,0 +1,231 @@
+{
+  "complete": true,
+  "all_requests": {
+    "total": 180,
+    "correct": 164,
+    "accuracy": 0.9111111111111111,
+    "macro_f1": 0.9106480025368284,
+    "failures": 0,
+    "confusion_matrix": {
+      "answer": {
+        "answer": 17,
+        "get_device_info": 0,
+        "get_battery_info": 0,
+        "get_storage_info": 0,
+        "get_media_info": 0,
+        "search_local_files": 0,
+        "search_notes": 1,
+        "save_note": 2,
+        "phone_health_check": 0
+      },
+      "get_device_info": {
+        "answer": 2,
+        "get_device_info": 17,
+        "get_battery_info": 0,
+        "get_storage_info": 0,
+        "get_media_info": 1,
+        "search_local_files": 0,
+        "search_notes": 0,
+        "save_note": 0,
+        "phone_health_check": 0
+      },
+      "get_battery_info": {
+        "answer": 2,
+        "get_device_info": 0,
+        "get_battery_info": 15,
+        "get_storage_info": 0,
+        "get_media_info": 1,
+        "search_local_files": 0,
+        "search_notes": 0,
+        "save_note": 0,
+        "phone_health_check": 2
+      },
+      "get_storage_info": {
+        "answer": 0,
+        "get_device_info": 1,
+        "get_battery_info": 0,
+        "get_storage_info": 17,
+        "get_media_info": 2,
+        "search_local_files": 0,
+        "search_notes": 0,
+        "save_note": 0,
+        "phone_health_check": 0
+      },
+      "get_media_info": {
+        "answer": 1,
+        "get_device_info": 0,
+        "get_battery_info": 0,
+        "get_storage_info": 0,
+        "get_media_info": 19,
+        "search_local_files": 0,
+        "search_notes": 0,
+        "save_note": 0,
+        "phone_health_check": 0
+      },
+      "search_local_files": {
+        "answer": 0,
+        "get_device_info": 1,
+        "get_battery_info": 0,
+        "get_storage_info": 0,
+        "get_media_info": 0,
+        "search_local_files": 19,
+        "search_notes": 0,
+        "save_note": 0,
+        "phone_health_check": 0
+      },
+      "search_notes": {
+        "answer": 0,
+        "get_device_info": 0,
+        "get_battery_info": 0,
+        "get_storage_info": 0,
+        "get_media_info": 0,
+        "search_local_files": 0,
+        "search_notes": 20,
+        "save_note": 0,
+        "phone_health_check": 0
+      },
+      "save_note": {
+        "answer": 0,
+        "get_device_info": 0,
+        "get_battery_info": 0,
+        "get_storage_info": 0,
+        "get_media_info": 0,
+        "search_local_files": 0,
+        "search_notes": 0,
+        "save_note": 20,
+        "phone_health_check": 0
+      },
+      "phone_health_check": {
+        "answer": 0,
+        "get_device_info": 0,
+        "get_battery_info": 0,
+        "get_storage_info": 0,
+        "get_media_info": 0,
+        "search_local_files": 0,
+        "search_notes": 0,
+        "save_note": 0,
+        "phone_health_check": 20
+      }
+    },
+    "mean_latency_ms": 31364.1449391611,
+    "p50_latency_ms": 32300.51620800009,
+    "p95_latency_ms": 33802.05279199981,
+    "reference_agreement": 0.9444444444444444,
+    "parity_valid_cases": 180
+  },
+  "first_request_ms": 27731.913458000003,
+  "warm_requests": {
+    "total": 179,
+    "correct": 163,
+    "accuracy": 0.9106145251396648,
+    "macro_f1": 0.9095898014786273,
+    "failures": 0,
+    "confusion_matrix": {
+      "answer": {
+        "answer": 16,
+        "get_device_info": 0,
+        "get_battery_info": 0,
+        "get_storage_info": 0,
+        "get_media_info": 0,
+        "search_local_files": 0,
+        "search_notes": 1,
+        "save_note": 2,
+        "phone_health_check": 0
+      },
+      "get_device_info": {
+        "answer": 2,
+        "get_device_info": 17,
+        "get_battery_info": 0,
+        "get_storage_info": 0,
+        "get_media_info": 1,
+        "search_local_files": 0,
+        "search_notes": 0,
+        "save_note": 0,
+        "phone_health_check": 0
+      },
+      "get_battery_info": {
+        "answer": 2,
+        "get_device_info": 0,
+        "get_battery_info": 15,
+        "get_storage_info": 0,
+        "get_media_info": 1,
+        "search_local_files": 0,
+        "search_notes": 0,
+        "save_note": 0,
+        "phone_health_check": 2
+      },
+      "get_storage_info": {
+        "answer": 0,
+        "get_device_info": 1,
+        "get_battery_info": 0,
+        "get_storage_info": 17,
+        "get_media_info": 2,
+        "search_local_files": 0,
+        "search_notes": 0,
+        "save_note": 0,
+        "phone_health_check": 0
+      },
+      "get_media_info": {
+        "answer": 1,
+        "get_device_info": 0,
+        "get_battery_info": 0,
+        "get_storage_info": 0,
+        "get_media_info": 19,
+        "search_local_files": 0,
+        "search_notes": 0,
+        "save_note": 0,
+        "phone_health_check": 0
+      },
+      "search_local_files": {
+        "answer": 0,
+        "get_device_info": 1,
+        "get_battery_info": 0,
+        "get_storage_info": 0,
+        "get_media_info": 0,
+        "search_local_files": 19,
+        "search_notes": 0,
+        "save_note": 0,
+        "phone_health_check": 0
+      },
+      "search_notes": {
+        "answer": 0,
+        "get_device_info": 0,
+        "get_battery_info": 0,
+        "get_storage_info": 0,
+        "get_media_info": 0,
+        "search_local_files": 0,
+        "search_notes": 20,
+        "save_note": 0,
+        "phone_health_check": 0
+      },
+      "save_note": {
+        "answer": 0,
+        "get_device_info": 0,
+        "get_battery_info": 0,
+        "get_storage_info": 0,
+        "get_media_info": 0,
+        "search_local_files": 0,
+        "search_notes": 0,
+        "save_note": 20,
+        "phone_health_check": 0
+      },
+      "phone_health_check": {
+        "answer": 0,
+        "get_device_info": 0,
+        "get_battery_info": 0,
+        "get_storage_info": 0,
+        "get_media_info": 0,
+        "search_local_files": 0,
+        "search_notes": 0,
+        "save_note": 0,
+        "phone_health_check": 20
+      }
+    },
+    "mean_latency_ms": 31384.43673514524,
+    "p50_latency_ms": 32342.07145800019,
+    "p95_latency_ms": 33865.3933329997,
+    "reference_agreement": 0.9441340782122905,
+    "parity_valid_cases": 179
+  },
+  "end_unix": 1792023255.933782
+}

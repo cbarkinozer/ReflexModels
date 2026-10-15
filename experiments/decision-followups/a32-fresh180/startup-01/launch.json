@@ -1,0 +1,11 @@
+{
+  "command": "cd /data/local/tmp/reflex-runtime && LD_LIBRARY_PATH=. ./llama-server -m /sdcard/Download/models/reflex-1-combined-Q4_K_M.gguf -c 2048 -t 4 -tb 4 -ngl 0 --fit off -fa off --no-repack --host 127.0.0.1 --port 8091 --jinja",
+  "launch_unix": 1792017476.787162,
+  "measurement": "process launch to /health ready; OS filesystem caches not flushed",
+  "failed_attempt_note": "First launch occurred before ADB transfer completed; preserved failure log. Restart only after matching full device SHA-256.",
+  "shell_pid": "21104",
+  "ready_seconds": 2.0774425,
+  "health": {
+    "status": "ok"
+  }
+}
