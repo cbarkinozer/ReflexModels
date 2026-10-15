@@ -19,7 +19,7 @@ Calibration fitted and OK (`calibration_ok: true`); post-calibration ECE `.0377`
 
 Known leakage/interpretation caveats (phone validation reuse across pilots, lexical overlap, in-domain-not-zero-shot general sets) are documented in the same held-out-evaluation doc — read it before quoting the phone 98.89% as a generalization claim.
 
-The saved Qwen3.5-0.8B decision-model reference scored 8.44% on BANKING77 and 4.44% on CLINC150; Reflex-1 scored 74.89% and 81.11% accuracy on the same held-out subsets. The base reference had a freshly initialized, unseeded decision head, so it is not a conventional generative zero-shot baseline. [Cloudflare's Clef benchmark figures](https://huggingface.co/Cloudflare/clef) are included in the local model-card draft for context, with macro-F1 and OOS-split differences called out; they are not a direct leaderboard comparison.
+The saved Qwen3.5-0.8B decision-model reference scored 8.44% on BANKING77 and 4.44% on CLINC150; Reflex-1 scored 74.89% and 81.11% accuracy on the same held-out subsets. The base reference had a freshly initialized, unseeded decision head, so it is not a conventional generative zero-shot baseline. The local model-card draft compares these results with [Laya's Cloudflare Decision Index scores](https://huggingface.co/Cloudflare/clef#decision-index), with the macro-F1 and OOS split differences called out; it is not a direct leaderboard comparison.
 
 ## Local artifacts and reproduction
 

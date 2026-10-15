@@ -44,12 +44,12 @@ On the same frozen subsets, the trained model improved over the recorded base-Qw
 
 The base reference uses FastDecisionModel with a freshly initialized decision head. Its initialization was not explicitly seeded, so treat these figures as the measured reference run, not as a reproducible text-generation zero-shot Qwen baseline. Both benchmarks were used for supervised in-domain adaptation; the held-out test examples were separate from training, validation and calibration.
 
-Cloudflare reports Clef at **94.2 BANKING77 macro-F1** and **97.4 CLINC150+OOS macro-F1** on its internal Decision Index 0.2.1 suite. Its model card describes Clef as a 27B Qwen3.8-based model. These figures are useful published context, but they are not directly comparable to Reflex-1's accuracy on balanced subsets: our BANKING77 metric is accuracy, and our CLINC evaluation excludes OOS and samples three examples per in-domain class. We have not run the Decision Index suite. [Cloudflare Clef model card and Decision Index results](https://huggingface.co/Cloudflare/clef).
+Cloudflare's published Decision Index 0.2.1 table reports the **Laya** column at **14.3 BANKING77 macro-F1** and **3.2 CLINC150+OOS macro-F1**. These are useful reference points, but they are not directly comparable to Reflex-1's accuracy on balanced subsets: our BANKING77 metric is accuracy, and our CLINC evaluation excludes OOS and samples three examples per in-domain class. We have not run the Decision Index suite. [Cloudflare's Laya results in the Clef model card](https://huggingface.co/Cloudflare/clef#decision-index).
 
-| Benchmark | Cloudflare Clef published result | Reflex-1 result | Reflex-1 metric and subset |
+| Benchmark | Laya, Cloudflare Decision Index | Reflex-1 result | Reflex-1 metric and subset |
 | --- | ---: | ---: | --- |
-| BANKING77 | 94.2% macro-F1 | 74.89% | Accuracy; 462 examples, six per class |
-| CLINC150+OOS | 97.4% macro-F1 | 81.11% | Accuracy; CLINC150 in-domain only, 450 examples; OOS excluded |
+| BANKING77 | 14.3% macro-F1 | 74.89% | Accuracy; 462 examples, six per class |
+| CLINC150+OOS | 3.2% macro-F1 | 81.11% | Accuracy; CLINC150 in-domain only, 450 examples; OOS excluded |
 
 Do not use this cross-model table to rank the scores; use it to identify the benchmark coverage and metric differences. A direct comparison would require matching benchmark revisions, splits, OOS handling, prompt/schema, and scoring metric.
 
