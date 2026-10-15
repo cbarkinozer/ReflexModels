@@ -163,7 +163,7 @@ The example illustrates API shape, not the nine-option benchmark schema. To repr
 
 ## Data provenance and training dataset
 
-Phone examples were synthetically constructed and reviewed in Argilla by one human; scenario categories are audit metadata, not learned output classes. The admitted phone training component contains 781 examples; the original 900 train examples include records excluded during review and validation selection. The exact 781-row phone component is packaged in [cbarkinozer/MOBILE_ROUTING9](https://huggingface.co/datasets/cbarkinozer/MOBILE_ROUTING9), with source/export hashes and route counts. It contains training rows only, not the separate 180-case MOBILE_ROUTING9 evaluation cohort or the general mixture.
+Phone examples were synthetically constructed and reviewed in Argilla by one human; scenario categories are audit metadata, not learned output classes. The admitted phone training component contains 781 examples; the original 900 train examples include records excluded during review and validation selection. The exact 781-row phone component is packaged in [cbarkinozer/MOBILE_ROUTING9](https://huggingface.co/datasets/cbarkinozer/MOBILE_ROUTING9), with source/export hashes and route counts. It provides 781 training rows and a separate 180-case `test` split underlying the MOBILE_ROUTING9 scores. Validation/calibration files await recovery; the general training mixture is not included. Test rows must not be used for training, calibration or checkpoint selection.
 
 General sources:
 

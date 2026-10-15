@@ -1,0 +1,34 @@
+{
+  "dataset": "cbarkinozer/MOBILE_ROUTING9",
+  "revision": "911cc73b94c68ea061048f1523fdbde6cb05c4c2",
+  "private": true,
+  "splits": {
+    "train": 781,
+    "test": 180
+  },
+  "missing_exact_splits": {
+    "validation": 90,
+    "calibration": 90
+  },
+  "verified_files": [
+    {
+      "path": "README.md",
+      "sha256": "54b6a4585ca2e65b094df00f18e93f0fffb5faf568948fea7a082f0d71386c78"
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "908cc2cd2a389f2dacced8b9421a23eb902e227594b918fe698129117c6e55b5"
+    },
+    {
+      "path": "data/train.jsonl",
+      "sha256": "8c8cf5995ad075331bdc5fdd3217f4788b7366b3b2d320b1e181108844d1e673"
+    },
+    {
+      "path": "data/test.jsonl",
+      "sha256": "136295d67d0f5d5678f4341d75640a17c86d9d13439aa6adec9b21cf2787026d"
+    }
+  ],
+  "model_revision": "88b78a28a70928762ce1a616c53d0ebeb9cf398c",
+  "license": "pending",
+  "visibility_changed": false
+}
