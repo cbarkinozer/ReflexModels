@@ -1,0 +1,69 @@
+{
+  "updated_utc": "2026-10-15T09:01:39.121658+00:00",
+  "repo_id": "cbarkinozer/Reflex-1",
+  "private_before": true,
+  "private_after": true,
+  "previous_revision": "157a0d6ed5a218352bcd5b6bed57dbef090b151d",
+  "revision": "d1111e5fb636ee9f973f2e0b62365ffe4c1af219",
+  "commit_url": "https://huggingface.co/cbarkinozer/Reflex-1/commit/d1111e5fb636ee9f973f2e0b62365ffe4c1af219",
+  "scope": "Model card and aggregate evidence/assets only; no held-out text or model weights uploaded; no visibility change.",
+  "files": [
+    {
+      "local": "releases/reflex-1/HF_MODEL_CARD.md",
+      "path_in_repo": "README.md",
+      "bytes": 20582,
+      "sha256": "c0add9496d30e52c3d1451d97ac229579b80c069b3d95c1b4591490f0a2210b1",
+      "verified_remote_sha256": "c0add9496d30e52c3d1451d97ac229579b80c069b3d95c1b4591490f0a2210b1"
+    },
+    {
+      "local": "releases/reflex-1/benchmark-summary.json",
+      "path_in_repo": "benchmark-summary.json",
+      "bytes": 36379,
+      "sha256": "f36455ac3add63bea9b0ffca041807df75c96f6dc3ce39ab7ef5a5b6090c20f4",
+      "verified_remote_sha256": "f36455ac3add63bea9b0ffca041807df75c96f6dc3ce39ab7ef5a5b6090c20f4"
+    },
+    {
+      "local": "releases/reflex-1/phone-routing-schema.json",
+      "path_in_repo": "phone-routing-schema.json",
+      "bytes": 1523,
+      "sha256": "95091aa81bc987c4283ff54e7b5286b02b6bcbf3d72aa4faf727c7fba0e4531a",
+      "verified_remote_sha256": "95091aa81bc987c4283ff54e7b5286b02b6bcbf3d72aa4faf727c7fba0e4531a"
+    },
+    {
+      "local": "releases/reflex-1/decision-request.example.json",
+      "path_in_repo": "decision-request.example.json",
+      "bytes": 1642,
+      "sha256": "f7e8ea708875a30082e848f42aec98c6b9b1d1fb27f5118922c759fdc27a8875",
+      "verified_remote_sha256": "f7e8ea708875a30082e848f42aec98c6b9b1d1fb27f5118922c759fdc27a8875"
+    },
+    {
+      "local": "releases/reflex-1/reference-benchmarks.json",
+      "path_in_repo": "reference-benchmarks.json",
+      "bytes": 3254,
+      "sha256": "357e5acced8dee5fa14fb0950f99288ba28be7647c1bab8d237cd9a9159524b3",
+      "verified_remote_sha256": "357e5acced8dee5fa14fb0950f99288ba28be7647c1bab8d237cd9a9159524b3"
+    },
+    {
+      "local": "releases/reflex-1/a32-efficiency.json",
+      "path_in_repo": "a32-efficiency.json",
+      "bytes": 1462,
+      "sha256": "2a2ac798b733884357781fac10d4e6dc5f92e14634fe24313f0d7e019fca696b",
+      "verified_remote_sha256": "2a2ac798b733884357781fac10d4e6dc5f92e14634fe24313f0d7e019fca696b"
+    },
+    {
+      "local": "releases/reflex-1/assets/a32-quality-efficiency.png",
+      "path_in_repo": "assets/a32-quality-efficiency.png",
+      "bytes": 133320,
+      "sha256": "638cd475ed2ce1e6fc52e183fe5e6c68249c29da27e85f72c8a8eaf1f8a8e2fd",
+      "verified_remote_sha256": "638cd475ed2ce1e6fc52e183fe5e6c68249c29da27e85f72c8a8eaf1f8a8e2fd"
+    },
+    {
+      "local": "releases/reflex-1/assets/a32-quality-efficiency.svg",
+      "path_in_repo": "assets/a32-quality-efficiency.svg",
+      "bytes": 83275,
+      "sha256": "86f81ff06ac07515659099ece122dd754bbe4e86bb11d964b0e094abe25980d7",
+      "verified_remote_sha256": "86f81ff06ac07515659099ece122dd754bbe4e86bb11d964b0e094abe25980d7"
+    }
+  ],
+  "all_remote_files_verified": true
+}

@@ -3,6 +3,7 @@ base_model: unsloth/Qwen3.5-0.8B
 language:
 - en
 tags:
+- intent-classification
 - decision-model
 - tool-routing
 - qwen3.5
@@ -17,7 +18,7 @@ datasets:
 
 # Reflex-1
 
-Reflex-1 is a Qwen3.5-0.8B decision model trained to select among supplied options, including nine phone-assistant routes. It uses Unsloth's Clef-style decision head and rank-16 LoRA. It returns structured decisions/probabilities rather than generating an answer or tool arguments. The current Hugging Face repository is private; this is a local release-card draft with completed matched mobile results and release licensing still to be selected by the author.
+Reflex-1 is a Qwen3.5-0.8B decision model trained to select among supplied options, including nine phone-assistant routes. It uses Unsloth's Clef-style decision head and rank-16 LoRA. It returns structured decisions/probabilities rather than generating an answer or tool arguments. This repository contains the selected adapter, decision head and Q4_K_M export, with completed matched A32 routing measurements. Release licensing and the final phone-dataset link remain to be completed by the author.
 
 ## Results
 
@@ -44,14 +45,48 @@ On the same frozen subsets, the trained model improved over the recorded base-Qw
 
 The base reference uses FastDecisionModel with a freshly initialized decision head. Its initialization was not explicitly seeded, so treat these figures as the measured reference run, not as a reproducible text-generation zero-shot Qwen baseline. Both benchmarks were used for supervised in-domain adaptation; the held-out test examples were separate from training, validation and calibration.
 
-Cloudflare's published Decision Index 0.2.1 table reports the **Laya** column at **14.3 BANKING77 macro-F1** and **3.2 CLINC150+OOS macro-F1**. These are useful reference points, but they are not directly comparable to Reflex-1's accuracy on balanced subsets: our BANKING77 metric is accuracy, and our CLINC evaluation excludes OOS and samples three examples per in-domain class. We have not run the Decision Index suite. [Cloudflare's Laya results in the Clef model card](https://huggingface.co/Cloudflare/clef#decision-index).
+### Published decision-model landscape
 
-| Benchmark | Laya, Cloudflare Decision Index | Reflex-1 result | Reflex-1 metric and subset |
-| --- | ---: | ---: | --- |
-| BANKING77 | 14.3% macro-F1 | 74.89% | Accuracy; 462 examples, six per class |
-| CLINC150+OOS | 3.2% macro-F1 | 81.11% | Accuracy; CLINC150 in-domain only, 450 examples; OOS excluded |
+The six reference columns below reproduce the selected rows from Cloudflare's internal **Decision Index 0.2.1** results. Reflex-1 appears on the rows we actually evaluated, with its own metric and cohort stated explicitly. Laya is the closest size reference; the larger models provide broader quality context. Source: [Cloudflare model card, pinned revision](https://huggingface.co/Cloudflare/clef/blob/0b331204bb13fbd2ca93a64df1956f5b55478ce5/README.md#decision-index). Published scores were not re-run here.
 
-Do not use this cross-model table to rank the scores; use it to identify the benchmark coverage and metric differences. A direct comparison would require matching benchmark revisions, splits, OOS handling, prompt/schema, and scoring metric.
+| Benchmark / metric / protocol | Clef | Clef-flash | Jev | DiffusionGemma Jev | Kev 9B | Laya | Reflex-1 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| BFCL, case exact accuracy — Decision Index | 98.5 | 98.8 | 95.8 | 96.5 | 94.5 | 38.1 | — |
+| ToolRet, nDCG@10 — Decision Index | 69.2 | 66.4 | 65.3 | 61.2 | 64.3 | 12.8 | — |
+| API-Bank, accuracy — Decision Index | 91.9 | 93.1 | 88.2 | 83.7 | 56.3 | 11.5 | — |
+| BANKING77, macro-F1 — Decision Index | 94.2 | 90.9 | 79.7 | 74.3 | 84.8 | 14.3 | — |
+| CLINC150+OOS, macro-F1 — Decision Index | 97.4 | 66.8 | 89.3 | 83.5 | 79.0 | 3.2 | — |
+| RouterBench, selected quality — Decision Index | 79.7 | 79.9 | 79.9 | 79.0 | 80.0 | 57.1 | — |
+| BANKING77, accuracy — our balanced 462-case test | — | — | — | — | — | — | **74.89** |
+| CLINC150 in-domain, accuracy — our balanced 450-case test, OOS excluded | — | — | — | — | — | — | **81.11** |
+| typed-decisions, per-question accuracy — our 400 cases / 2,000 decisions | — | — | — | — | — | — | **60.70** |
+| Fresh phone routing, accuracy — our 180-case A32 test | — | — | — | — | — | — | **91.11** |
+
+Values are percentages; “—” means not measured under that row's protocol. Accuracy is not macro-F1, and CLINC150 in-domain is not CLINC150+OOS. Balanced class counts make accuracy equal to macro-recall, not automatically macro-F1. Our saved general evaluation contains aggregate metrics without per-case predictions, so macro-F1 cannot be recovered from those aggregates. These data do not establish a cross-model ranking or that Reflex-1 outperforms Laya. Matching the evaluator, checkpoint, options, split, metric and adaptation exposure would allow that comparison.
+
+### Model size and deployment footprint
+
+| Model | Published size / parameter basis | Memory evidence and deployment context |
+| --- | --- | --- |
+| Clef | Nominal 27B; Hub metadata lists 27.36B stored parameters | BF16 multimodal release; no matched RAM/VRAM measurement here |
+| Clef-flash | Nominal 9B; Hub metadata lists 9.41B stored parameters | BF16 multimodal release; no matched RAM/VRAM measurement here |
+| Jev | Parameter count not established by the cited benchmark | Hosted API; local RAM/VRAM unavailable |
+| DiffusionGemma Jev | DiffusionGemma family: nominal 26B total / 4B active | Benchmark wrapper/checkpoint not pinned in the cited table; no matched memory measurement |
+| Kev 9B | Qwen3.5-9B-Base backbone plus adapter/pointer head | Author reports about 22 GB resident on CUDA serving; different hardware/runtime from A32 |
+| Laya | English root: 421M total; multilingual: 322M | Cloudflare's “Laya” column does not pin the variant; no A32 measurement here |
+| **Reflex-1** | Nominal 0.8B backbone + **27,324,932 head parameters**; LoRA merged for GGUF | **545.16 MB Q4_K_M file; 1,090.65 MiB (1.065 GiB) sampled max process PSS on A32 CPU; no GPU VRAM used** |
+
+Size sources: [Clef](https://huggingface.co/Cloudflare/clef), [Clef-flash](https://huggingface.co/Cloudflare/clef-flash), [DiffusionGemma](https://huggingface.co/google/diffusiongemma-26B-A4B-it), [Kev](https://huggingface.co/jaredpalmer/kev-9b), [Laya](https://huggingface.co/convaiinnovations/laya). Exact source revisions and metadata are saved in `reference-benchmarks.json`. Reflex-1's head count is the sum of tensor shape products in its saved `joint_head.safetensors`; the 0.8B backbone label is nominal, not an exact total deployment count. MB/GB are decimal, MiB/GiB binary. File size, weight-only storage, process RAM and GPU VRAM are different quantities. Total MoE parameters determine stored weights; active parameters alone do not determine resident memory.
+
+### Quality–resource tradeoffs and observed Pareto frontiers
+
+A configuration is Pareto-efficient for a stated pair of objectives if no tested alternative is at least as accurate and at most as costly, with a strict improvement in one. Plot accuracy or macro-F1 against **measured latency**, **memory**, or **joules per decision**, using the same evaluation items and hardware/runtime conditions. Parameter count is useful architecture context; dividing score by billions of parameters or by GB is not a substitute for these comparisons.
+
+![Observed A32 accuracy versus latency and sampled process RAM](assets/a32-quality-efficiency.png)
+
+Within the four measured A32 profiles, **Reflex-1 and the shorter Qwen schema-format control form the observed accuracy–latency frontier**. Reflex-1 is both more accurate and faster than the unchanged app-router profiles, while the schema-format control is faster with much lower accuracy. For accuracy versus sampled RAM, Reflex-1, the uncached app router and the schema control are non-dominated; Reflex-1's accuracy comes with higher memory use. These are empirical points from single sustained runs, not a universal frontier over model families. The chart's dashed lines only connect observed non-dominated points.
+
+The current data cannot establish a parameter–quality or VRAM–quality frontier across Clef, Laya and Reflex-1: the scores use different protocols, resource measurements use different hardware or are absent, and some checkpoint identities are unspecified. Our USB-powered measurements do not provide energy per decision. Reproducible chart inputs and frontier membership are in `a32-efficiency.json`; vector artwork is available as `assets/a32-quality-efficiency.svg`.
 
 ### Samsung Galaxy A32 / Q4_K_M
 
@@ -161,7 +196,7 @@ General sources:
 | PolyAI-LDN/task-specific-datasets, banking_data CSV | `57ec275d8078af65b7731c2a98be812d844a6d6b` | CC-BY-4.0 |
 | clinc/clinc_oos (plus, OOS excluded) | `155b9c710419136e17307b80d0a13e68cd46b4ec` | CC-BY-3.0 |
 
-Official training partitions supplied adaptation data; official tests supplied general evaluation. These measure supervised in-domain adaptation, not zero-shot generalization. Exact normalized overlap checks passed, but public benchmark pretraining exposure and semantic template overlap cannot be ruled out. Keep source attribution/licenses intact; the mixture is not uniformly Apache-2.0. Dataset upload instructions are in the local `DATASET_UPLOAD_GUIDE.md`; author must select and document the release license before public upload.
+Official training partitions supplied adaptation data; official tests supplied general evaluation. These measure supervised in-domain adaptation, not zero-shot generalization. Exact normalized overlap checks passed, but public benchmark pretraining exposure and semantic template overlap cannot be ruled out. Keep source attribution/licenses intact; the mixture is not uniformly Apache-2.0. The phone dataset is not yet published; its exact admitted training split must be recovered from the executed-run backup and packaged with attribution and an author-selected license before public release.
 
 ## Limits
 

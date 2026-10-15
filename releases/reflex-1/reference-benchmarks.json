@@ -1,0 +1,126 @@
+{
+  "checked_utc": "2026-10-15T08:58:36.730611+00:00",
+  "suite": "Cloudflare internal Decision Index 0.2.1; reported values, not reproduced here",
+  "models": [
+    "Clef",
+    "Clef-flash",
+    "Jev",
+    "DiffusionGemma Jev",
+    "Kev 9B",
+    "Laya"
+  ],
+  "rows": {
+    "BFCL (case exact accuracy)": [
+      98.5,
+      98.8,
+      95.8,
+      96.5,
+      94.5,
+      38.1
+    ],
+    "ToolRet (nDCG@10)": [
+      69.2,
+      66.4,
+      65.3,
+      61.2,
+      64.3,
+      12.8
+    ],
+    "API-Bank (accuracy)": [
+      91.9,
+      93.1,
+      88.2,
+      83.7,
+      56.3,
+      11.5
+    ],
+    "BANKING77 (macro-F1)": [
+      94.2,
+      90.9,
+      79.7,
+      74.3,
+      84.8,
+      14.3
+    ],
+    "CLINC150+OOS (macro-F1)": [
+      97.4,
+      66.8,
+      89.3,
+      83.5,
+      79.0,
+      3.2
+    ],
+    "RouterBench (selected quality)": [
+      79.7,
+      79.9,
+      79.9,
+      79.0,
+      80.0,
+      57.1
+    ]
+  },
+  "sources": [
+    {
+      "repo": "Cloudflare/clef",
+      "revision": "0b331204bb13fbd2ca93a64df1956f5b55478ce5",
+      "readme_sha256": "16ee04d296b1ef5edcdb3c4d3d3cd369acdc627fb5d255b34264a73e224d821a",
+      "safetensors_metadata": {
+        "parameters": {
+          "BF16": 27356728560
+        },
+        "total": 27356728560
+      },
+      "url": "https://huggingface.co/Cloudflare/clef"
+    },
+    {
+      "repo": "Cloudflare/clef-flash",
+      "revision": "8b2e5fd17c09fd49bc2880b805d5323ec7ff4ff3",
+      "readme_sha256": "53a3dc4ac96a1b2f17e6c03d9cf19a50b25ddad8d270fbe655902f6ce68bb4b5",
+      "safetensors_metadata": {
+        "parameters": {
+          "BF16": 9409813744
+        },
+        "total": 9409813744
+      },
+      "url": "https://huggingface.co/Cloudflare/clef-flash"
+    },
+    {
+      "repo": "convaiinnovations/laya",
+      "revision": "7b928d828b7b0e022f929d9bd2e44165aa270148",
+      "readme_sha256": "00355613796b3f5860b0d5b20392381d26580ec242e04a1fd150c7f116858602",
+      "safetensors_metadata": {
+        "parameters": {
+          "F32": 3,
+          "F16": 421293827
+        },
+        "total": 421293830
+      },
+      "url": "https://huggingface.co/convaiinnovations/laya"
+    },
+    {
+      "repo": "jaredpalmer/kev-9b",
+      "revision": "db029f08b290afd9fee4aa4bbcd9ae48602d1eb0",
+      "readme_sha256": "adeee7ce4c43394dfd9f318ea433ab773668e742dcb7d1b41a3856defdf7918e",
+      "safetensors_metadata": null,
+      "url": "https://huggingface.co/jaredpalmer/kev-9b"
+    },
+    {
+      "repo": "google/diffusiongemma-26B-A4B-it",
+      "revision": "f7f5b7f5fa82ffc52addd066915886d497f5517b",
+      "readme_sha256": "3acbbf7e4c01297291113b1297732b6bcecf0d7769a2571fefeca4f0f5909747",
+      "safetensors_metadata": {
+        "parameters": {
+          "BF16": 25823781228
+        },
+        "total": 25823778864
+      },
+      "url": "https://huggingface.co/google/diffusiongemma-26B-A4B-it"
+    }
+  ],
+  "laya_variant_caveat": "Cloudflare table labels Laya without a pinned checkpoint; root English421M and multilingual322M must not be silently identified with that entry.",
+  "reflex_parameters": {
+    "backbone_nominal_billion": 0.8,
+    "joint_head_exact": 27324932,
+    "count_method": "Product of tensor shapes in joint_head.safetensors header; LoRA merged for GGUF."
+  }
+}
