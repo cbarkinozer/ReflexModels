@@ -1,11 +1,11 @@
 # Scientific/readability review — 2026-10-15
 
-Accepted: define Samsung Galaxy A32 immediately; explicit intended use; fix whitespace; remove deferred rows from public tables; separate calibration discussion; readable Python schema; label MOBILE_ROUTING9 (ours) and Reflex-1 (800M-class); retain paired confidence interval and execution/training-exposure caveats.
+Accepted: define Samsung Galaxy A32 immediately; explicit intended use; fix whitespace; remove deferred rows from public tables; separate calibration discussion; readable Python schema; label MOBILE_ROUTING9 (ours) and Reflex-1 (780M); retain paired confidence interval and execution/training-exposure caveats.
 
 Corrections to the outside critique:
 - Accuracy on identical cohorts can be compared across hardware, provided numerical/runtime differences and training exposure are disclosed. Latency/RAM comparisons require matched execution conditions; Laya is excluded from the A32 resource comparison.
 - A single author-reviewed label policy is a legitimate task reference, but cannot establish universal intent correctness or independent annotation reliability. The card states policy alignment and reviewer exposure.
-- 800M is a nominal backbone size. Adding the exact head count does not yield an exact total; no invented 827M total is asserted.
+- Direct tensor counting subsequently established 779,717,956 deployed text parameters (780M rounded), including the decision head; the vision sidecar is excluded. See parameter-count.json.
 - HTML markers are invisible in the rendered card and retained to preserve reproducible report generation.
 - license: other is not a substitute for choosing and providing an actual license. No license grant is fabricated.
 

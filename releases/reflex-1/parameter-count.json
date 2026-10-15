@@ -1,0 +1,17 @@
+{
+  "artifact": "gguf/model-Q4_K_M.gguf",
+  "sha256": "abfea5f878331206f65e4117157984e14803b093b634c0ed52513c0723ef0699",
+  "total_parameters": 779717956,
+  "rounded_label": "780M",
+  "tensor_prefix_counts": {
+    "dec": 23122944,
+    "decision": 4200452,
+    "output_norm": 1024,
+    "token_embd": 254279680,
+    "token_types": 1536,
+    "blk": 498112320
+  },
+  "method": "Sum logical n_elements of all tensors in the deployed text-only GGUF. Quantization does not change logical parameter count. LoRA merged; vision sidecar excluded.",
+  "decision_head_parameters": 27324932,
+  "text_backbone_parameters": 752393024
+}

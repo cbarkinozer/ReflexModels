@@ -16,7 +16,7 @@ datasets:
 - clinc/clinc_oos
 ---
 
-# Reflex-1 (800M-class)
+# Reflex-1 (780M)
 
 Reflex-1 is a Qwen3.5-0.8B decision model trained to select among supplied options, including nine phone-assistant routes. It uses Unsloth's Clef-style decision head and rank-16 LoRA. It returns structured decisions/probabilities rather than generating an answer or tool arguments. This repository contains the selected adapter, decision head and Q4_K_M export, with completed matched routing measurements on the Samsung Galaxy A32 Android phone (A32). Release licensing and the final phone-dataset link remain to be completed by the author.
 
@@ -32,7 +32,7 @@ This release has not been validated for high-stakes decisions, arbitrary tool ar
 
 Accuracy (%) on the same frozen cohort within each row. These are system comparisons with different training exposure and inference profiles, not a controlled architecture ablation. **MOBILE_ROUTING9** is our 180-case, nine-route phone benchmark, balanced at 20 reviewed examples per route. It measures agreement with our author-reviewed routing policy, rather than a universal definition of the correct tool. [Benchmark definition](MOBILE_ROUTING9.json).
 
-| Benchmark | Cases / decisions | Base Qwen (800M-class) | Reflex-1 (800M-class) | Laya English (421M) |
+| Benchmark | Cases / decisions | Base Qwen3.5-0.8B | Reflex-1 (780M) | Laya English (421M) |
 | --- | ---: | ---: | ---: | ---: |
 | MOBILE_ROUTING9 (ours) | 180 / 180 | 54.44 | **91.11** | 47.22 |
 | typed-decisions | 400 / 2000 | 34.10 | **60.70** | 36.30 |
@@ -53,9 +53,9 @@ The Laya run pins the model revision and SDK, uses a predeclared 4,096-token cei
 | --- | --- | --- |
 | Base Qwen3.5-0.8B | Nominal 0.8B backbone | 532.52 MB Q4_K_M file; 854.83 MiB sampled max process PSS on A32, cached app-router |
 | Laya English | 421M total, ModernBERT-large plus decision head | No matched A32 memory or latency measurement yet |
-| Reflex-1 (800M-class) | Nominal 0.8B backbone + 27,324,932 head parameters; LoRA merged for GGUF | 545.16 MB Q4_K_M file; 1,090.65 MiB sampled max process PSS on A32 CPU |
+| Reflex-1 (780M) | 779,717,956 deployed text parameters, including 27,324,932 decision-head parameters; LoRA merged | 545.16 MB Q4_K_M file; 1,090.65 MiB sampled max process PSS on A32 CPU |
 
-The 800M label is the backbone's nominal size class, not an exact total parameter count; adding an exact head count to a rounded backbone label would imply false precision. Laya's parameter count is from its model card; Reflex-1's exact head count is the sum of tensor shape products in its saved head file. File size, process RAM and GPU VRAM are different quantities. Local Mac Laya inference timings are not compared with A32 timings as if they used the same hardware.
+Reflex-1's 780M label rounds the **779,717,956 logical parameters** counted from all tensors in the deployed text-only GGUF: 752,393,024 text-backbone parameters plus 27,324,932 decision-head parameters. Merged LoRA does not add separate inference tensors; the unused vision sidecar is excluded. Quantization changes storage precision, not logical parameter count. [Count and method](parameter-count.json). Laya's 421M label is reported by its model card. File size, process RAM and GPU VRAM are different quantities. Local Mac Laya inference timings are not compared with A32 timings as if they used the same hardware.
 
 ### Quality–resource tradeoffs and observed Pareto frontiers
 
@@ -76,12 +76,12 @@ MOBILE_ROUTING9 on A32 compares the selected model with the cached base app-rout
 
 | Model | A32 cohort | Cases / decisions | Accuracy | Macro-F1 | Mean latency | Warm p50 / p95 | Errors |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| Reflex-1 (800M-class) | MOBILE_ROUTING9 (ours, 180) | 180 / 180 | 91.11% | 91.06% | 31.36 s | 32.34 / 33.87 s | 0 |
+| Reflex-1 (780M) | MOBILE_ROUTING9 (ours, 180) | 180 / 180 | 91.11% | 91.06% | 31.36 s | 32.34 / 33.87 s | 0 |
 | Qwen app router (cache on) | MOBILE_ROUTING9 (ours, 180) | 180 / 180 | 54.44% | 52.52% | 35.40 s | 36.31 / 38.83 s | 0 |
 
 | Model | A32 cohort | Battery min–max | AP max | Android thermal status max | Sampled max PSS | RSS high-water |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| Reflex-1 (800M-class) | MOBILE_ROUTING9 (ours, 180) | 28.90–37.50 °C | 52.60 °C | 3.00 | 1090.65 MiB | 1093.00 MiB |
+| Reflex-1 (780M) | MOBILE_ROUTING9 (ours, 180) | 28.90–37.50 °C | 52.60 °C | 3.00 | 1090.65 MiB | 1093.00 MiB |
 | Qwen app router (cache on) | MOBILE_ROUTING9 (ours, 180) | 29.30–37.50 °C | 52.90 °C | 3.00 | 854.83 MiB | 896.80 MiB |
 
 MOBILE_ROUTING9 vs qwen-legacy-cached-fresh180: accuracy difference +36.67 percentage points; paired bootstrap 95% confidence interval [+28.89, +44.44] points (10,000 resamples, seed 3407). This interval concerns this reviewed synthetic cohort, not unrestricted real-world requests.
