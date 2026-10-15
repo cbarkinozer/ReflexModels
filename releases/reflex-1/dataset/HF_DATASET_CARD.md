@@ -91,7 +91,7 @@ test_texts = dataset["test"]["state"]
 test_labels = dataset["test"]["route"]
 ```
 
-Use `state` as the input text and `route` as the classification target. Labels are strings, so encode them if your classifier requires integer class IDs. While the repository is private, authenticate with an account that has access.
+Use `state` as the input text and `route` as the classification target. Labels are strings, so encode them if your classifier requires integer class IDs. If accessing a private revision, authenticate with an account that has access.
 
 The additional `questions` and `gold` fields preserve a structured decision-model representation. They are optional for ordinary text classification:
 

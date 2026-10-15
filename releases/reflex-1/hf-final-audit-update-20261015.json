@@ -1,0 +1,19 @@
+[
+  {
+    "repo": "cbarkinozer/MOBILE_ROUTING9",
+    "revision": "87ce1995abf3626a3f0c2f22cebfcdd07df76403",
+    "private": true,
+    "verified_paths": [
+      "README.md"
+    ]
+  },
+  {
+    "repo": "cbarkinozer/Reflex-1",
+    "revision": "54aa44d453d4726996608daadbf1c537e656f538",
+    "private": true,
+    "verified_paths": [
+      "README.md",
+      "manifest.json"
+    ]
+  }
+]

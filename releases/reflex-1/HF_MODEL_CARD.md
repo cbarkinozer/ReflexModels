@@ -19,7 +19,7 @@ datasets:
 
 # Reflex-1 (780M)
 
-Reflex-1 is a Qwen3.5-0.8B decision model trained to select among supplied options, including nine phone-assistant routes. It uses Unsloth's Clef-style decision head and rank-16 LoRA. It returns structured decisions/probabilities rather than generating an answer or tool arguments. This repository contains the selected adapter, decision head and Q4_K_M export, with completed matched routing measurements on the Samsung Galaxy A32 Android phone (A32). Release licensing remains to be completed by the author. The verified phone training component is available privately as [MOBILE_ROUTING9](https://huggingface.co/datasets/cbarkinozer/MOBILE_ROUTING9).
+Reflex-1 is a Qwen3.5-0.8B decision model trained to select among supplied options, including nine phone-assistant routes. It uses Unsloth's Clef-style decision head and rank-16 LoRA. It returns structured decisions/probabilities rather than generating an answer or tool arguments. This repository contains the selected adapter, decision head and Q4_K_M export, with completed matched routing measurements on the Samsung Galaxy A32 Android phone (A32). Release licensing remains to be completed by the author. The phone dataset is available as [MOBILE_ROUTING9](https://huggingface.co/datasets/cbarkinozer/MOBILE_ROUTING9).
 
 ## Intended use
 
@@ -100,7 +100,7 @@ MOBILE_ROUTING9 uses a frozen set of 180 reviewed synthetic requests, balanced a
 
 ## Model and training
 
-- Base: `unsloth/Qwen3.5-0.8B`, independently loaded from base for this run; not continued from reflex-1-beta.
+- Base: `unsloth/Qwen3.5-0.8B`, revision `23c69c53358a07516b5827588b3fdb12ae78fd65`, independently loaded from base for this run; not continued from reflex-1-beta.
 - Data: 781 reviewed synthetic phone requests + 781 general requests (391 typed-decisions, 195 BANKING77, 195 CLINC150). Equal phone/general row counts (typed rows contain five decisions), all general intent classes retained.
 - Nine phone routes: answer, get_device_info, get_battery_info, get_storage_info, get_media_info, search_local_files, search_notes, save_note, phone_health_check.
 - LoRA rank/alpha 16, base learning rate 2e-4, seed 3407, effective batch 32, max training sequence 4096. See executed run manifests for full settings/head LR rather than assuming defaults.
@@ -115,7 +115,7 @@ The first unpublished model is now called reflex-1-beta. It was typed-decisions-
 
 ## Files and use
 
-Private repository: [cbarkinozer/Reflex-1](https://huggingface.co/cbarkinozer/Reflex-1).
+Repository: [cbarkinozer/Reflex-1](https://huggingface.co/cbarkinozer/Reflex-1).
 
 - `adapter/`: LoRA, `joint_head.safetensors`, joint-head/decision configs, tokenizer and processor files. The head/configs are required; an ordinary LoRA-only loader is insufficient.
 - `gguf/model-Q4_K_M.gguf`: 545,161,248 bytes; SHA-256 `abfea5f878331206f65e4117157984e14803b093b634c0ed52513c0723ef0699`.
@@ -173,7 +173,7 @@ General sources:
 | PolyAI-LDN/task-specific-datasets, banking_data CSV | `57ec275d8078af65b7731c2a98be812d844a6d6b` | CC-BY-4.0 |
 | clinc/clinc_oos (plus, OOS excluded) | `155b9c710419136e17307b80d0a13e68cd46b4ec` | CC-BY-3.0 |
 
-Official training partitions supplied adaptation data; official tests supplied general evaluation. These measure supervised in-domain adaptation, not zero-shot generalization. Exact normalized overlap checks passed, but public benchmark pretraining exposure and semantic template overlap cannot be ruled out. Keep source attribution/licenses intact; the mixture is not uniformly Apache-2.0. The phone training dataset is privately uploaded and linked; an author-selected license remains required before public release.
+Official training partitions supplied adaptation data; official tests supplied general evaluation. These measure supervised in-domain adaptation, not zero-shot generalization. Exact normalized overlap checks passed, but public benchmark pretraining exposure and semantic template overlap cannot be ruled out. Keep source attribution/licenses intact; the mixture is not uniformly Apache-2.0. The phone training dataset is uploaded and linked; an author-selected license remains required before public release.
 
 ## Limits
 
