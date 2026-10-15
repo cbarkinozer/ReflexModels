@@ -1,11 +1,32 @@
 {
-  "created_unix": 1792023085.825004,
+  "created_unix": 1792029754.1540952,
   "jobs": [
     {
       "model": "qwen",
       "mode": "raw",
       "data": "/Users/cbarkinozer/Documents/GitHub/ReflexModels/experiments/decision-followups/fresh-phone-test-180/test.jsonl",
       "out": "/Users/cbarkinozer/Documents/GitHub/ReflexModels/experiments/decision-followups/a32-fresh180/qwen-fresh180",
+      "data_sha256": "2d18133e44a9f9db82fe80099b642f00cd6a12ebf643dc043d1f89f9ddfa209b"
+    },
+    {
+      "model": "qwen",
+      "mode": "legacy",
+      "data": "/Users/cbarkinozer/Documents/GitHub/ReflexModels/experiments/decision-followups/fresh-phone-test-180/test.jsonl",
+      "out": "/Users/cbarkinozer/Documents/GitHub/ReflexModels/experiments/decision-followups/a32-fresh180/qwen-legacy-fresh180",
+      "data_sha256": "2d18133e44a9f9db82fe80099b642f00cd6a12ebf643dc043d1f89f9ddfa209b"
+    },
+    {
+      "model": "qwen",
+      "mode": "legacy-cached",
+      "data": "/Users/cbarkinozer/Documents/GitHub/ReflexModels/experiments/decision-followups/fresh-phone-test-180/test.jsonl",
+      "out": "/Users/cbarkinozer/Documents/GitHub/ReflexModels/experiments/decision-followups/a32-fresh180/qwen-legacy-cached-fresh180",
+      "data_sha256": "2d18133e44a9f9db82fe80099b642f00cd6a12ebf643dc043d1f89f9ddfa209b"
+    },
+    {
+      "model": "qwen",
+      "mode": "raw-cached",
+      "data": "/Users/cbarkinozer/Documents/GitHub/ReflexModels/experiments/decision-followups/fresh-phone-test-180/test.jsonl",
+      "out": "/Users/cbarkinozer/Documents/GitHub/ReflexModels/experiments/decision-followups/a32-fresh180/qwen-cached-fresh180",
       "data_sha256": "2d18133e44a9f9db82fe80099b642f00cd6a12ebf643dc043d1f89f9ddfa209b"
     },
     {
@@ -24,7 +45,7 @@
     },
     {
       "model": "qwen",
-      "mode": "raw",
+      "mode": "legacy",
       "data": "/Users/cbarkinozer/Documents/GitHub/pocket-agents-lab/data/phone_routing/test.jsonl",
       "out": "/Users/cbarkinozer/Documents/GitHub/ReflexModels/experiments/decision-followups/a32-fresh180/qwen-historical90",
       "data_sha256": "ed41b456f4c7eee7b6311df19bd16f39f594016dbc9b47ffd398906ac6315dec"

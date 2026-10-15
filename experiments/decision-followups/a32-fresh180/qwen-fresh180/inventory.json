@@ -1,0 +1,41 @@
+{
+  "complete": true,
+  "files": [
+    {
+      "file": "manifest.json",
+      "bytes": 59102,
+      "sha256": "b13841526394c4a0071bb4acba23ba5572c9c6cfe1d8c6038484b9cfcc959c30"
+    },
+    {
+      "file": "predictions.jsonl",
+      "bytes": 1587057,
+      "sha256": "7d1a0e8b0942562ae8eed7ad24b3b99d3e23119397062b3200026988eaeed38f"
+    },
+    {
+      "file": "progress.json",
+      "bytes": 189,
+      "sha256": "47d0944126b6bd6ba602c4a09757150b89338bf8feca62d9ee0fb5bde9a4ecba"
+    },
+    {
+      "file": "server.log",
+      "bytes": 174574,
+      "sha256": "73e1c70e6e7dbe1fc253f36e001fdcfd7de253e3298af1e7bf63f417135bc09c"
+    },
+    {
+      "file": "startup.json",
+      "bytes": 58239,
+      "sha256": "cd4b8d374523188c285d50940bf12a5a63a5bc9a8416b4e086e57612b8b792ad"
+    },
+    {
+      "file": "summary.json",
+      "bytes": 2975,
+      "sha256": "00f1a74f907a8eb582d0c64119953619bb6d674c4d1a302c1a32ec01aaba27bf"
+    },
+    {
+      "file": "telemetry.jsonl",
+      "bytes": 973642,
+      "sha256": "7e666b666bba8ebb3d209128944f35a4e0c087c71385229f0c340dc3adb37090"
+    }
+  ],
+  "profile": "Schema-JSON format control; uncached; distinct from unchanged app router"
+}

@@ -39,10 +39,13 @@ These are saved-adapter scores, not phone/GGUF scores. General tests had no repo
 | Model | A32 cohort | Cases / decisions | Accuracy | Macro-F1 | Warm p50 / p95 | Errors |
 | --- | --- | ---: | ---: | ---: | ---: | ---: |
 | reflex-1 | Fresh phone (180) | 180 / 180 | 91.11% | 91.06% | 32.34 / 33.87 s | 0 |
-| Qwen raw JSON | Fresh phone (180) | 0 completed | pending | pending | pending | pending |
+| Qwen app router (cache off) | Fresh phone (180) | 0 completed | pending | pending | pending | pending |
+| Qwen app router (cache on) | Fresh phone (180) | 0 completed | pending | pending | pending | pending |
 | reflex-1-beta | Fresh phone (180) | 0 completed | pending | pending | pending | pending |
 | reflex-1 | Historical phone (original 90) | 0 completed | pending | pending | pending | pending |
-| Qwen raw JSON | Historical phone (original 90) | 0 completed | pending | pending | pending | pending |
+| Qwen app router (cache off) | Historical phone (original 90) | 0 completed | pending | pending | pending | pending |
+| Qwen schema JSON (cache off) | Fresh phone (180) | 180 / 180 | 23.33% | 22.41% | 25.44 / 26.70 s | 0 |
+| Qwen schema JSON (cache on) | Fresh phone (180) | 0 completed | pending | pending | pending | pending |
 | reflex-1 | typed-decisions | 0 completed | pending | pending | pending | pending |
 | reflex-1 | BANKING77 | 0 completed | pending | pending | pending | pending |
 | reflex-1 | CLINC150 in-domain | 0 completed | pending | pending | pending | pending |
@@ -53,8 +56,9 @@ These are saved-adapter scores, not phone/GGUF scores. General tests had no repo
 | Model | A32 cohort | Battery min–max | AP max | Android thermal status max | Sampled max PSS | RSS high-water |
 | --- | --- | ---: | ---: | ---: | ---: | ---: |
 | reflex-1 | Fresh phone (180) | 28.90–37.50 °C | 52.60 °C | 3.00 | 1090.65 MiB | 1093.00 MiB |
+| Qwen schema JSON (cache off) | Fresh phone (180) | 31.80–37.40 °C | 53.00 °C | 3.00 | 764.54 MiB | 813.60 MiB |
 
-
+Fresh180 vs qwen-fresh180: accuracy difference +67.78 percentage points; paired bootstrap95% interval [+60.00, +75.00] points (10,000 resamples, seed3407). This interval concerns this reviewed synthetic cohort, not unrestricted real-world requests.
 
 Completed runs only; partial counts are not scores. Warm timing excludes first request. General contexts4096 vs phone2048; see recorded protocol and per-run raw outputs.
 <!-- A32_RESULTS_END -->
