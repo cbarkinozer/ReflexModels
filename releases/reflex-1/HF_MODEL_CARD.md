@@ -38,11 +38,11 @@ These are saved-adapter scores, not phone/GGUF scores. General tests had no repo
 <!-- A32_RESULTS_START -->
 | Model | A32 cohort | Cases / decisions | Accuracy | Macro-F1 | Warm p50 / p95 | Errors |
 | --- | --- | ---: | ---: | ---: | ---: | ---: |
-| reflex-1 | Fresh phone180 | 180 / 180 | 91.11% | 91.06% | 32.34 / 33.87 s | 0 |
-| Qwen raw JSON | Fresh phone180 | 0 completed | pending | pending | pending | pending |
-| reflex-1-beta | Fresh phone180 | 0 completed | pending | pending | pending | pending |
-| reflex-1 | Historical phone90 | 0 completed | pending | pending | pending | pending |
-| Qwen raw JSON | Historical phone90 | 0 completed | pending | pending | pending | pending |
+| reflex-1 | Fresh phone (180) | 180 / 180 | 91.11% | 91.06% | 32.34 / 33.87 s | 0 |
+| Qwen raw JSON | Fresh phone (180) | 0 completed | pending | pending | pending | pending |
+| reflex-1-beta | Fresh phone (180) | 0 completed | pending | pending | pending | pending |
+| reflex-1 | Historical phone (original 90) | 0 completed | pending | pending | pending | pending |
+| Qwen raw JSON | Historical phone (original 90) | 0 completed | pending | pending | pending | pending |
 | reflex-1 | typed-decisions | 0 completed | pending | pending | pending | pending |
 | reflex-1 | BANKING77 | 0 completed | pending | pending | pending | pending |
 | reflex-1 | CLINC150 in-domain | 0 completed | pending | pending | pending | pending |
@@ -52,14 +52,16 @@ These are saved-adapter scores, not phone/GGUF scores. General tests had no repo
 
 | Model | A32 cohort | Battery min–max | AP max | Android thermal status max | Sampled max PSS | RSS high-water |
 | --- | --- | ---: | ---: | ---: | ---: | ---: |
-| reflex-1 | Fresh phone180 | 28.90–37.50 °C | 52.60 °C | 3.00 | 1090.65 MiB | 1093.00 MiB |
+| reflex-1 | Fresh phone (180) | 28.90–37.50 °C | 52.60 °C | 3.00 | 1090.65 MiB | 1093.00 MiB |
 
 
 
 Completed runs only; partial counts are not scores. Warm timing excludes first request. General contexts4096 vs phone2048; see recorded protocol and per-run raw outputs.
 <!-- A32_RESULTS_END -->
 
-On the 180-case phone test, GGUF and PyTorch have equal aggregate accuracy but **94.44% route agreement** (10 changed predictions). Mean per-case maximum absolute probability drift is0.0654; the largest is0.8273. On this held-out phone cohort, native GGUF ECE is3.10% (10 equal-width confidence bins), multiclass Brier sum is0.1338 and hard-label NLL is0.3178; these describe the measured cohort rather than universal calibration. These differences include quantization and runtime/numerical effects; no test-based calibration or threshold adjustment was made. Aggregate score agreement does not establish probability parity.
+On the 180-case phone test, GGUF and PyTorch have equal aggregate accuracy but **94.44% route agreement** (10 changed predictions). Mean per-case maximum absolute probability drift is 0.0654; the largest is 0.8273. On this held-out phone cohort, native GGUF ECE is 3.10% (10 equal-width confidence bins), multiclass Brier sum is 0.1338 and hard-label NLL is 0.3178; these describe the measured cohort rather than universal calibration. These differences include quantization and runtime/numerical effects; no test-based calibration or threshold adjustment was made. Aggregate score agreement does not establish probability parity.
+
+The A32 historical 90-case cohort is the original pre-review set; it differs from the 88 usable reviewed cases in the PyTorch historical row. Their scores are not a quantization-parity comparison.
 
 The earlier **55.6% / 36.8 s** Qwen raw-HTTP result used a historical 90-case set. The fresh 180-case result cannot be compared directly against that percentage. Historical JNI 82% used a different runtime/prompt/cohort and is not a matched baseline. The current evaluation compares actual per-case outcomes and records its prompt/grammar treatment rather than assuming these historical numbers transfer.
 
@@ -68,11 +70,11 @@ The earlier **55.6% / 36.8 s** Qwen raw-HTTP result used a historical 90-case se
 - Base: `unsloth/Qwen3.5-0.8B`, independently loaded from base for this run; not continued from reflex-1-beta.
 - Data: 781 reviewed synthetic phone requests + 781 general requests (391 typed-decisions, 195 BANKING77, 195 CLINC150). Equal phone/general domain exposure, all general intent classes retained.
 - Nine phone routes: answer, get_device_info, get_battery_info, get_storage_info, get_media_info, search_local_files, search_notes, save_note, phone_health_check.
-- LoRA rank/alpha16, base learning rate2e-4, seed3407, effective batch32, max training sequence4096. See executed run manifests for full settings/head LR rather than assuming defaults.
+- LoRA rank/alpha 16, base learning rate 2e-4, seed 3407, effective batch 32, max training sequence 4096. See executed run manifests for full settings/head LR rather than assuming defaults.
 - Selected training run: [W&B 66wubl55](https://wandb.ai/c-barkinozer/reflexmodels/runs/66wubl55) (tracking was used only for actual training).
-- Independent 120-step combined trial; checkpoint100 selected on validation equal-domain mean, then calibrated on a separate calibration split. Validation phone98.89%, general78.39%; those selection scores are not held-out performance.
-- Training optimizer time approximately17.5min for the selected 120-step run, on RTX4090 24GB. Setup/validation/calibration/export/billing add time; cost estimates are not final invoices.
-- Fresh180 test was reviewed and frozen after candidate selection. Test results did not select checkpoint100. Single reviewer saw synthetic proposed labels, so human review was not blind independent annotation.
+- Independent 120-step combined trial; checkpoint 100 selected on validation equal-domain mean, then calibrated on a separate calibration split. Validation phone 98.89%, general 78.39%; those selection scores are not held-out performance.
+- Training optimizer time approximately 17.5 min for the selected 120-step run, on RTX 4090 24GB. Setup/validation/calibration/export/billing add time; cost estimates are not final invoices.
+- Fresh180 test was reviewed and frozen after candidate selection. Test results did not select checkpoint 100. Single reviewer saw synthetic proposed labels, so human review was not blind independent annotation.
 
 The first unpublished model is now called reflex-1-beta. It was typed-decisions-only; this combined model takes the Reflex-1 name. Do not confuse the two GGUF files: they share the same byte size but have different hashes.
 
@@ -86,7 +88,7 @@ Private repository: [cbarkinozer/Reflex-1](https://huggingface.co/cbarkinozer/Re
 
 Use a decision-capable Unsloth/llama.cpp runtime and POST to `/v1/systemone`. This is not a `/v1/chat/completions` GGUF. Android tests use the documented build11443 with `--no-repack`; ordinary llama.cpp builds may not expose the Decision API.
 
-The Python adapter example needs a compatible Unsloth/PyTorch environment; the recorded reference used an RTX4090. For Android CPU serving use the verified decision-capable GGUF runtime.
+The Python adapter example needs a compatible Unsloth/PyTorch environment; the recorded reference used an RTX 4090. For Android CPU serving use the verified decision-capable GGUF runtime.
 
 ```python
 from unsloth import FastDecisionModel
@@ -110,7 +112,7 @@ The example illustrates API shape, not the nine-option benchmark schema. To repr
 
 ## Data provenance and planned dataset link
 
-Phone examples were synthetically constructed and reviewed in Argilla by one human; scenario categories are audit metadata, not learned output classes. The admitted phone training component contains781 examples; the original900 train examples include records excluded during review and validation selection. A separate phone training dataset will be linked here after its exact executed inputs, license and final repo name are confirmed. No dataset ID is invented in the YAML above.
+Phone examples were synthetically constructed and reviewed in Argilla by one human; scenario categories are audit metadata, not learned output classes. The admitted phone training component contains 781 examples; the original 900 train examples include records excluded during review and validation selection. A separate phone training dataset will be linked here after its exact executed inputs, license and final repo name are confirmed. No dataset ID is invented in the YAML above.
 
 General sources:
 
@@ -124,7 +126,7 @@ Official training partitions supplied adaptation data; official tests supplied g
 
 ## Limits
 
-Battery and device-info were the weakest fresh PyTorch routes (65% and75% recall). Indirect/boundary requests were harder than everyday requests. Some schema intents refer to plausible future phone capabilities; correct routing does not mean that the current tool can carry out the request. This model does not generate tool arguments, clarify interactively, execute tools or produce final assistant prose.
+Battery and device-info were the weakest fresh PyTorch routes (65% and 75% recall). Indirect/boundary requests were harder than everyday requests. Some schema intents refer to plausible future phone capabilities; correct routing does not mean that the current tool can carry out the request. This model does not generate tool arguments, clarify interactively, execute tools or produce final assistant prose.
 
 The decision-only GGUF does not automatically share a loaded backbone with a chat model. Single-backbone decision/text switching and full Pocket Agents Lab integration remain separate work. Routing latency is not full assistant-turn latency. USB-powered temperature/battery traces do not demonstrate energy savings. Mobile timing depends on runtime, threads, context, request schema, starting temperature and sustained load; see the recorded protocol.
 
