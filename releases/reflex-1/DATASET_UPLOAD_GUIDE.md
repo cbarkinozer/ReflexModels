@@ -79,6 +79,8 @@ rows = load_dataset("cbarkinozer/YOUR_FINAL_DATASET_NAME", split="train", token=
 assert len(rows) == 781
 ```
 
+You can also upload the same prepared folder through the dataset repo’s **Files → Add file → Upload files** page instead of the Python upload call. Keep the `data/` subdirectory and check the rendered card/viewer afterwards. On Windows, `Get-FileHash -Algorithm SHA256 <archive>` is the PowerShell equivalent of the archive hash check above.
+
 ## 4. Link model and dataset both ways
 
 In `cbarkinozer/Reflex-1` model README YAML add the **actual existing dataset ID**, keeping existing metadata:

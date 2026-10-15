@@ -1,0 +1,16 @@
+{
+  "result": "Choice options canonicalize identically: sorted by key for Clef. JSON object insertion-order difference between schema.json and test row questions does not change native choice ordering. Raw baseline uses row sorted criteria order.",
+  "runtime_revision": "f0c41e0168dfd4b5ef72b21d1a311b24cc7a894a",
+  "unsloth_revision": "a70b2a8f7b88c3b8492409efef1dce3d670787f6",
+  "runtime_evidence": [
+    "Clef branch sets choice_sorted=true and noul_true_first=true",
+    "parse_questions sorts choice option keys when choice_sorted",
+    "common_json uses nlohmann::ordered_json"
+  ],
+  "pytorch_evidence": "question_options(choice) returns sorted key/value pairs; noul order is true,false",
+  "source_sha256": {
+    "runtime_decision": "72243606621400bd38f7c32cfb9c393de19c91cd3bdef755ce52a5d3fa67793a",
+    "runtime_json": "d8c556445cef8e7c93b0857f6ca7ae7ebd8295f169403ac66641b72f6b0598f2",
+    "torch_encoder": "0e304cf7c6500e8bb59bef7e2afd2c6373f82596dfb3b57d1aa93c175e2dc3a3"
+  }
+}

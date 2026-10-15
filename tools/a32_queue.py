@@ -179,6 +179,8 @@ def run_suite(label, mode, data, directory, reference=None):
             questions=decode(case['questions']);gold=decode(case['gold'])
             result={'id':case['id'],'state':case['state'],'gold_labels':{k:str(v['label']) for k,v in gold.items()},'before':telemetry(pid)}
             if 'coverage' in case: result['coverage']=case['coverage']
+            if 'workflow' in case: result['workflow']=case['workflow']
+            if 'source' in case: result['source']=case['source']
             if mode=='decision':
                 endpoint='/v1/systemone';body={'model':label,'state':case['state'],'questions':questions}
             else:
