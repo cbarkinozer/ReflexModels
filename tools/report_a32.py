@@ -10,7 +10,7 @@ import statistics
 
 ROOT=Path(__file__).resolve().parents[1]
 BASE=ROOT/'experiments/decision-followups/a32-fresh180'
-JOBS=[('run-01','reflex-1','Fresh phone (180)'),('qwen-fresh180','Qwen raw JSON (cache off)','Fresh phone (180)'),('qwen-cached-fresh180','Qwen raw JSON (cache on)','Fresh phone (180)'),('beta-fresh180','reflex-1-beta','Fresh phone (180)'),('reflex-historical90','reflex-1','Historical phone (original 90)'),('qwen-historical90','Qwen raw JSON','Historical phone (original 90)')]
+JOBS=[('run-01','reflex-1','Fresh phone (180)'),('qwen-fresh180','Qwen raw JSON (cache off)','Fresh phone (180)'),('qwen-cached-fresh180','Qwen raw JSON (cache on)','Fresh phone (180)'),('qwen-legacy-fresh180','Qwen app router (cache off)','Fresh phone (180)'),('qwen-legacy-cached-fresh180','Qwen app router (cache on)','Fresh phone (180)'),('beta-fresh180','reflex-1-beta','Fresh phone (180)'),('reflex-historical90','reflex-1','Historical phone (original 90)'),('qwen-historical90','Qwen app router (cache off)','Historical phone (original 90)')]
 for slug,label in [('reflex','reflex-1'),('beta','reflex-1-beta')]:
     for name,title in [('typed_decisions','typed-decisions'),('banking77','BANKING77'),('clinc150','CLINC150 in-domain')]:JOBS.append((slug+'-'+name,label,title))
 
@@ -131,7 +131,7 @@ def generate():
         resource_lines.append(f"| {r['model']} | {r['cohort']} | {display('battery_c_min')}–{display('battery_c_max')} °C | {display('ap_c_max')} °C | {display('max_android_thermal_status')} | {display('sampled_max_pss_kib',1024)} MiB | {display('rss_high_water_kib',1024)} MiB |")
     resource_table='\n'.join(resource_lines)
     comparisons={}
-    for name in ['qwen-fresh180','qwen-cached-fresh180','beta-fresh180']:
+    for name in ['qwen-fresh180','qwen-cached-fresh180','qwen-legacy-fresh180','qwen-legacy-cached-fresh180','beta-fresh180']:
         if (BASE/name/'summary.json').exists() and (BASE/'run-01/summary.json').exists():comparisons[name]=paired(BASE/'run-01',BASE/name)
     report='# Samsung A32 benchmark results\n\nOnly completed jobs have scores; pending jobs are explicit. '+text+'\n\n'
     report=report.replace('explicit. |','explicit.\n\n|')
