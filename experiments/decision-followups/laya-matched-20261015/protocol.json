@@ -1,0 +1,49 @@
+{
+  "registered_utc": "2026-10-15T09:12:07.155986+00:00",
+  "model": "convaiinnovations/laya",
+  "revision": "7b928d828b7b0e022f929d9bd2e44165aa270148",
+  "variant": "English root,421M; no additional training/calibration",
+  "sdk": "laya==0.4.7",
+  "device": "Mac Apple Silicon MPS",
+  "batch_size": 8,
+  "profile": {
+    "max_len": 4096,
+    "head_max_len": 3072,
+    "reason": "Match Reflex general sequence ceiling and retain full77/150option text; declared before scored inference. Official SDK overrides,not selected on evaluation scores."
+  },
+  "scoring": "Hard-label accuracy; all questions separately; exact-record accuracy separately. Invalid/error outputs count wrong. Macro-F1 additionally reported for Laya,not fabricated for Reflex aggregates.",
+  "input_audit": "Record option distinction/marker counts and state truncation under primary profile and shipped512/192 profile,without scoring default profile.",
+  "no_latency_comparison_to_A32": true,
+  "no_test_training_or_calibration": true,
+  "no_wandb": true,
+  "files": {
+    "BANKING77": {
+      "path": "experiments/decision-followups/heldout-results-20261014/frozen-general-tests/banking77.jsonl",
+      "sha256": "3c7873d2de8b9bad9445c3acf72e85802a499ed059c44626121cc4fdd3b510c0",
+      "rows": 462,
+      "ids_sha256": "bda63942f6dbeec99700e4542c6337c42bcde1676ccb0998099924cea7200001"
+    },
+    "CLINC150": {
+      "path": "experiments/decision-followups/heldout-results-20261014/frozen-general-tests/clinc150.jsonl",
+      "sha256": "0a484b00b94b66d5a7aeefb564eaab9393cc737a4b5078690055e2778e8aa3bd",
+      "rows": 450,
+      "ids_sha256": "ba9d189db7176525e5bd9c67efa2e330b1e4312bfed514ad0ba53f94961b91bc"
+    },
+    "typed-decisions": {
+      "path": "experiments/decision-followups/heldout-results-20261014/frozen-general-tests/typed_decisions.jsonl",
+      "sha256": "1d6c24f9709b62451ece105df85b8f293a4cde9a5a8b73721928b62876ad8365",
+      "rows": 400,
+      "ids_sha256": "96c560ae92409536db561f2cac61561ef19e728e303113d628a2109739329d38"
+    },
+    "MOBILE_ROUTING9": {
+      "path": "experiments/decision-followups/fresh-phone-test-180/test.jsonl",
+      "sha256": "2d18133e44a9f9db82fe80099b642f00cd6a12ebf643dc043d1f89f9ddfa209b",
+      "rows": 180,
+      "ids_sha256": "892a29d8520e286cb84dcea9c994bfbd68432da5b98962e083cfdbe74b3ff917"
+    }
+  },
+  "profile_kwargs": {
+    "max_len": 4096,
+    "head_max_len": 3072
+  }
+}
