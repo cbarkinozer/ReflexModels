@@ -5,3 +5,6 @@ experiments/decision-followups/heldout-results-20261014/** -text whitespace=cr-a
 
 # Exact public copy of the frozen decision schema.
 releases/reflex-1/phone-routing-schema.json -text whitespace=cr-at-eol
+
+# Preserve byte-for-byte original training dataset and provenance.
+experiments/decision-followups/phone-training-781/** -text whitespace=cr-at-eol

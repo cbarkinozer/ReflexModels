@@ -47,7 +47,7 @@ Only Q4_K_M was exported for the main model (no Q8_0 this time); the mmproj side
 
 Same as reflex-1-beta — see [its README](../reflex-1-beta/README.md#run-the-gguf-decision-api) for the `llama-server` / `/v1/systemone` invocation. Point `-m` at this release's `model-Q4_K_M.gguf`.
 
-The Qwen base model and typed-decisions declare Apache-2.0; BANKING77 declares CC-BY-4.0 and CLINC150 CC-BY-3.0. The general mixture is not uniformly Apache-2.0. See [pinned source licenses](../../experiments/decision-followups/general-data/source-revisions.json) and the handoff for phone-data provenance; finalize redistribution terms and attribution before publication. Weights modified by decision-head and LoRA training on 2026-10-13. Privately uploaded for desktop testing; no public publication performed.
+The Qwen base model and typed-decisions declare Apache-2.0; BANKING77 declares CC-BY-4.0 and CLINC150 CC-BY-3.0. The general mixture is not uniformly Apache-2.0. See [pinned source licenses](../../experiments/decision-followups/general-data/source-revisions.json) and the handoff for phone-data provenance; author contributions are Apache-2.0 with upstream attribution retained. Weights modified by decision-head and LoRA training on 2026-10-13. Privately uploaded for desktop testing; no public publication performed.
 
 ## MOBILE_ROUTING9 - 2026-10-15
 
@@ -55,7 +55,7 @@ On 180 fresh synthetic, human-validated cases (20 per route), the saved PyTorch 
 
 ## Private Hugging Face transfer - 2026-10-15
 
-Repository: https://huggingface.co/cbarkinozer/Reflex-1 (private). Upload revision: `157a0d6ed5a218352bcd5b6bed57dbef090b151d`. Remote sizes and LFS SHA-256 values matched the local release manifest. Adapter, joint decision head, tokenizer/processor/calibration/configs are under `adapter/`; model and projector GGUF files under `gguf/`. The standalone merged PyTorch model is **not included**: saved merged weights were absent from the verified artifacts. Adapter loading still requires the base model. Dataset upload remains separate.
+Repository: https://huggingface.co/cbarkinozer/Reflex-1 (private). Upload revision: `157a0d6ed5a218352bcd5b6bed57dbef090b151d`. Remote sizes and LFS SHA-256 values matched the local release manifest. Adapter, joint decision head, tokenizer/processor/calibration/configs are under `adapter/`; model and projector GGUF files under `gguf/`. The standalone merged PyTorch model is **not included**: saved merged weights were absent from the verified artifacts. Adapter loading still requires the base model. The dataset was uploaded separately; see the current release-status section below.
 
 On desktop, authenticate with your Hugging Face account and download:
 
@@ -66,6 +66,14 @@ hf download cbarkinozer/Reflex-1 --revision 157a0d6ed5a218352bcd5b6bed57dbef090b
 
 For only A32 artifacts, add `--include "gguf/*"`. Verify hashes against `gguf-manifest.json` before benchmarking. Private token stays in your local credential store or env; never commit it.
 
-## Mobile benchmarks and private Hub model card
+## Mobile benchmarks and Hub model card
 
-The source for the private Hugging Face model card is [HF_MODEL_CARD.md](HF_MODEL_CARD.md). Sequential Samsung A32 evaluation is recorded in [the A32 report](../../experiments/decision-followups/a32-fresh180/RESULTS.md); only completed runs have scores. [Dataset packaging/upload instructions](DATASET_UPLOAD_GUIDE.md) explain how to publish the exact admitted phone training component and link it to this model without including held-out examples. The private Hub card focuses on the three compact models and four measured benchmarks, with model-size context and A32 efficiency plots. The pinned Laya matched evaluation is recorded under `experiments/decision-followups/laya-matched-20261015/`: MOBILE_ROUTING9 47.22%, typed-decisions 36.30%, BANKING77 36.36%, CLINC150 55.33%; all on our frozen cohorts, with zero request errors or input truncation. The aggregate evidence, generic API examples and chart assets were uploaded with it; [the update receipt](hf-model-card-update-mobile-routing9-20261015.json) records remote hashes and revision. Public visibility and dataset publication remain pending.
+The source for the Hugging Face model card is [HF_MODEL_CARD.md](HF_MODEL_CARD.md). Sequential Samsung A32 evaluation is recorded in [the A32 report](../../experiments/decision-followups/a32-fresh180/RESULTS.md); only completed runs have scores. The card compares base Qwen3.5-0.8B, Reflex-1 (780M deployed text parameters) and pinned Laya English on MOBILE_ROUTING9, typed-decisions, BANKING77 and CLINC150, with hardware and training-exposure caveats. Laya scores on the same frozen cohorts are 47.22%, 36.30%, 36.36% and 55.33%, respectively; zero request errors or input truncation. Full evidence remains under `experiments/decision-followups/laya-matched-20261015/`.
+
+## Phone dataset and release readiness
+
+The exact [original phone splits](../../experiments/decision-followups/phone-training-781/README.md) are committed in Git: 781 train, 90 validation, 90 calibration and 88 historical test rows, with source hashes and template-group provenance. The 88-case historical test was exposed during development and is distinct from the separately frozen 180-case MOBILE_ROUTING9 test.
+
+The dataset is now uploaded to [cbarkinozer/MOBILE_ROUTING9](https://huggingface.co/datasets/cbarkinozer/MOBILE_ROUTING9): 781 train / 90 validation / 90 calibration / 180 test, with pairwise split-isolation checks and verified export hashes. Historical test rows are excluded from that Hub release. The model's additional 781 general training examples are not included in this phone dataset. [Dataset card source](dataset/HF_DATASET_CARD.md).
+
+Both author contributions are licensed under Apache-2.0, with upstream attribution preserved in LICENSE/NOTICE files. The [final release check](FINAL_RELEASE_CHECK.md) and [license upload receipt](hf-license-update-20261015.json) record the completed audit. Both Hub repositories were private at that audit; the author controls subsequent public visibility. No Git push was performed by the agent.

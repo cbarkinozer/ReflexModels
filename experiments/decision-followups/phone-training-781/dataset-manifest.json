@@ -1,0 +1,94 @@
+{
+  "rows": 781,
+  "route_counts": {
+    "get_device_info": 89,
+    "get_media_info": 87,
+    "search_local_files": 86,
+    "get_storage_info": 88,
+    "save_note": 86,
+    "get_battery_info": 82,
+    "phone_health_check": 86,
+    "answer": 89,
+    "search_notes": 88
+  },
+  "train_sha256": "c01503a65e182b0eb68181fcfcdd0e775c3ea4b9a3039ee9f3abcb4f05d7a2b4",
+  "source": "phone-routing-human-reviewed-v2-1080-fixedval-20261013/train.jsonl",
+  "source_archive_sha256": "883959885b9280506688ab33fdeac3560fdef13ddcf4ed37d9105ff750b98a90",
+  "model_repo": "cbarkinozer/Reflex-1",
+  "included_splits": [
+    "train",
+    "validation",
+    "calibration",
+    "test"
+  ],
+  "general_training_included": false,
+  "modified_from_training": false,
+  "splits": {
+    "train": {
+      "file": "train.jsonl",
+      "rows": 781,
+      "sha256": "c01503a65e182b0eb68181fcfcdd0e775c3ea4b9a3039ee9f3abcb4f05d7a2b4",
+      "route_counts": {
+        "get_device_info": 89,
+        "get_media_info": 87,
+        "search_local_files": 86,
+        "get_storage_info": 88,
+        "save_note": 86,
+        "get_battery_info": 82,
+        "phone_health_check": 86,
+        "answer": 89,
+        "search_notes": 88
+      }
+    },
+    "validation": {
+      "file": "validation.jsonl",
+      "rows": 90,
+      "sha256": "a3a4d8240a2f36d100c812baebc6171a6dcb7b58852bb1ef1bee04cb3f4cc4cb",
+      "route_counts": {
+        "get_battery_info": 10,
+        "search_notes": 10,
+        "save_note": 10,
+        "answer": 10,
+        "phone_health_check": 10,
+        "get_media_info": 10,
+        "get_storage_info": 10,
+        "get_device_info": 10,
+        "search_local_files": 10
+      }
+    },
+    "calibration": {
+      "file": "calibration.jsonl",
+      "rows": 90,
+      "sha256": "b4589ced22020c57b76056b0280c3998d23d3dd456122be9f75228f84e6f24fa",
+      "route_counts": {
+        "get_battery_info": 10,
+        "phone_health_check": 10,
+        "get_storage_info": 10,
+        "answer": 10,
+        "get_device_info": 10,
+        "get_media_info": 10,
+        "search_notes": 10,
+        "save_note": 10,
+        "search_local_files": 10
+      }
+    },
+    "test": {
+      "file": "test.jsonl",
+      "rows": 88,
+      "sha256": "bc2693ff6b8ccb16eeb1df0a76127e38ed426f0cb0479f0ecbacd64793cd0447",
+      "route_counts": {
+        "answer": 10,
+        "get_battery_info": 10,
+        "get_device_info": 10,
+        "get_storage_info": 10,
+        "get_media_info": 10,
+        "search_local_files": 9,
+        "search_notes": 10,
+        "save_note": 10,
+        "phone_health_check": 9
+      }
+    }
+  },
+  "historical_test_warning": "The 88-case test was used during development; it is not a new sealed test.",
+  "fresh_test": "../fresh-phone-test-180/test.jsonl (180 cases; already committed separately)"
+}
