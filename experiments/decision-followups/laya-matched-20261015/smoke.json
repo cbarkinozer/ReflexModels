@@ -1,0 +1,26 @@
+{
+  "model": "laya-rl-agent",
+  "answers": {
+    "route": {
+      "type": "choice",
+      "choice": "battery",
+      "probabilities": {
+        "battery": 0.9946,
+        "storage": 0.0054
+      },
+      "confidence": 0.9517,
+      "answer_confidence": 0.9946,
+      "action": {
+        "act_probability": 1.0
+      }
+    }
+  },
+  "usage": {
+    "input_tokens": 31,
+    "output_tokens": 0,
+    "state_tokens": 8,
+    "state_tokens_dropped": 0,
+    "truncated": false,
+    "truncated_questions": []
+  }
+}

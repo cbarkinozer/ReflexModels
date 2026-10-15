@@ -3,7 +3,7 @@
     {
       "directory": "run-01",
       "model": "reflex-1",
-      "cohort": "Fresh phone (180)",
+      "cohort": "MOBILE_ROUTING9 (180)",
       "summary": {
         "complete": true,
         "all_requests": {
@@ -387,7 +387,7 @@
     {
       "directory": "qwen-legacy-fresh180",
       "model": "Qwen app router (cache off)",
-      "cohort": "Fresh phone (180)",
+      "cohort": "MOBILE_ROUTING9 (180)",
       "summary": {
         "complete": true,
         "rows": 180,
@@ -634,7 +634,7 @@
     {
       "directory": "qwen-legacy-cached-fresh180",
       "model": "Qwen app router (cache on)",
-      "cohort": "Fresh phone (180)",
+      "cohort": "MOBILE_ROUTING9 (180)",
       "summary": {
         "complete": true,
         "rows": 180,
@@ -881,7 +881,7 @@
     {
       "directory": "qwen-fresh180",
       "model": "Qwen schema JSON (cache off)",
-      "cohort": "Fresh phone (180)",
+      "cohort": "MOBILE_ROUTING9 (180)",
       "summary": {
         "complete": true,
         "rows": 180,

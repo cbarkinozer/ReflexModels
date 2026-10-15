@@ -1,19 +1,19 @@
 # Samsung A32 benchmark results
 
-Android evaluation covers the selected model and matched cached/uncached app-router comparisons, plus a schema-format control. Beta, historical and general Android runs are deferred. General benchmark scores reported elsewhere were measured with PyTorch on GPU.
+MOBILE_ROUTING9 on A32 compares the selected model with the cached base app-router. General benchmark scores were measured with PyTorch on GPU. Additional routing-profile outputs remain in the aggregate evidence.
 
 Only completed jobs have scores; pending jobs are explicit.
 
 | Model | A32 cohort | Cases / decisions | Accuracy | Macro-F1 | Mean latency | Warm p50 / p95 | Errors |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| reflex-1 | Fresh phone (180) | 180 / 180 | 91.11% | 91.06% | 31.36 s | 32.34 / 33.87 s | 0 |
-| Qwen app router (cache off) | Fresh phone (180) | 180 / 180 | 55.56% | 53.71% | 41.14 s | 41.05 / 44.92 s | 0 |
-| Qwen app router (cache on) | Fresh phone (180) | 180 / 180 | 54.44% | 52.52% | 35.40 s | 36.31 / 38.83 s | 0 |
-| reflex-1-beta | Fresh phone (180) | 0 completed | deferred | deferred | deferred | deferred | deferred |
+| reflex-1 | MOBILE_ROUTING9 (180) | 180 / 180 | 91.11% | 91.06% | 31.36 s | 32.34 / 33.87 s | 0 |
+| Qwen app router (cache off) | MOBILE_ROUTING9 (180) | 180 / 180 | 55.56% | 53.71% | 41.14 s | 41.05 / 44.92 s | 0 |
+| Qwen app router (cache on) | MOBILE_ROUTING9 (180) | 180 / 180 | 54.44% | 52.52% | 35.40 s | 36.31 / 38.83 s | 0 |
+| reflex-1-beta | MOBILE_ROUTING9 (180) | 0 completed | deferred | deferred | deferred | deferred | deferred |
 | reflex-1 | Historical phone (original 90) | 0 completed | deferred | deferred | deferred | deferred | deferred |
 | Qwen app router (cache off) | Historical phone (original 90) | 0 completed | deferred | deferred | deferred | deferred | deferred |
-| Qwen schema JSON (cache off) | Fresh phone (180) | 180 / 180 | 23.33% | 22.41% | 24.93 s | 25.44 / 26.70 s | 0 |
-| Qwen schema JSON (cache on) | Fresh phone (180) | 0 completed | deferred | deferred | deferred | deferred | deferred |
+| Qwen schema JSON (cache off) | MOBILE_ROUTING9 (180) | 180 / 180 | 23.33% | 22.41% | 24.93 s | 25.44 / 26.70 s | 0 |
+| Qwen schema JSON (cache on) | MOBILE_ROUTING9 (180) | 0 completed | deferred | deferred | deferred | deferred | deferred |
 | reflex-1 | typed-decisions | 0 completed | deferred | deferred | deferred | deferred | deferred |
 | reflex-1 | BANKING77 | 0 completed | deferred | deferred | deferred | deferred | deferred |
 | reflex-1 | CLINC150 in-domain | 0 completed | deferred | deferred | deferred | deferred | deferred |
@@ -25,10 +25,10 @@ CPU-only 4 threads, Q4_K_M, runtime build11443, USB powered. Phone ctx2048, gene
 
 | Model | A32 cohort | Battery min–max | AP max | Android thermal status max | Sampled max PSS | RSS high-water |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| reflex-1 | Fresh phone (180) | 28.90–37.50 °C | 52.60 °C | 3.00 | 1090.65 MiB | 1093.00 MiB |
-| Qwen app router (cache off) | Fresh phone (180) | 31.60–37.60 °C | 53.10 °C | 3.00 | 796.23 MiB | 838.14 MiB |
-| Qwen app router (cache on) | Fresh phone (180) | 29.30–37.50 °C | 52.90 °C | 3.00 | 854.83 MiB | 896.80 MiB |
-| Qwen schema JSON (cache off) | Fresh phone (180) | 31.80–37.40 °C | 53.00 °C | 3.00 | 764.54 MiB | 813.60 MiB |
+| reflex-1 | MOBILE_ROUTING9 (180) | 28.90–37.50 °C | 52.60 °C | 3.00 | 1090.65 MiB | 1093.00 MiB |
+| Qwen app router (cache off) | MOBILE_ROUTING9 (180) | 31.60–37.60 °C | 53.10 °C | 3.00 | 796.23 MiB | 838.14 MiB |
+| Qwen app router (cache on) | MOBILE_ROUTING9 (180) | 29.30–37.50 °C | 52.90 °C | 3.00 | 854.83 MiB | 896.80 MiB |
+| Qwen schema JSON (cache off) | MOBILE_ROUTING9 (180) | 31.80–37.40 °C | 53.00 °C | 3.00 | 764.54 MiB | 813.60 MiB |
 
 PSS maxima are sampled; RSS high-water is kernel-reported. USB power precludes an energy-saving claim.
 

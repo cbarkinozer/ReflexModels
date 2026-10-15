@@ -10,7 +10,7 @@ import statistics
 
 ROOT=Path(__file__).resolve().parents[1]
 BASE=ROOT/'experiments/decision-followups/a32-fresh180'
-JOBS=[('run-01','reflex-1','Fresh phone (180)'),('qwen-legacy-fresh180','Qwen app router (cache off)','Fresh phone (180)'),('qwen-legacy-cached-fresh180','Qwen app router (cache on)','Fresh phone (180)'),('beta-fresh180','reflex-1-beta','Fresh phone (180)'),('reflex-historical90','reflex-1','Historical phone (original 90)'),('qwen-historical90','Qwen app router (cache off)','Historical phone (original 90)'),('qwen-fresh180','Qwen schema JSON (cache off)','Fresh phone (180)'),('qwen-cached-fresh180','Qwen schema JSON (cache on)','Fresh phone (180)')]
+JOBS=[('run-01','reflex-1','MOBILE_ROUTING9 (180)'),('qwen-legacy-fresh180','Qwen app router (cache off)','MOBILE_ROUTING9 (180)'),('qwen-legacy-cached-fresh180','Qwen app router (cache on)','MOBILE_ROUTING9 (180)'),('beta-fresh180','reflex-1-beta','MOBILE_ROUTING9 (180)'),('reflex-historical90','reflex-1','Historical phone (original 90)'),('qwen-historical90','Qwen app router (cache off)','Historical phone (original 90)'),('qwen-fresh180','Qwen schema JSON (cache off)','MOBILE_ROUTING9 (180)'),('qwen-cached-fresh180','Qwen schema JSON (cache on)','MOBILE_ROUTING9 (180)')]
 for slug,label in [('reflex','reflex-1'),('beta','reflex-1-beta')]:
     for name,title in [('typed_decisions','typed-decisions'),('banking77','BANKING77'),('clinc150','CLINC150 in-domain')]:JOBS.append((slug+'-'+name,label,title))
 
@@ -160,7 +160,7 @@ def generate():
     comparisons={}
     for name in ['qwen-fresh180','qwen-cached-fresh180','qwen-legacy-fresh180','qwen-legacy-cached-fresh180','beta-fresh180']:
         if (BASE/name/'summary.json').exists() and (BASE/'run-01/summary.json').exists():comparisons[name]=paired(BASE/'run-01',BASE/name)
-    scope_note='Android evaluation covers the selected model and matched cached/uncached app-router comparisons, plus a schema-format control. Beta, historical and general Android runs are deferred. General benchmark scores reported elsewhere were measured with PyTorch on GPU.\n\n' if scope else ''
+    scope_note='MOBILE_ROUTING9 on A32 compares the selected model with the cached base app-router. General benchmark scores were measured with PyTorch on GPU. Additional routing-profile outputs remain in the aggregate evidence.\n\n' if scope else ''
     report='# Samsung A32 benchmark results\n\n'+scope_note+'Only completed jobs have scores; pending jobs are explicit. '+text+'\n\n'
     report=report.replace('explicit. |','explicit.\n\n|')
     report+='CPU-only 4 threads, Q4_K_M, runtime build11443, USB powered. Phone ctx2048, general ctx4096. Warm timing excludes first request and includes ADB/HTTP. General per-question accuracy and exact-record metrics are separate; CLINC excludes OOS. Raw Qwen uses fixed no-chat-template JSON-grammar treatment; not a claim about every Qwen prompting/runtime strategy.\n\n'
@@ -177,9 +177,10 @@ def generate():
     card=ROOT/'releases/reflex-1/HF_MODEL_CARD.md'
     s=card.read_text();start='<!-- A32_RESULTS_START -->';end='<!-- A32_RESULTS_END -->'
     before,rest=s.split(start,1);_,after=rest.split(end,1)
-    paired_text='\n\n'.join(f"Fresh180 vs {name}: accuracy difference {100*v['accuracy_difference']:+.2f} percentage points; paired bootstrap95% interval [{100*v['paired_bootstrap_95ci'][0]:+.2f}, {100*v['paired_bootstrap_95ci'][1]:+.2f}] points (10,000 resamples, seed3407). This interval concerns this reviewed synthetic cohort, not unrestricted real-world requests." for name,v in comparisons.items())
-    card_text='\n'.join(line for line in lines if '| deferred |' not in line)
-    card.write_text(before+start+'\n'+scope_note+card_text+'\n\n'+resource_table+'\n\n'+paired_text+'\n\nCompleted runs only; partial counts are not scores. Warm timing excludes first request; phone context2048. See recorded protocol and per-run raw outputs.\n'+end+after)
+    paired_text='\n\n'.join(f"MOBILE_ROUTING9 vs {name}: accuracy difference {100*v['accuracy_difference']:+.2f} percentage points; paired bootstrap95% interval [{100*v['paired_bootstrap_95ci'][0]:+.2f}, {100*v['paired_bootstrap_95ci'][1]:+.2f}] points (10,000 resamples, seed3407). This interval concerns this reviewed synthetic cohort, not unrestricted real-world requests." for name,v in comparisons.items() if name=='qwen-legacy-cached-fresh180')
+    card_text='\n'.join(lines[:2]+[line for line in lines[2:] if line.startswith('| reflex-1 |') or line.startswith('| Qwen app router (cache on) |')])
+    card_resources='\n'.join(resource_lines[:2]+[line for line in resource_lines[2:] if line.startswith('| reflex-1 |') or line.startswith('| Qwen app router (cache on) |')])
+    card.write_text(before+start+'\n'+scope_note+card_text+'\n\n'+card_resources+'\n\n'+paired_text+'\n\nCompleted runs only; partial counts are not scores. Warm timing excludes first request; phone context2048. See recorded protocol and per-run raw outputs.\n'+end+after)
     print('Report updated:',len(records),'completed;',len(required),'required;',len(JOBS)-len(required),'deferred')
 
 

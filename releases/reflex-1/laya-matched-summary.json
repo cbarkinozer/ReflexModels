@@ -1,0 +1,1742 @@
+{
+  "complete": true,
+  "benchmark_names": [
+    "MOBILE_ROUTING9",
+    "typed-decisions",
+    "BANKING77",
+    "CLINC150"
+  ],
+  "results": {
+    "MOBILE_ROUTING9": {
+      "rows": 180,
+      "decisions": 180,
+      "base_accuracy": 0.5444444444444444,
+      "reflex_accuracy": 0.9111111111111111,
+      "laya_accuracy": 0.4722222222222222,
+      "laya_errors": 0,
+      "laya_record_accuracy": 0.4722222222222222,
+      "data_sha256": "2d18133e44a9f9db82fe80099b642f00cd6a12ebf643dc043d1f89f9ddfa209b",
+      "input_audit": {
+        "questions": 180,
+        "state_truncated": 0,
+        "missing_markers": 0,
+        "collapsed_options": 0,
+        "capped_option_text": 0
+      },
+      "default_budget_audit": {
+        "questions": 180,
+        "state_truncated": 0,
+        "missing_markers": 0,
+        "collapsed_options": 0,
+        "capped_option_text": 180
+      },
+      "laya_per_question_metrics": {
+        "route": {
+          "accuracy": 0.4722222222222222,
+          "macro_f1": 0.4330125967698956,
+          "per_label": {
+            "answer": {
+              "support": 20,
+              "predicted": 0,
+              "tp": 0
+            },
+            "get_battery_info": {
+              "support": 20,
+              "predicted": 23,
+              "tp": 15
+            },
+            "get_device_info": {
+              "support": 20,
+              "predicted": 60,
+              "tp": 15
+            },
+            "get_media_info": {
+              "support": 20,
+              "predicted": 3,
+              "tp": 3
+            },
+            "get_storage_info": {
+              "support": 20,
+              "predicted": 27,
+              "tp": 18
+            },
+            "phone_health_check": {
+              "support": 20,
+              "predicted": 10,
+              "tp": 9
+            },
+            "save_note": {
+              "support": 20,
+              "predicted": 47,
+              "tp": 16
+            },
+            "search_local_files": {
+              "support": 20,
+              "predicted": 5,
+              "tp": 5
+            },
+            "search_notes": {
+              "support": 20,
+              "predicted": 5,
+              "tp": 4
+            }
+          }
+        }
+      }
+    },
+    "typed-decisions": {
+      "rows": 400,
+      "decisions": 2000,
+      "base_accuracy": 0.341,
+      "reflex_accuracy": 0.607,
+      "laya_accuracy": 0.363,
+      "laya_errors": 0,
+      "laya_record_accuracy": 0.0175,
+      "data_sha256": "1d6c24f9709b62451ece105df85b8f293a4cde9a5a8b73721928b62876ad8365",
+      "input_audit": {
+        "questions": 2000,
+        "state_truncated": 0,
+        "missing_markers": 0,
+        "collapsed_options": 0,
+        "capped_option_text": 0
+      },
+      "default_budget_audit": {
+        "questions": 2000,
+        "state_truncated": 34,
+        "missing_markers": 0,
+        "collapsed_options": 0,
+        "capped_option_text": 0
+      },
+      "laya_per_question_metrics": {
+        "action": {
+          "accuracy": 0.18,
+          "macro_f1": 0.09131518749839361,
+          "per_label": {
+            "answer_directly": {
+              "support": 17,
+              "predicted": 3,
+              "tp": 0
+            },
+            "continue": {
+              "support": 31,
+              "predicted": 100,
+              "tp": 31
+            },
+            "escalate_to_human": {
+              "support": 52,
+              "predicted": 3,
+              "tp": 3
+            },
+            "execute_refund": {
+              "support": 7,
+              "predicted": 4,
+              "tp": 0
+            },
+            "human_review": {
+              "support": 36,
+              "predicted": 0,
+              "tp": 0
+            },
+            "observe": {
+              "support": 31,
+              "predicted": 0,
+              "tp": 0
+            },
+            "request_information": {
+              "support": 24,
+              "predicted": 3,
+              "tp": 2
+            },
+            "stop": {
+              "support": 2,
+              "predicted": 0,
+              "tp": 0
+            }
+          }
+        },
+        "category": {
+          "accuracy": 0.48,
+          "macro_f1": 0.4532939911708868,
+          "per_label": {
+            "account": {
+              "support": 18,
+              "predicted": 20,
+              "tp": 9
+            },
+            "billing": {
+              "support": 38,
+              "predicted": 21,
+              "tp": 19
+            },
+            "delivery": {
+              "support": 20,
+              "predicted": 4,
+              "tp": 4
+            },
+            "refund": {
+              "support": 4,
+              "predicted": 36,
+              "tp": 4
+            },
+            "technical": {
+              "support": 20,
+              "predicted": 19,
+              "tp": 12
+            }
+          }
+        },
+        "churn_risk": {
+          "accuracy": 0.47,
+          "macro_f1": 0.36787191055483737,
+          "per_label": {
+            "0": {
+              "support": 3,
+              "predicted": 1,
+              "tp": 0
+            },
+            "1": {
+              "support": 25,
+              "predicted": 52,
+              "tp": 18
+            },
+            "2": {
+              "support": 47,
+              "predicted": 35,
+              "tp": 19
+            },
+            "3": {
+              "support": 25,
+              "predicted": 12,
+              "tp": 10
+            }
+          }
+        },
+        "credential_compromise": {
+          "accuracy": 0.55,
+          "macro_f1": 0.4692770373864843,
+          "per_label": {
+            "false": {
+              "support": 45,
+              "predicted": 16,
+              "tp": 8
+            },
+            "true": {
+              "support": 55,
+              "predicted": 84,
+              "tp": 47
+            }
+          }
+        },
+        "discrepancy_severity": {
+          "accuracy": 0.44,
+          "macro_f1": 0.15384615384615385,
+          "per_label": {
+            "0": {
+              "support": 47,
+              "predicted": 96,
+              "tp": 44
+            },
+            "1": {
+              "support": 1,
+              "predicted": 0,
+              "tp": 0
+            },
+            "2": {
+              "support": 16,
+              "predicted": 4,
+              "tp": 0
+            },
+            "3": {
+              "support": 36,
+              "predicted": 0,
+              "tp": 0
+            }
+          }
+        },
+        "disposition": {
+          "accuracy": 0.245,
+          "macro_f1": 0.10934670358452443,
+          "per_label": {
+            "approve": {
+              "support": 45,
+              "predicted": 95,
+              "tp": 44
+            },
+            "close_benign": {
+              "support": 3,
+              "predicted": 80,
+              "tp": 3
+            },
+            "contain": {
+              "support": 15,
+              "predicted": 5,
+              "tp": 0
+            },
+            "hold": {
+              "support": 12,
+              "predicted": 0,
+              "tp": 0
+            },
+            "investigate": {
+              "support": 74,
+              "predicted": 0,
+              "tp": 0
+            },
+            "manual_review": {
+              "support": 38,
+              "predicted": 0,
+              "tp": 0
+            },
+            "monitor": {
+              "support": 8,
+              "predicted": 15,
+              "tp": 2
+            },
+            "reject": {
+              "support": 5,
+              "predicted": 5,
+              "tp": 0
+            }
+          }
+        },
+        "duplicate": {
+          "accuracy": 0.11,
+          "macro_f1": 0.0990990990990991,
+          "per_label": {
+            "false": {
+              "support": 89,
+              "predicted": 0,
+              "tp": 0
+            },
+            "true": {
+              "support": 11,
+              "predicted": 100,
+              "tp": 11
+            }
+          }
+        },
+        "matches_order": {
+          "accuracy": 0.49,
+          "macro_f1": 0.3453985367731998,
+          "per_label": {
+            "false": {
+              "support": 46,
+              "predicted": 7,
+              "tp": 1
+            },
+            "true": {
+              "support": 54,
+              "predicted": 93,
+              "tp": 48
+            }
+          }
+        },
+        "needs_human": {
+          "accuracy": 0.67,
+          "macro_f1": 0.4937873907040957,
+          "per_label": {
+            "false": {
+              "support": 33,
+              "predicted": 8,
+              "tp": 4
+            },
+            "true": {
+              "support": 67,
+              "predicted": 92,
+              "tp": 63
+            }
+          }
+        },
+        "needs_review": {
+          "accuracy": 0.58,
+          "macro_f1": 0.4243421052631579,
+          "per_label": {
+            "false": {
+              "support": 55,
+              "predicted": 97,
+              "tp": 55
+            },
+            "true": {
+              "support": 45,
+              "predicted": 3,
+              "tp": 3
+            }
+          }
+        },
+        "outcome": {
+          "accuracy": 0.41,
+          "macro_f1": 0.2078408195429472,
+          "per_label": {
+            "failure": {
+              "support": 5,
+              "predicted": 42,
+              "tp": 3
+            },
+            "harmful": {
+              "support": 19,
+              "predicted": 0,
+              "tp": 0
+            },
+            "partial": {
+              "support": 26,
+              "predicted": 0,
+              "tp": 0
+            },
+            "success": {
+              "support": 50,
+              "predicted": 58,
+              "tp": 38
+            }
+          }
+        },
+        "risk": {
+          "accuracy": 0.29,
+          "macro_f1": 0.1271889400921659,
+          "per_label": {
+            "0": {
+              "support": 34,
+              "predicted": 1,
+              "tp": 1
+            },
+            "1": {
+              "support": 28,
+              "predicted": 96,
+              "tp": 28
+            },
+            "2": {
+              "support": 20,
+              "predicted": 2,
+              "tp": 0
+            },
+            "3": {
+              "support": 18,
+              "predicted": 1,
+              "tp": 0
+            }
+          }
+        },
+        "severity": {
+          "accuracy": 0.32,
+          "macro_f1": 0.1840682234666612,
+          "per_label": {
+            "0": {
+              "support": 1,
+              "predicted": 1,
+              "tp": 0
+            },
+            "1": {
+              "support": 9,
+              "predicted": 29,
+              "tp": 6
+            },
+            "2": {
+              "support": 31,
+              "predicted": 66,
+              "tp": 22
+            },
+            "3": {
+              "support": 49,
+              "predicted": 4,
+              "tp": 4
+            },
+            "4": {
+              "support": 10,
+              "predicted": 0,
+              "tp": 0
+            }
+          }
+        },
+        "true_positive": {
+          "accuracy": 0.52,
+          "macro_f1": 0.5169082125603865,
+          "per_label": {
+            "false": {
+              "support": 27,
+              "predicted": 65,
+              "tp": 22
+            },
+            "true": {
+              "support": 73,
+              "predicted": 35,
+              "tp": 30
+            }
+          }
+        },
+        "urgency": {
+          "accuracy": 0.27,
+          "macro_f1": 0.14306623737119759,
+          "per_label": {
+            "0": {
+              "support": 39,
+              "predicted": 0,
+              "tp": 0
+            },
+            "1": {
+              "support": 97,
+              "predicted": 384,
+              "tp": 96
+            },
+            "2": {
+              "support": 138,
+              "predicted": 4,
+              "tp": 2
+            },
+            "3": {
+              "support": 126,
+              "predicted": 12,
+              "tp": 10
+            }
+          }
+        }
+      }
+    },
+    "BANKING77": {
+      "rows": 462,
+      "decisions": 462,
+      "base_accuracy": 0.08441558441558442,
+      "reflex_accuracy": 0.7489177489177489,
+      "laya_accuracy": 0.36363636363636365,
+      "laya_errors": 0,
+      "laya_record_accuracy": 0.36363636363636365,
+      "data_sha256": "3c7873d2de8b9bad9445c3acf72e85802a499ed059c44626121cc4fdd3b510c0",
+      "input_audit": {
+        "questions": 462,
+        "state_truncated": 0,
+        "missing_markers": 0,
+        "collapsed_options": 0,
+        "capped_option_text": 0
+      },
+      "default_budget_audit": {
+        "questions": 462,
+        "state_truncated": 0,
+        "missing_markers": 0,
+        "collapsed_options": 462,
+        "capped_option_text": 462
+      },
+      "laya_per_question_metrics": {
+        "intent": {
+          "accuracy": 0.36363636363636365,
+          "macro_f1": 0.3597657031653059,
+          "per_label": {
+            "Refund_not_showing_up": {
+              "support": 6,
+              "predicted": 4,
+              "tp": 4
+            },
+            "activate_my_card": {
+              "support": 6,
+              "predicted": 5,
+              "tp": 5
+            },
+            "age_limit": {
+              "support": 6,
+              "predicted": 1,
+              "tp": 1
+            },
+            "apple_pay_or_google_pay": {
+              "support": 6,
+              "predicted": 5,
+              "tp": 5
+            },
+            "atm_support": {
+              "support": 6,
+              "predicted": 0,
+              "tp": 0
+            },
+            "automatic_top_up": {
+              "support": 6,
+              "predicted": 5,
+              "tp": 4
+            },
+            "balance_not_updated_after_bank_transfer": {
+              "support": 6,
+              "predicted": 1,
+              "tp": 0
+            },
+            "balance_not_updated_after_cheque_or_cash_deposit": {
+              "support": 6,
+              "predicted": 0,
+              "tp": 0
+            },
+            "beneficiary_not_allowed": {
+              "support": 6,
+              "predicted": 0,
+              "tp": 0
+            },
+            "cancel_transfer": {
+              "support": 6,
+              "predicted": 0,
+              "tp": 0
+            },
+            "card_about_to_expire": {
+              "support": 6,
+              "predicted": 4,
+              "tp": 4
+            },
+            "card_acceptance": {
+              "support": 6,
+              "predicted": 0,
+              "tp": 0
+            },
+            "card_arrival": {
+              "support": 6,
+              "predicted": 1,
+              "tp": 1
+            },
+            "card_delivery_estimate": {
+              "support": 6,
+              "predicted": 0,
+              "tp": 0
+            },
+            "card_linking": {
+              "support": 6,
+              "predicted": 0,
+              "tp": 0
+            },
+            "card_not_working": {
+              "support": 6,
+              "predicted": 0,
+              "tp": 0
+            },
+            "card_payment_fee_charged": {
+              "support": 6,
+              "predicted": 0,
+              "tp": 0
+            },
+            "card_payment_not_recognised": {
+              "support": 6,
+              "predicted": 0,
+              "tp": 0
+            },
+            "card_payment_wrong_exchange_rate": {
+              "support": 6,
+              "predicted": 0,
+              "tp": 0
+            },
+            "card_swallowed": {
+              "support": 6,
+              "predicted": 1,
+              "tp": 1
+            },
+            "cash_withdrawal_charge": {
+              "support": 6,
+              "predicted": 0,
+              "tp": 0
+            },
+            "cash_withdrawal_not_recognised": {
+              "support": 6,
+              "predicted": 0,
+              "tp": 0
+            },
+            "change_pin": {
+              "support": 6,
+              "predicted": 1,
+              "tp": 1
+            },
+            "compromised_card": {
+              "support": 6,
+              "predicted": 2,
+              "tp": 2
+            },
+            "contactless_not_working": {
+              "support": 6,
+              "predicted": 3,
+              "tp": 3
+            },
+            "country_support": {
+              "support": 6,
+              "predicted": 1,
+              "tp": 1
+            },
+            "declined_card_payment": {
+              "support": 6,
+              "predicted": 175,
+              "tp": 6
+            },
+            "declined_cash_withdrawal": {
+              "support": 6,
+              "predicted": 0,
+              "tp": 0
+            },
+            "declined_transfer": {
+              "support": 6,
+              "predicted": 1,
+              "tp": 0
+            },
+            "direct_debit_payment_not_recognised": {
+              "support": 6,
+              "predicted": 3,
+              "tp": 3
+            },
+            "disposable_card_limits": {
+              "support": 6,
+              "predicted": 4,
+              "tp": 3
+            },
+            "edit_personal_details": {
+              "support": 6,
+              "predicted": 3,
+              "tp": 3
+            },
+            "exchange_charge": {
+              "support": 6,
+              "predicted": 0,
+              "tp": 0
+            },
+            "exchange_rate": {
+              "support": 6,
+              "predicted": 0,
+              "tp": 0
+            },
+            "exchange_via_app": {
+              "support": 6,
+              "predicted": 2,
+              "tp": 1
+            },
+            "extra_charge_on_statement": {
+              "support": 6,
+              "predicted": 0,
+              "tp": 0
+            },
+            "failed_transfer": {
+              "support": 6,
+              "predicted": 0,
+              "tp": 0
+            },
+            "fiat_currency_support": {
+              "support": 6,
+              "predicted": 0,
+              "tp": 0
+            },
+            "get_disposable_virtual_card": {
+              "support": 6,
+              "predicted": 2,
+              "tp": 2
+            },
+            "get_physical_card": {
+              "support": 6,
+              "predicted": 0,
+              "tp": 0
+            },
+            "getting_spare_card": {
+              "support": 6,
+              "predicted": 2,
+              "tp": 2
+            },
+            "getting_virtual_card": {
+              "support": 6,
+              "predicted": 5,
+              "tp": 1
+            },
+            "lost_or_stolen_card": {
+              "support": 6,
+              "predicted": 16,
+              "tp": 6
+            },
+            "lost_or_stolen_phone": {
+              "support": 6,
+              "predicted": 3,
+              "tp": 3
+            },
+            "order_physical_card": {
+              "support": 6,
+              "predicted": 5,
+              "tp": 3
+            },
+            "passcode_forgotten": {
+              "support": 6,
+              "predicted": 3,
+              "tp": 2
+            },
+            "pending_card_payment": {
+              "support": 6,
+              "predicted": 7,
+              "tp": 5
+            },
+            "pending_cash_withdrawal": {
+              "support": 6,
+              "predicted": 0,
+              "tp": 0
+            },
+            "pending_top_up": {
+              "support": 6,
+              "predicted": 7,
+              "tp": 3
+            },
+            "pending_transfer": {
+              "support": 6,
+              "predicted": 1,
+              "tp": 0
+            },
+            "pin_blocked": {
+              "support": 6,
+              "predicted": 1,
+              "tp": 1
+            },
+            "receiving_money": {
+              "support": 6,
+              "predicted": 0,
+              "tp": 0
+            },
+            "request_refund": {
+              "support": 6,
+              "predicted": 7,
+              "tp": 4
+            },
+            "reverted_card_payment?": {
+              "support": 6,
+              "predicted": 1,
+              "tp": 1
+            },
+            "supported_cards_and_currencies": {
+              "support": 6,
+              "predicted": 22,
+              "tp": 3
+            },
+            "terminate_account": {
+              "support": 6,
+              "predicted": 7,
+              "tp": 6
+            },
+            "top_up_by_bank_transfer_charge": {
+              "support": 6,
+              "predicted": 5,
+              "tp": 1
+            },
+            "top_up_by_card_charge": {
+              "support": 6,
+              "predicted": 0,
+              "tp": 0
+            },
+            "top_up_by_cash_or_cheque": {
+              "support": 6,
+              "predicted": 4,
+              "tp": 4
+            },
+            "top_up_failed": {
+              "support": 6,
+              "predicted": 9,
+              "tp": 4
+            },
+            "top_up_limits": {
+              "support": 6,
+              "predicted": 7,
+              "tp": 6
+            },
+            "top_up_reverted": {
+              "support": 6,
+              "predicted": 3,
+              "tp": 3
+            },
+            "topping_up_by_card": {
+              "support": 6,
+              "predicted": 3,
+              "tp": 1
+            },
+            "transaction_charged_twice": {
+              "support": 6,
+              "predicted": 12,
+              "tp": 5
+            },
+            "transfer_fee_charged": {
+              "support": 6,
+              "predicted": 19,
+              "tp": 4
+            },
+            "transfer_into_account": {
+              "support": 6,
+              "predicted": 7,
+              "tp": 4
+            },
+            "transfer_not_received_by_recipient": {
+              "support": 6,
+              "predicted": 7,
+              "tp": 4
+            },
+            "transfer_timing": {
+              "support": 6,
+              "predicted": 10,
+              "tp": 4
+            },
+            "unable_to_verify_identity": {
+              "support": 6,
+              "predicted": 10,
+              "tp": 5
+            },
+            "verify_my_identity": {
+              "support": 6,
+              "predicted": 5,
+              "tp": 3
+            },
+            "verify_source_of_funds": {
+              "support": 6,
+              "predicted": 5,
+              "tp": 5
+            },
+            "verify_top_up": {
+              "support": 6,
+              "predicted": 6,
+              "tp": 6
+            },
+            "virtual_card_not_working": {
+              "support": 6,
+              "predicted": 13,
+              "tp": 4
+            },
+            "visa_or_mastercard": {
+              "support": 6,
+              "predicted": 5,
+              "tp": 4
+            },
+            "why_verify_identity": {
+              "support": 6,
+              "predicted": 4,
+              "tp": 2
+            },
+            "wrong_amount_of_cash_received": {
+              "support": 6,
+              "predicted": 10,
+              "tp": 6
+            },
+            "wrong_exchange_rate_for_cash_withdrawal": {
+              "support": 6,
+              "predicted": 7,
+              "tp": 3
+            }
+          }
+        }
+      }
+    },
+    "CLINC150": {
+      "rows": 450,
+      "decisions": 450,
+      "base_accuracy": 0.044444444444444446,
+      "reflex_accuracy": 0.8111111111111111,
+      "laya_accuracy": 0.5533333333333333,
+      "laya_errors": 0,
+      "laya_record_accuracy": 0.5533333333333333,
+      "data_sha256": "0a484b00b94b66d5a7aeefb564eaab9393cc737a4b5078690055e2778e8aa3bd",
+      "input_audit": {
+        "questions": 450,
+        "state_truncated": 0,
+        "missing_markers": 0,
+        "collapsed_options": 0,
+        "capped_option_text": 0
+      },
+      "default_budget_audit": {
+        "questions": 450,
+        "state_truncated": 450,
+        "missing_markers": 450,
+        "collapsed_options": 450,
+        "capped_option_text": 450
+      },
+      "laya_per_question_metrics": {
+        "intent": {
+          "accuracy": 0.5533333333333333,
+          "macro_f1": 0.5117592296592297,
+          "per_label": {
+            "accept_reservations": {
+              "support": 3,
+              "predicted": 12,
+              "tp": 2
+            },
+            "account_blocked": {
+              "support": 3,
+              "predicted": 0,
+              "tp": 0
+            },
+            "alarm": {
+              "support": 3,
+              "predicted": 0,
+              "tp": 0
+            },
+            "application_status": {
+              "support": 3,
+              "predicted": 0,
+              "tp": 0
+            },
+            "apr": {
+              "support": 3,
+              "predicted": 3,
+              "tp": 3
+            },
+            "are_you_a_bot": {
+              "support": 3,
+              "predicted": 0,
+              "tp": 0
+            },
+            "balance": {
+              "support": 3,
+              "predicted": 0,
+              "tp": 0
+            },
+            "bill_balance": {
+              "support": 3,
+              "predicted": 0,
+              "tp": 0
+            },
+            "bill_due": {
+              "support": 3,
+              "predicted": 0,
+              "tp": 0
+            },
+            "book_flight": {
+              "support": 3,
+              "predicted": 1,
+              "tp": 1
+            },
+            "book_hotel": {
+              "support": 3,
+              "predicted": 1,
+              "tp": 1
+            },
+            "calculator": {
+              "support": 3,
+              "predicted": 0,
+              "tp": 0
+            },
+            "calendar": {
+              "support": 3,
+              "predicted": 0,
+              "tp": 0
+            },
+            "calendar_update": {
+              "support": 3,
+              "predicted": 0,
+              "tp": 0
+            },
+            "calories": {
+              "support": 3,
+              "predicted": 0,
+              "tp": 0
+            },
+            "cancel": {
+              "support": 3,
+              "predicted": 0,
+              "tp": 0
+            },
+            "cancel_reservation": {
+              "support": 3,
+              "predicted": 3,
+              "tp": 3
+            },
+            "car_rental": {
+              "support": 3,
+              "predicted": 0,
+              "tp": 0
+            },
+            "card_declined": {
+              "support": 3,
+              "predicted": 2,
+              "tp": 2
+            },
+            "carry_on": {
+              "support": 3,
+              "predicted": 2,
+              "tp": 2
+            },
+            "change_accent": {
+              "support": 3,
+              "predicted": 2,
+              "tp": 2
+            },
+            "change_ai_name": {
+              "support": 3,
+              "predicted": 0,
+              "tp": 0
+            },
+            "change_language": {
+              "support": 3,
+              "predicted": 0,
+              "tp": 0
+            },
+            "change_speed": {
+              "support": 3,
+              "predicted": 2,
+              "tp": 2
+            },
+            "change_user_name": {
+              "support": 3,
+              "predicted": 2,
+              "tp": 1
+            },
+            "change_volume": {
+              "support": 3,
+              "predicted": 0,
+              "tp": 0
+            },
+            "confirm_reservation": {
+              "support": 3,
+              "predicted": 2,
+              "tp": 2
+            },
+            "cook_time": {
+              "support": 3,
+              "predicted": 1,
+              "tp": 1
+            },
+            "credit_limit": {
+              "support": 3,
+              "predicted": 1,
+              "tp": 1
+            },
+            "credit_limit_change": {
+              "support": 3,
+              "predicted": 3,
+              "tp": 3
+            },
+            "credit_score": {
+              "support": 3,
+              "predicted": 3,
+              "tp": 3
+            },
+            "current_location": {
+              "support": 3,
+              "predicted": 0,
+              "tp": 0
+            },
+            "damaged_card": {
+              "support": 3,
+              "predicted": 1,
+              "tp": 1
+            },
+            "date": {
+              "support": 3,
+              "predicted": 0,
+              "tp": 0
+            },
+            "definition": {
+              "support": 3,
+              "predicted": 1,
+              "tp": 1
+            },
+            "direct_deposit": {
+              "support": 3,
+              "predicted": 1,
+              "tp": 1
+            },
+            "directions": {
+              "support": 3,
+              "predicted": 2,
+              "tp": 2
+            },
+            "distance": {
+              "support": 3,
+              "predicted": 4,
+              "tp": 2
+            },
+            "do_you_have_pets": {
+              "support": 3,
+              "predicted": 2,
+              "tp": 2
+            },
+            "exchange_rate": {
+              "support": 3,
+              "predicted": 2,
+              "tp": 2
+            },
+            "expiration_date": {
+              "support": 3,
+              "predicted": 2,
+              "tp": 2
+            },
+            "find_phone": {
+              "support": 3,
+              "predicted": 0,
+              "tp": 0
+            },
+            "flight_status": {
+              "support": 3,
+              "predicted": 2,
+              "tp": 2
+            },
+            "flip_coin": {
+              "support": 3,
+              "predicted": 1,
+              "tp": 1
+            },
+            "food_last": {
+              "support": 3,
+              "predicted": 0,
+              "tp": 0
+            },
+            "freeze_account": {
+              "support": 3,
+              "predicted": 0,
+              "tp": 0
+            },
+            "fun_fact": {
+              "support": 3,
+              "predicted": 0,
+              "tp": 0
+            },
+            "gas": {
+              "support": 3,
+              "predicted": 0,
+              "tp": 0
+            },
+            "gas_type": {
+              "support": 3,
+              "predicted": 0,
+              "tp": 0
+            },
+            "goodbye": {
+              "support": 3,
+              "predicted": 1,
+              "tp": 1
+            },
+            "greeting": {
+              "support": 3,
+              "predicted": 0,
+              "tp": 0
+            },
+            "how_busy": {
+              "support": 3,
+              "predicted": 0,
+              "tp": 0
+            },
+            "how_old_are_you": {
+              "support": 3,
+              "predicted": 0,
+              "tp": 0
+            },
+            "improve_credit_score": {
+              "support": 3,
+              "predicted": 1,
+              "tp": 1
+            },
+            "income": {
+              "support": 3,
+              "predicted": 0,
+              "tp": 0
+            },
+            "ingredient_substitution": {
+              "support": 3,
+              "predicted": 0,
+              "tp": 0
+            },
+            "ingredients_list": {
+              "support": 3,
+              "predicted": 0,
+              "tp": 0
+            },
+            "insurance": {
+              "support": 3,
+              "predicted": 0,
+              "tp": 0
+            },
+            "insurance_change": {
+              "support": 3,
+              "predicted": 0,
+              "tp": 0
+            },
+            "interest_rate": {
+              "support": 3,
+              "predicted": 0,
+              "tp": 0
+            },
+            "international_fees": {
+              "support": 3,
+              "predicted": 2,
+              "tp": 2
+            },
+            "international_visa": {
+              "support": 3,
+              "predicted": 2,
+              "tp": 2
+            },
+            "jump_start": {
+              "support": 3,
+              "predicted": 0,
+              "tp": 0
+            },
+            "last_maintenance": {
+              "support": 3,
+              "predicted": 0,
+              "tp": 0
+            },
+            "lost_luggage": {
+              "support": 3,
+              "predicted": 3,
+              "tp": 3
+            },
+            "make_call": {
+              "support": 3,
+              "predicted": 2,
+              "tp": 2
+            },
+            "maybe": {
+              "support": 3,
+              "predicted": 1,
+              "tp": 1
+            },
+            "meal_suggestion": {
+              "support": 3,
+              "predicted": 2,
+              "tp": 2
+            },
+            "meaning_of_life": {
+              "support": 3,
+              "predicted": 3,
+              "tp": 3
+            },
+            "measurement_conversion": {
+              "support": 3,
+              "predicted": 2,
+              "tp": 2
+            },
+            "meeting_schedule": {
+              "support": 3,
+              "predicted": 0,
+              "tp": 0
+            },
+            "min_payment": {
+              "support": 3,
+              "predicted": 2,
+              "tp": 2
+            },
+            "mpg": {
+              "support": 3,
+              "predicted": 5,
+              "tp": 3
+            },
+            "new_card": {
+              "support": 3,
+              "predicted": 3,
+              "tp": 2
+            },
+            "next_holiday": {
+              "support": 3,
+              "predicted": 1,
+              "tp": 1
+            },
+            "next_song": {
+              "support": 3,
+              "predicted": 3,
+              "tp": 3
+            },
+            "no": {
+              "support": 3,
+              "predicted": 2,
+              "tp": 2
+            },
+            "nutrition_info": {
+              "support": 3,
+              "predicted": 2,
+              "tp": 2
+            },
+            "oil_change_how": {
+              "support": 3,
+              "predicted": 0,
+              "tp": 0
+            },
+            "oil_change_when": {
+              "support": 3,
+              "predicted": 0,
+              "tp": 0
+            },
+            "order": {
+              "support": 3,
+              "predicted": 1,
+              "tp": 1
+            },
+            "order_checks": {
+              "support": 3,
+              "predicted": 1,
+              "tp": 1
+            },
+            "order_status": {
+              "support": 3,
+              "predicted": 0,
+              "tp": 0
+            },
+            "pay_bill": {
+              "support": 3,
+              "predicted": 3,
+              "tp": 2
+            },
+            "payday": {
+              "support": 3,
+              "predicted": 2,
+              "tp": 2
+            },
+            "pin_change": {
+              "support": 3,
+              "predicted": 3,
+              "tp": 3
+            },
+            "play_music": {
+              "support": 3,
+              "predicted": 0,
+              "tp": 0
+            },
+            "plug_type": {
+              "support": 3,
+              "predicted": 3,
+              "tp": 3
+            },
+            "pto_balance": {
+              "support": 3,
+              "predicted": 4,
+              "tp": 3
+            },
+            "pto_request": {
+              "support": 3,
+              "predicted": 2,
+              "tp": 2
+            },
+            "pto_request_status": {
+              "support": 3,
+              "predicted": 3,
+              "tp": 1
+            },
+            "pto_used": {
+              "support": 3,
+              "predicted": 4,
+              "tp": 3
+            },
+            "recipe": {
+              "support": 3,
+              "predicted": 5,
+              "tp": 3
+            },
+            "redeem_rewards": {
+              "support": 3,
+              "predicted": 9,
+              "tp": 3
+            },
+            "reminder": {
+              "support": 3,
+              "predicted": 2,
+              "tp": 2
+            },
+            "reminder_update": {
+              "support": 3,
+              "predicted": 3,
+              "tp": 3
+            },
+            "repeat": {
+              "support": 3,
+              "predicted": 3,
+              "tp": 3
+            },
+            "replacement_card_duration": {
+              "support": 3,
+              "predicted": 3,
+              "tp": 2
+            },
+            "report_fraud": {
+              "support": 3,
+              "predicted": 2,
+              "tp": 1
+            },
+            "report_lost_card": {
+              "support": 3,
+              "predicted": 6,
+              "tp": 3
+            },
+            "reset_settings": {
+              "support": 3,
+              "predicted": 1,
+              "tp": 1
+            },
+            "restaurant_reservation": {
+              "support": 3,
+              "predicted": 4,
+              "tp": 2
+            },
+            "restaurant_reviews": {
+              "support": 3,
+              "predicted": 1,
+              "tp": 1
+            },
+            "restaurant_suggestion": {
+              "support": 3,
+              "predicted": 0,
+              "tp": 0
+            },
+            "rewards_balance": {
+              "support": 3,
+              "predicted": 0,
+              "tp": 0
+            },
+            "roll_dice": {
+              "support": 3,
+              "predicted": 3,
+              "tp": 3
+            },
+            "rollover_401k": {
+              "support": 3,
+              "predicted": 3,
+              "tp": 3
+            },
+            "routing": {
+              "support": 3,
+              "predicted": 3,
+              "tp": 3
+            },
+            "schedule_maintenance": {
+              "support": 3,
+              "predicted": 5,
+              "tp": 2
+            },
+            "schedule_meeting": {
+              "support": 3,
+              "predicted": 6,
+              "tp": 3
+            },
+            "share_location": {
+              "support": 3,
+              "predicted": 5,
+              "tp": 3
+            },
+            "shopping_list": {
+              "support": 3,
+              "predicted": 3,
+              "tp": 1
+            },
+            "shopping_list_update": {
+              "support": 3,
+              "predicted": 4,
+              "tp": 2
+            },
+            "smart_home": {
+              "support": 3,
+              "predicted": 11,
+              "tp": 3
+            },
+            "spelling": {
+              "support": 3,
+              "predicted": 2,
+              "tp": 2
+            },
+            "spending_history": {
+              "support": 3,
+              "predicted": 11,
+              "tp": 3
+            },
+            "sync_device": {
+              "support": 3,
+              "predicted": 4,
+              "tp": 3
+            },
+            "taxes": {
+              "support": 3,
+              "predicted": 22,
+              "tp": 3
+            },
+            "tell_joke": {
+              "support": 3,
+              "predicted": 4,
+              "tp": 3
+            },
+            "text": {
+              "support": 3,
+              "predicted": 3,
+              "tp": 3
+            },
+            "thank_you": {
+              "support": 3,
+              "predicted": 4,
+              "tp": 3
+            },
+            "time": {
+              "support": 3,
+              "predicted": 3,
+              "tp": 3
+            },
+            "timer": {
+              "support": 3,
+              "predicted": 7,
+              "tp": 3
+            },
+            "timezone": {
+              "support": 3,
+              "predicted": 3,
+              "tp": 3
+            },
+            "tire_change": {
+              "support": 3,
+              "predicted": 6,
+              "tp": 3
+            },
+            "tire_pressure": {
+              "support": 3,
+              "predicted": 6,
+              "tp": 3
+            },
+            "todo_list": {
+              "support": 3,
+              "predicted": 11,
+              "tp": 3
+            },
+            "todo_list_update": {
+              "support": 3,
+              "predicted": 6,
+              "tp": 3
+            },
+            "traffic": {
+              "support": 3,
+              "predicted": 3,
+              "tp": 3
+            },
+            "transactions": {
+              "support": 3,
+              "predicted": 8,
+              "tp": 1
+            },
+            "transfer": {
+              "support": 3,
+              "predicted": 3,
+              "tp": 3
+            },
+            "translate": {
+              "support": 3,
+              "predicted": 5,
+              "tp": 3
+            },
+            "travel_alert": {
+              "support": 3,
+              "predicted": 3,
+              "tp": 3
+            },
+            "travel_notification": {
+              "support": 3,
+              "predicted": 3,
+              "tp": 3
+            },
+            "travel_suggestion": {
+              "support": 3,
+              "predicted": 8,
+              "tp": 3
+            },
+            "uber": {
+              "support": 3,
+              "predicted": 11,
+              "tp": 3
+            },
+            "update_playlist": {
+              "support": 3,
+              "predicted": 2,
+              "tp": 2
+            },
+            "user_name": {
+              "support": 3,
+              "predicted": 36,
+              "tp": 2
+            },
+            "vaccines": {
+              "support": 3,
+              "predicted": 3,
+              "tp": 3
+            },
+            "w2": {
+              "support": 3,
+              "predicted": 2,
+              "tp": 2
+            },
+            "weather": {
+              "support": 3,
+              "predicted": 3,
+              "tp": 3
+            },
+            "what_are_your_hobbies": {
+              "support": 3,
+              "predicted": 3,
+              "tp": 3
+            },
+            "what_can_i_ask_you": {
+              "support": 3,
+              "predicted": 13,
+              "tp": 3
+            },
+            "what_is_your_name": {
+              "support": 3,
+              "predicted": 7,
+              "tp": 3
+            },
+            "what_song": {
+              "support": 3,
+              "predicted": 7,
+              "tp": 3
+            },
+            "where_are_you_from": {
+              "support": 3,
+              "predicted": 4,
+              "tp": 3
+            },
+            "whisper_mode": {
+              "support": 3,
+              "predicted": 6,
+              "tp": 3
+            },
+            "who_do_you_work_for": {
+              "support": 3,
+              "predicted": 4,
+              "tp": 3
+            },
+            "who_made_you": {
+              "support": 3,
+              "predicted": 4,
+              "tp": 3
+            },
+            "yes": {
+              "support": 3,
+              "predicted": 17,
+              "tp": 3
+            }
+          }
+        }
+      }
+    }
+  },
+  "laya": {
+    "model": "convaiinnovations/laya",
+    "revision": "7b928d828b7b0e022f929d9bd2e44165aa270148",
+    "environment": {
+      "laya": "0.4.7",
+      "torch": "2.14.1",
+      "transformers": "5.19.0",
+      "huggingface_hub": "2.2.0",
+      "safetensors": "0.8.0"
+    },
+    "profile": {
+      "max_len": 4096,
+      "head_max_len": 3072
+    },
+    "batch_size": 8,
+    "device": "Mac Apple Silicon MPS"
+  },
+  "option_token_audit": {
+    "BANKING77": {
+      "maximum_uncapped_option_tokens": 27,
+      "option_occurrences_exceeding_sdk48_token_cap": 0
+    },
+    "CLINC150": {
+      "maximum_uncapped_option_tokens": 16,
+      "option_occurrences_exceeding_sdk48_token_cap": 0
+    },
+    "typed-decisions": {
+      "maximum_uncapped_option_tokens": 18,
+      "option_occurrences_exceeding_sdk48_token_cap": 0
+    },
+    "MOBILE_ROUTING9": {
+      "maximum_uncapped_option_tokens": 27,
+      "option_occurrences_exceeding_sdk48_token_cap": 0
+    }
+  },
+  "mobile_paired": {
+    "n": 180,
+    "reflex_only_correct": 84,
+    "baseline_only_correct": 5,
+    "accuracy_difference": 0.4388888888888889,
+    "paired_bootstrap_95ci": [
+      0.35555555555555557,
+      0.5222222222222223
+    ],
+    "exact_mcnemar_two_sided_p": 1.4238763300826186e-19,
+    "bootstrap_seed": 3407,
+    "bootstrap_replicates": 10000
+  },
+  "limitations": "Scores use identical held-out cohorts and hard gold labels. Training exposure differs. Base general scores use an unseeded newly initialized decision head; base mobile uses the cached app-router. Reflex general is GPU PyTorch, Reflex mobile A32 Q4_K_M; Laya is Mac MPS. Timing is not compared across hardware. Laya English base is not its typed-decisions specialist. No test-based fitting."
+}

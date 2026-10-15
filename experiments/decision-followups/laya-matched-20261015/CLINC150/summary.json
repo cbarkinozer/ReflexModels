@@ -1,0 +1,785 @@
+{
+  "complete": true,
+  "rows": 450,
+  "decisions": 450,
+  "accuracy": 0.5533333333333333,
+  "record_accuracy": 0.5533333333333333,
+  "failures": 0,
+  "mean_latency_ms": 371.2393974044567,
+  "p50_latency_ms": 371.04276037462114,
+  "p95_latency_ms": 378.56067187476583,
+  "by_question": {
+    "intent": {
+      "accuracy": 0.5533333333333333,
+      "macro_f1": 0.5117592296592297,
+      "per_label": {
+        "accept_reservations": {
+          "support": 3,
+          "predicted": 12,
+          "tp": 2
+        },
+        "account_blocked": {
+          "support": 3,
+          "predicted": 0,
+          "tp": 0
+        },
+        "alarm": {
+          "support": 3,
+          "predicted": 0,
+          "tp": 0
+        },
+        "application_status": {
+          "support": 3,
+          "predicted": 0,
+          "tp": 0
+        },
+        "apr": {
+          "support": 3,
+          "predicted": 3,
+          "tp": 3
+        },
+        "are_you_a_bot": {
+          "support": 3,
+          "predicted": 0,
+          "tp": 0
+        },
+        "balance": {
+          "support": 3,
+          "predicted": 0,
+          "tp": 0
+        },
+        "bill_balance": {
+          "support": 3,
+          "predicted": 0,
+          "tp": 0
+        },
+        "bill_due": {
+          "support": 3,
+          "predicted": 0,
+          "tp": 0
+        },
+        "book_flight": {
+          "support": 3,
+          "predicted": 1,
+          "tp": 1
+        },
+        "book_hotel": {
+          "support": 3,
+          "predicted": 1,
+          "tp": 1
+        },
+        "calculator": {
+          "support": 3,
+          "predicted": 0,
+          "tp": 0
+        },
+        "calendar": {
+          "support": 3,
+          "predicted": 0,
+          "tp": 0
+        },
+        "calendar_update": {
+          "support": 3,
+          "predicted": 0,
+          "tp": 0
+        },
+        "calories": {
+          "support": 3,
+          "predicted": 0,
+          "tp": 0
+        },
+        "cancel": {
+          "support": 3,
+          "predicted": 0,
+          "tp": 0
+        },
+        "cancel_reservation": {
+          "support": 3,
+          "predicted": 3,
+          "tp": 3
+        },
+        "car_rental": {
+          "support": 3,
+          "predicted": 0,
+          "tp": 0
+        },
+        "card_declined": {
+          "support": 3,
+          "predicted": 2,
+          "tp": 2
+        },
+        "carry_on": {
+          "support": 3,
+          "predicted": 2,
+          "tp": 2
+        },
+        "change_accent": {
+          "support": 3,
+          "predicted": 2,
+          "tp": 2
+        },
+        "change_ai_name": {
+          "support": 3,
+          "predicted": 0,
+          "tp": 0
+        },
+        "change_language": {
+          "support": 3,
+          "predicted": 0,
+          "tp": 0
+        },
+        "change_speed": {
+          "support": 3,
+          "predicted": 2,
+          "tp": 2
+        },
+        "change_user_name": {
+          "support": 3,
+          "predicted": 2,
+          "tp": 1
+        },
+        "change_volume": {
+          "support": 3,
+          "predicted": 0,
+          "tp": 0
+        },
+        "confirm_reservation": {
+          "support": 3,
+          "predicted": 2,
+          "tp": 2
+        },
+        "cook_time": {
+          "support": 3,
+          "predicted": 1,
+          "tp": 1
+        },
+        "credit_limit": {
+          "support": 3,
+          "predicted": 1,
+          "tp": 1
+        },
+        "credit_limit_change": {
+          "support": 3,
+          "predicted": 3,
+          "tp": 3
+        },
+        "credit_score": {
+          "support": 3,
+          "predicted": 3,
+          "tp": 3
+        },
+        "current_location": {
+          "support": 3,
+          "predicted": 0,
+          "tp": 0
+        },
+        "damaged_card": {
+          "support": 3,
+          "predicted": 1,
+          "tp": 1
+        },
+        "date": {
+          "support": 3,
+          "predicted": 0,
+          "tp": 0
+        },
+        "definition": {
+          "support": 3,
+          "predicted": 1,
+          "tp": 1
+        },
+        "direct_deposit": {
+          "support": 3,
+          "predicted": 1,
+          "tp": 1
+        },
+        "directions": {
+          "support": 3,
+          "predicted": 2,
+          "tp": 2
+        },
+        "distance": {
+          "support": 3,
+          "predicted": 4,
+          "tp": 2
+        },
+        "do_you_have_pets": {
+          "support": 3,
+          "predicted": 2,
+          "tp": 2
+        },
+        "exchange_rate": {
+          "support": 3,
+          "predicted": 2,
+          "tp": 2
+        },
+        "expiration_date": {
+          "support": 3,
+          "predicted": 2,
+          "tp": 2
+        },
+        "find_phone": {
+          "support": 3,
+          "predicted": 0,
+          "tp": 0
+        },
+        "flight_status": {
+          "support": 3,
+          "predicted": 2,
+          "tp": 2
+        },
+        "flip_coin": {
+          "support": 3,
+          "predicted": 1,
+          "tp": 1
+        },
+        "food_last": {
+          "support": 3,
+          "predicted": 0,
+          "tp": 0
+        },
+        "freeze_account": {
+          "support": 3,
+          "predicted": 0,
+          "tp": 0
+        },
+        "fun_fact": {
+          "support": 3,
+          "predicted": 0,
+          "tp": 0
+        },
+        "gas": {
+          "support": 3,
+          "predicted": 0,
+          "tp": 0
+        },
+        "gas_type": {
+          "support": 3,
+          "predicted": 0,
+          "tp": 0
+        },
+        "goodbye": {
+          "support": 3,
+          "predicted": 1,
+          "tp": 1
+        },
+        "greeting": {
+          "support": 3,
+          "predicted": 0,
+          "tp": 0
+        },
+        "how_busy": {
+          "support": 3,
+          "predicted": 0,
+          "tp": 0
+        },
+        "how_old_are_you": {
+          "support": 3,
+          "predicted": 0,
+          "tp": 0
+        },
+        "improve_credit_score": {
+          "support": 3,
+          "predicted": 1,
+          "tp": 1
+        },
+        "income": {
+          "support": 3,
+          "predicted": 0,
+          "tp": 0
+        },
+        "ingredient_substitution": {
+          "support": 3,
+          "predicted": 0,
+          "tp": 0
+        },
+        "ingredients_list": {
+          "support": 3,
+          "predicted": 0,
+          "tp": 0
+        },
+        "insurance": {
+          "support": 3,
+          "predicted": 0,
+          "tp": 0
+        },
+        "insurance_change": {
+          "support": 3,
+          "predicted": 0,
+          "tp": 0
+        },
+        "interest_rate": {
+          "support": 3,
+          "predicted": 0,
+          "tp": 0
+        },
+        "international_fees": {
+          "support": 3,
+          "predicted": 2,
+          "tp": 2
+        },
+        "international_visa": {
+          "support": 3,
+          "predicted": 2,
+          "tp": 2
+        },
+        "jump_start": {
+          "support": 3,
+          "predicted": 0,
+          "tp": 0
+        },
+        "last_maintenance": {
+          "support": 3,
+          "predicted": 0,
+          "tp": 0
+        },
+        "lost_luggage": {
+          "support": 3,
+          "predicted": 3,
+          "tp": 3
+        },
+        "make_call": {
+          "support": 3,
+          "predicted": 2,
+          "tp": 2
+        },
+        "maybe": {
+          "support": 3,
+          "predicted": 1,
+          "tp": 1
+        },
+        "meal_suggestion": {
+          "support": 3,
+          "predicted": 2,
+          "tp": 2
+        },
+        "meaning_of_life": {
+          "support": 3,
+          "predicted": 3,
+          "tp": 3
+        },
+        "measurement_conversion": {
+          "support": 3,
+          "predicted": 2,
+          "tp": 2
+        },
+        "meeting_schedule": {
+          "support": 3,
+          "predicted": 0,
+          "tp": 0
+        },
+        "min_payment": {
+          "support": 3,
+          "predicted": 2,
+          "tp": 2
+        },
+        "mpg": {
+          "support": 3,
+          "predicted": 5,
+          "tp": 3
+        },
+        "new_card": {
+          "support": 3,
+          "predicted": 3,
+          "tp": 2
+        },
+        "next_holiday": {
+          "support": 3,
+          "predicted": 1,
+          "tp": 1
+        },
+        "next_song": {
+          "support": 3,
+          "predicted": 3,
+          "tp": 3
+        },
+        "no": {
+          "support": 3,
+          "predicted": 2,
+          "tp": 2
+        },
+        "nutrition_info": {
+          "support": 3,
+          "predicted": 2,
+          "tp": 2
+        },
+        "oil_change_how": {
+          "support": 3,
+          "predicted": 0,
+          "tp": 0
+        },
+        "oil_change_when": {
+          "support": 3,
+          "predicted": 0,
+          "tp": 0
+        },
+        "order": {
+          "support": 3,
+          "predicted": 1,
+          "tp": 1
+        },
+        "order_checks": {
+          "support": 3,
+          "predicted": 1,
+          "tp": 1
+        },
+        "order_status": {
+          "support": 3,
+          "predicted": 0,
+          "tp": 0
+        },
+        "pay_bill": {
+          "support": 3,
+          "predicted": 3,
+          "tp": 2
+        },
+        "payday": {
+          "support": 3,
+          "predicted": 2,
+          "tp": 2
+        },
+        "pin_change": {
+          "support": 3,
+          "predicted": 3,
+          "tp": 3
+        },
+        "play_music": {
+          "support": 3,
+          "predicted": 0,
+          "tp": 0
+        },
+        "plug_type": {
+          "support": 3,
+          "predicted": 3,
+          "tp": 3
+        },
+        "pto_balance": {
+          "support": 3,
+          "predicted": 4,
+          "tp": 3
+        },
+        "pto_request": {
+          "support": 3,
+          "predicted": 2,
+          "tp": 2
+        },
+        "pto_request_status": {
+          "support": 3,
+          "predicted": 3,
+          "tp": 1
+        },
+        "pto_used": {
+          "support": 3,
+          "predicted": 4,
+          "tp": 3
+        },
+        "recipe": {
+          "support": 3,
+          "predicted": 5,
+          "tp": 3
+        },
+        "redeem_rewards": {
+          "support": 3,
+          "predicted": 9,
+          "tp": 3
+        },
+        "reminder": {
+          "support": 3,
+          "predicted": 2,
+          "tp": 2
+        },
+        "reminder_update": {
+          "support": 3,
+          "predicted": 3,
+          "tp": 3
+        },
+        "repeat": {
+          "support": 3,
+          "predicted": 3,
+          "tp": 3
+        },
+        "replacement_card_duration": {
+          "support": 3,
+          "predicted": 3,
+          "tp": 2
+        },
+        "report_fraud": {
+          "support": 3,
+          "predicted": 2,
+          "tp": 1
+        },
+        "report_lost_card": {
+          "support": 3,
+          "predicted": 6,
+          "tp": 3
+        },
+        "reset_settings": {
+          "support": 3,
+          "predicted": 1,
+          "tp": 1
+        },
+        "restaurant_reservation": {
+          "support": 3,
+          "predicted": 4,
+          "tp": 2
+        },
+        "restaurant_reviews": {
+          "support": 3,
+          "predicted": 1,
+          "tp": 1
+        },
+        "restaurant_suggestion": {
+          "support": 3,
+          "predicted": 0,
+          "tp": 0
+        },
+        "rewards_balance": {
+          "support": 3,
+          "predicted": 0,
+          "tp": 0
+        },
+        "roll_dice": {
+          "support": 3,
+          "predicted": 3,
+          "tp": 3
+        },
+        "rollover_401k": {
+          "support": 3,
+          "predicted": 3,
+          "tp": 3
+        },
+        "routing": {
+          "support": 3,
+          "predicted": 3,
+          "tp": 3
+        },
+        "schedule_maintenance": {
+          "support": 3,
+          "predicted": 5,
+          "tp": 2
+        },
+        "schedule_meeting": {
+          "support": 3,
+          "predicted": 6,
+          "tp": 3
+        },
+        "share_location": {
+          "support": 3,
+          "predicted": 5,
+          "tp": 3
+        },
+        "shopping_list": {
+          "support": 3,
+          "predicted": 3,
+          "tp": 1
+        },
+        "shopping_list_update": {
+          "support": 3,
+          "predicted": 4,
+          "tp": 2
+        },
+        "smart_home": {
+          "support": 3,
+          "predicted": 11,
+          "tp": 3
+        },
+        "spelling": {
+          "support": 3,
+          "predicted": 2,
+          "tp": 2
+        },
+        "spending_history": {
+          "support": 3,
+          "predicted": 11,
+          "tp": 3
+        },
+        "sync_device": {
+          "support": 3,
+          "predicted": 4,
+          "tp": 3
+        },
+        "taxes": {
+          "support": 3,
+          "predicted": 22,
+          "tp": 3
+        },
+        "tell_joke": {
+          "support": 3,
+          "predicted": 4,
+          "tp": 3
+        },
+        "text": {
+          "support": 3,
+          "predicted": 3,
+          "tp": 3
+        },
+        "thank_you": {
+          "support": 3,
+          "predicted": 4,
+          "tp": 3
+        },
+        "time": {
+          "support": 3,
+          "predicted": 3,
+          "tp": 3
+        },
+        "timer": {
+          "support": 3,
+          "predicted": 7,
+          "tp": 3
+        },
+        "timezone": {
+          "support": 3,
+          "predicted": 3,
+          "tp": 3
+        },
+        "tire_change": {
+          "support": 3,
+          "predicted": 6,
+          "tp": 3
+        },
+        "tire_pressure": {
+          "support": 3,
+          "predicted": 6,
+          "tp": 3
+        },
+        "todo_list": {
+          "support": 3,
+          "predicted": 11,
+          "tp": 3
+        },
+        "todo_list_update": {
+          "support": 3,
+          "predicted": 6,
+          "tp": 3
+        },
+        "traffic": {
+          "support": 3,
+          "predicted": 3,
+          "tp": 3
+        },
+        "transactions": {
+          "support": 3,
+          "predicted": 8,
+          "tp": 1
+        },
+        "transfer": {
+          "support": 3,
+          "predicted": 3,
+          "tp": 3
+        },
+        "translate": {
+          "support": 3,
+          "predicted": 5,
+          "tp": 3
+        },
+        "travel_alert": {
+          "support": 3,
+          "predicted": 3,
+          "tp": 3
+        },
+        "travel_notification": {
+          "support": 3,
+          "predicted": 3,
+          "tp": 3
+        },
+        "travel_suggestion": {
+          "support": 3,
+          "predicted": 8,
+          "tp": 3
+        },
+        "uber": {
+          "support": 3,
+          "predicted": 11,
+          "tp": 3
+        },
+        "update_playlist": {
+          "support": 3,
+          "predicted": 2,
+          "tp": 2
+        },
+        "user_name": {
+          "support": 3,
+          "predicted": 36,
+          "tp": 2
+        },
+        "vaccines": {
+          "support": 3,
+          "predicted": 3,
+          "tp": 3
+        },
+        "w2": {
+          "support": 3,
+          "predicted": 2,
+          "tp": 2
+        },
+        "weather": {
+          "support": 3,
+          "predicted": 3,
+          "tp": 3
+        },
+        "what_are_your_hobbies": {
+          "support": 3,
+          "predicted": 3,
+          "tp": 3
+        },
+        "what_can_i_ask_you": {
+          "support": 3,
+          "predicted": 13,
+          "tp": 3
+        },
+        "what_is_your_name": {
+          "support": 3,
+          "predicted": 7,
+          "tp": 3
+        },
+        "what_song": {
+          "support": 3,
+          "predicted": 7,
+          "tp": 3
+        },
+        "where_are_you_from": {
+          "support": 3,
+          "predicted": 4,
+          "tp": 3
+        },
+        "whisper_mode": {
+          "support": 3,
+          "predicted": 6,
+          "tp": 3
+        },
+        "who_do_you_work_for": {
+          "support": 3,
+          "predicted": 4,
+          "tp": 3
+        },
+        "who_made_you": {
+          "support": 3,
+          "predicted": 4,
+          "tp": 3
+        },
+        "yes": {
+          "support": 3,
+          "predicted": 17,
+          "tp": 3
+        }
+      }
+    }
+  },
+  "timing_note": "Latency fields are amortized batch runtime on Mac MPS; not comparable with A32 request latencies.",
+  "data_sha256": "0a484b00b94b66d5a7aeefb564eaab9393cc737a4b5078690055e2778e8aa3bd",
+  "primary_audit": {
+    "questions": 450,
+    "state_truncated": 0,
+    "missing_markers": 0,
+    "collapsed_options": 0,
+    "capped_option_text": 0
+  },
+  "shipped_budget_audit": {
+    "questions": 450,
+    "state_truncated": 450,
+    "missing_markers": 450,
+    "collapsed_options": 450,
+    "capped_option_text": 450
+  }
+}

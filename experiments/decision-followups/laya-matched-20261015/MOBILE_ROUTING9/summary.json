@@ -1,0 +1,80 @@
+{
+  "complete": true,
+  "rows": 180,
+  "decisions": 180,
+  "accuracy": 0.4722222222222222,
+  "record_accuracy": 0.4722222222222222,
+  "failures": 0,
+  "mean_latency_ms": 96.15589953322745,
+  "p50_latency_ms": 95.45718225035671,
+  "p95_latency_ms": 98.5941718754475,
+  "by_question": {
+    "route": {
+      "accuracy": 0.4722222222222222,
+      "macro_f1": 0.4330125967698956,
+      "per_label": {
+        "answer": {
+          "support": 20,
+          "predicted": 0,
+          "tp": 0
+        },
+        "get_battery_info": {
+          "support": 20,
+          "predicted": 23,
+          "tp": 15
+        },
+        "get_device_info": {
+          "support": 20,
+          "predicted": 60,
+          "tp": 15
+        },
+        "get_media_info": {
+          "support": 20,
+          "predicted": 3,
+          "tp": 3
+        },
+        "get_storage_info": {
+          "support": 20,
+          "predicted": 27,
+          "tp": 18
+        },
+        "phone_health_check": {
+          "support": 20,
+          "predicted": 10,
+          "tp": 9
+        },
+        "save_note": {
+          "support": 20,
+          "predicted": 47,
+          "tp": 16
+        },
+        "search_local_files": {
+          "support": 20,
+          "predicted": 5,
+          "tp": 5
+        },
+        "search_notes": {
+          "support": 20,
+          "predicted": 5,
+          "tp": 4
+        }
+      }
+    }
+  },
+  "timing_note": "Latency fields are amortized batch runtime on Mac MPS; not comparable with A32 request latencies.",
+  "data_sha256": "2d18133e44a9f9db82fe80099b642f00cd6a12ebf643dc043d1f89f9ddfa209b",
+  "primary_audit": {
+    "questions": 180,
+    "state_truncated": 0,
+    "missing_markers": 0,
+    "collapsed_options": 0,
+    "capped_option_text": 0
+  },
+  "shipped_budget_audit": {
+    "questions": 180,
+    "state_truncated": 0,
+    "missing_markers": 0,
+    "collapsed_options": 0,
+    "capped_option_text": 180
+  }
+}

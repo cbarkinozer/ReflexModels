@@ -1,0 +1,18 @@
+{
+  "BANKING77": {
+    "maximum_uncapped_option_tokens": 27,
+    "option_occurrences_exceeding_sdk48_token_cap": 0
+  },
+  "CLINC150": {
+    "maximum_uncapped_option_tokens": 16,
+    "option_occurrences_exceeding_sdk48_token_cap": 0
+  },
+  "typed-decisions": {
+    "maximum_uncapped_option_tokens": 18,
+    "option_occurrences_exceeding_sdk48_token_cap": 0
+  },
+  "MOBILE_ROUTING9": {
+    "maximum_uncapped_option_tokens": 27,
+    "option_occurrences_exceeding_sdk48_token_cap": 0
+  }
+}

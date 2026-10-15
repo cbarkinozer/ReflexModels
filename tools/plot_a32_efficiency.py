@@ -7,14 +7,13 @@ from pathlib import Path
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+matplotlib.rcParams['svg.hashsalt'] = 'reflex-a32-efficiency-v1'
 
 ROOT = Path(__file__).resolve().parents[1]
 RELEASE = ROOT / 'releases/reflex-1'
 NAMES = {
     'run-01': 'Reflex-1',
-    'qwen-legacy-fresh180': 'Qwen app, cache off',
-    'qwen-legacy-cached-fresh180': 'Qwen app, cache on',
-    'qwen-fresh180': 'Qwen schema control',
+    'qwen-legacy-cached-fresh180': 'Base Qwen, cached app router',
 }
 
 
@@ -40,8 +39,8 @@ def main():
         points.append(dict(id=key, label=NAMES[key], accuracy=100*total['accuracy'],
                            latency_s=total['mean_latency_ms']/1000,
                            sampled_pss_mib=record['resources']['sampled_max_pss_kib']/1024))
-    if len(points) != 4:
-        raise ValueError('All four fixed profiles are required')
+    if len(points) != 2:
+        raise ValueError('Both fixed profiles are required')
     fronts = {cost: frontier(points, cost) for cost in ['latency_s', 'sampled_pss_mib']}
     fig, axes = plt.subplots(1, 2, figsize=(12, 5), constrained_layout=True)
     for ax, cost, title, xlabel in zip(axes, fronts, ['Accuracy vs latency', 'Accuracy vs sampled RAM'],
@@ -54,7 +53,7 @@ def main():
             color = '#157f9e' if p['id']=='run-01' else '#d98c32' if p['id']=='qwen-fresh180' else '#596579'
             ax.scatter(p[cost], p['accuracy'], s=85, color=color, zorder=3)
             offset = (5, 10) if p['id']=='qwen-legacy-fresh180' else (5, -24)
-            align_right = p['id']=='run-01' or (cost=='latency_s' and p['id']=='qwen-legacy-fresh180')
+            align_right = p['id']=='run-01' or cost=='latency_s'
             if p['id']=='run-01': offset=(-5, -32)
             elif align_right: offset=(-5,10)
             ax.annotate(p['label']+'\n'+f"{p['accuracy']:.1f}%", (p[cost],p['accuracy']),
@@ -65,13 +64,16 @@ def main():
         ax.set_xlim(lo-(hi-lo)*.15, hi+(hi-lo)*.35)
         ax.grid(alpha=.2)
         ax.legend(loc='lower right', fontsize=8)
-    fig.suptitle('Samsung Galaxy A32: four measured routing configurations', fontsize=13)
+    fig.suptitle('MOBILE_ROUTING9 on Samsung Galaxy A32: base and Reflex-1', fontsize=13)
     fig.supxlabel('Same frozen 180 cases; CPU 4 threads, Q4_K_M. Single sustained run per profile.\n'
                   'Frontiers describe these observations only; dashed lines do not imply achievable intermediate models.', fontsize=9)
     assets = RELEASE/'assets'
     assets.mkdir(exist_ok=True)
     for suffix in ['png','svg']:
-        fig.savefig(assets/('a32-quality-efficiency.'+suffix), dpi=180)
+        target = assets/('a32-quality-efficiency.'+suffix)
+        fig.savefig(target, dpi=180, **({'metadata':{'Date':None}} if suffix=='svg' else {}))
+        if suffix == 'svg':
+            target.write_text('\n'.join(line.rstrip() for line in target.read_text().splitlines())+'\n')
     plt.close(fig)
     (RELEASE/'a32-efficiency.json').write_text(json.dumps({
         'points':points, 'observed_frontiers':fronts,

@@ -1,0 +1,82 @@
+[
+  {
+    "benchmark": "BANKING77",
+    "rows": 462,
+    "data_sha256": "3c7873d2de8b9bad9445c3acf72e85802a499ed059c44626121cc4fdd3b510c0",
+    "same_order_states_and_labels": true,
+    "primary_audit": {
+      "questions": 462,
+      "state_truncated": 0,
+      "missing_markers": 0,
+      "collapsed_options": 0,
+      "capped_option_text": 0
+    },
+    "default_budget_audit": {
+      "questions": 462,
+      "state_truncated": 0,
+      "missing_markers": 0,
+      "collapsed_options": 462,
+      "capped_option_text": 462
+    }
+  },
+  {
+    "benchmark": "CLINC150",
+    "rows": 450,
+    "data_sha256": "0a484b00b94b66d5a7aeefb564eaab9393cc737a4b5078690055e2778e8aa3bd",
+    "same_order_states_and_labels": true,
+    "primary_audit": {
+      "questions": 450,
+      "state_truncated": 0,
+      "missing_markers": 0,
+      "collapsed_options": 0,
+      "capped_option_text": 0
+    },
+    "default_budget_audit": {
+      "questions": 450,
+      "state_truncated": 450,
+      "missing_markers": 450,
+      "collapsed_options": 450,
+      "capped_option_text": 450
+    }
+  },
+  {
+    "benchmark": "typed-decisions",
+    "rows": 400,
+    "data_sha256": "1d6c24f9709b62451ece105df85b8f293a4cde9a5a8b73721928b62876ad8365",
+    "same_order_states_and_labels": true,
+    "primary_audit": {
+      "questions": 2000,
+      "state_truncated": 0,
+      "missing_markers": 0,
+      "collapsed_options": 0,
+      "capped_option_text": 0
+    },
+    "default_budget_audit": {
+      "questions": 2000,
+      "state_truncated": 34,
+      "missing_markers": 0,
+      "collapsed_options": 0,
+      "capped_option_text": 0
+    }
+  },
+  {
+    "benchmark": "MOBILE_ROUTING9",
+    "rows": 180,
+    "data_sha256": "2d18133e44a9f9db82fe80099b642f00cd6a12ebf643dc043d1f89f9ddfa209b",
+    "same_order_states_and_labels": true,
+    "primary_audit": {
+      "questions": 180,
+      "state_truncated": 0,
+      "missing_markers": 0,
+      "collapsed_options": 0,
+      "capped_option_text": 0
+    },
+    "default_budget_audit": {
+      "questions": 180,
+      "state_truncated": 0,
+      "missing_markers": 0,
+      "collapsed_options": 0,
+      "capped_option_text": 180
+    }
+  }
+]

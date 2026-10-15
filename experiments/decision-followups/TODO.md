@@ -23,6 +23,13 @@ Desktop continuation: [DESKTOP_PROGRESS_20261015.md](DESKTOP_PROGRESS_20261015.m
 
 Optional later versions: improve battery/device routing and negation/indirect cases; compare a smaller classifier or an unmodified 0.8B tool-calling baseline; consider scenario targets only if they serve the agent. If this test informs new training, keep it as a regression test and reserve a new sealed final cohort.
 
+## Matched compact-model comparison — completed 2026-10-15
+
+- [x] Rename the unchanged fresh180 phone benchmark to MOBILE_ROUTING9; remove historical phone scores from the release card.
+- [x] Limit the main table to base Qwen3.5-0.8B, Reflex-1 and Laya on MOBILE_ROUTING9, typed-decisions, BANKING77 and CLINC150. Larger models receive related-work acknowledgment only.
+- [x] Run pinned Laya English on all four exact frozen cohorts locally on M4 MPS: 1,492 records /3,092 decisions; zero request errors or primary-profile input truncations. Scores:47.22%,36.30%,36.36%,55.33% in table order.
+- [x] Save raw outputs, input-budget audits, source/config/model hashes and environment; publish only aggregate outcomes with the private model card.
+
 ## Historical checklist (retained for provenance)
 
 > **Current status (2026-10-13):** See [VAST_FINE_TUNE_HANDOFF_20261013.md](VAST_FINE_TUNE_HANDOFF_20261013.md) for the live GPU run, actual configs, results and remaining test/backup steps. The old unchecked items and "not started" statements below are historical.

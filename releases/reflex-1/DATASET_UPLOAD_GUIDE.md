@@ -97,7 +97,7 @@ In prose specify the first is the 781-row phone component, the other three are g
 
 ## 5. Public release later
 
-Once you review the measured results/cards and decide to release, change each repo's visibility in Settings. Check links while logged out, and ensure license, source attribution, schema and example API request are present. Making one repo public does not make the other public. The model card, aggregate benchmark evidence, generic schema/examples and efficiency figures have been updated in the existing private model repository. Neither visibility nor dataset publication has changed; see `hf-model-card-update-20261015.json` for the verified model-card update receipt.
+Once you review the measured results/cards and decide to release, change each repo's visibility in Settings. Check links while logged out, and ensure license, source attribution, schema and example API request are present. Making one repo public does not make the other public. The model card, aggregate benchmark evidence, generic schema/examples and efficiency figures have been updated in the existing private model repository. Neither visibility nor dataset publication has changed; see `hf-model-card-update-mobile-routing9-20261015.json` for the verified model-card update receipt.
 
 If you want the **exact combined training mixture** public too, create a separately documented config/repo from the executed mix IDs and pinned upstream sources. Preserve the 391/195/195 general source sampling and 781 phone exposure, per-source licenses/attribution, and exact hashes. An independently resampled 781-row general pool is not exact reproduction. Do not upload benchmark questions as training examples or imply these three general benchmarks were zero-shot tests.
 

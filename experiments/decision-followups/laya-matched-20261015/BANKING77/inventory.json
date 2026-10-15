@@ -1,0 +1,20 @@
+{
+  "complete": true,
+  "files": [
+    {
+      "file": "predictions.jsonl",
+      "bytes": 2755740,
+      "sha256": "5706612e54f668b9b9b7efb5aab88626bd9539d1c588b43d249fd68cf470c9bd"
+    },
+    {
+      "file": "progress.json",
+      "bytes": 54,
+      "sha256": "19d459e3bec538f5d0ccecf5d8b1a3d79848bdea8353553af26c74c6a8595f08"
+    },
+    {
+      "file": "summary.json",
+      "bytes": 9692,
+      "sha256": "7aba8fffd2e9ee7b499d15e7a986f47247dcc4a3654a9e5f8f7e21f9d0039761"
+    }
+  ]
+}

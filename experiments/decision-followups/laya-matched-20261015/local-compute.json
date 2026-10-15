@@ -1,0 +1,7 @@
+{
+  "machdep.cpu.brand_string": "Apple M4",
+  "hw.memsize": "25769803776",
+  "new_paid_compute": false,
+  "wandb_created": false,
+  "cost_note": "Existing local Mac inference, no new GPU pod or paid API. Electricity/network cost not measured."
+}

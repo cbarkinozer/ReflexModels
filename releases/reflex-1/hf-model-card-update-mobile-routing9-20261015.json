@@ -1,0 +1,79 @@
+{
+  "updated_utc": "2026-10-15T09:26:48.399591+00:00",
+  "repo_id": "cbarkinozer/Reflex-1",
+  "private_before": true,
+  "private_after": true,
+  "previous_revision": "d1111e5fb636ee9f973f2e0b62365ffe4c1af219",
+  "revision": "7a22425eba59a6924901f8a4d00d3ac937bd072e",
+  "commit_url": "https://huggingface.co/cbarkinozer/Reflex-1/commit/7a22425eba59a6924901f8a4d00d3ac937bd072e",
+  "scope": "Model card, aggregate metrics and generic benchmark definition/assets. Removed unused published reference table. No held-out request text, weights or visibility change.",
+  "deleted_paths": [
+    "reference-benchmarks.json"
+  ],
+  "files": [
+    {
+      "local": "releases/reflex-1/HF_MODEL_CARD.md",
+      "path_in_repo": "README.md",
+      "bytes": 17016,
+      "sha256": "2993ceec84c82c0c65ef8b4b9af9c237d3584f48efd691b0bb60081e48c3b1ff",
+      "verified_remote_sha256": "2993ceec84c82c0c65ef8b4b9af9c237d3584f48efd691b0bb60081e48c3b1ff"
+    },
+    {
+      "local": "releases/reflex-1/benchmark-summary.json",
+      "path_in_repo": "benchmark-summary.json",
+      "bytes": 36395,
+      "sha256": "9928dd52c5b4946850e58502e014eefef54ff63aa2047f99283b167e3351a37a",
+      "verified_remote_sha256": "9928dd52c5b4946850e58502e014eefef54ff63aa2047f99283b167e3351a37a"
+    },
+    {
+      "local": "releases/reflex-1/phone-routing-schema.json",
+      "path_in_repo": "phone-routing-schema.json",
+      "bytes": 1523,
+      "sha256": "95091aa81bc987c4283ff54e7b5286b02b6bcbf3d72aa4faf727c7fba0e4531a",
+      "verified_remote_sha256": "95091aa81bc987c4283ff54e7b5286b02b6bcbf3d72aa4faf727c7fba0e4531a"
+    },
+    {
+      "local": "releases/reflex-1/decision-request.example.json",
+      "path_in_repo": "decision-request.example.json",
+      "bytes": 1642,
+      "sha256": "f7e8ea708875a30082e848f42aec98c6b9b1d1fb27f5118922c759fdc27a8875",
+      "verified_remote_sha256": "f7e8ea708875a30082e848f42aec98c6b9b1d1fb27f5118922c759fdc27a8875"
+    },
+    {
+      "local": "releases/reflex-1/a32-efficiency.json",
+      "path_in_repo": "a32-efficiency.json",
+      "bytes": 1034,
+      "sha256": "e58bd99732ef190270bb84b1c1138386fc2e62bd1da3fcbd15987f83828dff95",
+      "verified_remote_sha256": "e58bd99732ef190270bb84b1c1138386fc2e62bd1da3fcbd15987f83828dff95"
+    },
+    {
+      "local": "releases/reflex-1/assets/a32-quality-efficiency.png",
+      "path_in_repo": "assets/a32-quality-efficiency.png",
+      "bytes": 122694,
+      "sha256": "0680a8cc2a12922cf303e94bd70a76d36da9dfd9875fd072358dcbf5bc059507",
+      "verified_remote_sha256": "0680a8cc2a12922cf303e94bd70a76d36da9dfd9875fd072358dcbf5bc059507"
+    },
+    {
+      "local": "releases/reflex-1/assets/a32-quality-efficiency.svg",
+      "path_in_repo": "assets/a32-quality-efficiency.svg",
+      "bytes": 78555,
+      "sha256": "8e5c9b1c9fdf69b3f8637783b1db4b456b4a20fccf2314d94b04d31699cc0f1e",
+      "verified_remote_sha256": "8e5c9b1c9fdf69b3f8637783b1db4b456b4a20fccf2314d94b04d31699cc0f1e"
+    },
+    {
+      "local": "releases/reflex-1/MOBILE_ROUTING9.json",
+      "path_in_repo": "MOBILE_ROUTING9.json",
+      "bytes": 1113,
+      "sha256": "fe4d33b93edf89fd7210349a3bf4798bcb1e525e2944adf6d4c0865478db8df8",
+      "verified_remote_sha256": "fe4d33b93edf89fd7210349a3bf4798bcb1e525e2944adf6d4c0865478db8df8"
+    },
+    {
+      "local": "releases/reflex-1/laya-matched-summary.json",
+      "path_in_repo": "laya-matched-summary.json",
+      "bytes": 44694,
+      "sha256": "170c58801b3f5df6d68242e1b73a4f6e4e93e1bab7950b992fa795992666e6fa",
+      "verified_remote_sha256": "170c58801b3f5df6d68242e1b73a4f6e4e93e1bab7950b992fa795992666e6fa"
+    }
+  ],
+  "all_remote_files_verified": true
+}
