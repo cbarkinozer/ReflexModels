@@ -20,6 +20,16 @@ class ReportTest(unittest.TestCase):
             self.assertAlmostEqual(result['mean_multiclass_brier_sum'],.08)
             self.assertAlmostEqual(result['hard_label_nll'],-math.log(.8))
 
+    def test_cache_statistics_use_reported_reuse_not_requested_flag(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            directory=Path(tmp)/'run'
+            records=[{'request_body':{'cache_prompt':True},'raw_response':json.dumps({'usage':{'prompt_tokens':100,'completion_tokens':10,'prompt_tokens_details':{'cached_tokens':c}}})} for c in [0,75]]
+            self.write(directory,records)
+            result=report.usage_statistics(directory)
+            self.assertEqual(result['requests_reporting_nonzero_cached_tokens'],1)
+            self.assertEqual(result['cached_fraction_of_reported_input_tokens'],.375)
+            self.assertEqual(result['requested_cache_values'],[True])
+
     def test_paired_difference_requires_same_state_and_gold(self):
         with tempfile.TemporaryDirectory() as tmp:
             a=Path(tmp)/'a';b=Path(tmp)/'b'

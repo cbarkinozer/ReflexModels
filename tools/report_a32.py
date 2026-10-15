@@ -41,6 +41,29 @@ def resources(directory):
 
 
 
+
+def usage_statistics(directory):
+    inputs=[];outputs=[];cached=[];cache_denominators=[];evaluated=[];requested=[]
+    for row in rows(directory/'predictions.jsonl'):
+        if 'request_body' in row:requested.append(row['request_body'].get('cache_prompt'))
+        if 'raw_response' not in row:continue
+        try:response=json.loads(row['raw_response'])
+        except json.JSONDecodeError:continue
+        usage=response.get('usage') or {};timing=response.get('timings') or {}
+        count=usage.get('prompt_tokens',usage.get('input_tokens'))
+        out=usage.get('completion_tokens',usage.get('output_tokens'))
+        if count is not None:inputs.append(count)
+        if out is not None:outputs.append(out)
+        details=usage.get('prompt_tokens_details') or {}
+        cache=details.get('cached_tokens',timing.get('cache_n'))
+        if cache is not None:
+            cached.append(cache)
+            if count is not None:cache_denominators.append(count)
+        if timing.get('prompt_n') is not None:evaluated.append(timing['prompt_n'])
+    avg=lambda values:statistics.mean(values) if values else None
+    return {'requests_with_input_usage':len(inputs),'mean_reported_input_tokens':avg(inputs),'mean_output_tokens':avg(outputs),'requested_cache_values':sorted(set(requested)) if requested else [],'requests_with_cache_reporting':len(cached),'requests_reporting_nonzero_cached_tokens':sum(v>0 for v in cached),'mean_reported_cached_tokens':avg(cached),'cached_fraction_of_reported_input_tokens':sum(cached)/sum(cache_denominators) if cache_denominators and sum(cache_denominators) else None,'mean_server_prompt_evaluated_tokens':avg(evaluated),'note':'Measured server usage across all responses, including first request. Missing cache reporting means unknown, not zero. Requested flag alone does not prove reuse.'}
+
+
 def grouped_results(directory):
     data=[normalized(r) for r in rows(directory/'predictions.jsonl')]
     output={}
@@ -122,7 +145,7 @@ def generate():
         if macro is None and len(total.get('by_question',{}))==1:macro=next(iter(total['by_question'].values()))['macro_f1']
         macro_text=f'{100*macro:.2f}%' if macro is not None else 'per-question in report'
         lines.append(f'| {label} | {title} | {count} / {decision_count} | {100*total["accuracy"]:.2f}% | {macro_text} | {warm["p50_latency_ms"]/1000:.2f} / {warm["p95_latency_ms"]/1000:.2f} s | {total["failures"]} |')
-        records.append({'directory':name,'model':label,'cohort':title,'summary':s,'resources':resources(d),'groups':grouped_results(d),'calibration':calibration(d),'predictions_sha256':hashlib.sha256((d/'predictions.jsonl').read_bytes()).hexdigest()})
+        records.append({'directory':name,'model':label,'cohort':title,'summary':s,'resources':resources(d),'token_usage':usage_statistics(d),'groups':grouped_results(d),'calibration':calibration(d),'predictions_sha256':hashlib.sha256((d/'predictions.jsonl').read_bytes()).hexdigest()})
     text='\n'.join(lines)
     resource_lines=['| Model | A32 cohort | Battery min–max | AP max | Android thermal status max | Sampled max PSS | RSS high-water |', '| --- | --- | ---: | ---: | ---: | ---: | ---: |']
     for r in records:
@@ -137,6 +160,7 @@ def generate():
     report=report.replace('explicit. |','explicit.\n\n|')
     report+='CPU-only 4 threads, Q4_K_M, runtime build11443, USB powered. Phone ctx2048, general ctx4096. Warm timing excludes first request and includes ADB/HTTP. General per-question accuracy and exact-record metrics are separate; CLINC excludes OOS. Raw Qwen uses fixed no-chat-template JSON-grammar treatment; not a claim about every Qwen prompting/runtime strategy.\n\n'
     report+=resource_table+'\n\nPSS maxima are sampled; RSS high-water is kernel-reported. USB power precludes an energy-saving claim.\n\n'
+    report+='Reported token use and cache behaviour (all requests):\n\n```json\n'+json.dumps([{'directory':r['directory'],'usage':r['token_usage']} for r in records],indent=2)+'\n```\n\n'
     report+='Probability calibration (explicit hard labels, successful decisions only; failures still count in accuracy):\n\n```json\n'+json.dumps([{'directory':r['directory'],'metrics':r['calibration']} for r in records],indent=2)+'\n```\n\n'
     report+='Per-route, coverage and workflow results:\n\n```json\n'+json.dumps([{'directory':r['directory'],'groups':r['groups']} for r in records],indent=2)+'\n```\n\n'
     report+='Resource traces and measured sampled maxima:\n\n```json\n'+json.dumps([{k:v for k,v in r.items() if k in ['directory','resources']} for r in records],indent=2)+'\n```\n\nPaired fresh180 comparisons (reflex minus comparator):\n\n```json\n'+json.dumps(comparisons,indent=2)+'\n```\n'
