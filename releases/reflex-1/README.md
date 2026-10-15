@@ -6,7 +6,7 @@ Built with Unsloth's `FastDecisionModel`/`DecisionTrainer` (the "Clef" architect
 
 Trained on a **combined phone-routing + general mixture** (781 phone examples + 781 class-preserving general examples: 391 typed-decisions, 195 BANKING77, 195 CLINC150; equal domain weights), independently from base `unsloth/Qwen3.5-0.8B`, LoRA rank/alpha 16, LR `2e-4`, seed 3407. Two independent combined runs were trained (80 steps and 120 steps); the **120-step run's checkpoint-100** was selected on validation and is the model exported here.
 
-## Measured results — validation only, no held-out test yet
+## Validation and held-out results
 
 | Checkpoint | Phone val | General val | Equal-domain mean |
 | --- | ---: | ---: | ---: |
@@ -45,7 +45,7 @@ Only Q4_K_M was exported for the main model (no Q8_0 this time); the mmproj side
 
 Same as reflex-1-beta — see [its README](../reflex-1-beta/README.md#run-the-gguf-decision-api) for the `llama-server` / `/v1/systemone` invocation. Point `-m` at this release's `model-Q4_K_M.gguf`.
 
-The Qwen base model and training data sources declare Apache-2.0 (general mixture) / see dataset provenance in the handoff doc for the phone-routing data. Weights modified by decision-head and LoRA training on 2026-10-13. Privately uploaded for desktop testing; no public publication performed.
+The Qwen base model and typed-decisions declare Apache-2.0; BANKING77 declares CC-BY-4.0 and CLINC150 CC-BY-3.0. The general mixture is not uniformly Apache-2.0. See [pinned source licenses](../../experiments/decision-followups/general-data/source-revisions.json) and the handoff for phone-data provenance; finalize redistribution terms and attribution before publication. Weights modified by decision-head and LoRA training on 2026-10-13. Privately uploaded for desktop testing; no public publication performed.
 
 ## Fresh phone routing test - 2026-10-15
 
