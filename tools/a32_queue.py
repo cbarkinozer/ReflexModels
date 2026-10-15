@@ -163,8 +163,9 @@ def run_suite(label, mode, data, directory, reference=None):
     if done.exists() and json.loads(done.read_text()).get('complete'): return
     rows=[json.loads(line) for line in data.read_text().splitlines() if line.strip()]
     context=2048 if 'phone' in str(data) else 4096
+    timeout_seconds=300 if context==2048 else 900
     pid,startup=start_server(label,context,directory)
-    manifest={'data_path':str(data.relative_to(ROOT)) if data.is_relative_to(ROOT) else str(data),'data_sha256':sha(data),'rows':len(rows),'mode':mode,'startup':startup,'harness_sha256':sha(Path(__file__)),'source_commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'start_unix':time.time(),'complete':False,'protocol':'Sequential fixed-order sustained requests; no relevance guard or per-request cooldown; first request separated; USB powered; HTTP includes ADB transport. Raw baseline uses identical semantic state and question descriptions with JSON grammar, no chat template. General decision scores use gold label not soft-target argmax.'}
+    manifest={'data_path':str(data.relative_to(ROOT)) if data.is_relative_to(ROOT) else str(data),'data_sha256':sha(data),'rows':len(rows),'mode':mode,'request_timeout_seconds':timeout_seconds,'startup':startup,'harness_sha256':sha(Path(__file__)),'source_commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'start_unix':time.time(),'complete':False,'protocol':'Sequential fixed-order sustained requests; no relevance guard or per-request cooldown; first request separated; USB powered; HTTP includes ADB transport. Raw baseline uses identical semantic state and question descriptions with JSON grammar, no chat template. General decision scores use gold label not soft-target argmax.'}
     save(directory/'manifest.json',manifest)
     existing=[]
     prediction_path=directory/'predictions.jsonl'
@@ -191,7 +192,7 @@ def run_suite(label, mode, data, directory, reference=None):
             begin=time.monotonic()
             try:
                 req=urllib.request.Request(URL+endpoint,json.dumps(body).encode(),{'Content-Type':'application/json'})
-                with urllib.request.urlopen(req,timeout=300) as r: result['raw_response']=r.read().decode()
+                with urllib.request.urlopen(req,timeout=timeout_seconds) as r: result['raw_response']=r.read().decode()
                 result['latency_ms']=1000*(time.monotonic()-begin)
                 response=json.loads(result['raw_response'])
                 if mode=='decision': predictions,prob=question_results(response,questions);result['probabilities']=prob
