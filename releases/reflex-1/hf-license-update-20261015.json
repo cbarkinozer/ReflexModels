@@ -1,0 +1,46 @@
+[
+  {
+    "repo": "cbarkinozer/MOBILE_ROUTING9",
+    "revision": "fbf01e6652594d50c66c3cb695c12bdf1e20dcda",
+    "license": "apache-2.0",
+    "private": true,
+    "verified_files": [
+      {
+        "path": "README.md",
+        "sha256": "eb8b422ecae98b3475bafefbcfa5dc39333662965bdeac2bc607ff5ef6e2a7d8"
+      },
+      {
+        "path": "LICENSE",
+        "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+      },
+      {
+        "path": "NOTICE",
+        "sha256": "79cd0dfe8b920888449dc940a0289e5069bb8933af0bc45d54247d36bbd237e3"
+      },
+      {
+        "path": "manifest.json",
+        "sha256": "2ed2c8d2d9d813d3944ae2a8f52b653ebed8d1920bde35b7ec8297753f8b0fb2"
+      }
+    ]
+  },
+  {
+    "repo": "cbarkinozer/Reflex-1",
+    "revision": "a7606eba653610ad53288e4cc76ce00d4befe809",
+    "license": "apache-2.0",
+    "private": true,
+    "verified_files": [
+      {
+        "path": "README.md",
+        "sha256": "46f04126a30d3ccd5662f50eb462dc70685e4b8dd6b0960d9ce6b4997c7c2640"
+      },
+      {
+        "path": "LICENSE",
+        "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+      },
+      {
+        "path": "NOTICE",
+        "sha256": "5e3e10aef77ec692ef4e8c2245ce96cc62c775bddc0df4e76e863636f60a2dcb"
+      }
+    ]
+  }
+]

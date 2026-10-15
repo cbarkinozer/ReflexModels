@@ -1,6 +1,6 @@
 # Final release audit — 2026-10-15
 
-Recommendation: technically ready; finalize licensing before public release. Dataset first, then model is appropriate. Neither repository was made public during this audit.
+Recommendation: ready for public release. Author-selected Apache-2.0 licensing has been applied and verified on both repositories. Dataset first, then model is appropriate. Neither repository was made public during this audit.
 
 Verified dataset: 781 train / 90 validation / 90 calibration / 180 test, total 1,141. All downloaded export hashes match the manifest; valid request/schema/target fields; nine routes; all six split pairs have disjoint IDs and normalized request text. Hugging Face datasets loads the four JSONL splits successfully. Historical 88-case test excluded. Dataset card describes the English mobile intent-classification task and retains single-reviewer/synthetic limitations.
 
@@ -10,6 +10,6 @@ Cards: metadata validation passes; Markdown table widths consistent; internal fi
 
 Fixed: obsolete README checksum removed from original-artifact manifest, pending GGUF mobile status corrected, private-only release wording reduced. Model and dataset revisions/verified writes are in hf-final-audit-update-20261015.json.
 
-Remaining release decision: neither repository includes a LICENSE file or selected license metadata. Author must select terms; then add the matching standard license texts and YAML metadata, retain upstream attribution, and remove pending-license statements. Do not replace that decision with license: other. Licensing options were presented to the author; no choice has yet been applied.
+Licensing completed: both cards declare Apache-2.0, both repositories include the standard LICENSE and attribution NOTICE, and dataset manifest licensing is updated. Upstream training sources retain their original licenses. Verified writes are in hf-license-update-20261015.json.
 
-After licenses are applied, make the dataset public first, then the model. Check both pages and dataset viewer while logged out. Published test is a reproducible regression benchmark; future test-guided development needs additional unseen evidence for new generalization claims.
+Make the dataset public first, then the model. Check both pages and dataset viewer while logged out. Published test is a reproducible regression benchmark; future test-guided development needs additional unseen evidence for new generalization claims.

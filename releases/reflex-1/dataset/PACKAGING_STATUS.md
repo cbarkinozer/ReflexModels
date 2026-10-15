@@ -6,4 +6,4 @@ All four splits uploaded and downloaded back with matching SHA-256s: train 781, 
 
 All six split pairs have zero overlapping IDs or normalized request text. Semantic/template independence is not guaranteed. Cards and reciprocal model links are updated. See ../hf-dataset-development-upload-20261015.json for revisions and verification hashes. Local upload folder: data/prepared/hf-mobile-routing9/ (ignored by Git).
 
-Both repositories remain private. Author-selected licensing remains pending before public release.
+Both repositories remain private. Apache-2.0 selected by author; LICENSE, NOTICE and metadata uploaded and verified. Ready for author publication.

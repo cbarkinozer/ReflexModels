@@ -1,4 +1,5 @@
 ---
+license: apache-2.0
 language:
 - en
 pretty_name: MOBILE_ROUTING9
@@ -140,6 +141,6 @@ Coverage is limited to nine routes, synthetic phrasing and a single reviewer's p
 
 ## License and related work
 
-A dataset redistribution license has not yet been selected. License metadata will be added before public release.
+Licensed under [Apache-2.0](LICENSE). Copyright 2026 cbarkinozer. See [NOTICE](NOTICE) for provenance and attribution.
 
 [Reflex-1](https://huggingface.co/cbarkinozer/Reflex-1) is one model trained using this dataset's phone training split. Its separate general training sources are not included in MOBILE_ROUTING9. See that model's card for its experiments and results.

@@ -19,9 +19,7 @@
     "gguf/model-Q4_K_M.gguf"
   ],
   "credential_pattern_scan": "pass",
-  "issues_found": [
-    "Missing author-selected model and dataset licenses"
-  ],
+  "issues_found": [],
   "fixed_issues": [
     "Removed obsolete README checksum from artifact inventory",
     "Replaced pending mobile GGUF status with completed 180-case result",
@@ -30,5 +28,6 @@
   ],
   "dataset_loading": "All four JSONL splits loaded through Hugging Face datasets with expected schemas and row counts",
   "remote_artifacts": "Original binary sizes and LFS SHA-256s match the verified artifact inventory",
-  "release_recommendation": "Technically ready subject to author-selected licenses being applied to both repositories. No public visibility change performed."
+  "release_recommendation": "Ready for author to publish dataset first, then model. No visibility changes performed.",
+  "licenses": "Apache-2.0 selected by author; cards, LICENSE and NOTICE uploaded and verified for both private repositories"
 }

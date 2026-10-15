@@ -1,0 +1,24 @@
+Reflex-1
+Copyright 2026 cbarkinozer
+Author contributions licensed under the Apache License, Version 2.0.
+
+Modified from unsloth/Qwen3.5-0.8B (Qwen family), base revision
+23c69c53358a07516b5827588b3fdb12ae78fd65, declared Apache-2.0.
+https://huggingface.co/unsloth/Qwen3.5-0.8B
+Changes: trained rank-16 LoRA and a Clef-style decision head using Unsloth;
+selected checkpoint 100; calibrated separately; exported merged Q4_K_M.
+The original model name does not imply endorsement.
+
+Training-data acknowledgments (source data not redistributed in this model repo):
+- MOBILE_ROUTING9: cbarkinozer, Apache-2.0.
+  https://huggingface.co/datasets/cbarkinozer/MOBILE_ROUTING9
+- LocalLLaMA/typed-decisions: Apache-2.0.
+  https://huggingface.co/datasets/LocalLLaMA/typed-decisions
+- BANKING77: Casanueva et al., Efficient Intent Detection with Dual Sentence
+  Encoders (2020), PolyAI; CC-BY-4.0.
+  https://github.com/PolyAI-LDN/task-specific-datasets
+- CLINC150: Larson et al., An Evaluation Dataset for Intent Classification and
+  Out-of-Scope Prediction (2019); CC-BY-3.0 as declared by the source.
+  https://huggingface.co/datasets/clinc/clinc_oos
+Source data retain their own licenses; this notice does not relicense them.
+Pinned source revisions and adaptation counts are in the model card.

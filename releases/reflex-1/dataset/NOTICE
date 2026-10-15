@@ -1,0 +1,9 @@
+MOBILE_ROUTING9
+Copyright 2026 cbarkinozer
+Licensed under the Apache License, Version 2.0.
+
+English synthetic mobile-assistant routing requests reviewed by one human.
+Released request/schema/target fields preserve original prepared split content;
+review/UI metadata was removed. Test is the separate frozen 180-case cohort.
+Provenance and source/export hashes are in manifest.json.
+No BANKING77, CLINC150 or typed-decisions source rows are included here.
