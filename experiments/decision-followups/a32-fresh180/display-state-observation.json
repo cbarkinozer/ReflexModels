@@ -4,4 +4,4 @@
   "stay_on_while_plugged_in": "2",
   "screen_brightness": "92",
   "note": "Observed existing configuration; not changed. USB stay-awake enabled, display awake. Resource measurements include the existing phone environment, not isolated display/model energy."
-}\n
+}

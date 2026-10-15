@@ -28,4 +28,3 @@ if queue_log.exists():
         status.update(active=started[-1],phase='cooldown_or_startup',completed_cases=0)
         status.pop('battery_c',None);status.pop('android_thermal_status',None)
 print(json.dumps(status))
-
