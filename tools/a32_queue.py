@@ -31,6 +31,17 @@ def adb(*cmd):
     return subprocess.check_output(ADB + list(cmd), text=True, timeout=45)
 
 
+def stop_server(pid):
+    """A process may exit between pidof and kill; tolerate only confirmed exit."""
+    try:
+        adb('shell', 'kill', '-INT', str(pid))
+    except subprocess.CalledProcessError:
+        check = subprocess.run(ADB + ['shell', 'test', '-d', f'/proc/{pid}'],
+                               capture_output=True, text=True, timeout=45)
+        if check.returncode != 1:
+            raise
+
+
 def save(path, value):
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp = path.with_suffix('.tmp')
@@ -123,7 +134,7 @@ def cool():
 def start_server(label, context, directory):
     p=subprocess.run(ADB+['shell','pidof','llama-server'],capture_output=True,text=True)
     if p.returncode == 0:
-        for pid in p.stdout.split(): adb('shell','kill','-INT',pid)
+        for pid in p.stdout.split(): stop_server(pid)
         time.sleep(2)
     cooldown=cool()
     path, expected=MODELS[label]
@@ -243,7 +254,7 @@ def run_suite(label, mode, data, directory, reference=None):
     save(directory/'summary.json',report)
     save(directory/'manifest.json',manifest|{'complete':True,'end_unix':time.time()})
     subprocess.run(ADB+['pull','/data/local/tmp/reflex-runtime/overnight-server.log',str(directory/'server.log')],check=True)
-    adb('shell','kill','-INT',str(pid))
+    stop_server(pid)
 
 
 def queue():

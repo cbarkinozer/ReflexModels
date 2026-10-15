@@ -1,11 +1,22 @@
 import json
 from pathlib import Path
 import unittest
+import subprocess
+from types import SimpleNamespace
 from unittest.mock import patch
 import a32_queue as q
 
 
 class QueueScoringTest(unittest.TestCase):
+    def test_stop_tolerates_confirmed_process_exit_only(self):
+        failure = subprocess.CalledProcessError(1, ['kill'])
+        with patch.object(q, 'adb', side_effect=failure), patch.object(q.subprocess, 'run', return_value=SimpleNamespace(returncode=1)):
+            q.stop_server(123)
+        for status in [0, 255]:
+            with patch.object(q, 'adb', side_effect=failure), patch.object(q.subprocess, 'run', return_value=SimpleNamespace(returncode=status)):
+                with self.assertRaises(subprocess.CalledProcessError):
+                    q.stop_server(123)
+
     def test_multi_question_gold_is_explicit_not_distribution_argmax(self):
         rows=[{'gold_labels':{'action':'keep','risk':'1'},'predictions':{'action':'keep','risk':'0'},'latency_ms':10}]
         result=q.summary(rows)

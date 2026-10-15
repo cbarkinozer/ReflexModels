@@ -65,3 +65,9 @@ Local result commit `c54da8e`: 164/180 correct (91.11%), macro-F1 91.06%, zero r
 Qwen raw schema-JSON (uncached) fresh180: 42/180=23.33%, zero request errors; warm mean24.94s, p50/p9525.44/26.70s. This profile is faster than the selected decision model but less accurate. It uses a different prompt/output schema than the app's original55.6% historical treatment and is explicitly a format control. No overall speed win is inferred from it.
 
 Predeclared additions preserve the existing app prompt/grammar as a separate baseline and test prompt caching within both profiles. See CACHED_BASELINE_PLAN.md and EXISTING_ROUTER_BASELINE_PLAN.md for chronology, known scope limitations and exact unchanged-profile provenance. At the job boundary the old queue worker was stopped during beta cooldown before any beta request, then restarted with the committed14-job queue; existing complete jobs are skipped without changing their artifacts. Existing-app uncached/cached comparisons are prioritized before schema-cached and remaining beta/historical/general jobs. No new checkpoint selection or tuning on test labels.
+
+## Completed existing-app uncached fresh180 baseline
+
+Qwen unchanged app router:100/180=55.56%, macro-F1 53.71%, zero request errors; all-request mean41.14s, warm mean41.17s. Reflex-1:164/180=91.11%, all-request mean31.36s. Difference35.56pp; paired bootstrap95%CI27.78–43.33pp. Cached profiles and general suites remain pending. Single sustained run and prompt/policy differences limit attribution.
+
+Queue encountered an already-exited PID between pidof and kill after this completed job. Preserved traceback in queue-console.log; fixed shutdown to tolerate confirmed process absence only, resumed completed jobs without rerunning requests. Cached-app job starts at29.4C/status0 after elapsed idle time, recorded in startup.json. New worker uses the infrastructure fix only; no prompt/model/scoring changes.
