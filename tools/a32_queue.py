@@ -63,6 +63,33 @@ def grammar(questions):
     return 'root ::= "{" ws ' + ' ws "," ws '.join(fields) + ' ws "}"\n' + '\n'.join(rules) + '\nws ::= [ \\t\\n\\r]*\n'
 
 
+
+def baseline_body(case,questions,mode):
+    cached=mode.endswith('-cached')
+    if mode.startswith('legacy'):
+        if set(questions)!={'route'}:raise ValueError('Existing app profile supports the phone route task only')
+        profile=json.loads((ROOT/'tools/legacy_router_profile.json').read_text())
+        prompt=profile['ROUTING_PROMPT_TEMPLATE'].format(user_prompt=case['state'],clarification=profile['CLARIFICATION_MESSAGE'])
+        return {'prompt':prompt,'grammar':profile['AGENT_ROUTE_GRAMMAR'],'temperature':.3,'seed':3407,'max_tokens':64,'cache_prompt':cached}
+    prompt='Select the best answer for every question using the input. Return one JSON object mapping each question name to its option key. Return only JSON. For yes/no use "true" or "false"; for scores use the level index as a string.\nQuestions:\n'+json.dumps(questions,ensure_ascii=False)+'\nInput:\n'+case['state']+'\nDecision:\n'
+    return {'prompt':prompt,'grammar':grammar(questions),'temperature':.3,'seed':3407,'max_tokens':256,'cache_prompt':cached}
+
+
+def baseline_predictions(response,questions,mode):
+    decoded=json.loads(response['choices'][0]['text'])
+    if mode.startswith('legacy'):
+        action=decoded['action']
+        if action=='answer':label='answer'
+        elif action in ['tool','workflow']:label=decoded['name']
+        else:raise ValueError('Invalid existing app action')
+        if action=='workflow' and label!='phone_health_check':raise ValueError('Invalid workflow')
+        if action=='tool' and label in ['phone_health_check','answer']:raise ValueError('Invalid tool route')
+        decoded={'route':label}
+    if set(decoded)!=set(questions) or any(decoded[k] not in options(q) for k,q in questions.items()):raise ValueError('Invalid baseline result')
+    if response.get('truncated') or response.get('stop_type')=='limit':raise ValueError('Baseline truncation/token budget limit')
+    return decoded
+
+
 def telemetry(pid):
     raw = {}
     for key,cmd in {'battery':['dumpsys','battery'], 'thermal':['dumpsys','thermalservice'],
@@ -165,7 +192,7 @@ def run_suite(label, mode, data, directory, reference=None):
     context=2048 if 'phone' in str(data) else 4096
     timeout_seconds=300 if context==2048 else 900
     pid,startup=start_server(label,context,directory)
-    manifest={'data_path':str(data.relative_to(ROOT)) if data.is_relative_to(ROOT) else str(data),'data_sha256':sha(data),'rows':len(rows),'mode':mode,'request_timeout_seconds':timeout_seconds,'startup':startup,'harness_sha256':sha(Path(__file__)),'source_commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'start_unix':time.time(),'complete':False,'protocol':'Sequential fixed-order sustained requests; no relevance guard or per-request cooldown; first request separated; USB powered; HTTP includes ADB transport. Raw baseline uses identical semantic state and question descriptions with JSON grammar, no chat template. General decision scores use gold label not soft-target argmax.'}
+    manifest={'data_path':str(data.relative_to(ROOT)) if data.is_relative_to(ROOT) else str(data),'data_sha256':sha(data),'rows':len(rows),'mode':mode,'request_timeout_seconds':timeout_seconds,'legacy_profile_sha256':sha(ROOT/'tools/legacy_router_profile.json') if mode.startswith('legacy') else None,'startup':startup,'harness_sha256':sha(Path(__file__)),'source_commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'start_unix':time.time(),'complete':False,'protocol':'Sequential fixed-order sustained requests; no relevance guard or per-request cooldown; first request separated; USB powered; HTTP includes ADB transport. Baseline profile is explicit: raw/raw-cached uses schema JSON; legacy/legacy-cached uses unchanged app prompt/action grammar. Cache enabled only in -cached modes; no chat template. General decision scores use gold label not soft-target argmax.'}
     save(directory/'manifest.json',manifest)
     existing=[]
     prediction_path=directory/'predictions.jsonl'
@@ -186,8 +213,7 @@ def run_suite(label, mode, data, directory, reference=None):
                 endpoint='/v1/systemone';body={'model':label,'state':case['state'],'questions':questions}
             else:
                 endpoint='/v1/completions'
-                prompt='Select the best answer for every question using the input. Return one JSON object mapping each question name to its option key. Return only JSON. For yes/no use "true" or "false"; for scores use the level index as a string.\nQuestions:\n'+json.dumps(questions,ensure_ascii=False)+'\nInput:\n'+case['state']+'\nDecision:\n'
-                body={'prompt':prompt,'grammar':grammar(questions),'temperature':.3,'seed':3407,'max_tokens':256,'cache_prompt':False}
+                body=baseline_body(case,questions,mode)
                 result['request_body']=body
             begin=time.monotonic()
             try:
@@ -197,9 +223,7 @@ def run_suite(label, mode, data, directory, reference=None):
                 response=json.loads(result['raw_response'])
                 if mode=='decision': predictions,prob=question_results(response,questions);result['probabilities']=prob
                 else:
-                    predictions=json.loads(response['choices'][0]['text'])
-                    if set(predictions)!=set(questions) or any(predictions[k] not in options(q) for k,q in questions.items()): raise ValueError('Invalid baseline result')
-                    if response.get('truncated') or response.get('stop_type')=='limit': raise ValueError('Baseline truncation/token budget limit')
+                    predictions=baseline_predictions(response,questions,mode)
                 result['predictions']=predictions
                 result['correct']=all(predictions.get(k)==v for k,v in result['gold_labels'].items())
                 if case['id'] in refs:
@@ -229,9 +253,12 @@ def queue():
     historical=Path('/Users/cbarkinozer/Documents/GitHub/pocket-agents-lab/data/phone_routing/test.jsonl')
     general=BASE/'heldout-results-20261014/frozen-general-tests'
     jobs=[('qwen','raw',fresh,'qwen-fresh180',ref),
+          ('qwen','raw-cached',fresh,'qwen-cached-fresh180',ref),
+          ('qwen','legacy',fresh,'qwen-legacy-fresh180',ref),
+          ('qwen','legacy-cached',fresh,'qwen-legacy-cached-fresh180',ref),
           ('reflex-1-beta','decision',fresh,'beta-fresh180',ref),
           ('reflex-1','decision',historical,'reflex-historical90',None),
-          ('qwen','raw',historical,'qwen-historical90',None)]
+          ('qwen','legacy',historical,'qwen-historical90',None)]
     # Full frozen general cohorts, not score-driven subsets. Both decision versions.
     for label,slug in [('reflex-1','reflex'),('reflex-1-beta','beta')]:
         for suite in ['typed_decisions','banking77','clinc150']:
