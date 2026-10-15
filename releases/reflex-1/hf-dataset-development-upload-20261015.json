@@ -1,0 +1,41 @@
+{
+  "dataset": "cbarkinozer/MOBILE_ROUTING9",
+  "revision": "81630fdb3539ae1c0b29be4e32341053cae1da87",
+  "private": true,
+  "splits": {
+    "train": 781,
+    "validation": 90,
+    "calibration": 90,
+    "test": 180
+  },
+  "missing_exact_splits": {},
+  "verified_files": [
+    {
+      "path": "README.md",
+      "sha256": "d93e4e547dec73cea5f85315afcec173446a3ad4f4b1c83854af9d3ca0eac862"
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "2ae0644f3fa1b1e86facd1bc612dfc07fe07f9bd8c124baf53d7866b87430844"
+    },
+    {
+      "path": "data/train.jsonl",
+      "sha256": "8c8cf5995ad075331bdc5fdd3217f4788b7366b3b2d320b1e181108844d1e673"
+    },
+    {
+      "path": "data/test.jsonl",
+      "sha256": "136295d67d0f5d5678f4341d75640a17c86d9d13439aa6adec9b21cf2787026d"
+    },
+    {
+      "path": "data/validation.jsonl",
+      "sha256": "611e5b4b10af8f35484c387f3649ac4c9afb9f35c512246a8fc0cfa4468e4572"
+    },
+    {
+      "path": "data/calibration.jsonl",
+      "sha256": "178148009278fab7c47c7b239e6efa5e25569fbb4151ab1833d5a57f73fd161b"
+    }
+  ],
+  "model_revision": "7eae551fd6ff30645ea060256863a2477b45fd06",
+  "license": "pending",
+  "visibility_changed": false
+}

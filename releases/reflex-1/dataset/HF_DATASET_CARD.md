@@ -7,7 +7,7 @@ task_categories:
 task_ids:
 - intent-classification
 size_categories:
-- n<1K
+- 1K<n<10K
 tags:
 - mobile
 - intent-classification
@@ -19,6 +19,10 @@ configs:
   data_files:
   - split: train
     path: data/train.jsonl
+  - split: validation
+    path: data/validation.jsonl
+  - split: calibration
+    path: data/calibration.jsonl
   - split: test
     path: data/test.jsonl
 ---
@@ -27,7 +31,7 @@ configs:
 
 MOBILE_ROUTING9 is an **English text classification dataset for mobile-assistant request routing**. Each request is assigned one of nine intent labels: answering directly, inspecting device information, inspecting battery or storage, checking media, finding files or notes, saving a note, or checking overall phone condition.
 
-The current release contains **961 synthetic, human-reviewed examples: 781 training and 180 test examples**. It supports training and evaluating intent classifiers, including conventional text classifiers and models that score a supplied set of routing options.
+The current release contains **1,141 synthetic, human-reviewed examples: 781 training, 90 validation, 90 calibration and 180 test examples**. It supports training and evaluating intent classifiers, including conventional text classifiers and models that score a supplied set of routing options.
 
 ## Task and labels
 
@@ -58,22 +62,22 @@ Illustrative examples below explain the policy; they are not additional dataset 
 
 ## Splits and class distribution
 
-| Label | Train | Test |
-| --- | ---: | ---: |
-| `answer` | 89 | 20 |
-| `get_battery_info` | 82 | 20 |
-| `get_device_info` | 89 | 20 |
-| `get_media_info` | 87 | 20 |
-| `get_storage_info` | 88 | 20 |
-| `phone_health_check` | 86 | 20 |
-| `save_note` | 86 | 20 |
-| `search_local_files` | 86 | 20 |
-| `search_notes` | 88 | 20 |
-| **Total** | **781** | **180** |
+| Label | Train | Validation | Calibration | Test |
+| --- | ---: | ---: | ---: | ---: |
+| `answer` | 89 | 10 | 10 | 20 |
+| `get_battery_info` | 82 | 10 | 10 | 20 |
+| `get_device_info` | 89 | 10 | 10 | 20 |
+| `get_media_info` | 87 | 10 | 10 | 20 |
+| `get_storage_info` | 88 | 10 | 10 | 20 |
+| `phone_health_check` | 86 | 10 | 10 | 20 |
+| `save_note` | 86 | 10 | 10 | 20 |
+| `search_local_files` | 86 | 10 | 10 | 20 |
+| `search_notes` | 88 | 10 | 10 | 20 |
+| **Total** | **781** | **90** | **90** | **180** |
 
-Training is approximately balanced; test is exactly balanced. Separate validation and calibration sets of 90 examples each exist in the original experiment but are **not included in this release yet**. An older test cohort used during development is excluded.
+Training is approximately balanced; test is exactly balanced. Validation supports development and checkpoint selection; calibration is reserved for fitting probability calibration. Both preserve the original 90-example split assignments. An older test cohort used during development is excluded.
 
-The test split was collected and frozen separately after selection of the initial model checkpoint. No ID or normalized-request overlap was found between the released train and test splits. This check does not establish semantic or template independence.
+The test split was collected and frozen separately after selection of the initial model checkpoint. No ID or normalized-request overlap was found across any pair of released splits. This check does not establish semantic or template independence.
 
 ## Loading and basic use
 

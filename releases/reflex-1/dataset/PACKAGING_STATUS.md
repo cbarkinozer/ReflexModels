@@ -1,11 +1,9 @@
 # MOBILE_ROUTING9 release status
 
-Uploaded privately: https://huggingface.co/datasets/cbarkinozer/MOBILE_ROUTING9
+Private dataset: https://huggingface.co/datasets/cbarkinozer/MOBILE_ROUTING9
 
-781 train rows plus 180 frozen test rows, nine routes. Source recovered from origin/main commit 9f28a9b; exact source SHA c01503a65e182b0eb68181fcfcdd0e775c3ea4b9a3039ee9f3abcb4f05d7a2b4. Executed request/schema/target fields preserved; reviewer/UI metadata omitted. Validation, calibration and historical tests excluded; the frozen 180-case test is released separately. Zero ID or normalized-request overlap with the separate frozen 180-case evaluation cohort.
+All four splits uploaded and downloaded back with matching SHA-256s: train 781, validation 90, calibration 90, test 180 (1,141 total). Exact original train/validation/calibration files recovered from Git; source hashes matched the committed manifest. The release strips review/UI metadata while retaining request/schema/target fields. The 88-row historical development test remains excluded; the 180-case frozen evaluation cohort remains the release test.
 
-README, manifest, train and test JSONL downloaded at the uploaded revision and SHA-256 verified. Reciprocal dataset/model links added. See ../hf-dataset-test-upload-20261015.json for revisions and hashes. Local upload folder: data/prepared/hf-mobile-routing9/ (ignored by Git).
+All six split pairs have zero overlapping IDs or normalized request text. Semantic/template independence is not guaranteed. Cards and reciprocal model links are updated. See ../hf-dataset-development-upload-20261015.json for revisions and verification hashes. Local upload folder: data/prepared/hf-mobile-routing9/ (ignored by Git).
 
-Both Hub repositories remain private. License selection remains pending before public release. The dataset contains only the phone training component, not the 781-row general mixture ; the 180-case benchmark is now included as the separate test split.
-
-Still needed: exact val.jsonl and calibration.jsonl (90 rows each) from phone-routing-human-reviewed-v2-1080-fixedval-20261013, with executed provenance. The older local calibration file was not substituted.
+Both repositories remain private. Author-selected licensing remains pending before public release.
