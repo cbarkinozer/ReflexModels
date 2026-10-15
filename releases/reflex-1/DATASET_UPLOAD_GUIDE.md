@@ -100,3 +100,26 @@ In prose specify the first is the 781-row phone component, the other three are g
 Once you review the measured results/cards and decide to release, change each repo's visibility in Settings. Check links while logged out, and ensure license, source attribution, schema and example API request are present. Making one repo public does not make the other public. We have not changed either visibility or uploaded new files during these benchmarks.
 
 If you want the **exact combined training mixture** public too, create a separately documented config/repo from the executed mix IDs and pinned upstream sources. Preserve the 391/195/195 general source sampling and 781 phone exposure, per-source licenses/attribution, and exact hashes. An independently resampled 781-row general pool is not exact reproduction. Do not upload benchmark questions as training examples or imply these three general benchmarks were zero-shot tests.
+
+## Updating the model card before public release
+
+The measured card is prepared locally at `releases/reflex-1/HF_MODEL_CARD.md`. After the queue completes and you add the final dataset ID/link, review it and copy it to the model repo's **README.md**. `releases/reflex-1/benchmark-summary.json` contains aggregate metrics, confusion matrices and calibration/resource summaries without held-out request text, reviewer IDs or device-property dumps. It can accompany the model card. Check `complete: true` before describing the whole queue as finished.
+
+To update the existing private model repository yourself after review:
+
+```python
+from huggingface_hub import HfApi
+api = HfApi()
+api.upload_file(
+    path_or_fileobj="releases/reflex-1/HF_MODEL_CARD.md",
+    path_in_repo="README.md", repo_id="cbarkinozer/Reflex-1",
+    commit_message="Document measured mobile benchmarks and training data",
+)
+api.upload_file(
+    path_or_fileobj="releases/reflex-1/benchmark-summary.json",
+    path_in_repo="benchmark-summary.json", repo_id="cbarkinozer/Reflex-1",
+    commit_message="Add aggregate benchmark evidence",
+)
+```
+
+These writes do not themselves change an existing repository's privacy. Do not upload raw evaluation folders or the entire Git working tree as a model or dataset release. Keep the selected adapter/head/tokenizer/configs and GGUF files already present in the model repo; updating README is not a model retrain.

@@ -40,6 +40,32 @@ def resources(directory):
 
 
 
+
+def grouped_results(directory):
+    data=[normalized(r) for r in rows(directory/'predictions.jsonl')]
+    output={}
+    for facet in ['coverage','workflow']:
+        groups={}
+        for r in data:
+            if facet not in r:continue
+            cell=groups.setdefault(r[facet],{'rows':0,'decisions':0,'correct_decisions':0,'correct_records':0})
+            cell['rows']+=1;cell['decisions']+=len(r['gold_labels'])
+            cell['correct_decisions']+=sum(r.get('predictions',{}).get(k)==v for k,v in r['gold_labels'].items())
+            cell['correct_records']+=all(r.get('predictions',{}).get(k)==v for k,v in r['gold_labels'].items())
+        for cell in groups.values():
+            cell['accuracy']=cell['correct_decisions']/cell['decisions']
+            cell['record_accuracy']=cell['correct_records']/cell['rows']
+        if groups:output[facet]=groups
+    route={}
+    if all(set(r['gold_labels'])=={'route'} for r in data):
+        for r in data:
+            gold=r['gold_labels']['route'];cell=route.setdefault(gold,{'support':0,'correct':0})
+            cell['support']+=1;cell['correct']+=r.get('predictions',{}).get('route')==gold
+        for cell in route.values():cell['recall']=cell['correct']/cell['support']
+        output['route']=route
+    return output
+
+
 def calibration(directory):
     pairs=[];brier=[];nll=[]
     for original in rows(directory/'predictions.jsonl'):
@@ -96,7 +122,7 @@ def generate():
         if macro is None and len(total.get('by_question',{}))==1:macro=next(iter(total['by_question'].values()))['macro_f1']
         macro_text=f'{100*macro:.2f}%' if macro is not None else 'per-question in report'
         lines.append(f'| {label} | {title} | {count} / {decision_count} | {100*total["accuracy"]:.2f}% | {macro_text} | {warm["p50_latency_ms"]/1000:.2f} / {warm["p95_latency_ms"]/1000:.2f} s | {total["failures"]} |')
-        records.append({'directory':name,'model':label,'cohort':title,'summary':s,'resources':resources(d),'calibration':calibration(d),'predictions_sha256':hashlib.sha256((d/'predictions.jsonl').read_bytes()).hexdigest()})
+        records.append({'directory':name,'model':label,'cohort':title,'summary':s,'resources':resources(d),'groups':grouped_results(d),'calibration':calibration(d),'predictions_sha256':hashlib.sha256((d/'predictions.jsonl').read_bytes()).hexdigest()})
     text='\n'.join(lines)
     resource_lines=['| Model | A32 cohort | Battery min–max | AP max | Android thermal status max | Sampled max PSS | RSS high-water |', '| --- | --- | ---: | ---: | ---: | ---: | ---: |']
     for r in records:
@@ -112,9 +138,13 @@ def generate():
     report+='CPU-only 4 threads, Q4_K_M, runtime build11443, USB powered. Phone ctx2048, general ctx4096. Warm timing excludes first request and includes ADB/HTTP. General per-question accuracy and exact-record metrics are separate; CLINC excludes OOS. Raw Qwen uses fixed no-chat-template JSON-grammar treatment; not a claim about every Qwen prompting/runtime strategy.\n\n'
     report+=resource_table+'\n\nPSS maxima are sampled; RSS high-water is kernel-reported. USB power precludes an energy-saving claim.\n\n'
     report+='Probability calibration (explicit hard labels, successful decisions only; failures still count in accuracy):\n\n```json\n'+json.dumps([{'directory':r['directory'],'metrics':r['calibration']} for r in records],indent=2)+'\n```\n\n'
+    report+='Per-route, coverage and workflow results:\n\n```json\n'+json.dumps([{'directory':r['directory'],'groups':r['groups']} for r in records],indent=2)+'\n```\n\n'
     report+='Resource traces and measured sampled maxima:\n\n```json\n'+json.dumps([{k:v for k,v in r.items() if k in ['directory','resources']} for r in records],indent=2)+'\n```\n\nPaired fresh180 comparisons (reflex minus comparator):\n\n```json\n'+json.dumps(comparisons,indent=2)+'\n```\n'
     (BASE/'RESULTS.md').write_text(report)
-    (BASE/'results-index.json').write_text(json.dumps({'completed_jobs':records,'paired_fresh180':comparisons,'complete':len(records)==len(JOBS)},indent=2)+'\n')
+    index={'completed_jobs':records,'paired_fresh180':comparisons,'complete':len(records)==len(JOBS)}
+    (BASE/'results-index.json').write_text(json.dumps(index,indent=2)+'\n')
+    public_summary=index|{'privacy':'Aggregate metrics only; no held-out requests, per-case responses, reviewer IDs or device-property dumps.', 'runtime':'Android CPU build11443 f0c41e0168dfd4b5ef72b21d1a311b24cc7a894a; 4 inference/batch threads; Q4_K_M; phone ctx2048, general ctx4096; USB powered', 'cohort_caveat':'Fresh180 and original historical90 are distinct; historical PyTorch reference used reviewed88. Raw Qwen prompt/JSON grammar treatment is specifically documented, not all possible Qwen inference configurations.'}
+    (ROOT/'releases/reflex-1/benchmark-summary.json').write_text(json.dumps(public_summary,indent=2)+'\n')
     card=ROOT/'releases/reflex-1/HF_MODEL_CARD.md'
     s=card.read_text();start='<!-- A32_RESULTS_START -->';end='<!-- A32_RESULTS_END -->'
     before,rest=s.split(start,1);_,after=rest.split(end,1)

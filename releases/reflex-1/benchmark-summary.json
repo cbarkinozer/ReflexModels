@@ -1,0 +1,381 @@
+{
+  "completed_jobs": [
+    {
+      "directory": "run-01",
+      "model": "reflex-1",
+      "cohort": "Fresh phone (180)",
+      "summary": {
+        "complete": true,
+        "all_requests": {
+          "total": 180,
+          "correct": 164,
+          "accuracy": 0.9111111111111111,
+          "macro_f1": 0.9106480025368284,
+          "failures": 0,
+          "confusion_matrix": {
+            "answer": {
+              "answer": 17,
+              "get_device_info": 0,
+              "get_battery_info": 0,
+              "get_storage_info": 0,
+              "get_media_info": 0,
+              "search_local_files": 0,
+              "search_notes": 1,
+              "save_note": 2,
+              "phone_health_check": 0
+            },
+            "get_device_info": {
+              "answer": 2,
+              "get_device_info": 17,
+              "get_battery_info": 0,
+              "get_storage_info": 0,
+              "get_media_info": 1,
+              "search_local_files": 0,
+              "search_notes": 0,
+              "save_note": 0,
+              "phone_health_check": 0
+            },
+            "get_battery_info": {
+              "answer": 2,
+              "get_device_info": 0,
+              "get_battery_info": 15,
+              "get_storage_info": 0,
+              "get_media_info": 1,
+              "search_local_files": 0,
+              "search_notes": 0,
+              "save_note": 0,
+              "phone_health_check": 2
+            },
+            "get_storage_info": {
+              "answer": 0,
+              "get_device_info": 1,
+              "get_battery_info": 0,
+              "get_storage_info": 17,
+              "get_media_info": 2,
+              "search_local_files": 0,
+              "search_notes": 0,
+              "save_note": 0,
+              "phone_health_check": 0
+            },
+            "get_media_info": {
+              "answer": 1,
+              "get_device_info": 0,
+              "get_battery_info": 0,
+              "get_storage_info": 0,
+              "get_media_info": 19,
+              "search_local_files": 0,
+              "search_notes": 0,
+              "save_note": 0,
+              "phone_health_check": 0
+            },
+            "search_local_files": {
+              "answer": 0,
+              "get_device_info": 1,
+              "get_battery_info": 0,
+              "get_storage_info": 0,
+              "get_media_info": 0,
+              "search_local_files": 19,
+              "search_notes": 0,
+              "save_note": 0,
+              "phone_health_check": 0
+            },
+            "search_notes": {
+              "answer": 0,
+              "get_device_info": 0,
+              "get_battery_info": 0,
+              "get_storage_info": 0,
+              "get_media_info": 0,
+              "search_local_files": 0,
+              "search_notes": 20,
+              "save_note": 0,
+              "phone_health_check": 0
+            },
+            "save_note": {
+              "answer": 0,
+              "get_device_info": 0,
+              "get_battery_info": 0,
+              "get_storage_info": 0,
+              "get_media_info": 0,
+              "search_local_files": 0,
+              "search_notes": 0,
+              "save_note": 20,
+              "phone_health_check": 0
+            },
+            "phone_health_check": {
+              "answer": 0,
+              "get_device_info": 0,
+              "get_battery_info": 0,
+              "get_storage_info": 0,
+              "get_media_info": 0,
+              "search_local_files": 0,
+              "search_notes": 0,
+              "save_note": 0,
+              "phone_health_check": 20
+            }
+          },
+          "mean_latency_ms": 31364.1449391611,
+          "p50_latency_ms": 32300.51620800009,
+          "p95_latency_ms": 33802.05279199981,
+          "reference_agreement": 0.9444444444444444,
+          "parity_valid_cases": 180
+        },
+        "first_request_ms": 27731.913458000003,
+        "warm_requests": {
+          "total": 179,
+          "correct": 163,
+          "accuracy": 0.9106145251396648,
+          "macro_f1": 0.9095898014786273,
+          "failures": 0,
+          "confusion_matrix": {
+            "answer": {
+              "answer": 16,
+              "get_device_info": 0,
+              "get_battery_info": 0,
+              "get_storage_info": 0,
+              "get_media_info": 0,
+              "search_local_files": 0,
+              "search_notes": 1,
+              "save_note": 2,
+              "phone_health_check": 0
+            },
+            "get_device_info": {
+              "answer": 2,
+              "get_device_info": 17,
+              "get_battery_info": 0,
+              "get_storage_info": 0,
+              "get_media_info": 1,
+              "search_local_files": 0,
+              "search_notes": 0,
+              "save_note": 0,
+              "phone_health_check": 0
+            },
+            "get_battery_info": {
+              "answer": 2,
+              "get_device_info": 0,
+              "get_battery_info": 15,
+              "get_storage_info": 0,
+              "get_media_info": 1,
+              "search_local_files": 0,
+              "search_notes": 0,
+              "save_note": 0,
+              "phone_health_check": 2
+            },
+            "get_storage_info": {
+              "answer": 0,
+              "get_device_info": 1,
+              "get_battery_info": 0,
+              "get_storage_info": 17,
+              "get_media_info": 2,
+              "search_local_files": 0,
+              "search_notes": 0,
+              "save_note": 0,
+              "phone_health_check": 0
+            },
+            "get_media_info": {
+              "answer": 1,
+              "get_device_info": 0,
+              "get_battery_info": 0,
+              "get_storage_info": 0,
+              "get_media_info": 19,
+              "search_local_files": 0,
+              "search_notes": 0,
+              "save_note": 0,
+              "phone_health_check": 0
+            },
+            "search_local_files": {
+              "answer": 0,
+              "get_device_info": 1,
+              "get_battery_info": 0,
+              "get_storage_info": 0,
+              "get_media_info": 0,
+              "search_local_files": 19,
+              "search_notes": 0,
+              "save_note": 0,
+              "phone_health_check": 0
+            },
+            "search_notes": {
+              "answer": 0,
+              "get_device_info": 0,
+              "get_battery_info": 0,
+              "get_storage_info": 0,
+              "get_media_info": 0,
+              "search_local_files": 0,
+              "search_notes": 20,
+              "save_note": 0,
+              "phone_health_check": 0
+            },
+            "save_note": {
+              "answer": 0,
+              "get_device_info": 0,
+              "get_battery_info": 0,
+              "get_storage_info": 0,
+              "get_media_info": 0,
+              "search_local_files": 0,
+              "search_notes": 0,
+              "save_note": 20,
+              "phone_health_check": 0
+            },
+            "phone_health_check": {
+              "answer": 0,
+              "get_device_info": 0,
+              "get_battery_info": 0,
+              "get_storage_info": 0,
+              "get_media_info": 0,
+              "search_local_files": 0,
+              "search_notes": 0,
+              "save_note": 0,
+              "phone_health_check": 20
+            }
+          },
+          "mean_latency_ms": 31384.43673514524,
+          "p50_latency_ms": 32342.07145800019,
+          "p95_latency_ms": 33865.3933329997,
+          "reference_agreement": 0.9441340782122905,
+          "parity_valid_cases": 179
+        },
+        "end_unix": 1792023255.933782
+      },
+      "resources": {
+        "max_android_thermal_status": 3,
+        "battery_c_min": 28.9,
+        "battery_c_max": 37.5,
+        "ap_c_max": 52.6,
+        "skin_c_max": 42.6,
+        "sampled_max_pss_kib": 1116821,
+        "rss_high_water_kib": 1119236
+      },
+      "groups": {
+        "coverage": {
+          "everyday": {
+            "rows": 90,
+            "decisions": 90,
+            "correct_decisions": 89,
+            "correct_records": 89,
+            "accuracy": 0.9888888888888889,
+            "record_accuracy": 0.9888888888888889
+          },
+          "boundary": {
+            "rows": 45,
+            "decisions": 45,
+            "correct_decisions": 37,
+            "correct_records": 37,
+            "accuracy": 0.8222222222222222,
+            "record_accuracy": 0.8222222222222222
+          },
+          "indirect": {
+            "rows": 45,
+            "decisions": 45,
+            "correct_decisions": 38,
+            "correct_records": 38,
+            "accuracy": 0.8444444444444444,
+            "record_accuracy": 0.8444444444444444
+          }
+        },
+        "route": {
+          "answer": {
+            "support": 20,
+            "correct": 17,
+            "recall": 0.85
+          },
+          "get_device_info": {
+            "support": 20,
+            "correct": 17,
+            "recall": 0.85
+          },
+          "get_media_info": {
+            "support": 20,
+            "correct": 19,
+            "recall": 0.95
+          },
+          "get_storage_info": {
+            "support": 20,
+            "correct": 17,
+            "recall": 0.85
+          },
+          "save_note": {
+            "support": 20,
+            "correct": 20,
+            "recall": 1.0
+          },
+          "search_notes": {
+            "support": 20,
+            "correct": 20,
+            "recall": 1.0
+          },
+          "phone_health_check": {
+            "support": 20,
+            "correct": 20,
+            "recall": 1.0
+          },
+          "search_local_files": {
+            "support": 20,
+            "correct": 19,
+            "recall": 0.95
+          },
+          "get_battery_info": {
+            "support": 20,
+            "correct": 15,
+            "recall": 0.75
+          }
+        }
+      },
+      "calibration": {
+        "valid_decisions": 180,
+        "ece_10_equal_width_bins": 0.03097985240746409,
+        "mean_multiclass_brier_sum": 0.1338160429011829,
+        "hard_label_nll": 0.3177925623799157,
+        "bins": [
+          {
+            "bin": 2,
+            "n": 1,
+            "mean_selected_probability": 0.23801604912448804,
+            "accuracy": 1
+          },
+          {
+            "bin": 4,
+            "n": 5,
+            "mean_selected_probability": 0.4624825915685358,
+            "accuracy": 0
+          },
+          {
+            "bin": 5,
+            "n": 7,
+            "mean_selected_probability": 0.5544954914123206,
+            "accuracy": 0.5714285714285714
+          },
+          {
+            "bin": 6,
+            "n": 6,
+            "mean_selected_probability": 0.6402181918320586,
+            "accuracy": 0.6666666666666666
+          },
+          {
+            "bin": 7,
+            "n": 7,
+            "mean_selected_probability": 0.7619083210773232,
+            "accuracy": 0.8571428571428571
+          },
+          {
+            "bin": 8,
+            "n": 11,
+            "mean_selected_probability": 0.8576935980211633,
+            "accuracy": 0.8181818181818182
+          },
+          {
+            "bin": 9,
+            "n": 143,
+            "mean_selected_probability": 0.9868775019916952,
+            "accuracy": 0.9790209790209791
+          }
+        ],
+        "definitions": "Explicit hard gold labels; Brier=sum over options, not divided by class count; NLL clipped at1e-12; failures excluded from calibration only, never accuracy."
+      },
+      "predictions_sha256": "9c12b8b1f19b352dd4b251f23d1cca30878e552a3e91b58906274ef8ef3f98bc"
+    }
+  ],
+  "paired_fresh180": {},
+  "complete": false,
+  "privacy": "Aggregate metrics only; no held-out requests, per-case responses, reviewer IDs or device-property dumps.",
+  "runtime": "Android CPU build11443 f0c41e0168dfd4b5ef72b21d1a311b24cc7a894a; 4 inference/batch threads; Q4_K_M; phone ctx2048, general ctx4096; USB powered",
+  "cohort_caveat": "Fresh180 and original historical90 are distinct; historical PyTorch reference used reviewed88. Raw Qwen prompt/JSON grammar treatment is specifically documented, not all possible Qwen inference configurations."
+}
