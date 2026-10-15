@@ -35,6 +35,11 @@
       "file": "telemetry.jsonl",
       "bytes": 973642,
       "sha256": "7e666b666bba8ebb3d209128944f35a4e0c087c71385229f0c340dc3adb37090"
+    },
+    {
+      "file": "server-final.log",
+      "bytes": 174700,
+      "sha256": "0f1e5261079443cf6fbce149e56d6cea3a8695bef459e6564d18ce8269875c93"
     }
   ],
   "profile": "Schema-JSON format control; uncached; distinct from unchanged app router"
