@@ -1,0 +1,15 @@
+{
+  "repo": "cbarkinozer/Reflex-1",
+  "previous_revision": "7a22425eba59a6924901f8a4d00d3ac937bd072e",
+  "revision": "d2c2cbe46b588e61ce30ecd4c89a7b4518070edd",
+  "private_before": true,
+  "private_after": true,
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "61938df0bfc0fecf54248d347350eef97a5915ada9f6effcf8f35372079ba74f"
+    }
+  ],
+  "weights_changed": false,
+  "dataset_uploaded": false
+}

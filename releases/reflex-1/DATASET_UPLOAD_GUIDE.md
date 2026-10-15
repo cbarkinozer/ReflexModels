@@ -1,6 +1,6 @@
 # Package the data, upload privately, and link Reflex-1
 
-The easiest useful dataset release is the **781 admitted phone training examples**, with the general training sources linked separately. Suggested name (not yet chosen): `cbarkinozer/reflex-phone-routing-v1`. This avoids presenting our phone data as the entire combined training mixture or relicensing BANKING77/CLINC150 as Apache-2.0.
+The easiest useful dataset release is the **781 admitted phone training examples**, with the general training sources linked separately. Requested name: `cbarkinozer/MOBILE_ROUTING9`. This avoids presenting our phone data as the entire combined training mixture or relicensing BANKING77/CLINC150 as Apache-2.0.
 
 No new synthetic generation is needed for the model we already trained. Upload the exact admitted training rows, not the original 900-row generator output, a fresh 80/20 reshuffle, or the Argilla UI snapshot. There were 1,080 reviewed original rows, but the comparison-ready pipeline kept 781 train /90 validation /90 calibration /88 historical test after quarantining conflicts and fixing validation IDs. The combined model used **781 phone plus 781 sampled general** rows. Scenario categories are metadata, not prediction labels.
 
@@ -32,9 +32,9 @@ From ReflexModels:
 python3 tools/prepare_phone_dataset_release.py \
   --input-dir /private/path/phone-routing-human-reviewed-v2-1080-fixedval-20261013 \
   --expected-train-sha256 SHA_FROM_EXECUTED_RUN_MANIFEST \
-  --output-dir data/prepared/hf-reflex-phone-routing-v1
+  --output-dir data/prepared/hf-mobile-routing9
 cp releases/reflex-1/dataset/README.template.md \
-  data/prepared/hf-reflex-phone-routing-v1/README.md
+  data/prepared/hf-mobile-routing9/README.md
 ```
 
 The packager checks exact source SHA, requires 781 rows and matching route schemas, rejects duplicate or protected IDs, and writes train JSONL plus a hash/count manifest. It excludes all non-train splits, reviewer identifiers and UI notes. Inspect the resulting text for secrets or accidentally real personal information; keep template provenance accurate. Choose your dataset name/license and update the card placeholders. For original synthetic phone examples, CC-BY-4.0 or Apache-2.0 are possible author choices if you have the rights; this guide does not assign one. Add LICENSE text and metadata only after deciding.
@@ -42,7 +42,7 @@ The packager checks exact source SHA, requires 781 rows and matching route schem
 Package layout:
 
 ```
-hf-reflex-phone-routing-v1/
+hf-mobile-routing9/
   README.md
   LICENSE
   manifest.json
@@ -60,13 +60,13 @@ Install `huggingface_hub`, then run `hf auth login` in your terminal so no token
 ```python
 from huggingface_hub import HfApi
 api = HfApi()  # uses your saved login
-repo = "cbarkinozer/YOUR_FINAL_DATASET_NAME"
+repo = "cbarkinozer/MOBILE_ROUTING9"
 api.create_repo(repo_id=repo, repo_type="dataset", private=True, exist_ok=True)
 # Inspect an existing repo's visibility yourself before uploading: exist_ok does not change it.
 api.upload_folder(
     repo_id=repo,
     repo_type="dataset",
-    folder_path="data/prepared/hf-reflex-phone-routing-v1",
+    folder_path="data/prepared/hf-mobile-routing9",
     commit_message="Add reviewed phone training dataset and provenance",
 )
 ```
@@ -75,7 +75,7 @@ Confirm the repo is private, the viewer shows 781 train rows and all nine routes
 
 ```python
 from datasets import load_dataset
-rows = load_dataset("cbarkinozer/YOUR_FINAL_DATASET_NAME", split="train", token=True)
+rows = load_dataset("cbarkinozer/MOBILE_ROUTING9", split="train", token=True)
 assert len(rows) == 781
 ```
 
@@ -87,13 +87,13 @@ In `cbarkinozer/Reflex-1` model README YAML add the **actual existing dataset ID
 
 ```yaml
 datasets:
-- cbarkinozer/YOUR_FINAL_DATASET_NAME
+- cbarkinozer/MOBILE_ROUTING9
 - LocalLLaMA/typed-decisions
 - PolyAI/banking77
 - clinc/clinc_oos
 ```
 
-In prose specify the first is the 781-row phone component, the other three are general sources, and list exact revisions/counts and supervised in-domain evaluation limits. Link to `https://huggingface.co/datasets/cbarkinozer/YOUR_FINAL_DATASET_NAME`. Put the model link `https://huggingface.co/cbarkinozer/Reflex-1` in the dataset card. Hugging Face documents model-card `datasets` metadata [here](https://huggingface.co/docs/hub/model-cards). A Markdown link alone is useful but does not replace structured dataset metadata.
+In prose specify the first is the 781-row phone component, the other three are general sources, and list exact revisions/counts and supervised in-domain evaluation limits. Link to `https://huggingface.co/datasets/cbarkinozer/MOBILE_ROUTING9`. Put the model link `https://huggingface.co/cbarkinozer/Reflex-1` in the dataset card. Hugging Face documents model-card `datasets` metadata [here](https://huggingface.co/docs/hub/model-cards). A Markdown link alone is useful but does not replace structured dataset metadata.
 
 ## 5. Public release later
 

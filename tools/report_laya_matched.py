@@ -54,8 +54,9 @@ def main():
     p = RELEASE/'HF_MODEL_CARD.md'
     text = p.read_text()
     for name,r in records.items():
-        replacement = f"| {name} | {r['rows']} / {r['decisions']} | {100*r['base_accuracy']:.2f} | **{100*r['reflex_accuracy']:.2f}** | {100*r['laya_accuracy']:.2f} |"
-        text = re.sub(r'^\| '+re.escape(name)+r' \|.*$', replacement, text, flags=re.M)
+        display_name = "MOBILE_ROUTING9 (ours)" if name == "MOBILE_ROUTING9" else name
+        replacement = f"| {display_name} | {r['rows']} / {r['decisions']} | {100*r['base_accuracy']:.2f} | **{100*r['reflex_accuracy']:.2f}** | {100*r['laya_accuracy']:.2f} |"
+        text = re.sub(r'^\| '+re.escape(name)+r'(?: \(ours\))? \|.*$', replacement, text, flags=re.M)
     text = text.replace('Laya scores are being measured on the same inputs with its English checkpoint, without additional training or test calibration.',
                         'Laya scores were measured on the same inputs with its pinned English checkpoint, without additional training or test calibration.')
     text = text.replace('Protocol and aggregate outcomes are supplied with the completed comparison.',

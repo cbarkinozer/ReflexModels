@@ -16,22 +16,30 @@ datasets:
 - clinc/clinc_oos
 ---
 
-# Reflex-1
+# Reflex-1 (800M-class)
 
-Reflex-1 is a Qwen3.5-0.8B decision model trained to select among supplied options, including nine phone-assistant routes. It uses Unsloth's Clef-style decision head and rank-16 LoRA. It returns structured decisions/probabilities rather than generating an answer or tool arguments. This repository contains the selected adapter, decision head and Q4_K_M export, with completed matched A32 routing measurements. Release licensing and the final phone-dataset link remain to be completed by the author.
+Reflex-1 is a Qwen3.5-0.8B decision model trained to select among supplied options, including nine phone-assistant routes. It uses Unsloth's Clef-style decision head and rank-16 LoRA. It returns structured decisions/probabilities rather than generating an answer or tool arguments. This repository contains the selected adapter, decision head and Q4_K_M export, with completed matched routing measurements on the Samsung Galaxy A32 Android phone (A32). Release licensing and the final phone-dataset link remain to be completed by the author.
+
+## Intended use
+
+For developers building English phone assistants and applications that select among explicitly supplied decisions. The phone task selects a route; a separate tool executor and text model are needed for a complete assistant. The general evaluations measure supervised adaptation on the stated domains.
+
+This release has not been validated for high-stakes decisions, arbitrary tool arguments, unrestricted zero-shot classification, or autonomous tool execution. Validate the route policy, available capabilities and error handling for your application.
 
 ## Results
 
 ### Base, Reflex-1 and Laya
 
-Accuracy (%) on the same frozen cohort within each row. **MOBILE_ROUTING9** is our 180-case, nine-route phone benchmark, balanced at 20 reviewed examples per route. [Benchmark definition](MOBILE_ROUTING9.json).
+Accuracy (%) on the same frozen cohort within each row. These are system comparisons with different training exposure and inference profiles, not a controlled architecture ablation. **MOBILE_ROUTING9** is our 180-case, nine-route phone benchmark, balanced at 20 reviewed examples per route. It measures agreement with our author-reviewed routing policy, rather than a universal definition of the correct tool. [Benchmark definition](MOBILE_ROUTING9.json).
 
-| Benchmark | Cases / decisions | Base Qwen3.5-0.8B | Reflex-1 | Laya English (421M) |
+| Benchmark | Cases / decisions | Base Qwen (800M-class) | Reflex-1 (800M-class) | Laya English (421M) |
 | --- | ---: | ---: | ---: | ---: |
-| MOBILE_ROUTING9 | 180 / 180 | 54.44 | **91.11** | 47.22 |
+| MOBILE_ROUTING9 (ours) | 180 / 180 | 54.44 | **91.11** | 47.22 |
 | typed-decisions | 400 / 2000 | 34.10 | **60.70** | 36.30 |
 | BANKING77 | 462 / 462 | 8.44 | **74.89** | 36.36 |
 | CLINC150 | 450 / 450 | 4.44 | **81.11** | 55.33 |
+
+**Execution:** phone scores use A32 CPU Q4_K_M for base/Reflex-1 and Mac M4 MPS for Laya; general scores use GPU PyTorch for base/Reflex-1 and Mac M4 MPS for Laya. This table compares accuracy only, not cross-hardware latency.
 
 **Base inference profiles:** MOBILE_ROUTING9 uses the measured cached raw-HTTP app-router on A32. For the three general tasks, the recorded base reference uses FastDecisionModel with a newly initialized decision head; initialization was not explicitly seeded. Those general scores describe that reference run, rather than generative zero-shot classification. General Reflex-1 scores use the restored PyTorch adapter on GPU; its MOBILE_ROUTING9 score uses the A32 Q4_K_M export. Laya scores were measured on the same inputs with its pinned English checkpoint, without additional training or test calibration.
 
@@ -45,9 +53,9 @@ The Laya run pins the model revision and SDK, uses a predeclared 4,096-token cei
 | --- | --- | --- |
 | Base Qwen3.5-0.8B | Nominal 0.8B backbone | 532.52 MB Q4_K_M file; 854.83 MiB sampled max process PSS on A32, cached app-router |
 | Laya English | 421M total, ModernBERT-large plus decision head | No matched A32 memory or latency measurement yet |
-| Reflex-1 | Nominal 0.8B backbone + 27,324,932 head parameters; LoRA merged for GGUF | 545.16 MB Q4_K_M file; 1,090.65 MiB sampled max process PSS on A32 CPU |
+| Reflex-1 (800M-class) | Nominal 0.8B backbone + 27,324,932 head parameters; LoRA merged for GGUF | 545.16 MB Q4_K_M file; 1,090.65 MiB sampled max process PSS on A32 CPU |
 
-Laya's parameter count is from its model card; Reflex-1's exact head count is the sum of tensor shape products in its saved head file. File size, process RAM and GPU VRAM are different quantities. Local Mac Laya inference timings are not compared with A32 timings as if they used the same hardware.
+The 800M label is the backbone's nominal size class, not an exact total parameter count; adding an exact head count to a rounded backbone label would imply false precision. Laya's parameter count is from its model card; Reflex-1's exact head count is the sum of tensor shape products in its saved head file. File size, process RAM and GPU VRAM are different quantities. Local Mac Laya inference timings are not compared with A32 timings as if they used the same hardware.
 
 ### Quality–resource tradeoffs and observed Pareto frontiers
 
@@ -68,26 +76,24 @@ MOBILE_ROUTING9 on A32 compares the selected model with the cached base app-rout
 
 | Model | A32 cohort | Cases / decisions | Accuracy | Macro-F1 | Mean latency | Warm p50 / p95 | Errors |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| reflex-1 | MOBILE_ROUTING9 (180) | 180 / 180 | 91.11% | 91.06% | 31.36 s | 32.34 / 33.87 s | 0 |
-| Qwen app router (cache on) | MOBILE_ROUTING9 (180) | 180 / 180 | 54.44% | 52.52% | 35.40 s | 36.31 / 38.83 s | 0 |
-| reflex-1 | Historical phone (original 90) | 0 completed | deferred | deferred | deferred | deferred | deferred |
-| reflex-1 | typed-decisions | 0 completed | deferred | deferred | deferred | deferred | deferred |
-| reflex-1 | BANKING77 | 0 completed | deferred | deferred | deferred | deferred | deferred |
-| reflex-1 | CLINC150 in-domain | 0 completed | deferred | deferred | deferred | deferred | deferred |
+| Reflex-1 (800M-class) | MOBILE_ROUTING9 (ours, 180) | 180 / 180 | 91.11% | 91.06% | 31.36 s | 32.34 / 33.87 s | 0 |
+| Qwen app router (cache on) | MOBILE_ROUTING9 (ours, 180) | 180 / 180 | 54.44% | 52.52% | 35.40 s | 36.31 / 38.83 s | 0 |
 
 | Model | A32 cohort | Battery min–max | AP max | Android thermal status max | Sampled max PSS | RSS high-water |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| reflex-1 | MOBILE_ROUTING9 (180) | 28.90–37.50 °C | 52.60 °C | 3.00 | 1090.65 MiB | 1093.00 MiB |
-| Qwen app router (cache on) | MOBILE_ROUTING9 (180) | 29.30–37.50 °C | 52.90 °C | 3.00 | 854.83 MiB | 896.80 MiB |
+| Reflex-1 (800M-class) | MOBILE_ROUTING9 (ours, 180) | 28.90–37.50 °C | 52.60 °C | 3.00 | 1090.65 MiB | 1093.00 MiB |
+| Qwen app router (cache on) | MOBILE_ROUTING9 (ours, 180) | 29.30–37.50 °C | 52.90 °C | 3.00 | 854.83 MiB | 896.80 MiB |
 
-MOBILE_ROUTING9 vs qwen-legacy-cached-fresh180: accuracy difference +36.67 percentage points; paired bootstrap95% interval [+28.89, +44.44] points (10,000 resamples, seed3407). This interval concerns this reviewed synthetic cohort, not unrestricted real-world requests.
+MOBILE_ROUTING9 vs qwen-legacy-cached-fresh180: accuracy difference +36.67 percentage points; paired bootstrap 95% confidence interval [+28.89, +44.44] points (10,000 resamples, seed 3407). This interval concerns this reviewed synthetic cohort, not unrestricted real-world requests.
 
-Completed runs only; partial counts are not scores. Warm timing excludes first request; phone context2048. See recorded protocol and per-run raw outputs.
+Completed runs only; partial counts are not scores. Warm timing excludes first request; phone context 2048. See recorded protocol and per-run raw outputs.
 <!-- A32_RESULTS_END -->
+
+### Quantization, runtime differences and calibration
 
 On the 180-case phone test, GGUF and PyTorch have equal aggregate accuracy but **94.44% route agreement** (10 changed predictions). Mean per-case maximum absolute probability drift is 0.0654; the largest is 0.8273. On this held-out phone cohort, native GGUF ECE is 3.10% (10 equal-width confidence bins), multiclass Brier sum is 0.1338 and hard-label NLL is 0.3178; these describe the measured cohort rather than universal calibration. These differences include quantization and runtime/numerical effects; no test-based calibration or threshold adjustment was made. Aggregate score agreement does not establish probability parity.
 
-The app baseline preserves its preexisting raw prompt/action grammar and narrower descriptions of currently available tools. The decision model uses the frozen nine-route schema, including some future-capability requests. This compares the documented routing systems; prompt/policy differences and fine-tuning mean the gain cannot be attributed to the decision head alone. Runs were sequential, not randomized repetitions; starting temperatures differed and both reached Android thermal status3.
+The app baseline preserves its preexisting raw prompt/action grammar and narrower descriptions of currently available tools. The decision model uses the frozen nine-route schema, including some future-capability requests. This compares the documented routing systems; prompt/policy differences and fine-tuning mean the gain cannot be attributed to the decision head alone. Runs were sequential, not randomized repetitions; starting temperatures differed and both reached Android thermal status 3.
 
 MOBILE_ROUTING9 uses a frozen set of 180 reviewed synthetic requests, balanced at 20 examples for each of nine routes. Earlier development benchmarks are retained in experiment archives and are excluded from this release comparison.
 
@@ -101,6 +107,8 @@ MOBILE_ROUTING9 uses a frozen set of 180 reviewed synthetic requests, balanced a
 - Independent 120-step combined trial; checkpoint 100 selected on validation equal-domain mean, then calibrated on a separate calibration split. Validation phone 98.89%, general 78.39%; those selection scores are not held-out performance.
 - Training optimizer time approximately 17.5 min for the selected 120-step run, on RTX 4090 24GB. Setup/validation/calibration/export/billing add time; cost estimates are not final invoices.
 - Fresh180 test was reviewed and frozen after candidate selection. Test results did not select checkpoint 100. Single reviewer saw synthetic proposed labels, so human review was not blind independent annotation.
+
+The saved evaluation environment records PyTorch 2.8.0, Transformers 5.2.0, CUDA runtime package 12.8.90, Unsloth revision `a70b2a8f7b88c3b8492409efef1dce3d670787f6`, and Unsloth Zoo revision `ea7c1b2d9eb5daf0bc6036bf68032795868f2d74`. These identify the restored evaluation stack; the executed training environment must be verified against the training backup before claiming exact training-environment reproducibility.
 
 The first unpublished model is now called reflex-1-beta. It was typed-decisions-only; this combined model takes the Reflex-1 name. Do not confuse the two GGUF files: they share the same byte size but have different hashes.
 
@@ -125,7 +133,7 @@ curl http://127.0.0.1:8091/v1/systemone \
   --data-binary @decision-request.example.json
 ```
 
-The release's `decision-request.example.json` contains the full nine-option question from `phone-routing-schema.json`; it contains a generic request, not held-out benchmark text. The expected response shape is `answers.route.choice` and `answers.route.probabilities`, with `usage.output_tokens` equal to0. Runtime source: [the verified llama.cpp revision](https://github.com/ggml-org/llama.cpp/tree/f0c41e0168dfd4b5ef72b21d1a311b24cc7a894a). Benchmark flags are a measured configuration, not a claim of optimal settings for every device.
+The release's `decision-request.example.json` contains the full nine-option question from `phone-routing-schema.json`; it contains a generic request, not held-out benchmark text. The expected response shape is `answers.route.choice` and `answers.route.probabilities`, with `usage.output_tokens` equal to 0. Runtime source: [the verified llama.cpp revision](https://github.com/ggml-org/llama.cpp/tree/f0c41e0168dfd4b5ef72b21d1a311b24cc7a894a). Benchmark flags are a measured configuration, not a claim of optimal settings for every device.
 
 The Python adapter example needs a compatible Unsloth/PyTorch environment; the recorded reference used an RTX 4090. For Android CPU serving use the verified decision-capable GGUF runtime.
 
@@ -135,7 +143,7 @@ model, tokenizer = FastDecisionModel.from_pretrained(
     "PATH_TO_DOWNLOADED_ADAPTER_FOLDER", load_in_4bit=True,
 )
 FastDecisionModel.for_inference(model)
-answers = FastDecisionModel.predict(model, tokenizer, "How much free storage do I have?", {
+schema = {
     "route": {
         "type": "choice",
         "instructions": "Select the best route for the request.",
@@ -144,7 +152,10 @@ answers = FastDecisionModel.predict(model, tokenizer, "How much free storage do 
             "answer": "Ordinary text response without live phone data.",
         },
     },
-})
+}
+answers = FastDecisionModel.predict(
+    model, tokenizer, "How much free storage do I have?", schema,
+)
 ```
 
 The example illustrates API shape, not the nine-option benchmark schema. To reproduce reported routing scores use the exact committed frozen schema and state strings. Threshold selected option probabilities only after validating calibration for the deployed runtime/domain; do not transfer API confidence thresholds blindly.

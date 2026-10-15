@@ -1,7 +1,7 @@
 ---
 language:
 - en
-pretty_name: Reflex phone routing v1
+pretty_name: MOBILE_ROUTING9
 task_categories:
 - text-classification
 tags:
@@ -16,9 +16,11 @@ configs:
     path: data/train.jsonl
 ---
 
-# Reflex phone routing v1
+# MOBILE_ROUTING9
 
 **Local dataset-card template.** Choose the final repository name and license before upload. No license has been assigned by this template.
+
+Planned dataset repository: `cbarkinozer/MOBILE_ROUTING9`. This name covers the phone-routing task; this train-only package does **not** contain the separate 180-case evaluation cohort scored in the model card.
 
 This is the **phone component** of [Reflex-1](https://huggingface.co/cbarkinozer/Reflex-1), a Qwen3.5-0.8B decision-head model. It is not the whole general+phone training mixture and does not contain the benchmark questions.
 
@@ -44,7 +46,7 @@ Only training rows are included. Validation (90), calibration (90), historical t
 
 ```python
 from datasets import load_dataset
-rows = load_dataset("REPLACE_WITH_FINAL_DATASET_REPO", split="train")
+rows = load_dataset("cbarkinozer/MOBILE_ROUTING9", split="train")
 # Pass these rows through the same FastDecisionModel.build_dataset workflow.
 ```
 
