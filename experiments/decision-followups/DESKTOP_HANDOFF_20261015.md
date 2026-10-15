@@ -47,4 +47,5 @@ hf download cbarkinozer/Reflex-1 --revision 157a0d6ed5a218352bcd5b6bed57dbef090b
 
 Use `Reflex-1/gguf/model-Q4_K_M.gguf` and `Reflex-1/gguf/mmproj-Q8_0.gguf` for the A32 benchmark. `adapter/` contains the selected adapter/head/configs/calibration/tokenizer. Merged standalone PyTorch weights are absent; the adapter requires the Qwen base model. Dataset/test files remain on GitHub. Remote weights were verified by size and LFS SHA-256 after upload.
 
-Private exact phone training dataset is available at https://huggingface.co/datasets/cbarkinozer/Reflex-1-Phone-Routing (781 rows). Use `hf download cbarkinozer/Reflex-1-Phone-Routing --repo-type dataset --local-dir Reflex-1-Phone-Routing` after authentication. Do not train on the fresh test; it remains a separate benchmark.
+
+The exact 781-row phone training split is now committed to GitHub in `experiments/decision-followups/phone-training-781/train.jsonl`. The mistakenly created separate Hugging Face dataset repository has been deleted. Model adapter and GGUF remain in the private model repository.

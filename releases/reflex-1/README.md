@@ -64,6 +64,6 @@ hf download cbarkinozer/Reflex-1 --revision 157a0d6ed5a218352bcd5b6bed57dbef090b
 
 For only A32 artifacts, add `--include "gguf/*"`. Verify hashes against `gguf-manifest.json` before benchmarking. Private token stays in your local credential store or env; never commit it.
 
-## Private phone training dataset
+## Phone training data on GitHub
 
-Exact 781-row phone training split: https://huggingface.co/datasets/cbarkinozer/Reflex-1-Phone-Routing (private), revision `c3c5008628a55c4fb2e0e687e4f10b3fc83338b1`. Uploaded file was downloaded again and SHA-256 verified against the original training manifest. Validation/calibration/test rows are excluded. The combined model additionally used 781 general training examples, which are not included in this phone dataset.
+The exact [781-row phone training split](../../experiments/decision-followups/phone-training-781/README.md) is committed in this repository. The separate Hugging Face dataset repository was deleted at the user's request. Model weights remain private on Hugging Face. Validation/calibration/test rows are excluded from this training dataset; the combined model additionally used 781 general examples.
