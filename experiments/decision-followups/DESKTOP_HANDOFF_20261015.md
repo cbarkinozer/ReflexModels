@@ -49,3 +49,5 @@ Use `Reflex-1/gguf/model-Q4_K_M.gguf` and `Reflex-1/gguf/mmproj-Q8_0.gguf` for t
 
 
 The exact 781-row phone training split is now committed to GitHub in `experiments/decision-followups/phone-training-781/train.jsonl`. The mistakenly created separate Hugging Face dataset repository has been deleted. Model adapter and GGUF remain in the private model repository.
+
+All prepared phone splits are now on GitHub under `experiments/decision-followups/phone-training-781/`: train 781, validation 90, calibration 90, historical test 88, plus template grouping provenance. The separate fresh test (180) and its results remain in `fresh-phone-test-180/`. Split files match the original source manifest hashes.
