@@ -11,6 +11,7 @@ tags:
 - lora
 - gguf
 datasets:
+- cbarkinozer/MOBILE_ROUTING9
 - LocalLLaMA/typed-decisions
 - PolyAI/banking77
 - clinc/clinc_oos
@@ -18,7 +19,7 @@ datasets:
 
 # Reflex-1 (780M)
 
-Reflex-1 is a Qwen3.5-0.8B decision model trained to select among supplied options, including nine phone-assistant routes. It uses Unsloth's Clef-style decision head and rank-16 LoRA. It returns structured decisions/probabilities rather than generating an answer or tool arguments. This repository contains the selected adapter, decision head and Q4_K_M export, with completed matched routing measurements on the Samsung Galaxy A32 Android phone (A32). Release licensing and the final phone-dataset link remain to be completed by the author.
+Reflex-1 is a Qwen3.5-0.8B decision model trained to select among supplied options, including nine phone-assistant routes. It uses Unsloth's Clef-style decision head and rank-16 LoRA. It returns structured decisions/probabilities rather than generating an answer or tool arguments. This repository contains the selected adapter, decision head and Q4_K_M export, with completed matched routing measurements on the Samsung Galaxy A32 Android phone (A32). Release licensing remains to be completed by the author. The verified phone training component is available privately as [MOBILE_ROUTING9](https://huggingface.co/datasets/cbarkinozer/MOBILE_ROUTING9).
 
 ## Intended use
 
@@ -160,9 +161,9 @@ answers = FastDecisionModel.predict(
 
 The example illustrates API shape, not the nine-option benchmark schema. To reproduce reported routing scores use the exact committed frozen schema and state strings. Threshold selected option probabilities only after validating calibration for the deployed runtime/domain; do not transfer API confidence thresholds blindly.
 
-## Data provenance and planned dataset link
+## Data provenance and training dataset
 
-Phone examples were synthetically constructed and reviewed in Argilla by one human; scenario categories are audit metadata, not learned output classes. The admitted phone training component contains 781 examples; the original 900 train examples include records excluded during review and validation selection. A separate phone training dataset will be linked here after its exact executed inputs, license and final repo name are confirmed. No dataset ID is invented in the YAML above.
+Phone examples were synthetically constructed and reviewed in Argilla by one human; scenario categories are audit metadata, not learned output classes. The admitted phone training component contains 781 examples; the original 900 train examples include records excluded during review and validation selection. The exact 781-row phone component is packaged in [cbarkinozer/MOBILE_ROUTING9](https://huggingface.co/datasets/cbarkinozer/MOBILE_ROUTING9), with source/export hashes and route counts. It contains training rows only, not the separate 180-case MOBILE_ROUTING9 evaluation cohort or the general mixture.
 
 General sources:
 
@@ -172,7 +173,7 @@ General sources:
 | PolyAI-LDN/task-specific-datasets, banking_data CSV | `57ec275d8078af65b7731c2a98be812d844a6d6b` | CC-BY-4.0 |
 | clinc/clinc_oos (plus, OOS excluded) | `155b9c710419136e17307b80d0a13e68cd46b4ec` | CC-BY-3.0 |
 
-Official training partitions supplied adaptation data; official tests supplied general evaluation. These measure supervised in-domain adaptation, not zero-shot generalization. Exact normalized overlap checks passed, but public benchmark pretraining exposure and semantic template overlap cannot be ruled out. Keep source attribution/licenses intact; the mixture is not uniformly Apache-2.0. The phone dataset is not yet published; its exact admitted training split must be recovered from the executed-run backup and packaged with attribution and an author-selected license before public release.
+Official training partitions supplied adaptation data; official tests supplied general evaluation. These measure supervised in-domain adaptation, not zero-shot generalization. Exact normalized overlap checks passed, but public benchmark pretraining exposure and semantic template overlap cannot be ruled out. Keep source attribution/licenses intact; the mixture is not uniformly Apache-2.0. The phone training dataset is privately uploaded and linked; an author-selected license remains required before public release.
 
 ## Limits
 
