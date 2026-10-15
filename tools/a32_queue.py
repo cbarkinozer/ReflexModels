@@ -253,9 +253,9 @@ def queue():
     historical=Path('/Users/cbarkinozer/Documents/GitHub/pocket-agents-lab/data/phone_routing/test.jsonl')
     general=BASE/'heldout-results-20261014/frozen-general-tests'
     jobs=[('qwen','raw',fresh,'qwen-fresh180',ref),
-          ('qwen','raw-cached',fresh,'qwen-cached-fresh180',ref),
           ('qwen','legacy',fresh,'qwen-legacy-fresh180',ref),
           ('qwen','legacy-cached',fresh,'qwen-legacy-cached-fresh180',ref),
+          ('qwen','raw-cached',fresh,'qwen-cached-fresh180',ref),
           ('reflex-1-beta','decision',fresh,'beta-fresh180',ref),
           ('reflex-1','decision',historical,'reflex-historical90',None),
           ('qwen','legacy',historical,'qwen-historical90',None)]

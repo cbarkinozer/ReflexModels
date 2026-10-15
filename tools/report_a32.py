@@ -10,7 +10,7 @@ import statistics
 
 ROOT=Path(__file__).resolve().parents[1]
 BASE=ROOT/'experiments/decision-followups/a32-fresh180'
-JOBS=[('run-01','reflex-1','Fresh phone (180)'),('qwen-fresh180','Qwen raw JSON (cache off)','Fresh phone (180)'),('qwen-cached-fresh180','Qwen raw JSON (cache on)','Fresh phone (180)'),('qwen-legacy-fresh180','Qwen app router (cache off)','Fresh phone (180)'),('qwen-legacy-cached-fresh180','Qwen app router (cache on)','Fresh phone (180)'),('beta-fresh180','reflex-1-beta','Fresh phone (180)'),('reflex-historical90','reflex-1','Historical phone (original 90)'),('qwen-historical90','Qwen app router (cache off)','Historical phone (original 90)')]
+JOBS=[('run-01','reflex-1','Fresh phone (180)'),('qwen-legacy-fresh180','Qwen app router (cache off)','Fresh phone (180)'),('qwen-legacy-cached-fresh180','Qwen app router (cache on)','Fresh phone (180)'),('beta-fresh180','reflex-1-beta','Fresh phone (180)'),('reflex-historical90','reflex-1','Historical phone (original 90)'),('qwen-historical90','Qwen app router (cache off)','Historical phone (original 90)'),('qwen-fresh180','Qwen schema JSON (cache off)','Fresh phone (180)'),('qwen-cached-fresh180','Qwen schema JSON (cache on)','Fresh phone (180)')]
 for slug,label in [('reflex','reflex-1'),('beta','reflex-1-beta')]:
     for name,title in [('typed_decisions','typed-decisions'),('banking77','BANKING77'),('clinc150','CLINC150 in-domain')]:JOBS.append((slug+'-'+name,label,title))
 
