@@ -21,4 +21,11 @@ if progress:
         if m:status['battery_c']=int(m[1])/10
         m=re.search(r'Thermal Status:\s*(\d+)',before.get('thermal',''))
         if m:status['android_thermal_status']=int(m[1])
+queue_log=base/'queue-console.log'
+if queue_log.exists():
+    started=[line.split('START ',1)[1].strip() for line in queue_log.read_text().splitlines() if line.startswith('START ')]
+    if started and not (base/started[-1]/'summary.json').exists() and status.get('active') != started[-1]:
+        status.update(active=started[-1],phase='cooldown_or_startup',completed_cases=0)
+        status.pop('battery_c',None);status.pop('android_thermal_status',None)
 print(json.dumps(status))
+
