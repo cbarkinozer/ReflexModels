@@ -45,6 +45,11 @@
       "file": "telemetry.jsonl",
       "bytes": 973615,
       "sha256": "a56ce4bb51aad364a9d4830c2759e0242ad9d0b13ae94bb785f18592dd27fe40"
+    },
+    {
+      "file": "server-final.log",
+      "bytes": 51816,
+      "sha256": "4cee1c515325a71160c728067134ea6b8cfa9d770ff10dc682b14e019068ee99"
     }
   ]
 }

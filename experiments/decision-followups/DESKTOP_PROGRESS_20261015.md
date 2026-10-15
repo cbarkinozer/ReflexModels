@@ -53,3 +53,9 @@ User supplied `cbarkinozer/Reflex-1` as the transfer source. Authenticated read 
 Local model-card conflict from the laptop update was resolved retaining both corrected licenses and private-upload status; merge commit `f5767f0`.
 
 A32 run started with the recorded historical runtime/settings; see `a32-fresh180/startup-01/launch.json`. Initial premature launch during ADB transfer failed and was preserved separately; verified complete-file restart reached ready in 2.08 s with filesystem caches retained. This is process launch/readiness, not cache-flushed cold loading. Full fixed-order benchmark output is under `a32-fresh180/run-01/`; treat results as incomplete until summary and manifest both declare completion. No Qwen comparison or app integration is implied.
+
+## Completed selected-model A32 fresh180 run
+
+Local result commit `c54da8e`: 164/180 correct (91.11%), macro-F1 91.06%, zero request errors. Warm mean31.38s, p50/p9532.34/33.87s; first request27.73s. Battery28.9–37.5C, AP max52.6C, max Android thermal status3. Sampled PSS max1090.65MiB, RSS high-water1093.00MiB. Per-case reference agreement94.44% (10 changes), mean per-case max absolute probability drift0.0654, maximum0.8273. Accuracy equality does not establish probability parity. Native held-out phone ECE3.10% (10 bins); Brier sum0.1338, hard-label NLL0.3178. No test-based calibration or tuning.
+
+`a32-fresh180/run-01/inventory.json` hashes complete outputs; `parity-and-errors.json` and `errors.json` preserve all changes/errors. Main queue remains active for the matched Qwen/beta phone jobs, historical90 jobs, then full general cohorts for both decision models. Source/protocol are committed; the Mac is kept awake with caffeinate. No push, HF upload, visibility change, new GPU rental or W&B evaluation run.

@@ -16,7 +16,7 @@ Desktop continuation: [DESKTOP_PROGRESS_20261015.md](DESKTOP_PROGRESS_20261015.m
 - [x] Upload selected adapter/head/configs/tokenizer and GGUF to private Hugging Face `cbarkinozer/Reflex-1`; verify remote sizes/LFS hashes.
 - [ ] Desktop: authenticate and download the private Hugging Face model package following DESKTOP_HANDOFF_20261015.md. Git does not carry model binaries or large archives.
 - [x] User on desktop: A32 connected through ADB. Fresh-180 benchmark started; completion/results pending.
-- [ ] Run the committed fresh 180 cases through GGUF with the same route schema; compare individual predictions and accuracy with the saved PyTorch reference.
+- [x] Run the committed fresh180 through selected GGUF on A32: 164/180 (91.11%), macro-F1 91.06%, zero request errors. PyTorch route agreement94.44% (10 changed cases); raw outputs and probability drift saved. Matched Qwen/beta comparisons are still running.
 - [ ] Measure A32 latency (cold start and warm p50/p95), peak memory and sustained temperature/battery behaviour. Record software/build revisions, model hash, settings, full outputs and logs.
 - [ ] Commit the mobile benchmark results and update model/release cards. Preserve verified artifact backups before any GPU closeout.
 - [ ] If results justify publication: prepare Hugging Face adapter plus decision head/tokenizer/configs/calibration, GGUF, and reviewed dataset with source licenses/provenance and privacy checks. Choose final dataset name then. Publish only when explicitly requested.
