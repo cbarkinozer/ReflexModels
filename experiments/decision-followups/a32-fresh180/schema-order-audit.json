@@ -12,5 +12,6 @@
     "runtime_decision": "72243606621400bd38f7c32cfb9c393de19c91cd3bdef755ce52a5d3fa67793a",
     "runtime_json": "d8c556445cef8e7c93b0857f6ca7ae7ebd8295f169403ac66641b72f6b0598f2",
     "torch_encoder": "0e304cf7c6500e8bb59bef7e2afd2c6373f82596dfb3b57d1aa93c175e2dc3a3"
-  }
+  },
+  "scorer_tie_policy": "Use canonical model option order for argmax ties: noul true,false; scores ascending numeric level. Never rely on response dictionary insertion order."
 }

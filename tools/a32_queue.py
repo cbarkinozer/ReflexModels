@@ -47,7 +47,7 @@ def decode(value):
 
 
 def options(q):
-    if q['type'] == 'noul': return ['false','true']
+    if q['type'] == 'noul': return ['true','false']
     if q['type'] == 'score': return [str(i) for i in range(len(q['criteria']))]
     return list(q['criteria'])
 
@@ -160,7 +160,7 @@ def question_results(response, questions):
             raise ValueError('Invalid probability options/normalization: '+name)
         probs[name]=prob
         # Same discrete argmax scoring used by the saved PyTorch evaluator, not rounded expected score.
-        predicted[name]=result['choice'] if q['type']=='choice' else max(prob,key=prob.get)
+        predicted[name]=result['choice'] if q['type']=='choice' else max(choices,key=prob.get)
         if predicted[name] not in choices: raise ValueError('Invalid choice')
     if response['usage']['output_tokens']!=0: raise ValueError('Unexpected generated tokens')
     return predicted,probs

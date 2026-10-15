@@ -22,6 +22,10 @@ class QueueScoringTest(unittest.TestCase):
         prediction,_=q.question_results({'answers':{'yes':{'noul':.9},'scale':{'score':.8,'probabilities':{'0':.4,'1':.6}}},'usage':{'output_tokens':0}}, {'yes':{'type':'noul'},'scale':{'type':'score','criteria':['low','high']}})
         self.assertEqual(prediction,{'yes':'true','scale':'1'})
 
+    def test_reference_canonical_ties_ignore_response_dictionary_order(self):
+        prediction,_=q.question_results({'answers':{'yes':{'noul':.5},'scale':{'score':.5,'probabilities':{'1':.5,'0':.5}}},'usage':{'output_tokens':0}}, {'yes':{'type':'noul'},'scale':{'type':'score','criteria':['low','high']}})
+        self.assertEqual(prediction,{'yes':'true','scale':'0'})
+
     def test_invalid_probability_labels_rejected(self):
         with self.assertRaises(ValueError):
             q.question_results({'answers':{'a':{'choice':'x','probabilities':{'x':1}}},'usage':{'output_tokens':0}}, {'a':{'type':'choice','criteria':{'x':'x','y':'y'}}})
