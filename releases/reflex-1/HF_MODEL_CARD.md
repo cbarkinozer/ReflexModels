@@ -33,6 +33,26 @@ Reflex-1 is a Qwen3.5-0.8B decision model trained to select among supplied optio
 
 These are saved-adapter scores, not phone/GGUF scores. General tests had no reported skipped/truncated decisions in the PyTorch pipeline. These are not a reproduction of Unsloth's published multi-source recipe or Cloudflare's Decision Index.
 
+### BANKING77 and CLINC150 results in context
+
+On the same frozen subsets, the trained model improved over the recorded base-Qwen decision-model reference:
+
+| Benchmark | Base Qwen3.5-0.8B reference accuracy | Reflex-1 accuracy | Change | Evaluation subset |
+| --- | ---: | ---: | ---: | --- |
+| BANKING77 | 8.44% | **74.89%** | +66.45 points | 462 examples; six per class |
+| CLINC150 | 4.44% | **81.11%** | +76.67 points | 450 examples; three per in-domain class; OOS excluded |
+
+The base reference uses FastDecisionModel with a freshly initialized decision head. Its initialization was not explicitly seeded, so treat these figures as the measured reference run, not as a reproducible text-generation zero-shot Qwen baseline. Both benchmarks were used for supervised in-domain adaptation; the held-out test examples were separate from training, validation and calibration.
+
+Cloudflare reports Clef at **94.2 BANKING77 macro-F1** and **97.4 CLINC150+OOS macro-F1** on its internal Decision Index 0.2.1 suite. Its model card describes Clef as a 27B Qwen3.8-based model. These figures are useful published context, but they are not directly comparable to Reflex-1's accuracy on balanced subsets: our BANKING77 metric is accuracy, and our CLINC evaluation excludes OOS and samples three examples per in-domain class. We have not run the Decision Index suite. [Cloudflare Clef model card and Decision Index results](https://huggingface.co/Cloudflare/clef).
+
+| Benchmark | Cloudflare Clef published result | Reflex-1 result | Reflex-1 metric and subset |
+| --- | ---: | ---: | --- |
+| BANKING77 | 94.2% macro-F1 | 74.89% | Accuracy; 462 examples, six per class |
+| CLINC150+OOS | 97.4% macro-F1 | 81.11% | Accuracy; CLINC150 in-domain only, 450 examples; OOS excluded |
+
+Do not use this cross-model table to rank the scores; use it to identify the benchmark coverage and metric differences. A direct comparison would require matching benchmark revisions, splits, OOS handling, prompt/schema, and scoring metric.
+
 ### Samsung Galaxy A32 / Q4_K_M
 
 On the same frozen 180-case phone cohort, Reflex-1 achieved **91.11% accuracy at 31.36s mean latency**, compared with **54.44% at 35.40s** for the unchanged Qwen app router with prompt caching enabled. This is +36.67 percentage points and 11.39% lower mean latency in these runs. The uncached app router scored 55.56% at 41.14s. These results cover routing under the documented nine-route policy; they do not establish general tool execution quality. Reflex-1 used more memory and showed similar maximum temperatures; no RAM, thermal or energy advantage is established. A shorter schema-format control was faster but much less accurate, so this is not a universal speed claim.

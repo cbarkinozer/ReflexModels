@@ -19,6 +19,8 @@ Calibration fitted and OK (`calibration_ok: true`); post-calibration ECE `.0377`
 
 Known leakage/interpretation caveats (phone validation reuse across pilots, lexical overlap, in-domain-not-zero-shot general sets) are documented in the same held-out-evaluation doc — read it before quoting the phone 98.89% as a generalization claim.
 
+The saved Qwen3.5-0.8B decision-model reference scored 8.44% on BANKING77 and 4.44% on CLINC150; Reflex-1 scored 74.89% and 81.11% accuracy on the same held-out subsets. The base reference had a freshly initialized, unseeded decision head, so it is not a conventional generative zero-shot baseline. [Cloudflare's Clef benchmark figures](https://huggingface.co/Cloudflare/clef) are included in the local model-card draft for context, with macro-F1 and OOS-split differences called out; they are not a direct leaderboard comparison.
+
 ## Local artifacts and reproduction
 
 Training ran on a rented Vast.ai RTX 4090 (instance `55798314`, now destroyed). Full provenance — exact commands, environment freeze, data/split hashes, leakage audit, cost — is in [`../../experiments/decision-followups/VAST_FINE_TUNE_HANDOFF_20261013.md`](../../experiments/decision-followups/VAST_FINE_TUNE_HANDOFF_20261013.md). Total pod runtime was approximately 2.0 h (training + merge + GGUF export); provisional cost at `$0.443/h` plus network ≈ **$0.90–0.95** (last confirmed snapshot before shutdown: 1.66 h / ≈$0.79, plus the ~20–25 min GGUF export step not separately billed-and-captured — treat as an estimate, not a final invoice).
