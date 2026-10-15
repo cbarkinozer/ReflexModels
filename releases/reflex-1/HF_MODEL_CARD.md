@@ -72,7 +72,7 @@ The earlier **55.6% / 36.8 s** Qwen raw-HTTP result used a historical 90-case se
 ## Model and training
 
 - Base: `unsloth/Qwen3.5-0.8B`, independently loaded from base for this run; not continued from reflex-1-beta.
-- Data: 781 reviewed synthetic phone requests + 781 general requests (391 typed-decisions, 195 BANKING77, 195 CLINC150). Equal phone/general domain exposure, all general intent classes retained.
+- Data: 781 reviewed synthetic phone requests + 781 general requests (391 typed-decisions, 195 BANKING77, 195 CLINC150). Equal phone/general row counts (typed rows contain five decisions), all general intent classes retained.
 - Nine phone routes: answer, get_device_info, get_battery_info, get_storage_info, get_media_info, search_local_files, search_notes, save_note, phone_health_check.
 - LoRA rank/alpha 16, base learning rate 2e-4, seed 3407, effective batch 32, max training sequence 4096. See executed run manifests for full settings/head LR rather than assuming defaults.
 - Selected training run: [W&B 66wubl55](https://wandb.ai/c-barkinozer/reflexmodels/runs/66wubl55) (tracking was used only for actual training).
@@ -91,6 +91,19 @@ Private repository: [cbarkinozer/Reflex-1](https://huggingface.co/cbarkinozer/Re
 - `gguf/mmproj-Q8_0.gguf`: 115,923,136 bytes; SHA-256 `37800be294d8c041e6146516b636414b8a75d0dd0878b08f6e0282e471790f94`. Preserved export sidecar; not needed for these text-only routing requests.
 
 Use a decision-capable Unsloth/llama.cpp runtime and POST to `/v1/systemone`. This is not a `/v1/chat/completions` GGUF. Android tests use the documented build11443 with `--no-repack`; ordinary llama.cpp builds may not expose the Decision API.
+
+A text-only CPU server can use the same flags as the A32 test (adjust the executable/library setup for your platform):
+
+```sh
+llama-server -m Reflex-1/gguf/model-Q4_K_M.gguf \
+  -c 2048 -t 4 -tb 4 -ngl 0 --fit off -fa off --no-repack \
+  --host 127.0.0.1 --port 8091 --jinja
+curl http://127.0.0.1:8091/v1/systemone \
+  -H 'Content-Type: application/json' \
+  --data-binary @decision-request.example.json
+```
+
+The release's `decision-request.example.json` contains the full nine-option question from `phone-routing-schema.json`; it contains a generic request, not held-out benchmark text. The expected response shape is `answers.route.choice` and `answers.route.probabilities`, with `usage.output_tokens` equal to0. Runtime source: [the verified llama.cpp revision](https://github.com/ggml-org/llama.cpp/tree/f0c41e0168dfd4b5ef72b21d1a311b24cc7a894a). Benchmark flags are a measured configuration, not a claim of optimal settings for every device.
 
 The Python adapter example needs a compatible Unsloth/PyTorch environment; the recorded reference used an RTX 4090. For Android CPU serving use the verified decision-capable GGUF runtime.
 

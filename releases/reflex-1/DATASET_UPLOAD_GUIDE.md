@@ -123,3 +123,5 @@ api.upload_file(
 ```
 
 These writes do not themselves change an existing repository's privacy. Do not upload raw evaluation folders or the entire Git working tree as a model or dataset release. Keep the selected adapter/head/tokenizer/configs and GGUF files already present in the model repo; updating README is not a model retrain.
+
+Also copy `releases/reflex-1/phone-routing-schema.json` and `releases/reflex-1/decision-request.example.json` into the model repository root when updating the card. They contain the generic decision schema and an ordinary example request, not test questions or gold labels. Upload each with `api.upload_file(path_or_fileobj=..., path_in_repo=the_filename, repo_id="cbarkinozer/Reflex-1")` or the web Files uploader. These example files are prepared locally and have not yet been uploaded by the agent.
