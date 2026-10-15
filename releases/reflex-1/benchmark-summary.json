@@ -908,6 +908,25 @@
     }
   },
   "complete": false,
+  "original_expanded_queue_complete": false,
+  "required_jobs": [
+    "qwen-fresh180",
+    "qwen-legacy-cached-fresh180",
+    "qwen-legacy-fresh180",
+    "run-01"
+  ],
+  "deferred_jobs": [
+    "beta-fresh180",
+    "reflex-historical90",
+    "qwen-historical90",
+    "qwen-cached-fresh180",
+    "reflex-typed_decisions",
+    "reflex-banking77",
+    "reflex-clinc150",
+    "beta-typed_decisions",
+    "beta-banking77",
+    "beta-clinc150"
+  ],
   "privacy": "Aggregate metrics only; no held-out requests, per-case responses, reviewer IDs or device-property dumps.",
   "runtime": "Android CPU build11443 f0c41e0168dfd4b5ef72b21d1a311b24cc7a894a; 4 inference/batch threads; Q4_K_M; phone ctx2048, general ctx4096; USB powered",
   "cohort_caveat": "Fresh180 and original historical90 are distinct; historical PyTorch reference used reviewed88. Raw Qwen prompt/JSON grammar treatment is specifically documented, not all possible Qwen inference configurations."

@@ -1,0 +1,14 @@
+{
+  "updated_unix": 1792050575.005738,
+  "reason": "User objected to multi-day ETA; finish matched selected-model versus unchanged app-router cached/uncached comparison. Defer expanded beta/historical/general Android runs. Existing GPU general metrics remain explicitly separate.",
+  "required_jobs": [
+    "run-01",
+    "qwen-fresh180",
+    "qwen-legacy-fresh180",
+    "qwen-legacy-cached-fresh180"
+  ],
+  "stop_after": "qwen-legacy-cached-fresh180",
+  "original_queue_total": 14,
+  "deferred_count": 10,
+  "no_uploads": true
+}

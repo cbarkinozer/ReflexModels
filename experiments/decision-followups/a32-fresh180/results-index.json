@@ -907,5 +907,24 @@
       "bootstrap_replicates": 10000
     }
   },
-  "complete": false
+  "complete": false,
+  "original_expanded_queue_complete": false,
+  "required_jobs": [
+    "qwen-fresh180",
+    "qwen-legacy-cached-fresh180",
+    "qwen-legacy-fresh180",
+    "run-01"
+  ],
+  "deferred_jobs": [
+    "beta-fresh180",
+    "reflex-historical90",
+    "qwen-historical90",
+    "qwen-cached-fresh180",
+    "reflex-typed_decisions",
+    "reflex-banking77",
+    "reflex-clinc150",
+    "beta-typed_decisions",
+    "beta-banking77",
+    "beta-clinc150"
+  ]
 }

@@ -7,6 +7,10 @@ import re
 base=Path(__file__).resolve().parents[1]/'experiments/decision-followups/a32-fresh180'
 progress=sorted(base.glob('*/progress.json'),key=lambda p:p.stat().st_mtime)
 status={'completed_benchmark_jobs':len(list(base.glob('*/summary.json'))),'queue_complete':(base/'queue-complete.json').exists()}
+scope_path=base/'scope-update.json'
+if scope_path.exists():
+    scope=json.loads(scope_path.read_text())
+    status.update(required_jobs=len(scope['required_jobs']),deferred_jobs=scope['deferred_count'],scope_complete=all((base/name/'summary.json').exists() for name in scope['required_jobs']))
 if progress:
     p=progress[-1];r=json.loads(p.read_text());status.update(active=p.parent.name,completed_cases=r['completed'],total_cases=r.get('total',180))
     lines=(p.parent/'predictions.jsonl').read_text().splitlines()

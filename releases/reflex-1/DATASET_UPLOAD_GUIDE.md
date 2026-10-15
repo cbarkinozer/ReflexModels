@@ -103,7 +103,7 @@ If you want the **exact combined training mixture** public too, create a separat
 
 ## Updating the model card before public release
 
-The measured card is prepared locally at `releases/reflex-1/HF_MODEL_CARD.md`. After the queue completes and you add the final dataset ID/link, review it and copy it to the model repo's **README.md**. `releases/reflex-1/benchmark-summary.json` contains aggregate metrics, confusion matrices and calibration/resource summaries without held-out request text, reviewer IDs or device-property dumps. It can accompany the model card. Check `complete: true` before describing the whole queue as finished.
+The measured card is prepared locally at `releases/reflex-1/HF_MODEL_CARD.md`. After the queue completes and you add the final dataset ID/link, review it and copy it to the model repo's **README.md**. `releases/reflex-1/benchmark-summary.json` contains aggregate metrics, confusion matrices and calibration/resource summaries without held-out request text, reviewer IDs or device-property dumps. It can accompany the model card. Check `complete: true` for the revised four-job mobile comparison scope. `original_expanded_queue_complete` remains false while the ten beta/historical/general Android jobs are deferred; do not describe those suites as completed on the phone. Existing GPU general benchmark results must retain their hardware labels.
 
 To update the existing private model repository yourself after review:
 

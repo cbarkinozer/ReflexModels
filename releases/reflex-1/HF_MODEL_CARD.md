@@ -36,22 +36,24 @@ These are saved-adapter scores, not phone/GGUF scores. General tests had no repo
 ### Samsung Galaxy A32 / Q4_K_M
 
 <!-- A32_RESULTS_START -->
+Scope reduced after user objection to multi-day runtime: finish the selected-model and cached/uncached app-router comparisons. Expanded beta, historical and general Android runs are deferred, not completed. Existing GPU general results remain separate.
+
 | Model | A32 cohort | Cases / decisions | Accuracy | Macro-F1 | Warm p50 / p95 | Errors |
 | --- | --- | ---: | ---: | ---: | ---: | ---: |
 | reflex-1 | Fresh phone (180) | 180 / 180 | 91.11% | 91.06% | 32.34 / 33.87 s | 0 |
 | Qwen app router (cache off) | Fresh phone (180) | 180 / 180 | 55.56% | 53.71% | 41.05 / 44.92 s | 0 |
-| Qwen app router (cache on) | Fresh phone (180) | 0 completed | pending | pending | pending | pending |
-| reflex-1-beta | Fresh phone (180) | 0 completed | pending | pending | pending | pending |
-| reflex-1 | Historical phone (original 90) | 0 completed | pending | pending | pending | pending |
-| Qwen app router (cache off) | Historical phone (original 90) | 0 completed | pending | pending | pending | pending |
+| Qwen app router (cache on) | Fresh phone (180) | 91 completed | pending | pending | pending | pending |
+| reflex-1-beta | Fresh phone (180) | 0 completed | deferred | deferred | deferred | deferred |
+| reflex-1 | Historical phone (original 90) | 0 completed | deferred | deferred | deferred | deferred |
+| Qwen app router (cache off) | Historical phone (original 90) | 0 completed | deferred | deferred | deferred | deferred |
 | Qwen schema JSON (cache off) | Fresh phone (180) | 180 / 180 | 23.33% | 22.41% | 25.44 / 26.70 s | 0 |
-| Qwen schema JSON (cache on) | Fresh phone (180) | 0 completed | pending | pending | pending | pending |
-| reflex-1 | typed-decisions | 0 completed | pending | pending | pending | pending |
-| reflex-1 | BANKING77 | 0 completed | pending | pending | pending | pending |
-| reflex-1 | CLINC150 in-domain | 0 completed | pending | pending | pending | pending |
-| reflex-1-beta | typed-decisions | 0 completed | pending | pending | pending | pending |
-| reflex-1-beta | BANKING77 | 0 completed | pending | pending | pending | pending |
-| reflex-1-beta | CLINC150 in-domain | 0 completed | pending | pending | pending | pending |
+| Qwen schema JSON (cache on) | Fresh phone (180) | 0 completed | deferred | deferred | deferred | deferred |
+| reflex-1 | typed-decisions | 0 completed | deferred | deferred | deferred | deferred |
+| reflex-1 | BANKING77 | 0 completed | deferred | deferred | deferred | deferred |
+| reflex-1 | CLINC150 in-domain | 0 completed | deferred | deferred | deferred | deferred |
+| reflex-1-beta | typed-decisions | 0 completed | deferred | deferred | deferred | deferred |
+| reflex-1-beta | BANKING77 | 0 completed | deferred | deferred | deferred | deferred |
+| reflex-1-beta | CLINC150 in-domain | 0 completed | deferred | deferred | deferred | deferred |
 
 | Model | A32 cohort | Battery min–max | AP max | Android thermal status max | Sampled max PSS | RSS high-water |
 | --- | --- | ---: | ---: | ---: | ---: | ---: |

@@ -132,12 +132,16 @@ def paired(a,b):
 
 
 def generate():
+    scope_path=BASE/'scope-update.json'
+    scope=json.loads(scope_path.read_text()) if scope_path.exists() else None
+    required=set(scope['required_jobs']) if scope else {name for name,_,_ in JOBS}
     records=[];lines=['| Model | A32 cohort | Cases / decisions | Accuracy | Macro-F1 | Warm p50 / p95 | Errors |','| --- | --- | ---: | ---: | ---: | ---: | ---: |']
     for name,label,title in JOBS:
         d=BASE/name;p=d/'summary.json'
         if not p.exists() or not json.loads(p.read_text()).get('complete'):
             progress=d/'progress.json';completed=json.loads(progress.read_text()).get('completed',0) if progress.exists() else 0
-            lines.append(f'| {label} | {title} | {completed} completed | pending | pending | pending | pending |');continue
+            state='pending' if name in required else 'deferred'
+            lines.append(f'| {label} | {title} | {completed} completed | {state} | {state} | {state} | {state} |');continue
         s=json.loads(p.read_text());original=name=='run-01';total=s['all_requests'] if original else s;warm=s['warm_requests'] if original else s['warm']
         decision_count=total.get('decisions',total.get('total'))
         count=total.get('rows',total.get('total'))
@@ -156,7 +160,8 @@ def generate():
     comparisons={}
     for name in ['qwen-fresh180','qwen-cached-fresh180','qwen-legacy-fresh180','qwen-legacy-cached-fresh180','beta-fresh180']:
         if (BASE/name/'summary.json').exists() and (BASE/'run-01/summary.json').exists():comparisons[name]=paired(BASE/'run-01',BASE/name)
-    report='# Samsung A32 benchmark results\n\nOnly completed jobs have scores; pending jobs are explicit. '+text+'\n\n'
+    scope_note='Scope reduced after user objection to multi-day runtime: finish the selected-model and cached/uncached app-router comparisons. Expanded beta, historical and general Android runs are deferred, not completed. Existing GPU general results remain separate.\n\n' if scope else ''
+    report='# Samsung A32 benchmark results\n\n'+scope_note+'Only completed jobs have scores; pending jobs are explicit. '+text+'\n\n'
     report=report.replace('explicit. |','explicit.\n\n|')
     report+='CPU-only 4 threads, Q4_K_M, runtime build11443, USB powered. Phone ctx2048, general ctx4096. Warm timing excludes first request and includes ADB/HTTP. General per-question accuracy and exact-record metrics are separate; CLINC excludes OOS. Raw Qwen uses fixed no-chat-template JSON-grammar treatment; not a claim about every Qwen prompting/runtime strategy.\n\n'
     report+=resource_table+'\n\nPSS maxima are sampled; RSS high-water is kernel-reported. USB power precludes an energy-saving claim.\n\n'
@@ -165,7 +170,7 @@ def generate():
     report+='Per-route, coverage and workflow results:\n\n```json\n'+json.dumps([{'directory':r['directory'],'groups':r['groups']} for r in records],indent=2)+'\n```\n\n'
     report+='Resource traces and measured sampled maxima:\n\n```json\n'+json.dumps([{k:v for k,v in r.items() if k in ['directory','resources']} for r in records],indent=2)+'\n```\n\nPaired fresh180 comparisons (reflex minus comparator):\n\n```json\n'+json.dumps(comparisons,indent=2)+'\n```\n'
     (BASE/'RESULTS.md').write_text(report)
-    index={'completed_jobs':records,'paired_fresh180':comparisons,'complete':len(records)==len(JOBS)}
+    index={'completed_jobs':records,'paired_fresh180':comparisons,'complete':required.issubset({r['directory'] for r in records}),'original_expanded_queue_complete':len(records)==len(JOBS),'required_jobs':sorted(required),'deferred_jobs':[name for name,_,_ in JOBS if name not in required]}
     (BASE/'results-index.json').write_text(json.dumps(index,indent=2)+'\n')
     public_summary=index|{'privacy':'Aggregate metrics only; no held-out requests, per-case responses, reviewer IDs or device-property dumps.', 'runtime':'Android CPU build11443 f0c41e0168dfd4b5ef72b21d1a311b24cc7a894a; 4 inference/batch threads; Q4_K_M; phone ctx2048, general ctx4096; USB powered', 'cohort_caveat':'Fresh180 and original historical90 are distinct; historical PyTorch reference used reviewed88. Raw Qwen prompt/JSON grammar treatment is specifically documented, not all possible Qwen inference configurations.'}
     (ROOT/'releases/reflex-1/benchmark-summary.json').write_text(json.dumps(public_summary,indent=2)+'\n')
@@ -173,8 +178,8 @@ def generate():
     s=card.read_text();start='<!-- A32_RESULTS_START -->';end='<!-- A32_RESULTS_END -->'
     before,rest=s.split(start,1);_,after=rest.split(end,1)
     paired_text='\n\n'.join(f"Fresh180 vs {name}: accuracy difference {100*v['accuracy_difference']:+.2f} percentage points; paired bootstrap95% interval [{100*v['paired_bootstrap_95ci'][0]:+.2f}, {100*v['paired_bootstrap_95ci'][1]:+.2f}] points (10,000 resamples, seed3407). This interval concerns this reviewed synthetic cohort, not unrestricted real-world requests." for name,v in comparisons.items())
-    card.write_text(before+start+'\n'+text+'\n\n'+resource_table+'\n\n'+paired_text+'\n\nCompleted runs only; partial counts are not scores. Warm timing excludes first request. General contexts4096 vs phone2048; see recorded protocol and per-run raw outputs.\n'+end+after)
-    print('Report updated:',len(records),'/',len(JOBS),'completed')
+    card.write_text(before+start+'\n'+scope_note+text+'\n\n'+resource_table+'\n\n'+paired_text+'\n\nCompleted runs only; partial counts are not scores. Warm timing excludes first request. General contexts4096 vs phone2048; see recorded protocol and per-run raw outputs.\n'+end+after)
+    print('Report updated:',len(records),'completed;',len(required),'required;',len(JOBS)-len(required),'deferred')
 
 
 if __name__=='__main__':generate()
