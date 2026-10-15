@@ -31,6 +31,24 @@ class QueueScoringTest(unittest.TestCase):
         self.assertIn(json.dumps(json.dumps('quote"label')),grammar)
         self.assertIn(json.dumps(json.dumps('back\\slash')),grammar)
 
+    def test_cache_profiles_change_only_the_cache_flag(self):
+        questions={'route':{'type':'choice','criteria':{'answer':'ordinary','get_battery_info':'battery'}}}
+        for profile in ['raw','legacy']:
+            off=q.baseline_body({'state':'A fixture input'},questions,profile)
+            on=q.baseline_body({'state':'A fixture input'},questions,profile+'-cached')
+            self.assertFalse(off['cache_prompt'])
+            self.assertEqual(off|{'cache_prompt':True},on)
+            self.assertEqual(off['max_tokens'],64 if profile=='legacy' else 256)
+
+    def test_existing_router_action_normalization(self):
+        questions={'route':{'type':'choice','criteria':{'answer':'a','get_battery_info':'b','phone_health_check':'c'}}}
+        fixtures=[({'action':'answer','text':''},'answer'),({'action':'tool','name':'get_battery_info','args':{}},'get_battery_info'),({'action':'workflow','name':'phone_health_check','args':{}},'phone_health_check')]
+        for payload,label in fixtures:
+            response={'choices':[{'text':json.dumps(payload)}]}
+            self.assertEqual(q.baseline_predictions(response,questions,'legacy'),{'route':label})
+        with self.assertRaisesRegex(ValueError,'workflow'):
+            q.baseline_predictions({'choices':[{'text':'{"action":"workflow","name":"get_battery_info"}'}]},questions,'legacy')
+
     def test_all_frozen_general_cohorts_validate(self):
         directory=q.BASE/'heldout-results-20261014/frozen-general-tests'
         manifest=json.loads((directory/'manifest.json').read_text())
